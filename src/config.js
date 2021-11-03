@@ -16,7 +16,7 @@ export const buddiesaddress = contractAddresses.addresses[12].address
 
 // export const buddiesaddress = "0xDb183249F3CEf45B1B026856adfB3037dBdf7109" //BSC Testnet Address 2 Oct 2021
 
-//export const marketfeesaddress = "0xaa43426DbAECE47f238b75d0ed3c2bc450057c2D" //local
+//export const marketfeesaddress = "0xaa43426DbAECE47f238b75d0ed3c2bc450057c2D" //localdd
 export const marketfeesaddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
 
 // export const proShopItems = [{admin:pbProShopHolderAddress,sku:1000040001200001,active:true,c1:'#ffc700',c2:'#a60c00'},
