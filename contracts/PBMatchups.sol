@@ -68,7 +68,7 @@ struct Matchup{
     }
     
     modifier onlyAdmin() {
-        require(admin == msg.sender, "This function is only accessable by the admin of the contract" );
+        require(admin == msg.sender, "a" );
         _;
     }
     

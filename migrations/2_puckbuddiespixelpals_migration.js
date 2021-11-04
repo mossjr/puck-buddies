@@ -1,6 +1,4 @@
-//const buddiesCoinAddress = "0x4dA9f20A52686aaA3CE321857Df76b2217e61ADf" //local 
-//const buddiesCoinAddress = "0xDb183249F3CEf45B1B026856adfB3037dBdf7109" //bsc testnet
-const feesAddress = "0xaa43426DbAECE47f238b75d0ed3c2bc450057c2D"
+const feesAddress = "0x86F5F13A7f3Fc0144FB89C8c01c5F181402339c9"
 
 const PBBuddies = artifacts.require("PBBuddies")
 const PBPlayers = artifacts.require("PBPlayers")
@@ -15,19 +13,20 @@ const PBTeams = artifacts.require("PBTeams")
 const PBMatchups = artifacts.require("PBMatchups")
 const PBMatchupsMarket = artifacts.require("PBMatchupsMarket")
 const PBPvCMatchups = artifacts.require("PBPvCMatchups")
+const BuddiesICO = artifacts.require("BuddiesICO")
 
 // //Local
-// const firstAddress = "0x983e7AE9f42196592EBB3f0c522efB3126Aa2037"
-// const secondAddress = "0x3bd716722c353372fC4792536fdcAC0F9A3B47cF"
-// const thirdAddress = "0x36D40AE54802B13528D4636dAB5b50A89d8Be4b1"
+const firstAddress = "0xCD0e2EDE8d9B3800445E52AD2E1500Eb38Bf98B8"
+const secondAddress = "0x66169C4B3660d18f28a7a0fdafEd7fC4448E74eB"
+const thirdAddress = "0x6327f4E00a20394c06F453bF295CB9F222F842d9"
 
 //bscTestnet
-const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
-const secondAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
-const thirdAddress = "0x46E008eeDE61cbAF08393a9d42688cD528eC8E43"
+// const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
+// const secondAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
+// const thirdAddress = "0x46E008eeDE61cbAF08393a9d42688cD528eC8E43"
 
-// let buddiesCoinAddress
-// let PBBuddiesInstance
+let buddiesCoinAddress
+let PBBuddiesInstance
 let pbPlayersInstance
 let pbPlayersAddress
 let pbMarketplaceInstance
@@ -52,6 +51,8 @@ let PBMatchupsMarketInstance
 let PBMatchupsMarketAddress
 let PBPvCMatchupsInstance
 let PBPvCMatchupsAddress
+let buddiesICOInstance
+let buddiesICOAddress
 
 //PB Players Deploy Settings
 const mintCost1 = "5000000000000000000"
@@ -75,6 +76,10 @@ PvCReward = ["25000000000000000","50000000000000000","100000000000000000"]
 PvCxpReward = 25
 PvCdifficultyModifier = 100
 
+//ICO Settings
+let initialICOBuddies = '100000000000000000000000'
+let initalICOBudsPerBNB = '50'
+
 
 module.exports = function (deployer) {
 
@@ -83,12 +88,15 @@ module.exports = function (deployer) {
             PBBuddiesInstance = await PBBuddies.deployed()
             await PBBuddiesInstance.getBuddiesAddress().then(async (res) => {
                 buddiesCoinAddress = res
-                let value = web3.utils.toWei('100')
-                await PBBuddiesInstance.transfer(secondAddress, value.toString())
-                await PBBuddiesInstance.transfer(thirdAddress, value.toString())
             })
 
-            //Comment out Buddies above and don't forget to add 'return' to the deployer below on subsequent deploy
+            return deployer.deploy(BuddiesICO, buddiesCoinAddress, initalICOBudsPerBNB).then( async () =>{
+                buddiesICOInstance = await BuddiesICO.deployed()
+                await buddiesICOInstance.getBuddiesICOAddress().then(async (res) =>{
+                    buddiesICOAddress = res
+                    await PBBuddiesInstance.transfer(buddiesICOAddress, initialICOBuddies) 
+                })
+
             return deployer.deploy(PBPlayers, buddiesCoinAddress, mintCost1, mintCost2, mintCost3, ageoutSeconds).then( async () => {
             pbPlayersInstance = await PBPlayers.deployed()
             await pbPlayersInstance.getPBPlayersAddress().then(res => {
@@ -113,11 +121,11 @@ module.exports = function (deployer) {
                         await pbProShopHolderInstance.getPBProShopHolderAddress().then(async res => {
                             pbProShopHolderAddress = res
                             await pbProShopFactoryInstance.updateProshopHolderAddress(pbProShopHolderAddress)
-                            await pbProShopFactoryInstance.newProduct(skuToMint1, quantityToMint)
-                            // await pbProShopFactoryInstance.newProduct(skuToMint2, quantityToMint)
-                            // await pbProShopFactoryInstance.newProduct(skuToMint3, quantityToMint)
-                            // await pbProShopFactoryInstance.newProduct(skuToMint4, quantityToMint)
-                            // await pbProShopFactoryInstance.newProduct(skuToMint5, quantityToMint)
+                            // await pbProShopFactoryInstance.newProduct(skuToMint1, quantityToMint)
+                            // // await pbProShopFactoryInstance.newProduct(skuToMint2, quantityToMint)
+                            // // await pbProShopFactoryInstance.newProduct(skuToMint3, quantityToMint)
+                            // // await pbProShopFactoryInstance.newProduct(skuToMint4, quantityToMint)
+                            // // await pbProShopFactoryInstance.newProduct(skuToMint5, quantityToMint)
                         })
 
                         return deployer.deploy(PBProShopMarketplace, buddiesCoinAddress, pbProShopFactoryAddress, feesAddress).then(async () => {
@@ -207,6 +215,7 @@ module.exports = function (deployer) {
                                                             console.log("export const PBMatchupsMarketAddress = \"" + PBMatchupsMarketAddress +"\"")
                                                             console.log("export const PBPvCMatchupsAddress = \"" + PBPvCMatchupsAddress +"\"")
                                                             console.log("export const buddiesCoinAddress = \"" + buddiesCoinAddress +"\"")
+                                                            console.log("export const buddiesICOAddress = \"" + buddiesICOAddress +"\"")
 
                                                             let obj = {addresses: []}
                                                             obj.addresses.push({addressname: 'pbPlayersAddress', address: pbPlayersAddress})
@@ -222,6 +231,7 @@ module.exports = function (deployer) {
                                                             obj.addresses.push({addressname: 'PBPvCMatchupsAddress', address: PBPvCMatchupsAddress})
                                                             obj.addresses.push({addressname: 'PBPvCHelperAddress', address: PBPvCHelperAddress})
                                                             obj.addresses.push({addressname: 'buddiesCoinAddress', address: buddiesCoinAddress})
+                                                            obj.addresses.push({addressname: 'buddiesICOAddress', address: buddiesICOAddress})
                                                             
 
                                                             let json = JSON.stringify(obj)
@@ -242,7 +252,8 @@ module.exports = function (deployer) {
                         })
                     })
                 })
-            })         
+            })
+        })         
        })        
   }
 
