@@ -116,6 +116,32 @@ async function renderGame(){
     loadPBPlayers()
 }
 
+//ICO Functions
+async function getBudsICOInfo(){
+    let ICOcontractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    let budsPerBNB = await ICOcontractInstance.methods.getBudsPerBNB().call({from: ethereum.selectedAddress})
+    let budsSoldWei = await ICOcontractInstance.methods.getBudsSold().call({from: ethereum.selectedAddress})
+    let budsBalanceWei = await ICOcontractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    let budsSold =  web3.utils.fromWei(budsSoldWei)
+    let budsBalance = web3.utils.fromWei(budsBalanceWei)
+    let obj = {budsPerBNB: budsPerBNB, budsSold: budsSold, budsBalance: budsBalance}
+    return obj
+}
+
+async function buyBuddies(_value) {
+    let valueWei =  web3.utils.toWei(_value.toString())
+    let ICOcontractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    await ICOcontractInstance.methods.buyBuddies().send({from: ethereum.selectedAddress, value: valueWei, gas: 510000}).on("receipt", ( (receipt) => {
+        console.log("ICO Purchase Successful")
+        console.log(receipt)
+        return
+    }))
+        .catch(err =>{
+        console.log("ICO Purchase Error")
+        console.log(err)
+    })
+}
+
 //NavBar Admin Button
 
 async function addBuddiesToMetaMask(){
@@ -1483,7 +1509,9 @@ export default {
     mintNewTeam,
     getBudsAddress,
     giftPlayer,
-    giftItem
+    giftItem,
+    getBudsICOInfo,
+    buyBuddies
 }
 
 

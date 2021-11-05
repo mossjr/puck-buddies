@@ -1,4 +1,4 @@
-const feesAddress = "0x86F5F13A7f3Fc0144FB89C8c01c5F181402339c9"
+const feesAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
 
 const PBBuddies = artifacts.require("PBBuddies")
 const PBPlayers = artifacts.require("PBPlayers")
@@ -16,9 +16,8 @@ const PBPvCMatchups = artifacts.require("PBPvCMatchups")
 const BuddiesICO = artifacts.require("BuddiesICO")
 
 // //Local
-const firstAddress = "0xCD0e2EDE8d9B3800445E52AD2E1500Eb38Bf98B8"
-const secondAddress = "0x66169C4B3660d18f28a7a0fdafEd7fC4448E74eB"
-const thirdAddress = "0x6327f4E00a20394c06F453bF295CB9F222F842d9"
+const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
+
 
 //bscTestnet
 // const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
@@ -64,17 +63,19 @@ const ageoutSeconds = "604800"
 
 //PB ProShop Factory Deploy Settings
 const skuToMint1 = "1694200002400001"
-// const skuToMint2 = "1000240001200001"
-// const skuToMint3 = "1000040001200001"
-// const skuToMint4 = "1000110001200001"
-// const skuToMint5 = "1000130001200001"
+const skuToMint2 = "1100010001200001"
+const skuToMint3 = "1100020001200001"
+const skuToMint4 = "1100030001200001"
+const skuToMint5 = "1100040001200001"
+const skuToMint6 = "1100050001200001"
 const quantityToMint = 20
 
 //PB PvC Deploy Settings
-PvCTimeout = [60,130,230]
-PvCReward = ["25000000000000000","50000000000000000","100000000000000000"]
-PvCxpReward = 25
-PvCdifficultyModifier = 100
+let PvCTimeout = [60,130,230]
+let PvCReward = ["25000000000000000","50000000000000000","100000000000000000"]
+let PvCxpReward = 25
+let PvCdifficultyModifier = 100
+let PvCinitialValueOnContract = web3.utils.toWei('1000')
 
 //ICO Settings
 let initialICOBuddies = '100000000000000000000000'
@@ -121,11 +122,12 @@ module.exports = function (deployer) {
                         await pbProShopHolderInstance.getPBProShopHolderAddress().then(async res => {
                             pbProShopHolderAddress = res
                             await pbProShopFactoryInstance.updateProshopHolderAddress(pbProShopHolderAddress)
-                            // await pbProShopFactoryInstance.newProduct(skuToMint1, quantityToMint)
-                            // // await pbProShopFactoryInstance.newProduct(skuToMint2, quantityToMint)
-                            // // await pbProShopFactoryInstance.newProduct(skuToMint3, quantityToMint)
-                            // // await pbProShopFactoryInstance.newProduct(skuToMint4, quantityToMint)
-                            // // await pbProShopFactoryInstance.newProduct(skuToMint5, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint1, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint2, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint3, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint4, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint5, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint6, quantityToMint)
                         })
 
                         return deployer.deploy(PBProShopMarketplace, buddiesCoinAddress, pbProShopFactoryAddress, feesAddress).then(async () => {
@@ -184,24 +186,92 @@ module.exports = function (deployer) {
                                                     return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBMatchupValidationAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
                                                         await pbPlayersInstance.mintSuperstar(firstAddress,0,0, generateRandomDNA(),1)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, gerateRandomStat(0, 49), gerateRandomStat(50, 99), generateRandomDNA(), 2)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, gerateRandomStat(0, 49), gerateRandomStat(50, 99), generateRandomDNA(), 2)
-                                                        // await pbPlayersInstance.mintSuperstar(secondAddress, 0, gerateRandomStat(75, 99), generateRandomDNA(), 3)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, gerateRandomStat(0, 49), gerateRandomStat(50, 99), generateRandomDNA(), 2)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, gerateRandomStat(0, 49), gerateRandomStat(50, 99), generateRandomDNA(), 2)
-                                                        // await pbPlayersInstance.mintSuperstar(thirdAddress, 0, gerateRandomStat(75, 99), generateRandomDNA(), 3)
-                                                        //await PBTeamsInstance.mintTeam()
+                                                        for(let i = 0; i < 20; i++){
+                                                            await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
+                                                                let playerID = res.logs[2].args[0].toString()
+                                                                console.log("PlayerID " + playerID + " created")
+                                                                await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
+                                                                    await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
+                                                                })
+                                                            })
+                                                            
+                                                        }
+                                                       
+                                                   
+
+
                                                         await PBPvCMatchupsInstance.getPBPvCMatchupsAddress().then(async res => {
                                                             PBPvCMatchupsAddress = res
-                                                            let value2 = web3.utils.toWei('1000')
-                                                            await PBBuddiesInstance.transfer(PBPvCMatchupsAddress, value2.toString()) 
+                                                            await PBBuddiesInstance.transfer(PBPvCMatchupsAddress, PvCinitialValueOnContract.toString()) 
                                                             await PBXPInstance.updatePBPvCAddress(PBPvCMatchupsAddress)
+
+                                                            
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '48000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint1,'48000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint1, '1000000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint1 + " "  + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint2,'24000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint2, '500000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint2 + " " + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+                                                                
+
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint3,'24000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint3, '500000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint3 + " "  + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+                                                                
+
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint4,'24000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint4, '500000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint4 + " "  + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+                                                                
+
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint5,'24000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint5, '500000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint5 + " "  + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
+                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint6,'24000000000000000000', 20)
+                                                                for(let i = 0; i < 20; i++){
+                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint6, '500000000000000000').then(async res => {
+                                                                        console.log("Sent " + skuToMint6 + " "  + i + " the Equipment Marketplace")
+                                                                    })  
+                                                                }
+                                                                
+                                                                
+                                                         
+
                                                             console.log("export const pbPlayersAddress = \"" + pbPlayersAddress +"\"")
                                                             console.log("export const pbMarketplaceAddress = \"" + pbMarketplaceAddress +"\"")
                                                             console.log("export const pbProShopFactoryAddress = \"" + pbProShopFactoryAddress +"\"")
@@ -209,7 +279,6 @@ module.exports = function (deployer) {
                                                             console.log("export const pbProShopMarketplaceAddress = \"" + pbProShopMarketplaceAddress +"\"") 
                                                             console.log("export const PBXPAddress = \"" + PBXPAddress +"\"") 
                                                             console.log("export const PBMatchupValidationAddress = \"" + PBMatchupValidationAddress +"\"")
-                                                            // console.log("export const PBXPShopHolderAddress = \"" + PBXPShopHolderAddress +"\"")
                                                             console.log("export const PBTeamsAddress = \"" + PBTeamsAddress +"\"")
                                                             console.log("export const PBMatchupsAddress = \"" + PBMatchupsAddress +"\"")
                                                             console.log("export const PBMatchupsMarketAddress = \"" + PBMatchupsMarketAddress +"\"")
@@ -241,6 +310,8 @@ module.exports = function (deployer) {
                                                                 console.log('Data written to file');
                                                             })
                                                             }) 
+
+
                                                         })    
                                                     })
                                                 })

@@ -1,6 +1,6 @@
 <template>
   <div class="player-market">
-
+    <img src="../assets/img/player-marketplace.png" alt="player-marketplace">
   <div>
     <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="loadingPlayers">
   </div>
@@ -85,7 +85,7 @@ export default ({
     return{
       myAddress: '',
       myFunds: '',
-      playersToShow: 24,
+      playersToShow: 12,
       totalFoundPlayers: 0,
       loadingPlayers: true,
       showMyPlayers: false,
@@ -382,5 +382,19 @@ export default ({
 
   
 }
+
+.action-button{
+    margin: 5px;
+    width:300px;
+  transition: 0.3s;
+  height: 60px;
+  border: none;
+  background: rgb(11, 145, 100);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  
+}
+
 
 </style>

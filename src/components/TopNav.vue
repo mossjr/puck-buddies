@@ -1,13 +1,12 @@
 <template>
 <div class="nav-bar">
   <nav id="nav">
-    <router-link :to="{ name: 'My Players'}">My Players</router-link>
-    <router-link :to="{ name: 'Player Market'}">Player Market</router-link>
-    <router-link :to="{ name: 'My Teams'}">My Teams</router-link>
-    <!-- <router-link :to="{ name: 'Matchups'}">PvP Matchups</router-link> -->
-    <router-link :to="{ name: 'Pro Shop'}">Pro Shop</router-link>
-    <router-link :to="{ name: 'My Equipment'}">My Equipment</router-link>
-    <router-link :to="{ name: 'Pro Shop Marketplace'}">Pro Shop Marketplace</router-link>    
+    <router-link class="mystuff" :to="{ name: 'My Players'}">My Players</router-link>
+    <router-link class="mystuff" :to="{ name: 'My Team'}">My Team</router-link>
+    <router-link class="mystuff" :to="{ name: 'My Equipment'}">My Equipment</router-link>
+    <router-link class="proshop" :to="{ name: 'Pro Shop'}">Pro Shop</router-link>
+    <router-link class="marketplace" :to="{ name: 'Player Marketplace'}">Player Marketplace</router-link>
+    <router-link class="marketplace" :to="{ name: 'Equipment Marketplace'}">Equipment Marketplace</router-link>    
     <button id="disconnect-button">Disconnect</button>
     <div>
 
@@ -483,5 +482,17 @@ export default{
   color: #fff;
   background-color: rgb(12, 185, 128);
   border-radius:5px;
+}
+
+.marketplace:hover{
+  background-color: mediumpurple !important;
+}
+
+.mystuff:hover{
+  background-color: rgb(12, 185, 128) !important;
+}
+
+.proshop:hover{
+  background-color:steelblue !important;
 }
 </style>

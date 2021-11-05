@@ -1,6 +1,6 @@
 <template>
   <div class="pro-shop">
-
+<img src="../assets/img/pro-shop.png" alt="pro-shop">
 <div>
   <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="loadingItems">
   </div>

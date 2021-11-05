@@ -1,7 +1,8 @@
 <template>
   <div class="my-equipment">
-
+    <img src="../assets/img/my-equipment.png" alt="my-equipment">
       <div class="items-container">
+        
         <div  v-for="(item, index) in items" :key="index">
             <div class="inventory-card" v-if="item.inInventory">  
                 <img class="proshop-img" :src="`../assets/cos-img/pro-shop-${item.sku}.png`" :alt="`pro-shop-${item.sku}`">

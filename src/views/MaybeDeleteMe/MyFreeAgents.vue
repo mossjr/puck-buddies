@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import main from '../main.js'
-import buildCanvas from '../scripts/buildPlayer.js'
+import main from '../../main.js'
+import buildCanvas from '../../scripts/buildPlayer.js'
 
 export default ({
   data() {

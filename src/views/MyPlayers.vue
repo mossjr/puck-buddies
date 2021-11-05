@@ -1,12 +1,12 @@
 <template>
 
 <div class="myplayers">
-
+<img src="../assets/img/my-players.png" alt="my-players">
   
 <!-- <h1>My Players: ({{ totalFoundPlayers }} found)</h1> -->
 <div class="button-bar">
-  <button @click="showRetiredPlayers()" v-if="!showRetired">Show Retired Players</button>
-  <button @click="showRetiredPlayers()" v-if="showRetired">Show Active Players</button>
+  <button class="ret-button" @click="showRetiredPlayers()" v-if="!showRetired">Show Retired Players</button>
+  <button class="ret-button" @click="showRetiredPlayers()" v-if="showRetired">Show Active Players</button>
 </div>
 <div class="button-bar">
   <button  @click="mintNewOffence('PB-BRB')" v-if="!noFunds">Draft Offence for <br> {{ costToDraft1 }} BUDS</button>
@@ -615,6 +615,10 @@ transition: 0.3s ease;
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.3);
   transform: scale(1.05);
   background: rgb(12, 185, 128);
+}
+
+.ret-button{
+  font-size: 0.8em !important;
 }
 
 .noFunds{

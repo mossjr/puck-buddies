@@ -46,6 +46,8 @@ contract PBPlayers is ERC721 {
 
     uint nextId = 0;
 
+    event newSuperstar(uint tokenId);
+
 
     mapping (uint => Player ) public _tokenDetails;
 
@@ -164,7 +166,7 @@ contract PBPlayers is ERC721 {
         return a + nextId;
     }
 
-    function mintSuperstar(address playerOwner, uint opScore, uint dpScore, uint dna, uint playerType) external onlyAdmin{
+    function mintSuperstar(address playerOwner, uint opScore, uint dpScore, uint dna, uint playerType) external onlyAdmin {
         if(playerType == 1){
             _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }else if(playerType == 2){
@@ -175,6 +177,7 @@ contract PBPlayers is ERC721 {
         _safeMint(playerOwner, nextId);
         setApprovalForAll(marketplaceAddress, true);
         nextId++;
+        emit newSuperstar(nextId-1);
     }
 
     function getAllTokensForUser(address user) public view returns (uint256[] memory){

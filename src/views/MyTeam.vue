@@ -5,7 +5,7 @@
     <input v-model="PBXPqtyToMint" type="number">
     <button @click="newPBXPtoTeamContract(PBXPqtyToMint)">Mint new PBXP</button> -->
     <!-- <button @click="getTeamDetails()">TEST</button> -->
-
+    <img src="../assets/img/my-team.png" alt="my-team">
 
 
     <div v-for="(team, index) in teams" :key="index">
@@ -23,7 +23,7 @@
         <div v-if="!matchesLoading && !lockMatchups30s" class="vs-team-stats">
           <div id="team1PvC">
             <div>
-              <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">    
+              <!-- <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">     -->
             </div>
             <button v-if="timestamp >= activeTo1" @click="hitTheIcePvC(1, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
             <button v-if="timestamp < activeTo1 && matches.won1" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -34,7 +34,7 @@
           </div>
           <div id="team2PvC">
             <div>
-              <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">    
+              <!-- <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">     -->
             </div>
             <button v-if="timestamp >= activeTo2" @click="hitTheIcePvC(2, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
             <button v-if="timestamp < activeTo2 && matches.won2" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -45,7 +45,7 @@
           </div>
           <div id="team3PvC">
             <div>
-              <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">    
+              <!-- <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">     -->
             </div>
             <button v-if="timestamp >= activeTo3" @click="hitTheIcePvC(3, team.teamId,playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
             <button v-if="timestamp < activeTo3 && matches.won3" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -54,14 +54,14 @@
               <div class="progress3" id="play-animation" :style="{width: progressPercent3 + '%', 'background-color': '#'+ progressColor3}"></div>
             </div>
           </div>
-          <div class="noraml-updating-timer" v-if="secondsTillChange > 60">Refreshing Opponent Stats in {{minsTillChange}} minutes</div>
-          <div class="noraml-updating-timer" v-if="secondsTillChange <= 60">Refreshing Opponent Stats in {{secondsTillChange}} seconds</div>
+          <!-- <div class="noraml-updating-timer" v-if="secondsTillChange > 60">Refreshing Opponent Stats in {{minsTillChange}} minutes</div>
+          <div class="noraml-updating-timer" v-if="secondsTillChange <= 60">Refreshing Opponent Stats in {{secondsTillChange}} seconds</div> -->
         </div>
 
-        <div v-if="lockMatchups30s">
+        <!-- <div v-if="lockMatchups30s">
           <img src="../assets/img/back-soon.png" alt="Back Soon">
           <div class="noraml-updating-timer">Refreshing Opponent Stats in {{secondsTillChange}} seconds</div>
-        </div>
+        </div> -->
       </div>
         <!-- <div>
           <button id="team-action-button" @click="openNewPvPmodal(team.teamId, team.opTotal, team.dpTotal, team.teamDna)">Create a PvP Matchup</button>
@@ -78,8 +78,8 @@
       <div class="team-stats">
         <div class="team-data">OP: {{team.opTotal}}</div>
         <div class="team-data">DP: {{team.dpTotal}}</div>
-        <div class="team-data">OP: {{team.teamTotalOP}}</div>
-        <div class="team-data">DP: {{team.teamTotalDP}}</div>
+        <!-- <div class="team-data">OP: {{team.teamTotalOP}}</div>
+        <div class="team-data">DP: {{team.teamTotalDP}}</div> -->
       </div>
 
 
@@ -752,17 +752,17 @@ export default {
       return middle
     },
 
-    async checkForMatchupRefresh(){
-      let testNo = 0  
-      let countdown = 30
-      if(this.secondsTillChange <= testNo && this.secondsTillChange > testNo - countdown){
-        this.lockMatchups30s = true
-      }else if(this.secondsTillChange <= testNo - countdown && this.lockMatchups30s || this.secondsTillChange > testNo && this.lockMatchups30s){
-        this.loadPvCmatches(this.pageTeamId)
-        this.lockMatchups30s = false
-      }
+    // async checkForMatchupRefresh(){
+    //   let testNo = 0  
+    //   let countdown = 30
+    //   if(this.secondsTillChange <= testNo && this.secondsTillChange > testNo - countdown){
+    //     this.lockMatchups30s = true
+    //   }else if(this.secondsTillChange <= testNo - countdown && this.lockMatchups30s || this.secondsTillChange > testNo && this.lockMatchups30s){
+    //     this.loadPvCmatches(this.pageTeamId)
+    //     this.lockMatchups30s = false
+    //   }
       
-    },
+    // },
 
     async newPBXPtoTeamContract(qty){
       await main.newPBXPtoTeamContract(qty)
@@ -835,7 +835,7 @@ export default {
     this.updateXpBalanceViewer()
     window.setInterval(() =>{
       this.updateProgressBars()
-      this.checkForMatchupRefresh()
+      // this.checkForMatchupRefresh()
     }, 1000)
     
   }
@@ -864,8 +864,8 @@ export default {
 }
 
 .player-container-inside{
-  width: 1600px;
-   max-width: 1600px;
+  width: 1100px;
+   max-width: 1100px;
      display: flex;
   flex-direction: row;
   flex-wrap: wrap;

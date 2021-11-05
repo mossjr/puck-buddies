@@ -77,11 +77,21 @@ export default {
   text-decoration: none;
   padding: 10px;
   border-radius: 10px;
+  margin: 5px;
+  
 }
 
-#nav a.router-link-exact-active {
+#nav .mystuff.router-link-exact-active {
   color: #fff;
   background: rgb(12, 185, 128);
+}
+#nav .marketplace.router-link-exact-active {
+  color: #fff;
+  background: mediumpurple;
+}
+#nav .proshop.router-link-exact-active {
+  color: #fff;
+  background: steelblue;
 }
 
 #disconnect-button {

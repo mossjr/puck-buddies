@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import MyPlayers from '../views/MyPlayers.vue'
-import MyTeams from '../views/MyTeams.vue'
-import Matchups from '../views/MatchUps.vue'
-import PlayerMarket from '../views/FreeAgencyMarket.vue'
+import MyTeam from '../views/MyTeam.vue'
+// import Matchups from '../views/MaybeDeleteMe/MatchUps.vue'
+import PlayerMarketplace from '../views/FreeAgencyMarket.vue'
 import ProShop from '../views/ProShop.vue'
-import ProShopMarketplace from '../views/ProShopMarketplace.vue'
+import EquipmentMarketplace from '../views/ProShopMarketplace.vue'
 import MyEquipment from '../views/MyEquipment.vue'
 
 const routes = [
@@ -25,24 +25,24 @@ const routes = [
     component: ProShop
   },
   {
-    path: '/pro-shop-marketplace',
-    name: 'Pro Shop Marketplace',
-    component: ProShopMarketplace
+    path: '/equipment-marketplace',
+    name: 'Equipment Marketplace',
+    component: EquipmentMarketplace
   },
   {
-    path: '/my-teams',
-    name: 'My Teams',
-    component: MyTeams
+    path: '/my-team',
+    name: 'My Team',
+    component: MyTeam
   },
+  // {
+  //   path: '/matchups',
+  //   name: 'Matchups',
+  //   component: Matchups
+  // },
   {
-    path: '/matchups',
-    name: 'Matchups',
-    component: Matchups
-  },
-  {
-    path: '/player-market',
-    name: 'Player Market',
-    component: PlayerMarket
+    path: '/player-marketplace',
+    name: 'Player Marketplace',
+    component: PlayerMarketplace
   },
   {
     path: '/my-equipment',
