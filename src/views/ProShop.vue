@@ -5,7 +5,7 @@
   <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="loadingItems">
   </div>
       <button v-on:click="adminShow = !adminShow" v-if="isProShopAdmin">Admin</button>
-      <button @click="getInStockData()">TEST</button>
+      <!-- <button @click="getInStockData()">TEST</button> -->
 
 <div class="admin-area" v-if="adminShow">
         <div class="admin-pro-buttons" v-if="isProShopAdmin">
