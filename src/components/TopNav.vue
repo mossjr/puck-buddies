@@ -52,7 +52,7 @@
             <div><img src="../assets/img/pbxp-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="xp-balance"></div>
             
         </div>
-        
+        <div><img @click="showIcoModal()" class="ico-live-now-sm" src="../assets/img/ico-live-now-sm.png" alt=""></div>
         
        
     </div> 
@@ -63,13 +63,17 @@
   </nav>
 
 </div>
-
+<div v-if="icoModalVisible">
+    <icomodal @closeIcoModal="closeIcoModal"  />
+</div>
 
 </template>
 
 <script>
 import main from '../main.js'
+import icomodal from '../components/ICOModal.vue'
 export default{
+    components: { icomodal },
   data(){
     return{
       teams: [],
@@ -329,6 +333,13 @@ export default{
           })
       },
 
+      async closeIcoModal(){
+                this.icoModalVisible = false;
+                this.updateBalanceViewer()
+                this.getTeamMintCost()
+
+      },
+
     async approveBuddyCoinSpend(approveAddress, valueToApprove){
       await main.approveBuddyCoinSpend(approveAddress, valueToApprove).then(res => {
         console.log(res)
@@ -494,5 +505,19 @@ export default{
 
 .proshop:hover{
   background-color:steelblue !important;
+}
+
+.ico-live-now-sm{
+  width: 200px;
+    margin: 25px;
+    padding: 10px;
+    cursor: pointer;
+background: #fff;
+border: none;
+border-radius: 15px;
+box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+transform: scale(1);
+animation: pulse 2s infinite;
+
 }
 </style>
