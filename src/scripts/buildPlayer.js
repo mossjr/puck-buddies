@@ -459,7 +459,7 @@ flag.onload=function(){
         ctx.drawImage(visor,198+offsetx,36+offsety)
         ctx.drawImage(frame,0,0)
         ctx.drawImage(flag,5,430 )
-        if(data.position != 0){
+        if(data.position != "0"){
             ctx.drawImage(position, 280,235)
         }
         
@@ -481,7 +481,7 @@ flag.onload=function(){
         ctx.drawImage(visor,198+offsetx,36+offsety)
         ctx.drawImage(frame,0,0)
         ctx.drawImage(flag,5,430 )
-        if(data.position != 0){
+        if(data.position != "0"){
             ctx.drawImage(position, 280,235)
         }
         
@@ -503,7 +503,7 @@ flag.onload=function(){
         ctx.drawImage(visor,224+goffsetx,70+goffsety)
         ctx.drawImage(frame,0,0)
         ctx.drawImage(flag,5,430 )
-        if(data.position != 0){
+        if(data.position != "0"){
             ctx.drawImage(position, 280,235)
         }
         
@@ -602,21 +602,18 @@ function playerCountry(){
         }
 
         let threshold = data.dna.slice(8,12)
+        console.log("Country Threshold Player " + id + ": " + threshold)
         threshold = threshold - 0
     
         total = 0;
         for (let i = 0; i < countries.length - 1; ++i) {
-            // Add the weight to our running total.
             total += countries[i][1]
-        
-            // If this value falls within the threshold, we're done!
             if (total >= threshold) {
+                console.log("Selected Country Player " + id + ": " + countries[i][0])
                 return countries[i][0]
                 
             }
         }
-        
-        // Wouldn't you know it, we needed the very last entry!
         return countries[countries.length - 1][0]
     }
 }

@@ -11,11 +11,10 @@
     <div class="control-group">
       <div>
        <input type="checkbox" id="active-players" value="active-players" v-model="checkedFilters"  @change="getMarketPlayers()">
-       <label for="active-players">Active Players</label>
-      </div>
-      <div>  
+       <label class="checkbox-label" for="active-players">Active Players</label>
+    
       <input type="checkbox" id="retired-players" value="retired-players" v-model="checkedFilters"  @change="getMarketPlayers()">
-      <label for="retired-players">Retired Players</label>
+      <label class="checkbox-label" for="retired-players">Retired Players</label>
       </div>
     </div>
     
@@ -29,7 +28,8 @@
             
             <canvas class="player-canvas" :id="`canvas-market-no-${player.id}`">
             </canvas>
-            <button @click="buyMarketPlayer('PB-BRB', index)" id="player-action-button" v-if="player.totalPrice < myFunds">BUY FOR <br>{{ player.totalPrice }} BUDS</button>
+            <button @click="buyMarketPlayer('PB-BRB', index)" id="player-action-button" v-if="player.totalPrice <= myFunds">BUY FOR <br>{{ player.totalPrice }} BUDS</button>
+            <button id="no-buy-button" v-if="player.totalPrice > myFunds">BUY FOR <br>{{ player.totalPrice }} BUDS</button>
           </div>
       </div>
 
@@ -179,6 +179,7 @@ export default ({
                     'sellerPrice' : sellerPriceFromWei,
                     'marketFee' : marketFeeFromWei,
                     'totalPrice' : totalPriceFromWei,
+                    'position' : playerData.position,
                     'owner' :  res[i].owner,
                     'teamLetter' : "",
                     'equippedJersey' : playerData.equippedJersey,
@@ -224,6 +225,13 @@ export default ({
           this.myFunds = res
         })
       }, 
+
+      async updateXpBalanceViewer(){
+          await main.updateXPBalance().then(res => {
+            document.getElementById('xp-balance').innerHTML = res
+            this.myXp = res
+          })
+      },
 
       async buyMarketPlayer(_splashImage, index){
           this.splashImage = _splashImage
@@ -271,7 +279,8 @@ export default ({
   mounted: function(){
     this.getMyAddress(),
     this.getMarketPlayers(),
-    this.updateBalanceViewer()
+    this.updateBalanceViewer(),
+    this.updateXpBalanceViewer()
   }
 })
 </script>
@@ -327,6 +336,18 @@ export default ({
   border-radius: 10px;
   font-weight: bold;
   
+}
+
+#no-buy-button{
+    margin-top: 10px;
+  transition: 0.3s;
+  height: 60px;
+  border: none;
+  background: rgb(165, 165, 165);
+  color: rgb(216, 64, 64);
+  border-radius: 10px;
+  font-weight: bold;
+  cursor:not-allowed;
 }
 
 #player-action-button-selling{
@@ -394,6 +415,39 @@ export default ({
   border-radius: 10px;
   font-weight: bold;
   
+}
+
+.checkbox-label{
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  
+}
+
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.25em solid #fff;
+  border-radius: 0.15em;
+  transform: translateY(-0.01em);
+  margin: 0 0.5em 0 2em;
+}
+
+input[type="checkbox"]:checked {
+
+ 
+ 
+  background-color: rgb(11, 145, 100);
+
 }
 
 

@@ -45,7 +45,7 @@
       
         <div class="coinbalancecard">
           
-            <div><img @click="addBuddiesToMetaMask()" src="../assets/img/buddies-coin-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="coin-balance"></div>
+            <div class="buddies-coin"><img @click="addBuddiesToMetaMask()" src="../assets/img/buddies-coin-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="coin-balance"></div>
         </div>
           <div class="coinbalancecard">
             
@@ -88,6 +88,7 @@ export default{
       xpToMint:1000000,
       xpBalanceOnTeamContract:'',
       budsAddress:'',
+      icoModalVisible:false,
     }
   },
   methods:{
@@ -333,6 +334,10 @@ export default{
           })
       },
 
+      async showIcoModal(){
+                this.icoModalVisible=true;
+      },
+
       async closeIcoModal(){
                 this.icoModalVisible = false;
                 this.updateBalanceViewer()
@@ -453,6 +458,10 @@ export default{
     font-weight:bolder;
 }
 
+.buddies-coin{
+  cursor: pointer;
+}
+
 .team-name-stats-container{
     
     display: flex;
@@ -508,8 +517,9 @@ export default{
 }
 
 .ico-live-now-sm{
+  margin-top:10px;
+  margin-left: 10px;
   width: 200px;
-    margin: 25px;
     padding: 10px;
     cursor: pointer;
 background: #fff;
@@ -519,5 +529,22 @@ box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
 transform: scale(1);
 animation: pulse 2s infinite;
 
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }
 </style>

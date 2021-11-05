@@ -11,8 +11,7 @@ import MyEquipment from '../views/MyEquipment.vue'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/my-players'
   },
   {
     path: '/my-players',

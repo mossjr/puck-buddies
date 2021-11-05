@@ -18,7 +18,7 @@
   <button v-if="!noFunds">Draft Team for <br> {{ costToDraft4 }} BUDZ</button>
 </div> -->
 
-<button @click="testFunction()"> TEST</button>
+<!-- <button @click="testFunction()"> TEST</button> -->
 
 <button v-on:click="adminShow = !adminShow" v-if="isPBPAdmin || isMarketAdmin">Admin</button>
 

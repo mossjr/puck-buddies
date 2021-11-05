@@ -16,8 +16,10 @@
                  <div class="proshop-marketplace-card" v-if="index + 1 <= itemsToShow && !item.isMine">  
                     <img class="proshop-img" :src="`../assets/cos-img/pro-shop-${item.sku}.png`" :alt="`pro-shop-${item.sku}`">
                     <div class="button-container">
-                    <button @click="createProShopMarketplaceSale(item.marketListingId, item.sellingPrice)" id="inventory-action-button">{{item.marketListingId}}: Purchase for <br>{{item.sellingPriceDisplay}} BUDS</button>
+                    <button @click="createProShopMarketplaceSale(item.marketListingId, item.sellingPrice)" id="inventory-action-button">Purchase for <br>{{item.sellingPriceDisplay}} BUDS</button>
+                    
                     </div>
+                    <div class="listing-id">#{{item.marketListingId}}</div>
                 </div>
             </div>
 
@@ -109,6 +111,13 @@ export default {
         })
       },
 
+    async updateXpBalanceViewer(){
+          await main.updateXPBalance().then(res => {
+            document.getElementById('xp-balance').innerHTML = res
+            this.myXp = res
+          })
+      },
+
       async createProShopMarketplaceSale(_marketListingId, _price) {
           await main.createProShopMarketplaceSale(_marketListingId, _price).then(res => {
               this.loadProshopMarketItems()
@@ -125,7 +134,8 @@ export default {
 
     mounted: function(){
         this.loadProshopMarketItems(),
-        this.updateBalanceViewer()
+        this.updateBalanceViewer(),
+        this.updateXpBalanceViewer()
     }
 }
 </script>
@@ -242,5 +252,16 @@ caret-color: rgba(0,0,0,0);
 
 .load-more-button:hover{
       background: rgb(12, 185, 128);
+}
+
+.listing-id{
+    font-size: 0.5em;
+    font-weight: bolder;
+    text-align: start;
+    margin: 0 0 0 10px;
+}
+
+.loadingicon{
+    margin-bottom:10px;
 }
 </style>
