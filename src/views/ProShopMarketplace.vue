@@ -16,7 +16,8 @@
                  <div class="proshop-marketplace-card" v-if="index + 1 <= itemsToShow && !item.isMine">  
                     <img class="proshop-img" :src="`../assets/cos-img/pro-shop-${item.sku}.png`" :alt="`pro-shop-${item.sku}`">
                     <div class="button-container">
-                    <button @click="createProShopMarketplaceSale(item.marketListingId, item.sellingPrice)" id="inventory-action-button">Purchase for <br>{{item.sellingPriceDisplay}} BUDS</button>
+                    <button @click="createProShopMarketplaceSale('PB-BRB', item.marketListingId, item.sellingPrice)" v-if="myFunds>=item.sellingPriceDisplay" id="inventory-action-button">Purchase for <br>{{item.sellingPriceDisplay}} BUDS</button>
+                    <button id="nofunds-action-button" v-if="myFunds<item.sellingPriceDisplay">Purchase for <br>{{item.sellingPriceDisplay}} BUDS</button>
                     
                     </div>
                     <div class="listing-id">#{{item.marketListingId}}</div>
@@ -40,13 +41,17 @@
   <div>
     <button class="load-more-button" @click="(loadItems) => { itemsToShow = itemsToShow + increaseBy, loadProshopMarketItems()}" v-if="itemsToShow < itemsFound">Load More</button>
   </div>
+  <div v-if="screenLocked">
+  <LockModal  :splashImage="splashImage" />
+</div> 
 </template>
 
 <script>
 import main from '../main.js'
+import LockModal from '../components/LockModal.vue'
 
 export default {
-    components: {},
+    components: {LockModal},
     data(){
         return{
             loadingItems: true,
@@ -54,7 +59,10 @@ export default {
             itemsToShow: 10,
             increaseBy: 10,
             itemsFound: 0,
+            myFunds:'',
             showMyItems: false,
+            splashImage: '',
+            screenLocked: false
         }
     },
 
@@ -69,8 +77,8 @@ export default {
                         let sku =  res[i].tokenId.slice(0,6)
                         let sellingPriceFromWei = res[i].sellingPrice/(10 ** 18)
                         let isMine = false
-                        console.log(ethereum.selectedAddress)
-                        console.log(res[i].seller)
+                        // console.log(ethereum.selectedAddress)
+                        // console.log(res[i].seller)
                         if(res[i].seller.toLowerCase() == ethereum.selectedAddress){
                             console.log("MINE!")
                             isMine = true
@@ -118,9 +126,15 @@ export default {
           })
       },
 
-      async createProShopMarketplaceSale(_marketListingId, _price) {
+      async createProShopMarketplaceSale(_splashImage, _marketListingId, _price) {
+          this.splashImage = _splashImage
+          this.screenLocked = true
           await main.createProShopMarketplaceSale(_marketListingId, _price).then(res => {
               this.loadProshopMarketItems()
+              this.screenLocked = false
+          }).catch(err =>{
+              console.log(err)
+              this.screenLocked = false
           })
       },
 
@@ -186,6 +200,19 @@ export default {
   border-radius: 10px;
   font-weight: bold;
   
+}
+
+#nofunds-action-button{
+        margin: 5px;
+    width: 100%;
+  transition: 0.3s;
+  height: 60px;
+  border: none;
+  background: rgb(165, 165, 165);
+  color: rgb(216, 64, 64);
+  border-radius: 10px;
+  font-weight: bold;
+  cursor:not-allowed;
 }
 
 #inventory-action-button:hover{
