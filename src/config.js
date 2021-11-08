@@ -34,6 +34,15 @@ export const proShopItems = [{admin:pbProShopHolderAddress,sku:1694200002400001,
                              {admin:pbProShopHolderAddress,sku:1100020001200001,active:true,c1:'#96d8d8',c2:'#001628'},
                              {admin:pbProShopHolderAddress,sku:1100030001200001,active:true,c1:'#085d77',c2:'#0a7d04'},
                              {admin:pbProShopHolderAddress,sku:1100040001200001,active:true,c1:'#7e7e7e',c2:'#041e42'},
-                             {admin:pbProShopHolderAddress,sku:1100050001200001,active:true,c1:'#d6d289',c2:'#a0c8d7'},]
+                             {admin:pbProShopHolderAddress,sku:1100050001200001,active:true,c1:'#d6d289',c2:'#a0c8d7'},
+                             {admin:pbProShopHolderAddress,sku:1100060001200001,active:true,c1:'#1b1b1b',c2:'#b10000'},
+                             {admin:pbProShopHolderAddress,sku:1100070001200001,active:true,c1:'#7e893d',c2:'#ba9f5c'},
+                             {admin:pbProShopHolderAddress,sku:1100080001200001,active:true,c1:'#f4e9d8',c2:'#4c6175'},
+                             {admin:pbProShopHolderAddress,sku:1100090001200001,active:true,c1:'#ffffff',c2:'#e99a01'},
+                             {admin:pbProShopHolderAddress,sku:1100100001200001,active:true,c1:'#84b6f7',c2:'#ad38ad'},
+                             {admin:pbProShopHolderAddress,sku:1100110001200001,active:true,c1:'#121315',c2:'#4c4b49'},
+                             {admin:pbProShopHolderAddress,sku:1100120001200001,active:true,c1:'#ddc09d',c2:'#bf9674'},
+                             {admin:pbProShopHolderAddress,sku:1100130001200001,active:true,c1:'#e5b14f',c2:'#9d2c1f'},
+                             {admin:pbProShopHolderAddress,sku:1100140001200001,active:true,c1:'#04a7a6',c2:'#7c6140'},]
 
  
