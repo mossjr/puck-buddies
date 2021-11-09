@@ -78,11 +78,13 @@ function getBuddiesReward() public view returns (uint, uint, uint){
     return (reward[0], reward[1], reward[2]);
 }
 
-function updateBuddiesReward(uint r0, uint r1, uint r2) external onlyAdmin{
-    reward[0] = r0;
-    reward[1] = r1;
-    reward[2] = r2;
+function updateBuddiesReward( uint[] memory _reward) external onlyAdmin{
+    reward = _reward;
 }
+
+function updateTimesOut( uint[] memory _timeoutSeconds) external onlyAdmin {
+    timeoutSeconds = _timeoutSeconds;
+} 
 
 function getPBXPReward() public view returns (uint){
     return xpReward;

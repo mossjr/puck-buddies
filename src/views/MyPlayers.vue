@@ -20,7 +20,7 @@
 
 <!-- <button @click="testFunction()"> TEST</button> -->
 
-<button v-on:click="adminShow = !adminShow" v-if="isPBPAdmin || isMarketAdmin">Admin</button>
+<!-- <button v-on:click="adminShow = !adminShow" v-if="isPBPAdmin || isMarketAdmin">Admin</button> -->
 
 <div class="admin-area" v-if="adminShow">
 <div class="warning" v-if="marketfeepayableaddress == 0x0000000000000000000000000000000000000000 && isMarketAdmin">WARNING: NO MARKET FEE PAYABLE ADDRESS SET</div>

@@ -8,6 +8,7 @@
         <div class="admin-info-line"><b>PvC Matchup Address:</b> {{PvCAddress}}</div>
         <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCDifficultyMod}}</div>
         <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCBuddiesReward0}}, {{PvCBuddiesReward1}}, {{PvCBuddiesReward2}}</div>
+        <div class="admin-info-line"><b>PvC Matchup Timeouts:</b> {{PvCto0}}, {{PvCto1}}, {{PvCto2}}</div>
         <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
         <div class="admin-info-line"><b>Buddies on PvC Contract:</b> {{PvCBuddies}}</div>
       </div>
@@ -74,6 +75,23 @@
               <input type="text" v-model="r2">
             </div>
             <button @click="updateBuddiesReward()">Apply</button>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin"><h3>Update PvC Timeouts</h3></div>
+            <div>
+              <label>to0</label>
+              <input type="text" v-model="to0">
+            </div>
+            <div>
+              <label>to1</label>
+              <input type="text" v-model="to1">
+            </div>
+            <div>
+              <label>to2</label>
+              <input type="text" v-model="to2">
+            </div>
+            <button @click="updateTimesOut()">Apply</button>
         </div>
 
         <div class="admin-container">
@@ -158,6 +176,14 @@ export default {
             pbPBXPAddress:'',
             pbPBXPUpgradeCost:'',
 
+            PvCto0:'',
+            PvCto1:'',
+            PvCto2:'',
+
+            to0:'',
+            to1:'',
+            to2:'',
+
             m1:'',
             m2:'',
             m3:'',
@@ -188,6 +214,12 @@ export default {
         this.r1 = res.PvCBuddiesReward1
         this.PvCBuddiesReward2 = res.PvCBuddiesReward2
         this.r2 = res.PvCBuddiesReward2
+        this.PvCto0 = res.PvCto0
+        this.to0 = res.PvCto0
+        this.PvCto1 = res.PvCto1
+        this.to1 = res.PvCto1
+        this.PvCto2 = res.PvCto2
+        this.to2 = res.PvCto2
         this.PvCDifficultyMod = res.PvCDifficultyMod
         this.PvCPBXPReward = res.PvCPBXPReward
         this.xpr = res.PvCPBXPReward
@@ -242,6 +274,14 @@ export default {
       await main.updatePBXPReward(this.xpr).then(res => {
         console.log(res)
       }).catch(err => {
+        console.log(err)
+      })
+    },
+
+    async updateTimesOut(){
+      await main.updateTimesOut(this.to0, this.to1, this.to2).then(res => {
+        console.log(res)
+      }).catch(err =>{
         console.log(err)
       })
     },

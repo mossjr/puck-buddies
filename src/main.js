@@ -194,6 +194,8 @@ async function getPvCadminInfo(){
     console.log(PvCBuddiesRewards)
     let PvCPBXPReward = await contractInstance.methods.getPBXPReward().call({from: ethereum.selectedAddress})
     console.log(PvCPBXPReward)
+    let PvCTimeouts = await contractInstance.methods.getTimeOuts().call({from: ethereum.selectedAddress})
+    console.log(PvCTimeouts)
     let PvCBuddies = await buddiesInstance.methods.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
     console.log(PvCBuddies)
 
@@ -247,7 +249,10 @@ async function getPvCadminInfo(){
                 PvCDifficultyMod: PvCDifficultyMod, 
                 PvCBuddiesReward0: web3.utils.fromWei(PvCBuddiesRewards[0]), 
                 PvCBuddiesReward1: web3.utils.fromWei(PvCBuddiesRewards[1]), 
-                PvCBuddiesReward2: web3.utils.fromWei(PvCBuddiesRewards[2]), 
+                PvCBuddiesReward2: web3.utils.fromWei(PvCBuddiesRewards[2]),
+                PvCto0: PvCTimeouts[0],
+                PvCto0: PvCTimeouts[1],
+                PvCto0: PvCTimeouts[2],
                 PvCPBXPReward: PvCPBXPReward,
                 PvCBuddies: web3.utils.fromWei(PvCBuddies),
                 pbPlayersAddress: pbPlayersAddress, 
@@ -295,8 +300,20 @@ async function updateBuddiesReward(_r0, _r1, _r2){
     let r0 = web3.utils.toWei(_r0.toString())
     let r1 = web3.utils.toWei(_r1.toString())
     let r2 = web3.utils.toWei(_r2.toString())
+    let r = [r0, r1, r2]
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
-    await contractInstance.methods.updateBuddiesReward(r0, r1, r2).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+    await contractInstance.methods.updateBuddiesReward(r).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)     
+    })
+}
+
+async function updateTimesOut(_to0, _to1, _to2){
+    const web3 = await Moralis.Web3.enable()
+    let tos = [_to0, _to1, _to2]
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    await contractInstance.methods.updateTimesOut(tos).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
         console.log(receipt)
     })).catch(err =>{
         console.log(err)     
@@ -1651,7 +1668,8 @@ export default {
     getPvCadminInfo,
     updateVariables,
     updateBuddiesReward,
-    updatePBXPReward
+    updatePBXPReward,
+    updateTimesOut
 }
 
 
