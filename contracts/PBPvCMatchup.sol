@@ -58,7 +58,7 @@ mapping (uint => TeamPvCMatchups) public _teamPvCMatchups;
 event gamePlayed(bool isWinner, uint to1, uint to2, uint to3);
 
 modifier onlyAdmin() {
-    require(admin == msg.sender, "This function is only accessable by the admin of the contract" );
+    require(admin == msg.sender, "A1" );
     _;
 }
 
@@ -96,13 +96,16 @@ function updatePBMatchupValidationAddress(address _pbMatchupValidationAddress) e
         pbMatchupValidation = PBMatchupValidation(_pbMatchupValidationAddress);
 }
 
+function widthdrawBuddiesFromContract(address _widthdrawAddress, uint _amount) external onlyAdmin {
+    buddies.transfer(_widthdrawAddress, _amount);
+}
 
 
 function hitTheIcePvC(uint difficulty, uint teamId, uint[] memory playerIds) external returns (bool){
     require(pbMatchupValidation.varifyPlayerAgesOnTeam(teamId, playerIds) == true, "N6");
     TeamPvCMatchups storage teamPvCmatchup = _teamPvCMatchups[teamId];
     teamPvCmatchup.ownerAddress = pbTeams.getTokenDetails(teamId).ownerAddress;
-    require(teamPvCmatchup.ownerAddress == msg.sender, "Only owner");
+    require(teamPvCmatchup.ownerAddress == msg.sender, "A1");
     uint playerOP = pbTeams.getTokenDetails(teamId).teamTotalOP;
     uint playerDP = pbTeams.getTokenDetails(teamId).teamTotalDP;
     uint computerOP;
@@ -122,13 +125,13 @@ function hitTheIcePvC(uint difficulty, uint teamId, uint[] memory playerIds) ext
     //require(pbPvCHelper.checkGeneratedStats(difficulty,computerOP,computerDP) == true,"N8");
     
     if(difficulty == 1){
-        require(block.timestamp >= teamPvCmatchup.activeTimestamp1, "Not Active");
+        require(block.timestamp >= teamPvCmatchup.activeTimestamp1, "N1");
         teamPvCmatchup.activeTimestamp1 = block.timestamp + timeoutSeconds[0];
     }else if(difficulty == 2){
-        require(block.timestamp >=  teamPvCmatchup.activeTimestamp2, "Not Activet");
+        require(block.timestamp >=  teamPvCmatchup.activeTimestamp2, "N1");
         teamPvCmatchup.activeTimestamp2 = block.timestamp + timeoutSeconds[1];
     }else if(difficulty == 3){
-        require(block.timestamp >= teamPvCmatchup.activeTimestamp3, "Not Active");
+        require(block.timestamp >= teamPvCmatchup.activeTimestamp3, "N1");
         teamPvCmatchup.activeTimestamp3 = block.timestamp + timeoutSeconds[2];
     }
     uint winningBP = pbPvCHelper.getWinningBP(playerOP, playerDP, computerOP, computerDP);
@@ -173,61 +176,6 @@ function hitTheIcePvC(uint difficulty, uint teamId, uint[] memory playerIds) ext
     emit gamePlayed(isWinner,teamPvCmatchup.activeTimestamp1,teamPvCmatchup.activeTimestamp2,teamPvCmatchup.activeTimestamp3);
     return isWinner;
 }
-
-// function getWinningBP(uint pOP, uint pDP, uint cOP, uint cDP) public view returns (uint){
-//      uint pOPpercent = (pOP*10000)/maxOpScore;
-//      uint pDPpercent = (pDP*10000)/maxDpScore;
-//      uint cOPpercent = (((maxOpScore-cOP)*10000)/maxOpScore);
-//      uint cDPpercent = (((maxDpScore-cDP)*10000)/maxDpScore);
-//      uint pBP = (pOPpercent+pDPpercent)/2;
-//      uint cBP = (cOPpercent+cDPpercent)/2;
-//      uint winningBreakPoint = (pBP+cBP)/2;
-//      return winningBreakPoint;
-// }
-
-// function generateResult() public view returns (uint){
-//     uint operator;
-//     uint i;
-//     for(i = 0; i < bellCurveIterations; i++){
-//         operator = operator + (uint(keccak256(abi.encodePacked(i, nonce, block.timestamp, msg.sender))) % 10000);
-//     }
-//     uint result = operator/bellCurveIterations;
-//     return result;
-// }
-
-// function generateRandomHourlyStat(uint mod, uint difficulty, uint statType) public view returns (uint){
-//     uint operator;
-//     uint range;
-//     if(statType == 1){
-//         range = maxOpScore - mod;
-//     }else if(statType == 2){
-//         range = maxDpScore - mod;
-//     }    
-//     uint hourOfDate = (block.timestamp/3600);
-//     uint i;
-//     for(i = 0; i < bellCurveIterations; i++){
-//         operator = operator + (uint(keccak256(abi.encodePacked(i, difficulty, statType, hourOfDate, msg.sender))) % range);
-//     }
-//     uint stat = (operator/bellCurveIterations) + mod;
-//     return stat;
-// }
-
-// function checkGeneratedStats(uint difficulty, uint cOP, uint cDP) public view returns (bool){
-//     uint opStat;
-//     uint dpStat;
-//      if (difficulty == 1){
-//         opStat = generateRandomHourlyStat(difficultymod, difficulty, 1);
-//         dpStat = generateRandomHourlyStat(difficultymod, difficulty, 2);
-//     }else if(difficulty == 2){
-//         opStat = generateRandomHourlyStat(((difficultymod * 15)/10), difficulty, 1);
-//         dpStat = generateRandomHourlyStat(((difficultymod * 15)/10), difficulty, 2);
-//     }else if(difficulty == 3){
-//         opStat = generateRandomHourlyStat(((difficultymod * 20)/10), difficulty, 1);
-//         dpStat = generateRandomHourlyStat(((difficultymod * 20)/10), difficulty, 2);
-//     }
-//     require (opStat == cOP && dpStat == cDP, "N7");
-//     return true;
-// }
 
 function generateRandomTeamDNA(uint mod, uint difficulty, uint teamId) public view returns (uint){
     TeamPvCMatchups storage teamPvCmatchup = _teamPvCMatchups[teamId];

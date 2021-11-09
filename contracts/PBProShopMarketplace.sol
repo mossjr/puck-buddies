@@ -52,8 +52,7 @@ function updateBuddiesCoinAddress(address _buddiesCoinAddress) onlyAdmin externa
   }
 
 function getPBProShopMarketplaceAddress() public view returns (address){
-    address result = address(this);
-    return result;
+    return address(this);
   }
 
 function getProshopMarketFeePercent() public view returns (uint) {
@@ -68,6 +67,10 @@ function updateMarketFeePercent(uint value) onlyAdmin external returns (uint){
 function getMarketFeePayableAddress() public view returns (address) {
       return feesAddress;
   }
+
+function getMarketplaceStats() external view onlyAdmin returns (uint, uint) {
+    return (_itemIds.current(), _itemsComplete.current());
+}
 
 function updateFeePayableAddress(address payable newaddress) onlyAdmin external returns (address) {
     feesAddress = newaddress;

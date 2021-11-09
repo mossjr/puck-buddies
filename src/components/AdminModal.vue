@@ -2,12 +2,20 @@
 <div class="backdrop" @click.self="closeModal">
     <div class="admin-modal">
       <div class="admin-container">
-       <div class="admin"><h3>PvC Matchups</h3></div>
-       <div class="admin-info-line"><b>PvC Matchup Address:</b> {{PvCMatchupAddress}}</div>
-       <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCMatchupDifficultyMod}}</div>
-       <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCMatchupBuddiesReward1}}, {{PvCMatchupBuddiesReward2}}, {{PvCMatchupBuddiesReward3}}</div>
-       <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCMatchupPBXPReward}}</div>
-       </div>
+        <div class="admin"><h3>PvC Matchups</h3></div>
+        <div class="admin-info-line"><b>PvC Matchup Address:</b> {{PvCAddress}}</div>
+        <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCDifficultyMod}}</div>
+        <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCBuddiesReward0}}, {{PvCBuddiesReward1}}, {{PvCBuddiesReward2}}</div>
+        <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>Players</h3></div>
+        <div class="admin-info-line"><b>Players Contract Address:</b> {{PvCAddress}}</div>
+        <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCDifficultyMod}}</div>
+        <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCBuddiesReward0}}, {{PvCBuddiesReward1}}, {{PvCBuddiesReward2}}</div>
+        <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
+      </div>
    
     </div>
 </div>
@@ -24,12 +32,12 @@ export default {
     components: {LockModal},
     data(){
         return{
-            PvCMatchupAddress:'',
-            PvCMatchupDifficultyMod:'',
-            PvCMatchupBuddiesReward1:'',
-            PvCMatchupBuddiesReward2:'',
-            PvCMatchupBuddiesReward3:'',
-            PvCMatchupPBXPReward:'',
+            PvCAddress:'',
+            PvCBuddiesReward0:'',
+            PvCBuddiesReward1:'',
+            PvCBuddiesReward2:'',
+            PvCDifficultyMod:'',
+            PvCPBXPReward:'',
 
 
             budsPerBNB:'',
@@ -49,6 +57,13 @@ export default {
     async getPvCadminInfo() {
       await main.getPvCadminInfo().then(res => {
         console.log(res)
+        this.PvCAddress = res.PvCAddress
+        this.PvCBuddiesReward0 = res.PvCBuddiesReward0
+        this.PvCBuddiesReward1 = res.PvCBuddiesReward1
+        this.PvCBuddiesReward2 = res.PvCBuddiesReward2
+        this.PvCDifficultyMod = res.PvCDifficultyMod
+        this.PvCPBXPReward = res.PvCPBXPReward
+
       })
     },
 

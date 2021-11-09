@@ -22,7 +22,6 @@ contract PBProShopFactory is ERC1155PresetMinterPauser, ReentrancyGuard {
     uint256 public skuCount;
     using Counters for Counters.Counter;
     Counters.Counter private _proshopItemsCreated;
-    Counters.Counter private _proShopItemsSold;
     IERC20 public buddies;
     PBPlayers public pbPlayers;
     PBProShopHolder public pbProShopHolder;
@@ -43,7 +42,11 @@ contract PBProShopFactory is ERC1155PresetMinterPauser, ReentrancyGuard {
         if(admin == msg.sender){
             return true;
         } else return false;
-    } 
+    }
+
+    function getProShopStats() public view onlyAdmin returns (uint) {
+        return (_proshopItemsCreated.current());
+    }
 
     function updateBuddiesCoinAddress(address _buddiesCoinAddress) onlyAdmin external {
      buddies = IERC20(_buddiesCoinAddress);

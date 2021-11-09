@@ -8,6 +8,7 @@ contract PBProShopHolder is ERC1155Holder{
     
     address public admin;
     address proshopmarketplaceaddress;
+    uint itemsSold;
     IERC1155 private pbproshopfactory;
     IERC20 public buddies;
         
@@ -20,10 +21,15 @@ contract PBProShopHolder is ERC1155Holder{
         admin = msg.sender;
         buddies = IERC20(_buddiesCoinAddress);
         pbproshopfactory = IERC1155(_pbProShopAddress);
+        itemsSold = 0;
     }
 
     function getPBProShopHolderAddress() public view returns (address){
         return address(this);
+    }
+
+    function getItemsSold() public view onlyAdmin returns (uint) {
+        return (itemsSold);
     }
     
    function updateProShopAddress(address proshopaddress) external onlyAdmin {
@@ -48,7 +54,7 @@ contract PBProShopHolder is ERC1155Holder{
         buddies.transferFrom(msg.sender, address(this), value);
         pbproshopfactory.setApprovalForAll(proshopmarketplaceaddress, true);
         pbproshopfactory.safeTransferFrom(address(this), msg.sender, sku, qty, "");
-        
+        itemsSold++;
     }
 
     function transferMatchupToken(uint sku) external {

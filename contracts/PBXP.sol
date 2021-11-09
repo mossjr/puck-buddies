@@ -4,7 +4,6 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../contracts/PBPlayers.sol";
 
 contract PBXP is ERC1155 {
@@ -15,9 +14,6 @@ contract PBXP is ERC1155 {
     address pbPvCAddress;
     address pbMatchupsAddress;
     uint upgradeCost;
-    using Counters for Counters.Counter;
-    Counters.Counter private _proshopItemsCreated;
-    Counters.Counter private _proShopItemsSold;
     IERC721 public myTeamsContract;
     PBPlayers public pbPlayers;
     IERC20 public buddies;

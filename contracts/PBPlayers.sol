@@ -114,8 +114,8 @@ contract PBPlayers is ERC721 {
         ageoutSeconds = _ageoutSeconds;
     }
 
-    function getMintingCosts() public view returns (uint, uint, uint){
-            return (mintCost1, mintCost2, mintCost3);
+    function getMintingCosts() public view returns (uint, uint, uint, uint){
+            return (mintCost1, mintCost2, mintCost3, ageoutSeconds);
     }
 
     function getNextId() public view returns (uint){

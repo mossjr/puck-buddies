@@ -79,6 +79,10 @@ function getTeamMintCost() public view returns (uint){
     return teamMintCost;
 }
 
+function getTeamsCount() public view onlyAdmin returns(uint){
+    return nextId;
+}
+
 function updateBuddiesCoinAddress(address _buddiesCoinAddress) external onlyAdmin {
         buddies = IERC20(_buddiesCoinAddress);
 }
@@ -190,7 +194,7 @@ function mintTeam(uint value) external {
 function addStatsToTeam(uint teamId, address teamOwner, uint playerop, uint playerdp) public {
     Team storage team = _tokenDetails[teamId];
     address ownersAddress = _tokenDetails[teamId].ownerAddress;
-    require(ownersAddress == teamOwner, "P6");
+    require(ownersAddress == teamOwner);
     team.teamTotalOP = team.teamTotalOP + playerop;
     team.teamTotalDP = team.teamTotalDP + playerdp;    
 }
@@ -204,15 +208,15 @@ function removeStatsFromTeam(uint teamId, address teamOwner, uint playerop, uint
 }
 
 function addOPToTeam(uint teamId, address teamOwner, uint playerop) public  {
-    require(msg.sender == pbPlayersAddress,"P5");
+    require(msg.sender == pbPlayersAddress);
     Team storage team = _tokenDetails[teamId];
     address ownersAddress = _tokenDetails[teamId].ownerAddress;
-    require(ownersAddress == teamOwner, "P6");
+    require(ownersAddress == teamOwner);
     team.teamTotalOP = team.teamTotalOP + playerop;   
 }
 
 function addDPToTeam(uint teamId, address teamOwner, uint playerdp) public  {
-    require(msg.sender == pbPlayersAddress,"P5");
+    require(msg.sender == pbPlayersAddress);
     Team storage team = _tokenDetails[teamId];
     address ownersAddress = _tokenDetails[teamId].ownerAddress;
     require(ownersAddress == teamOwner);
