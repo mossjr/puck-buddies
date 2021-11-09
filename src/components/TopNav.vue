@@ -67,11 +67,16 @@
     <icomodal @closeIcoModal="closeIcoModal"  />
 </div>
 
+<div v-if="adminmodalVisble && isAdmin">
+    <icomodal @closeIcoModal="closeIcoModal"  />
+</div>
+
 </template>
 
 <script>
 import main from '../main.js'
 import icomodal from '../components/ICOModal.vue'
+import adminmodal from '../components/AdminModal.vue'
 export default{
     components: { icomodal },
   data(){
@@ -89,6 +94,8 @@ export default{
       xpBalanceOnTeamContract:'',
       budsAddress:'',
       icoModalVisible:false,
+      adminmodalVisble:false,
+      isAdmin:false
     }
   },
   methods:{

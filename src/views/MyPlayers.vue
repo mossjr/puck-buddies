@@ -47,7 +47,7 @@
           </form>
         </div>
 
-        <div class="admin-market-buttons" v-if="isMarketAdmin">
+         <div class="admin-market-buttons" v-if="isMarketAdmin">
           <form @submit.prevent="updateFeePayableAddress()">
           <label>New Market Fee Payable Address - </label>
           <input type="text" required v-model="newmarketfeepaybleaddress">

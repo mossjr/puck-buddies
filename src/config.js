@@ -43,6 +43,7 @@ export const proShopItems = [{admin:pbProShopHolderAddress,sku:1694200002400001,
                              {admin:pbProShopHolderAddress,sku:1100110001200001,active:true,c1:'#121315',c2:'#4c4b49'},
                              {admin:pbProShopHolderAddress,sku:1100120001200001,active:true,c1:'#ddc09d',c2:'#bf9674'},
                              {admin:pbProShopHolderAddress,sku:1100130001200001,active:true,c1:'#e5b14f',c2:'#9d2c1f'},
-                             {admin:pbProShopHolderAddress,sku:1100140001200001,active:true,c1:'#04a7a6',c2:'#7c6140'},]
+                             {admin:pbProShopHolderAddress,sku:1100140001200001,active:true,c1:'#04a7a6',c2:'#7c6140'},
+                             {admin:pbProShopHolderAddress,sku:1100150003000001,active:true,c1:'#ffffff',c2:'#ff0000'},]
 
  

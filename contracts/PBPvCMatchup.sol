@@ -70,12 +70,26 @@ function getDifficultyMod() public view returns (uint){
     return difficultymod;
 }
 
+function updateDifficultyMod(uint _difficultymod) external onlyAdmin {
+    difficultymod = _difficultymod;
+}
+
 function getBuddiesReward() public view returns (uint, uint, uint){
     return (reward[0], reward[1], reward[2]);
 }
 
+function updateBuddiesReward(uint r0, uint r1, uint r2) external onlyAdmin{
+    reward[0] = r0;
+    reward[0] = r1;
+    reward[0] = r2;
+}
+
 function getPBXPReward() public view returns (uint){
     return xpReward;
+}
+
+function updatePBXPReward(uint _xpReward) external onlyAdmin {
+    xpReward = _xpReward;
 }
 
 function updatePBMatchupValidationAddress(address _pbMatchupValidationAddress) external onlyAdmin {

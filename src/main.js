@@ -179,6 +179,19 @@ async function getBudsAddress(){
     return buddiesaddress
 }
 
+//Admin Modal Functions
+
+async function getPvCadminInfo(){
+    const web3 = await Moralis.Web3.enable()
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    let PvCAddress = await contractInstance.methods.getPBPvCMatchupsAddress.call({from: ethereum.selectedAddress})
+    let PvCDifficultyMod = await contractInstance.methods.getDifficultyMod.call({from: ethereum.selectedAddress})
+    let PvCBuddiesRewards = await contractInstance.methods.getBuddiesReward.call({from: ethereum.selectedAddress})
+    let PvCPBXPReward = await contractInstance.methods.getPBXPReward.call({from: ethereum.selectedAddress})
+    let obj = {PvCAddress:PvCAddress, PvCDifficultyMod: PvCDifficultyMod, PvCBuddiesReward0: PvCBuddiesRewards[0], PvCBuddiesReward1: PvCBuddiesRewards[1], PvCBuddiesReward2: PvCBuddiesRewards[2], PvCPBXPReward: PvCPBXPReward }
+    return obj
+}
+
 //Check Admin Functions
 async function checkPBPlayerAdmin() {
     const web3 = await Moralis.Web3.enable()
@@ -1511,7 +1524,8 @@ export default {
     giftPlayer,
     giftItem,
     getBudsICOInfo,
-    buyBuddies
+    buyBuddies,
+    getPvCadminInfo
 }
 
 
