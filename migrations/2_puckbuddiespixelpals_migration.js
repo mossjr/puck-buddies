@@ -68,6 +68,16 @@ const skuToMint3 = "1100020001200001"
 const skuToMint4 = "1100030001200001"
 const skuToMint5 = "1100040001200001"
 const skuToMint6 = "1100050001200001"
+const skuToMint7 = "1100060001200001"
+const skuToMint8 = "1100070001200001"
+const skuToMint9 = "1100080001200001"
+const skuToMint10 = "1100090001200001"
+const skuToMint11 = "1100100001200001"
+const skuToMint12 = "1100110001200001"
+const skuToMint13 = "1100120001200001"
+const skuToMint14 = "1100130001200001"
+const skuToMint15 = "1100140001200001"
+const skuToMint16 = "1100150003000001"
 const quantityToMint = 20
 
 //PB PvC Deploy Settings
@@ -128,6 +138,16 @@ module.exports = function (deployer) {
                             await pbProShopFactoryInstance.newProduct(skuToMint4, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint5, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint6, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint7, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint8, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint9, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint10, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint11, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint12, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint13, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint14, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint15, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint16, quantityToMint)
                         })
 
                         return deployer.deploy(PBProShopMarketplace, buddiesCoinAddress, pbProShopFactoryAddress, feesAddress).then(async () => {
@@ -186,7 +206,7 @@ module.exports = function (deployer) {
                                                     return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBMatchupValidationAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
                                                         await pbPlayersInstance.mintSuperstar(firstAddress,0,0, generateRandomDNA(),1)
-                                                        for(let i = 0; i < 20; i++){
+                                                        for(let i = 0; i < 5; i++){
                                                             await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
                                                                 let playerID = res.logs[2].args[0].toString()
                                                                 console.log("PlayerID " + playerID + " created")
@@ -206,68 +226,68 @@ module.exports = function (deployer) {
                                                             await PBXPInstance.updatePBPvCAddress(PBPvCMatchupsAddress)
 
                                                             
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '48000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint1,'48000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint1, '1000000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint1 + " "  + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint1, )
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '48000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint1,'48000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint1, '1000000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint1 + " "  + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
 
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint2,'24000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint2, '500000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint2 + " " + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint2,'24000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint2, '500000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint2 + " " + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
                                                                 
 
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint3,'24000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint3, '500000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint3 + " "  + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint3,'24000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint3, '500000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint3 + " "  + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
                                                                 
 
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint4,'24000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint4, '500000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint4 + " "  + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint4,'24000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint4, '500000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint4 + " "  + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
                                                                 
 
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint5,'24000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint5, '500000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint5 + " "  + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint5,'24000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint5, '500000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint5 + " "  + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
 
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
-                                                                await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
-                                                                await pbProShopHolderInstance.purchaseFromStore(skuToMint6,'24000000000000000000', 20)
-                                                                for(let i = 0; i < 20; i++){
-                                                                    await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
-                                                                    await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint6, '500000000000000000').then(async res => {
-                                                                        console.log("Sent " + skuToMint6 + " "  + i + " the Equipment Marketplace")
-                                                                    })  
-                                                                }
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
+                                                                // await PBBuddiesInstance.approve(pbProShopHolderAddress, '24000000000000000000')
+                                                                // await pbProShopHolderInstance.purchaseFromStore(skuToMint6,'24000000000000000000', 20)
+                                                                // for(let i = 0; i < 20; i++){
+                                                                //     await pbProShopFactoryInstance.setApprovalForAll(pbProShopMarketplaceAddress, true)
+                                                                //     await pbProShopMarketplaceInstance.createProShopMarketItem(skuToMint6, '500000000000000000').then(async res => {
+                                                                //         console.log("Sent " + skuToMint6 + " "  + i + " to the Equipment Marketplace")
+                                                                //     })  
+                                                                // }
                                                                 
                                                                 
                                                          

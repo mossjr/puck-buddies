@@ -59,6 +59,7 @@
     <div>
           <button @click="copyToClip()" class="token-address" id="budsAddress">{{budsAddress}}</button>
     </div>
+    <div v-if="isAdmin"><button @click="showAdminModal()" class="admin-button">ADMIN</button></div> 
    
   </nav>
 
@@ -68,7 +69,7 @@
 </div>
 
 <div v-if="adminmodalVisble && isAdmin">
-    <icomodal @closeIcoModal="closeIcoModal"  />
+    <adminmodal @closeIcoModal="closeIcoModal"  />
 </div>
 
 </template>
@@ -78,7 +79,7 @@ import main from '../main.js'
 import icomodal from '../components/ICOModal.vue'
 import adminmodal from '../components/AdminModal.vue'
 export default{
-    components: { icomodal },
+    components: { icomodal, adminmodal },
   data(){
     return{
       teams: [],
@@ -345,12 +346,19 @@ export default{
                 this.icoModalVisible=true;
       },
 
+      async showAdminModal(){
+        this.adminmodalVisble = true
+      },
+
       async closeIcoModal(){
-                this.icoModalVisible = false;
+                this.icoModalVisible = false
+                this.adminmodalVisble = false
                 this.updateBalanceViewer()
                 this.getTeamMintCost()
 
       },
+
+
 
     async approveBuddyCoinSpend(approveAddress, valueToApprove){
       await main.approveBuddyCoinSpend(approveAddress, valueToApprove).then(res => {
@@ -381,13 +389,15 @@ export default{
         this.xpBalanceOnTeamContract = res
       })
     },
-    
-    async runAdmin(){
-      await main.runAdmin().then(res => {
-        console.log(res)
-      })
 
+    async checkPBPlayerAdmin() {
+      await main.checkPBPlayerAdmin().then(res => {
+        console.log("Is PBP Admin: " + res)
+        this.isAdmin = res
+      })
     },
+    
+
 
     async loadCityAndNouns() {
             const cityNamesData = await main.getCityNames()
@@ -427,9 +437,11 @@ export default{
     }
   },
   mounted(){
+    this.checkPBPlayerAdmin()
     this.loadCityAndNouns()
     this.sendPlayerData()
     this.getBudsAddress()
+
   }
 }
 
@@ -521,6 +533,15 @@ export default{
 
 .proshop:hover{
   background-color:steelblue !important;
+}
+
+.admin-button{
+  font-size: 0.5em;
+  background-color: tomato;
+  color: #fff;
+  height: 10px;
+  border:none;
+  border-radius: 5px;;
 }
 
 .ico-live-now-sm{

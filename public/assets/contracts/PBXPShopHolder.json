@@ -9680,60 +9680,60 @@
     "absolutePath": "project:/contracts/PBXPShopHolder.sol",
     "exportedSymbols": {
       "Address": [
-        11983
+        12037
       ],
       "Context": [
-        12004
+        12058
       ],
       "Counters": [
-        12078
+        12132
       ],
       "ERC1155": [
-        9481
+        9535
       ],
       "ERC1155Holder": [
-        10025
+        10079
       ],
       "ERC1155Receiver": [
-        10059
+        10113
       ],
       "ERC165": [
-        12305
+        12359
       ],
       "IERC1155": [
-        9603
+        9657
       ],
       "IERC1155MetadataURI": [
-        9776
+        9830
       ],
       "IERC1155Receiver": [
-        9644
+        9698
       ],
       "IERC165": [
-        12317
+        12371
       ],
       "IERC20": [
-        10683
+        10737
       ],
       "IERC721": [
-        11642
+        11696
       ],
       "PBPlayers": [
         3498
       ],
       "PBXP": [
-        7275
+        7329
       ],
       "PBXPShopHolder": [
-        7706
+        7760
       ]
     },
-    "id": 7707,
+    "id": 7761,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7501,
+        "id": 7555,
         "literals": [
           "solidity",
           ">=",
@@ -9749,11 +9749,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 7502,
+        "id": 7556,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 10684,
+        "scope": 7761,
+        "sourceUnit": 10738,
         "src": "67:72:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -9761,11 +9761,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
-        "id": 7503,
+        "id": 7557,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 9604,
+        "scope": 7761,
+        "sourceUnit": 9658,
         "src": "141:76:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -9773,11 +9773,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
-        "id": 7504,
+        "id": 7558,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 10026,
+        "scope": 7761,
+        "sourceUnit": 10080,
         "src": "219:87:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -9785,11 +9785,11 @@
       {
         "absolutePath": "project:/contracts/PBXP.sol",
         "file": "../contracts/PBXP.sol",
-        "id": 7505,
+        "id": 7559,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 7276,
+        "scope": 7761,
+        "sourceUnit": 7330,
         "src": "308:31:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -9799,13 +9799,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 7506,
+              "id": 7560,
               "name": "ERC1155Holder",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 10025,
+              "referencedDeclaration": 10079,
               "src": "370:13:16"
             },
-            "id": 7507,
+            "id": 7561,
             "nodeType": "InheritanceSpecifier",
             "src": "370:13:16"
           }
@@ -9813,14 +9813,14 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 7706,
+        "id": 7760,
         "linearizedBaseContracts": [
-          7706,
-          10025,
-          10059,
-          9644,
-          12305,
-          12317
+          7760,
+          10079,
+          10113,
+          9698,
+          12359,
+          12371
         ],
         "name": "PBXPShopHolder",
         "nameLocation": "352:14:16",
@@ -9829,12 +9829,12 @@
           {
             "constant": false,
             "functionSelector": "f851a440",
-            "id": 7509,
+            "id": 7563,
             "mutability": "mutable",
             "name": "admin",
             "nameLocation": "411:5:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "396:20:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -9843,7 +9843,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7508,
+              "id": 7562,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "396:7:16",
@@ -9857,33 +9857,33 @@
           },
           {
             "constant": false,
-            "id": 7512,
+            "id": 7566,
             "mutability": "mutable",
             "name": "pbxpShopFactory",
             "nameLocation": "440:15:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "423:32:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC1155_$9603",
+              "typeIdentifier": "t_contract$_IERC1155_$9657",
               "typeString": "contract IERC1155"
             },
             "typeName": {
-              "id": 7511,
+              "id": 7565,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 7510,
+                "id": 7564,
                 "name": "IERC1155",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 9603,
+                "referencedDeclaration": 9657,
                 "src": "423:8:16"
               },
-              "referencedDeclaration": 9603,
+              "referencedDeclaration": 9657,
               "src": "423:8:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$9603",
+                "typeIdentifier": "t_contract$_IERC1155_$9657",
                 "typeString": "contract IERC1155"
               }
             },
@@ -9891,33 +9891,33 @@
           },
           {
             "constant": false,
-            "id": 7515,
+            "id": 7569,
             "mutability": "mutable",
             "name": "PBXPToken",
             "nameLocation": "475:9:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "462:22:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PBXP_$7275",
+              "typeIdentifier": "t_contract$_PBXP_$7329",
               "typeString": "contract PBXP"
             },
             "typeName": {
-              "id": 7514,
+              "id": 7568,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 7513,
+                "id": 7567,
                 "name": "PBXP",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 7275,
+                "referencedDeclaration": 7329,
                 "src": "462:4:16"
               },
-              "referencedDeclaration": 7275,
+              "referencedDeclaration": 7329,
               "src": "462:4:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PBXP_$7275",
+                "typeIdentifier": "t_contract$_PBXP_$7329",
                 "typeString": "contract PBXP"
               }
             },
@@ -9925,7 +9925,7 @@
           },
           {
             "body": {
-              "id": 7526,
+              "id": 7580,
               "nodeType": "Block",
               "src": "528:95:16",
               "statements": [
@@ -9937,14 +9937,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7521,
+                        "id": 7575,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 7518,
+                            "id": 7572,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -9955,7 +9955,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 7519,
+                          "id": 7573,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -9971,11 +9971,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7520,
+                          "id": 7574,
                           "name": "admin",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7509,
+                          "referencedDeclaration": 7563,
                           "src": "561:5:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -9990,7 +9990,7 @@
                       },
                       {
                         "hexValue": "4f6e6c792041646d696e2063616e20706572666f726d20746869732063616c6c",
-                        "id": 7522,
+                        "id": 7576,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -10016,7 +10016,7 @@
                           "typeString": "literal_string \"Only Admin can perform this call\""
                         }
                       ],
-                      "id": 7517,
+                      "id": 7571,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -10030,7 +10030,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7523,
+                    "id": 7577,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -10045,23 +10045,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7524,
+                  "id": 7578,
                   "nodeType": "ExpressionStatement",
                   "src": "539:64:16"
                 },
                 {
-                  "id": 7525,
+                  "id": 7579,
                   "nodeType": "PlaceholderStatement",
                   "src": "614:1:16"
                 }
               ]
             },
-            "id": 7527,
+            "id": 7581,
             "name": "onlyAdmin",
             "nameLocation": "516:9:16",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7516,
+              "id": 7570,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "525:2:16"
@@ -10072,23 +10072,23 @@
           },
           {
             "body": {
-              "id": 7553,
+              "id": 7607,
               "nodeType": "Block",
               "src": "707:133:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7539,
+                    "id": 7593,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7536,
+                      "id": 7590,
                       "name": "admin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7509,
+                      "referencedDeclaration": 7563,
                       "src": "718:5:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -10099,7 +10099,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 7537,
+                        "id": 7591,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -10110,7 +10110,7 @@
                           "typeString": "msg"
                         }
                       },
-                      "id": 7538,
+                      "id": 7592,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10129,26 +10129,26 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 7540,
+                  "id": 7594,
                   "nodeType": "ExpressionStatement",
                   "src": "718:18:16"
                 },
                 {
                   "expression": {
-                    "id": 7545,
+                    "id": 7599,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7541,
+                      "id": 7595,
                       "name": "PBXPToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7515,
+                      "referencedDeclaration": 7569,
                       "src": "747:9:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
@@ -10157,11 +10157,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7543,
+                          "id": 7597,
                           "name": "_pbxpAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7529,
+                          "referencedDeclaration": 7583,
                           "src": "764:12:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -10176,18 +10176,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7542,
+                        "id": 7596,
                         "name": "PBXP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7275,
+                        "referencedDeclaration": 7329,
                         "src": "759:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7275_$",
+                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7329_$",
                           "typeString": "type(contract PBXP)"
                         }
                       },
-                      "id": 7544,
+                      "id": 7598,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10198,36 +10198,36 @@
                       "src": "759:18:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
                     "src": "747:30:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PBXP_$7275",
+                      "typeIdentifier": "t_contract$_PBXP_$7329",
                       "typeString": "contract PBXP"
                     }
                   },
-                  "id": 7546,
+                  "id": 7600,
                   "nodeType": "ExpressionStatement",
                   "src": "747:30:16"
                 },
                 {
                   "expression": {
-                    "id": 7551,
+                    "id": 7605,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7547,
+                      "id": 7601,
                       "name": "pbxpShopFactory",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7512,
+                      "referencedDeclaration": 7566,
                       "src": "788:15:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -10236,11 +10236,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7549,
+                          "id": 7603,
                           "name": "_pbxpShopaddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7531,
+                          "referencedDeclaration": 7585,
                           "src": "815:16:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -10255,18 +10255,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7548,
+                        "id": 7602,
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 9603,
+                        "referencedDeclaration": 9657,
                         "src": "806:8:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9603_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9657_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
-                      "id": 7550,
+                      "id": 7604,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10277,35 +10277,35 @@
                       "src": "806:26:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "788:44:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$9603",
+                      "typeIdentifier": "t_contract$_IERC1155_$9657",
                       "typeString": "contract IERC1155"
                     }
                   },
-                  "id": 7552,
+                  "id": 7606,
                   "nodeType": "ExpressionStatement",
                   "src": "788:44:16"
                 }
               ]
             },
-            "id": 7554,
+            "id": 7608,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
               {
                 "arguments": [],
-                "id": 7534,
+                "id": 7588,
                 "kind": "baseConstructorSpecifier",
                 "modifierName": {
-                  "id": 7533,
+                  "id": 7587,
                   "name": "ERC1155Holder",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 10025,
+                  "referencedDeclaration": 10079,
                   "src": "691:13:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -10316,17 +10316,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7532,
+              "id": 7586,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7529,
+                  "id": 7583,
                   "mutability": "mutable",
                   "name": "_pbxpAddress",
                   "nameLocation": "651:12:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7554,
+                  "scope": 7608,
                   "src": "643:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -10335,7 +10335,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7528,
+                    "id": 7582,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "643:7:16",
@@ -10349,12 +10349,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7531,
+                  "id": 7585,
                   "mutability": "mutable",
                   "name": "_pbxpShopaddress",
                   "nameLocation": "673:16:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7554,
+                  "scope": 7608,
                   "src": "665:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -10363,7 +10363,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7530,
+                    "id": 7584,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "665:7:16",
@@ -10379,12 +10379,12 @@
               "src": "642:48:16"
             },
             "returnParameters": {
-              "id": 7535,
+              "id": 7589,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "707:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "631:209:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -10392,7 +10392,7 @@
           },
           {
             "body": {
-              "id": 7564,
+              "id": 7618,
               "nodeType": "Block",
               "src": "914:39:16",
               "statements": [
@@ -10400,14 +10400,14 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 7561,
+                        "id": 7615,
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967268,
                         "src": "940:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                           "typeString": "contract PBXPShopHolder"
                         }
                       }
@@ -10415,11 +10415,11 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                           "typeString": "contract PBXPShopHolder"
                         }
                       ],
-                      "id": 7560,
+                      "id": 7614,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -10431,14 +10431,14 @@
                         "typeString": "type(address)"
                       },
                       "typeName": {
-                        "id": 7559,
+                        "id": 7613,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "932:7:16",
                         "typeDescriptions": {}
                       }
                     },
-                    "id": 7562,
+                    "id": 7616,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -10453,15 +10453,15 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 7558,
-                  "id": 7563,
+                  "functionReturnParameters": 7612,
+                  "id": 7617,
                   "nodeType": "Return",
                   "src": "925:20:16"
                 }
               ]
             },
             "functionSelector": "ec1de0c2",
-            "id": 7565,
+            "id": 7619,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -10469,23 +10469,23 @@
             "nameLocation": "857:24:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7555,
+              "id": 7609,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "881:2:16"
             },
             "returnParameters": {
-              "id": 7558,
+              "id": 7612,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7557,
+                  "id": 7611,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7565,
+                  "scope": 7619,
                   "src": "905:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -10494,7 +10494,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7556,
+                    "id": 7610,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "905:7:16",
@@ -10509,7 +10509,7 @@
               ],
               "src": "904:9:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "848:105:16",
             "stateMutability": "view",
             "virtual": false,
@@ -10517,26 +10517,26 @@
           },
           {
             "body": {
-              "id": 7578,
+              "id": 7632,
               "nodeType": "Block",
               "src": "1033:49:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7576,
+                    "id": 7630,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7572,
+                      "id": 7626,
                       "name": "PBXPToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7515,
+                      "referencedDeclaration": 7569,
                       "src": "1044:9:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
@@ -10545,11 +10545,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7574,
+                          "id": 7628,
                           "name": "_pbxpAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7567,
+                          "referencedDeclaration": 7621,
                           "src": "1061:12:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -10564,18 +10564,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7573,
+                        "id": 7627,
                         "name": "PBXP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7275,
+                        "referencedDeclaration": 7329,
                         "src": "1056:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7275_$",
+                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7329_$",
                           "typeString": "type(contract PBXP)"
                         }
                       },
-                      "id": 7575,
+                      "id": 7629,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10586,35 +10586,35 @@
                       "src": "1056:18:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
                     "src": "1044:30:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PBXP_$7275",
+                      "typeIdentifier": "t_contract$_PBXP_$7329",
                       "typeString": "contract PBXP"
                     }
                   },
-                  "id": 7577,
+                  "id": 7631,
                   "nodeType": "ExpressionStatement",
                   "src": "1044:30:16"
                 }
               ]
             },
             "functionSelector": "e638ded3",
-            "id": 7579,
+            "id": 7633,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 7570,
+                "id": 7624,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7569,
+                  "id": 7623,
                   "name": "onlyAdmin",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7527,
+                  "referencedDeclaration": 7581,
                   "src": "1024:9:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -10625,17 +10625,17 @@
             "nameLocation": "970:22:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7568,
+              "id": 7622,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7567,
+                  "id": 7621,
                   "mutability": "mutable",
                   "name": "_pbxpAddress",
                   "nameLocation": "1001:12:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7633,
                   "src": "993:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -10644,7 +10644,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7566,
+                    "id": 7620,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "993:7:16",
@@ -10660,12 +10660,12 @@
               "src": "992:22:16"
             },
             "returnParameters": {
-              "id": 7571,
+              "id": 7625,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1033:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "961:121:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -10673,26 +10673,26 @@
           },
           {
             "body": {
-              "id": 7592,
+              "id": 7646,
               "nodeType": "Block",
               "src": "1168:61:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7590,
+                    "id": 7644,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7586,
+                      "id": 7640,
                       "name": "pbxpShopFactory",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7512,
+                      "referencedDeclaration": 7566,
                       "src": "1178:15:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -10701,11 +10701,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7588,
+                          "id": 7642,
                           "name": "_pbxpShopaddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7581,
+                          "referencedDeclaration": 7635,
                           "src": "1205:16:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -10720,18 +10720,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7587,
+                        "id": 7641,
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 9603,
+                        "referencedDeclaration": 9657,
                         "src": "1196:8:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9603_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9657_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
-                      "id": 7589,
+                      "id": 7643,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10742,35 +10742,35 @@
                       "src": "1196:26:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "1178:44:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$9603",
+                      "typeIdentifier": "t_contract$_IERC1155_$9657",
                       "typeString": "contract IERC1155"
                     }
                   },
-                  "id": 7591,
+                  "id": 7645,
                   "nodeType": "ExpressionStatement",
                   "src": "1178:44:16"
                 }
               ]
             },
             "functionSelector": "ae90235a",
-            "id": 7593,
+            "id": 7647,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 7584,
+                "id": 7638,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7583,
+                  "id": 7637,
                   "name": "onlyAdmin",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7527,
+                  "referencedDeclaration": 7581,
                   "src": "1158:9:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -10781,17 +10781,17 @@
             "nameLocation": "1102:20:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7582,
+              "id": 7636,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7581,
+                  "id": 7635,
                   "mutability": "mutable",
                   "name": "_pbxpShopaddress",
                   "nameLocation": "1131:16:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7593,
+                  "scope": 7647,
                   "src": "1123:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -10800,7 +10800,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7580,
+                    "id": 7634,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1123:7:16",
@@ -10816,12 +10816,12 @@
               "src": "1122:26:16"
             },
             "returnParameters": {
-              "id": 7585,
+              "id": 7639,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1168:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1093:136:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -10829,23 +10829,23 @@
           },
           {
             "body": {
-              "id": 7654,
+              "id": 7708,
               "nodeType": "Block",
               "src": "1293:373:16",
               "statements": [
                 {
                   "assignments": [
-                    7601
+                    7655
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7601,
+                      "id": 7655,
                       "mutability": "mutable",
                       "name": "weiFromSku",
                       "nameLocation": "1309:10:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7654,
+                      "scope": 7708,
                       "src": "1304:15:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -10854,7 +10854,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7600,
+                        "id": 7654,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1304:4:16",
@@ -10866,15 +10866,15 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7605,
+                  "id": 7659,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 7603,
+                        "id": 7657,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7595,
+                        "referencedDeclaration": 7649,
                         "src": "1342:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -10889,18 +10889,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 7602,
+                      "id": 7656,
                       "name": "calculateWeiFromSku",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7705,
+                      "referencedDeclaration": 7759,
                       "src": "1322:19:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$returns$_t_uint256_$",
                         "typeString": "function (uint256) pure returns (uint256)"
                       }
                     },
-                    "id": 7604,
+                    "id": 7658,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -10926,17 +10926,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 7609,
+                        "id": 7663,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 7607,
+                          "id": 7661,
                           "name": "weiFromSku",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7601,
+                          "referencedDeclaration": 7655,
                           "src": "1365:10:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -10946,11 +10946,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7608,
+                          "id": 7662,
                           "name": "value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7597,
+                          "referencedDeclaration": 7651,
                           "src": "1379:5:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -10965,7 +10965,7 @@
                       },
                       {
                         "hexValue": "56616c75652073656e7420646f6573206e6f74206d617463682072657175697265642076616c7565",
-                        "id": 7610,
+                        "id": 7664,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -10991,7 +10991,7 @@
                           "typeString": "literal_string \"Value sent does not match required value\""
                         }
                       ],
-                      "id": 7606,
+                      "id": 7660,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -11005,7 +11005,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7611,
+                    "id": 7665,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11020,7 +11020,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7612,
+                  "id": 7666,
                   "nodeType": "ExpressionStatement",
                   "src": "1357:72:16"
                 },
@@ -11032,7 +11032,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 7623,
+                        "id": 7677,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11042,14 +11042,14 @@
                             {
                               "arguments": [
                                 {
-                                  "id": 7618,
+                                  "id": 7672,
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
                                   "referencedDeclaration": 4294967268,
                                   "src": "1482:4:16",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                                     "typeString": "contract PBXPShopHolder"
                                   }
                                 }
@@ -11057,11 +11057,11 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                                     "typeString": "contract PBXPShopHolder"
                                   }
                                 ],
-                                "id": 7617,
+                                "id": 7671,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -11073,14 +11073,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7616,
+                                  "id": 7670,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "1474:7:16",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7619,
+                              "id": 7673,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -11096,11 +11096,11 @@
                               }
                             },
                             {
-                              "id": 7620,
+                              "id": 7674,
                               "name": "sku",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7595,
+                              "referencedDeclaration": 7649,
                               "src": "1489:3:16",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -11120,32 +11120,32 @@
                               }
                             ],
                             "expression": {
-                              "id": 7614,
+                              "id": 7668,
                               "name": "pbxpShopFactory",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7512,
+                              "referencedDeclaration": 7566,
                               "src": "1448:15:16",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IERC1155_$9603",
+                                "typeIdentifier": "t_contract$_IERC1155_$9657",
                                 "typeString": "contract IERC1155"
                               }
                             },
-                            "id": 7615,
+                            "id": 7669,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "balanceOf",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 9541,
+                            "referencedDeclaration": 9595,
                             "src": "1448:25:16",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_address_$_t_uint256_$returns$_t_uint256_$",
                               "typeString": "function (address,uint256) view external returns (uint256)"
                             }
                           },
-                          "id": 7621,
+                          "id": 7675,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -11164,7 +11164,7 @@
                         "operator": ">=",
                         "rightExpression": {
                           "hexValue": "31",
-                          "id": 7622,
+                          "id": 7676,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -11192,7 +11192,7 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 7613,
+                      "id": 7667,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -11206,7 +11206,7 @@
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 7624,
+                    "id": 7678,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11221,7 +11221,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7625,
+                  "id": 7679,
                   "nodeType": "ExpressionStatement",
                   "src": "1440:59:16"
                 },
@@ -11230,7 +11230,7 @@
                     "arguments": [
                       {
                         "expression": {
-                          "id": 7629,
+                          "id": 7683,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11241,7 +11241,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7630,
+                        "id": 7684,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11257,14 +11257,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7633,
+                            "id": 7687,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1557:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -11272,11 +11272,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7632,
+                          "id": 7686,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -11288,14 +11288,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7631,
+                            "id": 7685,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1549:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7634,
+                        "id": 7688,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11312,7 +11312,7 @@
                       },
                       {
                         "hexValue": "30",
-                        "id": 7635,
+                        "id": 7689,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11327,11 +11327,11 @@
                         "value": "0"
                       },
                       {
-                        "id": 7636,
+                        "id": 7690,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7597,
+                        "referencedDeclaration": 7651,
                         "src": "1567:5:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -11340,7 +11340,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7637,
+                        "id": 7691,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11379,32 +11379,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7626,
+                        "id": 7680,
                         "name": "PBXPToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7515,
+                        "referencedDeclaration": 7569,
                         "src": "1510:9:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PBXP_$7275",
+                          "typeIdentifier": "t_contract$_PBXP_$7329",
                           "typeString": "contract PBXP"
                         }
                       },
-                      "id": 7628,
+                      "id": 7682,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 8666,
+                      "referencedDeclaration": 8720,
                       "src": "1510:26:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7638,
+                    "id": 7692,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11419,7 +11419,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7639,
+                  "id": 7693,
                   "nodeType": "ExpressionStatement",
                   "src": "1510:66:16"
                 },
@@ -11429,14 +11429,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7645,
+                            "id": 7699,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1628:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -11444,11 +11444,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7644,
+                          "id": 7698,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -11460,14 +11460,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7643,
+                            "id": 7697,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1620:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7646,
+                        "id": 7700,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11484,7 +11484,7 @@
                       },
                       {
                         "expression": {
-                          "id": 7647,
+                          "id": 7701,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11495,7 +11495,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7648,
+                        "id": 7702,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11509,11 +11509,11 @@
                         }
                       },
                       {
-                        "id": 7649,
+                        "id": 7703,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7595,
+                        "referencedDeclaration": 7649,
                         "src": "1647:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -11522,7 +11522,7 @@
                       },
                       {
                         "hexValue": "31",
-                        "id": 7650,
+                        "id": 7704,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11538,7 +11538,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7651,
+                        "id": 7705,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11577,32 +11577,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7640,
+                        "id": 7694,
                         "name": "pbxpShopFactory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7512,
+                        "referencedDeclaration": 7566,
                         "src": "1587:15:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$9603",
+                          "typeIdentifier": "t_contract$_IERC1155_$9657",
                           "typeString": "contract IERC1155"
                         }
                       },
-                      "id": 7642,
+                      "id": 7696,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9586,
+                      "referencedDeclaration": 9640,
                       "src": "1587:32:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7652,
+                    "id": 7706,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11617,14 +11617,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7653,
+                  "id": 7707,
                   "nodeType": "ExpressionStatement",
                   "src": "1587:71:16"
                 }
               ]
             },
             "functionSelector": "21d7dc3d",
-            "id": 7655,
+            "id": 7709,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -11632,17 +11632,17 @@
             "nameLocation": "1250:8:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7598,
+              "id": 7652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7595,
+                  "id": 7649,
                   "mutability": "mutable",
                   "name": "sku",
                   "nameLocation": "1267:3:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7655,
+                  "scope": 7709,
                   "src": "1259:11:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11651,7 +11651,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7594,
+                    "id": 7648,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1259:7:16",
@@ -11664,12 +11664,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7597,
+                  "id": 7651,
                   "mutability": "mutable",
                   "name": "value",
                   "nameLocation": "1277:5:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7655,
+                  "scope": 7709,
                   "src": "1272:10:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11678,7 +11678,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7596,
+                    "id": 7650,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1272:4:16",
@@ -11693,12 +11693,12 @@
               "src": "1258:25:16"
             },
             "returnParameters": {
-              "id": 7599,
+              "id": 7653,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1293:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1241:425:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11706,7 +11706,7 @@
           },
           {
             "body": {
-              "id": 7674,
+              "id": 7728,
               "nodeType": "Block",
               "src": "1723:90:16",
               "statements": [
@@ -11716,14 +11716,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7665,
+                            "id": 7719,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1775:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -11731,11 +11731,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7664,
+                          "id": 7718,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -11747,14 +11747,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7663,
+                            "id": 7717,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1767:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7666,
+                        "id": 7720,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11771,7 +11771,7 @@
                       },
                       {
                         "expression": {
-                          "id": 7667,
+                          "id": 7721,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11782,7 +11782,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7668,
+                        "id": 7722,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11796,11 +11796,11 @@
                         }
                       },
                       {
-                        "id": 7669,
+                        "id": 7723,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7657,
+                        "referencedDeclaration": 7711,
                         "src": "1794:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -11809,7 +11809,7 @@
                       },
                       {
                         "hexValue": "31",
-                        "id": 7670,
+                        "id": 7724,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11825,7 +11825,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7671,
+                        "id": 7725,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -11864,32 +11864,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7660,
+                        "id": 7714,
                         "name": "pbxpShopFactory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7512,
+                        "referencedDeclaration": 7566,
                         "src": "1734:15:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$9603",
+                          "typeIdentifier": "t_contract$_IERC1155_$9657",
                           "typeString": "contract IERC1155"
                         }
                       },
-                      "id": 7662,
+                      "id": 7716,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9586,
+                      "referencedDeclaration": 9640,
                       "src": "1734:32:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7672,
+                    "id": 7726,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11904,14 +11904,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7673,
+                  "id": 7727,
                   "nodeType": "ExpressionStatement",
                   "src": "1734:71:16"
                 }
               ]
             },
             "functionSelector": "7db31711",
-            "id": 7675,
+            "id": 7729,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -11919,17 +11919,17 @@
             "nameLocation": "1683:20:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7658,
+              "id": 7712,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7657,
+                  "id": 7711,
                   "mutability": "mutable",
                   "name": "sku",
                   "nameLocation": "1709:3:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7675,
+                  "scope": 7729,
                   "src": "1704:8:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11938,7 +11938,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7656,
+                    "id": 7710,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1704:4:16",
@@ -11953,12 +11953,12 @@
               "src": "1703:10:16"
             },
             "returnParameters": {
-              "id": 7659,
+              "id": 7713,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1723:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1674:139:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11966,23 +11966,23 @@
           },
           {
             "body": {
-              "id": 7704,
+              "id": 7758,
               "nodeType": "Block",
               "src": "1889:123:16",
               "statements": [
                 {
                   "assignments": [
-                    7683
+                    7737
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7683,
+                      "id": 7737,
                       "mutability": "mutable",
                       "name": "a",
                       "nameLocation": "1905:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1900:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -11991,7 +11991,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7682,
+                        "id": 7736,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1900:4:16",
@@ -12003,23 +12003,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7687,
+                  "id": 7741,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7686,
+                    "id": 7740,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7684,
+                      "id": 7738,
                       "name": "input",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7677,
+                      "referencedDeclaration": 7731,
                       "src": "1909:5:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -12030,7 +12030,7 @@
                     "operator": "/",
                     "rightExpression": {
                       "hexValue": "313030",
-                      "id": 7685,
+                      "id": 7739,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -12055,17 +12055,17 @@
                 },
                 {
                   "assignments": [
-                    7689
+                    7743
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7689,
+                      "id": 7743,
                       "mutability": "mutable",
                       "name": "b",
                       "nameLocation": "1936:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1931:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -12074,7 +12074,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7688,
+                        "id": 7742,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1931:4:16",
@@ -12086,23 +12086,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7693,
+                  "id": 7747,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7692,
+                    "id": 7746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7690,
+                      "id": 7744,
                       "name": "a",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7683,
+                      "referencedDeclaration": 7737,
                       "src": "1940:1:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -12113,7 +12113,7 @@
                     "operator": "%",
                     "rightExpression": {
                       "hexValue": "313030303030303030",
-                      "id": 7691,
+                      "id": 7745,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -12138,17 +12138,17 @@
                 },
                 {
                   "assignments": [
-                    7695
+                    7749
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7695,
+                      "id": 7749,
                       "mutability": "mutable",
                       "name": "c",
                       "nameLocation": "1969:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1964:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -12157,7 +12157,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7694,
+                        "id": 7748,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1964:4:16",
@@ -12169,23 +12169,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7701,
+                  "id": 7755,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7700,
+                    "id": 7754,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7696,
+                      "id": 7750,
                       "name": "b",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7689,
+                      "referencedDeclaration": 7743,
                       "src": "1973:1:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -12199,14 +12199,14 @@
                         "typeIdentifier": "t_rational_100000000000000_by_1",
                         "typeString": "int_const 100000000000000"
                       },
-                      "id": 7699,
+                      "id": 7753,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "leftExpression": {
                         "hexValue": "3130",
-                        "id": 7697,
+                        "id": 7751,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -12224,7 +12224,7 @@
                       "operator": "**",
                       "rightExpression": {
                         "hexValue": "3134",
-                        "id": 7698,
+                        "id": 7752,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -12255,26 +12255,26 @@
                 },
                 {
                   "expression": {
-                    "id": 7702,
+                    "id": 7756,
                     "name": "c",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7695,
+                    "referencedDeclaration": 7749,
                     "src": "2003:1:16",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 7681,
-                  "id": 7703,
+                  "functionReturnParameters": 7735,
+                  "id": 7757,
                   "nodeType": "Return",
                   "src": "1996:8:16"
                 }
               ]
             },
             "functionSelector": "f61a2ea8",
-            "id": 7705,
+            "id": 7759,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -12282,17 +12282,17 @@
             "nameLocation": "1830:19:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7678,
+              "id": 7732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7677,
+                  "id": 7731,
                   "mutability": "mutable",
                   "name": "input",
                   "nameLocation": "1856:5:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7705,
+                  "scope": 7759,
                   "src": "1851:10:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12301,7 +12301,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7676,
+                    "id": 7730,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1851:4:16",
@@ -12316,17 +12316,17 @@
               "src": "1850:12:16"
             },
             "returnParameters": {
-              "id": 7681,
+              "id": 7735,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7680,
+                  "id": 7734,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7705,
+                  "scope": 7759,
                   "src": "1884:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -12335,7 +12335,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7679,
+                    "id": 7733,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1884:4:16",
@@ -12349,14 +12349,14 @@
               ],
               "src": "1883:6:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1821:191:16",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 7707,
+        "scope": 7761,
         "src": "343:1678:16",
         "usedErrors": []
       }
@@ -12367,60 +12367,60 @@
     "absolutePath": "project:/contracts/PBXPShopHolder.sol",
     "exportedSymbols": {
       "Address": [
-        11983
+        12037
       ],
       "Context": [
-        12004
+        12058
       ],
       "Counters": [
-        12078
+        12132
       ],
       "ERC1155": [
-        9481
+        9535
       ],
       "ERC1155Holder": [
-        10025
+        10079
       ],
       "ERC1155Receiver": [
-        10059
+        10113
       ],
       "ERC165": [
-        12305
+        12359
       ],
       "IERC1155": [
-        9603
+        9657
       ],
       "IERC1155MetadataURI": [
-        9776
+        9830
       ],
       "IERC1155Receiver": [
-        9644
+        9698
       ],
       "IERC165": [
-        12317
+        12371
       ],
       "IERC20": [
-        10683
+        10737
       ],
       "IERC721": [
-        11642
+        11696
       ],
       "PBPlayers": [
         3498
       ],
       "PBXP": [
-        7275
+        7329
       ],
       "PBXPShopHolder": [
-        7706
+        7760
       ]
     },
-    "id": 7707,
+    "id": 7761,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7501,
+        "id": 7555,
         "literals": [
           "solidity",
           ">=",
@@ -12436,11 +12436,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 7502,
+        "id": 7556,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 10684,
+        "scope": 7761,
+        "sourceUnit": 10738,
         "src": "67:72:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -12448,11 +12448,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
-        "id": 7503,
+        "id": 7557,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 9604,
+        "scope": 7761,
+        "sourceUnit": 9658,
         "src": "141:76:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -12460,11 +12460,11 @@
       {
         "absolutePath": "project:/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
         "file": "../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
-        "id": 7504,
+        "id": 7558,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 10026,
+        "scope": 7761,
+        "sourceUnit": 10080,
         "src": "219:87:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -12472,11 +12472,11 @@
       {
         "absolutePath": "project:/contracts/PBXP.sol",
         "file": "../contracts/PBXP.sol",
-        "id": 7505,
+        "id": 7559,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 7707,
-        "sourceUnit": 7276,
+        "scope": 7761,
+        "sourceUnit": 7330,
         "src": "308:31:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -12486,13 +12486,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 7506,
+              "id": 7560,
               "name": "ERC1155Holder",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 10025,
+              "referencedDeclaration": 10079,
               "src": "370:13:16"
             },
-            "id": 7507,
+            "id": 7561,
             "nodeType": "InheritanceSpecifier",
             "src": "370:13:16"
           }
@@ -12500,14 +12500,14 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 7706,
+        "id": 7760,
         "linearizedBaseContracts": [
-          7706,
-          10025,
-          10059,
-          9644,
-          12305,
-          12317
+          7760,
+          10079,
+          10113,
+          9698,
+          12359,
+          12371
         ],
         "name": "PBXPShopHolder",
         "nameLocation": "352:14:16",
@@ -12516,12 +12516,12 @@
           {
             "constant": false,
             "functionSelector": "f851a440",
-            "id": 7509,
+            "id": 7563,
             "mutability": "mutable",
             "name": "admin",
             "nameLocation": "411:5:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "396:20:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -12530,7 +12530,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 7508,
+              "id": 7562,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "396:7:16",
@@ -12544,33 +12544,33 @@
           },
           {
             "constant": false,
-            "id": 7512,
+            "id": 7566,
             "mutability": "mutable",
             "name": "pbxpShopFactory",
             "nameLocation": "440:15:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "423:32:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC1155_$9603",
+              "typeIdentifier": "t_contract$_IERC1155_$9657",
               "typeString": "contract IERC1155"
             },
             "typeName": {
-              "id": 7511,
+              "id": 7565,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 7510,
+                "id": 7564,
                 "name": "IERC1155",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 9603,
+                "referencedDeclaration": 9657,
                 "src": "423:8:16"
               },
-              "referencedDeclaration": 9603,
+              "referencedDeclaration": 9657,
               "src": "423:8:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$9603",
+                "typeIdentifier": "t_contract$_IERC1155_$9657",
                 "typeString": "contract IERC1155"
               }
             },
@@ -12578,33 +12578,33 @@
           },
           {
             "constant": false,
-            "id": 7515,
+            "id": 7569,
             "mutability": "mutable",
             "name": "PBXPToken",
             "nameLocation": "475:9:16",
             "nodeType": "VariableDeclaration",
-            "scope": 7706,
+            "scope": 7760,
             "src": "462:22:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PBXP_$7275",
+              "typeIdentifier": "t_contract$_PBXP_$7329",
               "typeString": "contract PBXP"
             },
             "typeName": {
-              "id": 7514,
+              "id": 7568,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 7513,
+                "id": 7567,
                 "name": "PBXP",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 7275,
+                "referencedDeclaration": 7329,
                 "src": "462:4:16"
               },
-              "referencedDeclaration": 7275,
+              "referencedDeclaration": 7329,
               "src": "462:4:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PBXP_$7275",
+                "typeIdentifier": "t_contract$_PBXP_$7329",
                 "typeString": "contract PBXP"
               }
             },
@@ -12612,7 +12612,7 @@
           },
           {
             "body": {
-              "id": 7526,
+              "id": 7580,
               "nodeType": "Block",
               "src": "528:95:16",
               "statements": [
@@ -12624,14 +12624,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 7521,
+                        "id": 7575,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 7518,
+                            "id": 7572,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -12642,7 +12642,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 7519,
+                          "id": 7573,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -12658,11 +12658,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7520,
+                          "id": 7574,
                           "name": "admin",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7509,
+                          "referencedDeclaration": 7563,
                           "src": "561:5:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -12677,7 +12677,7 @@
                       },
                       {
                         "hexValue": "4f6e6c792041646d696e2063616e20706572666f726d20746869732063616c6c",
-                        "id": 7522,
+                        "id": 7576,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -12703,7 +12703,7 @@
                           "typeString": "literal_string \"Only Admin can perform this call\""
                         }
                       ],
-                      "id": 7517,
+                      "id": 7571,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -12717,7 +12717,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7523,
+                    "id": 7577,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -12732,23 +12732,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7524,
+                  "id": 7578,
                   "nodeType": "ExpressionStatement",
                   "src": "539:64:16"
                 },
                 {
-                  "id": 7525,
+                  "id": 7579,
                   "nodeType": "PlaceholderStatement",
                   "src": "614:1:16"
                 }
               ]
             },
-            "id": 7527,
+            "id": 7581,
             "name": "onlyAdmin",
             "nameLocation": "516:9:16",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 7516,
+              "id": 7570,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "525:2:16"
@@ -12759,23 +12759,23 @@
           },
           {
             "body": {
-              "id": 7553,
+              "id": 7607,
               "nodeType": "Block",
               "src": "707:133:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7539,
+                    "id": 7593,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7536,
+                      "id": 7590,
                       "name": "admin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7509,
+                      "referencedDeclaration": 7563,
                       "src": "718:5:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -12786,7 +12786,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 7537,
+                        "id": 7591,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -12797,7 +12797,7 @@
                           "typeString": "msg"
                         }
                       },
-                      "id": 7538,
+                      "id": 7592,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12816,26 +12816,26 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 7540,
+                  "id": 7594,
                   "nodeType": "ExpressionStatement",
                   "src": "718:18:16"
                 },
                 {
                   "expression": {
-                    "id": 7545,
+                    "id": 7599,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7541,
+                      "id": 7595,
                       "name": "PBXPToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7515,
+                      "referencedDeclaration": 7569,
                       "src": "747:9:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
@@ -12844,11 +12844,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7543,
+                          "id": 7597,
                           "name": "_pbxpAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7529,
+                          "referencedDeclaration": 7583,
                           "src": "764:12:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -12863,18 +12863,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7542,
+                        "id": 7596,
                         "name": "PBXP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7275,
+                        "referencedDeclaration": 7329,
                         "src": "759:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7275_$",
+                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7329_$",
                           "typeString": "type(contract PBXP)"
                         }
                       },
-                      "id": 7544,
+                      "id": 7598,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12885,36 +12885,36 @@
                       "src": "759:18:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
                     "src": "747:30:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PBXP_$7275",
+                      "typeIdentifier": "t_contract$_PBXP_$7329",
                       "typeString": "contract PBXP"
                     }
                   },
-                  "id": 7546,
+                  "id": 7600,
                   "nodeType": "ExpressionStatement",
                   "src": "747:30:16"
                 },
                 {
                   "expression": {
-                    "id": 7551,
+                    "id": 7605,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7547,
+                      "id": 7601,
                       "name": "pbxpShopFactory",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7512,
+                      "referencedDeclaration": 7566,
                       "src": "788:15:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -12923,11 +12923,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7549,
+                          "id": 7603,
                           "name": "_pbxpShopaddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7531,
+                          "referencedDeclaration": 7585,
                           "src": "815:16:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -12942,18 +12942,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7548,
+                        "id": 7602,
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 9603,
+                        "referencedDeclaration": 9657,
                         "src": "806:8:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9603_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9657_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
-                      "id": 7550,
+                      "id": 7604,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -12964,35 +12964,35 @@
                       "src": "806:26:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "788:44:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$9603",
+                      "typeIdentifier": "t_contract$_IERC1155_$9657",
                       "typeString": "contract IERC1155"
                     }
                   },
-                  "id": 7552,
+                  "id": 7606,
                   "nodeType": "ExpressionStatement",
                   "src": "788:44:16"
                 }
               ]
             },
-            "id": 7554,
+            "id": 7608,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
               {
                 "arguments": [],
-                "id": 7534,
+                "id": 7588,
                 "kind": "baseConstructorSpecifier",
                 "modifierName": {
-                  "id": 7533,
+                  "id": 7587,
                   "name": "ERC1155Holder",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 10025,
+                  "referencedDeclaration": 10079,
                   "src": "691:13:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -13003,17 +13003,17 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7532,
+              "id": 7586,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7529,
+                  "id": 7583,
                   "mutability": "mutable",
                   "name": "_pbxpAddress",
                   "nameLocation": "651:12:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7554,
+                  "scope": 7608,
                   "src": "643:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13022,7 +13022,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7528,
+                    "id": 7582,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "643:7:16",
@@ -13036,12 +13036,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7531,
+                  "id": 7585,
                   "mutability": "mutable",
                   "name": "_pbxpShopaddress",
                   "nameLocation": "673:16:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7554,
+                  "scope": 7608,
                   "src": "665:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13050,7 +13050,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7530,
+                    "id": 7584,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "665:7:16",
@@ -13066,12 +13066,12 @@
               "src": "642:48:16"
             },
             "returnParameters": {
-              "id": 7535,
+              "id": 7589,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "707:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "631:209:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -13079,7 +13079,7 @@
           },
           {
             "body": {
-              "id": 7564,
+              "id": 7618,
               "nodeType": "Block",
               "src": "914:39:16",
               "statements": [
@@ -13087,14 +13087,14 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 7561,
+                        "id": 7615,
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967268,
                         "src": "940:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                           "typeString": "contract PBXPShopHolder"
                         }
                       }
@@ -13102,11 +13102,11 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                          "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                           "typeString": "contract PBXPShopHolder"
                         }
                       ],
-                      "id": 7560,
+                      "id": 7614,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -13118,14 +13118,14 @@
                         "typeString": "type(address)"
                       },
                       "typeName": {
-                        "id": 7559,
+                        "id": 7613,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "932:7:16",
                         "typeDescriptions": {}
                       }
                     },
-                    "id": 7562,
+                    "id": 7616,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13140,15 +13140,15 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 7558,
-                  "id": 7563,
+                  "functionReturnParameters": 7612,
+                  "id": 7617,
                   "nodeType": "Return",
                   "src": "925:20:16"
                 }
               ]
             },
             "functionSelector": "ec1de0c2",
-            "id": 7565,
+            "id": 7619,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -13156,23 +13156,23 @@
             "nameLocation": "857:24:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7555,
+              "id": 7609,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "881:2:16"
             },
             "returnParameters": {
-              "id": 7558,
+              "id": 7612,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7557,
+                  "id": 7611,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7565,
+                  "scope": 7619,
                   "src": "905:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13181,7 +13181,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7556,
+                    "id": 7610,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "905:7:16",
@@ -13196,7 +13196,7 @@
               ],
               "src": "904:9:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "848:105:16",
             "stateMutability": "view",
             "virtual": false,
@@ -13204,26 +13204,26 @@
           },
           {
             "body": {
-              "id": 7578,
+              "id": 7632,
               "nodeType": "Block",
               "src": "1033:49:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7576,
+                    "id": 7630,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7572,
+                      "id": 7626,
                       "name": "PBXPToken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7515,
+                      "referencedDeclaration": 7569,
                       "src": "1044:9:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
@@ -13232,11 +13232,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7574,
+                          "id": 7628,
                           "name": "_pbxpAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7567,
+                          "referencedDeclaration": 7621,
                           "src": "1061:12:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -13251,18 +13251,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7573,
+                        "id": 7627,
                         "name": "PBXP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7275,
+                        "referencedDeclaration": 7329,
                         "src": "1056:4:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7275_$",
+                          "typeIdentifier": "t_type$_t_contract$_PBXP_$7329_$",
                           "typeString": "type(contract PBXP)"
                         }
                       },
-                      "id": 7575,
+                      "id": 7629,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -13273,35 +13273,35 @@
                       "src": "1056:18:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PBXP_$7275",
+                        "typeIdentifier": "t_contract$_PBXP_$7329",
                         "typeString": "contract PBXP"
                       }
                     },
                     "src": "1044:30:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PBXP_$7275",
+                      "typeIdentifier": "t_contract$_PBXP_$7329",
                       "typeString": "contract PBXP"
                     }
                   },
-                  "id": 7577,
+                  "id": 7631,
                   "nodeType": "ExpressionStatement",
                   "src": "1044:30:16"
                 }
               ]
             },
             "functionSelector": "e638ded3",
-            "id": 7579,
+            "id": 7633,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 7570,
+                "id": 7624,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7569,
+                  "id": 7623,
                   "name": "onlyAdmin",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7527,
+                  "referencedDeclaration": 7581,
                   "src": "1024:9:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -13312,17 +13312,17 @@
             "nameLocation": "970:22:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7568,
+              "id": 7622,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7567,
+                  "id": 7621,
                   "mutability": "mutable",
                   "name": "_pbxpAddress",
                   "nameLocation": "1001:12:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7579,
+                  "scope": 7633,
                   "src": "993:20:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13331,7 +13331,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7566,
+                    "id": 7620,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "993:7:16",
@@ -13347,12 +13347,12 @@
               "src": "992:22:16"
             },
             "returnParameters": {
-              "id": 7571,
+              "id": 7625,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1033:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "961:121:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -13360,26 +13360,26 @@
           },
           {
             "body": {
-              "id": 7592,
+              "id": 7646,
               "nodeType": "Block",
               "src": "1168:61:16",
               "statements": [
                 {
                   "expression": {
-                    "id": 7590,
+                    "id": 7644,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 7586,
+                      "id": 7640,
                       "name": "pbxpShopFactory",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7512,
+                      "referencedDeclaration": 7566,
                       "src": "1178:15:16",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -13388,11 +13388,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 7588,
+                          "id": 7642,
                           "name": "_pbxpShopaddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7581,
+                          "referencedDeclaration": 7635,
                           "src": "1205:16:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -13407,18 +13407,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 7587,
+                        "id": 7641,
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 9603,
+                        "referencedDeclaration": 9657,
                         "src": "1196:8:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9603_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$9657_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
-                      "id": 7589,
+                      "id": 7643,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -13429,35 +13429,35 @@
                       "src": "1196:26:16",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$9603",
+                        "typeIdentifier": "t_contract$_IERC1155_$9657",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "1178:44:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$9603",
+                      "typeIdentifier": "t_contract$_IERC1155_$9657",
                       "typeString": "contract IERC1155"
                     }
                   },
-                  "id": 7591,
+                  "id": 7645,
                   "nodeType": "ExpressionStatement",
                   "src": "1178:44:16"
                 }
               ]
             },
             "functionSelector": "ae90235a",
-            "id": 7593,
+            "id": 7647,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 7584,
+                "id": 7638,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 7583,
+                  "id": 7637,
                   "name": "onlyAdmin",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 7527,
+                  "referencedDeclaration": 7581,
                   "src": "1158:9:16"
                 },
                 "nodeType": "ModifierInvocation",
@@ -13468,17 +13468,17 @@
             "nameLocation": "1102:20:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7582,
+              "id": 7636,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7581,
+                  "id": 7635,
                   "mutability": "mutable",
                   "name": "_pbxpShopaddress",
                   "nameLocation": "1131:16:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7593,
+                  "scope": 7647,
                   "src": "1123:24:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -13487,7 +13487,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7580,
+                    "id": 7634,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1123:7:16",
@@ -13503,12 +13503,12 @@
               "src": "1122:26:16"
             },
             "returnParameters": {
-              "id": 7585,
+              "id": 7639,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1168:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1093:136:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -13516,23 +13516,23 @@
           },
           {
             "body": {
-              "id": 7654,
+              "id": 7708,
               "nodeType": "Block",
               "src": "1293:373:16",
               "statements": [
                 {
                   "assignments": [
-                    7601
+                    7655
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7601,
+                      "id": 7655,
                       "mutability": "mutable",
                       "name": "weiFromSku",
                       "nameLocation": "1309:10:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7654,
+                      "scope": 7708,
                       "src": "1304:15:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -13541,7 +13541,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7600,
+                        "id": 7654,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1304:4:16",
@@ -13553,15 +13553,15 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7605,
+                  "id": 7659,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 7603,
+                        "id": 7657,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7595,
+                        "referencedDeclaration": 7649,
                         "src": "1342:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -13576,18 +13576,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 7602,
+                      "id": 7656,
                       "name": "calculateWeiFromSku",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7705,
+                      "referencedDeclaration": 7759,
                       "src": "1322:19:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$returns$_t_uint256_$",
                         "typeString": "function (uint256) pure returns (uint256)"
                       }
                     },
-                    "id": 7604,
+                    "id": 7658,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13613,17 +13613,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 7609,
+                        "id": 7663,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 7607,
+                          "id": 7661,
                           "name": "weiFromSku",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7601,
+                          "referencedDeclaration": 7655,
                           "src": "1365:10:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -13633,11 +13633,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 7608,
+                          "id": 7662,
                           "name": "value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 7597,
+                          "referencedDeclaration": 7651,
                           "src": "1379:5:16",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -13652,7 +13652,7 @@
                       },
                       {
                         "hexValue": "56616c75652073656e7420646f6573206e6f74206d617463682072657175697265642076616c7565",
-                        "id": 7610,
+                        "id": 7664,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -13678,7 +13678,7 @@
                           "typeString": "literal_string \"Value sent does not match required value\""
                         }
                       ],
-                      "id": 7606,
+                      "id": 7660,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -13692,7 +13692,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 7611,
+                    "id": 7665,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13707,7 +13707,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7612,
+                  "id": 7666,
                   "nodeType": "ExpressionStatement",
                   "src": "1357:72:16"
                 },
@@ -13719,7 +13719,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 7623,
+                        "id": 7677,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -13729,14 +13729,14 @@
                             {
                               "arguments": [
                                 {
-                                  "id": 7618,
+                                  "id": 7672,
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
                                   "referencedDeclaration": 4294967268,
                                   "src": "1482:4:16",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                                     "typeString": "contract PBXPShopHolder"
                                   }
                                 }
@@ -13744,11 +13744,11 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                                    "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                                     "typeString": "contract PBXPShopHolder"
                                   }
                                 ],
-                                "id": 7617,
+                                "id": 7671,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -13760,14 +13760,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 7616,
+                                  "id": 7670,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "1474:7:16",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 7619,
+                              "id": 7673,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -13783,11 +13783,11 @@
                               }
                             },
                             {
-                              "id": 7620,
+                              "id": 7674,
                               "name": "sku",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7595,
+                              "referencedDeclaration": 7649,
                               "src": "1489:3:16",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -13807,32 +13807,32 @@
                               }
                             ],
                             "expression": {
-                              "id": 7614,
+                              "id": 7668,
                               "name": "pbxpShopFactory",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 7512,
+                              "referencedDeclaration": 7566,
                               "src": "1448:15:16",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_IERC1155_$9603",
+                                "typeIdentifier": "t_contract$_IERC1155_$9657",
                                 "typeString": "contract IERC1155"
                               }
                             },
-                            "id": 7615,
+                            "id": 7669,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "balanceOf",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 9541,
+                            "referencedDeclaration": 9595,
                             "src": "1448:25:16",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_address_$_t_uint256_$returns$_t_uint256_$",
                               "typeString": "function (address,uint256) view external returns (uint256)"
                             }
                           },
-                          "id": 7621,
+                          "id": 7675,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -13851,7 +13851,7 @@
                         "operator": ">=",
                         "rightExpression": {
                           "hexValue": "31",
-                          "id": 7622,
+                          "id": 7676,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -13879,7 +13879,7 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 7613,
+                      "id": 7667,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -13893,7 +13893,7 @@
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 7624,
+                    "id": 7678,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -13908,7 +13908,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7625,
+                  "id": 7679,
                   "nodeType": "ExpressionStatement",
                   "src": "1440:59:16"
                 },
@@ -13917,7 +13917,7 @@
                     "arguments": [
                       {
                         "expression": {
-                          "id": 7629,
+                          "id": 7683,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -13928,7 +13928,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7630,
+                        "id": 7684,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -13944,14 +13944,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7633,
+                            "id": 7687,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1557:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -13959,11 +13959,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7632,
+                          "id": 7686,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -13975,14 +13975,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7631,
+                            "id": 7685,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1549:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7634,
+                        "id": 7688,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -13999,7 +13999,7 @@
                       },
                       {
                         "hexValue": "30",
-                        "id": 7635,
+                        "id": 7689,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14014,11 +14014,11 @@
                         "value": "0"
                       },
                       {
-                        "id": 7636,
+                        "id": 7690,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7597,
+                        "referencedDeclaration": 7651,
                         "src": "1567:5:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -14027,7 +14027,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7637,
+                        "id": 7691,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14066,32 +14066,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7626,
+                        "id": 7680,
                         "name": "PBXPToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7515,
+                        "referencedDeclaration": 7569,
                         "src": "1510:9:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PBXP_$7275",
+                          "typeIdentifier": "t_contract$_PBXP_$7329",
                           "typeString": "contract PBXP"
                         }
                       },
-                      "id": 7628,
+                      "id": 7682,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 8666,
+                      "referencedDeclaration": 8720,
                       "src": "1510:26:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7638,
+                    "id": 7692,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -14106,7 +14106,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7639,
+                  "id": 7693,
                   "nodeType": "ExpressionStatement",
                   "src": "1510:66:16"
                 },
@@ -14116,14 +14116,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7645,
+                            "id": 7699,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1628:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -14131,11 +14131,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7644,
+                          "id": 7698,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -14147,14 +14147,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7643,
+                            "id": 7697,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1620:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7646,
+                        "id": 7700,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -14171,7 +14171,7 @@
                       },
                       {
                         "expression": {
-                          "id": 7647,
+                          "id": 7701,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -14182,7 +14182,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7648,
+                        "id": 7702,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -14196,11 +14196,11 @@
                         }
                       },
                       {
-                        "id": 7649,
+                        "id": 7703,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7595,
+                        "referencedDeclaration": 7649,
                         "src": "1647:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -14209,7 +14209,7 @@
                       },
                       {
                         "hexValue": "31",
-                        "id": 7650,
+                        "id": 7704,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14225,7 +14225,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7651,
+                        "id": 7705,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14264,32 +14264,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7640,
+                        "id": 7694,
                         "name": "pbxpShopFactory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7512,
+                        "referencedDeclaration": 7566,
                         "src": "1587:15:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$9603",
+                          "typeIdentifier": "t_contract$_IERC1155_$9657",
                           "typeString": "contract IERC1155"
                         }
                       },
-                      "id": 7642,
+                      "id": 7696,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9586,
+                      "referencedDeclaration": 9640,
                       "src": "1587:32:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7652,
+                    "id": 7706,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -14304,14 +14304,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7653,
+                  "id": 7707,
                   "nodeType": "ExpressionStatement",
                   "src": "1587:71:16"
                 }
               ]
             },
             "functionSelector": "21d7dc3d",
-            "id": 7655,
+            "id": 7709,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -14319,17 +14319,17 @@
             "nameLocation": "1250:8:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7598,
+              "id": 7652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7595,
+                  "id": 7649,
                   "mutability": "mutable",
                   "name": "sku",
                   "nameLocation": "1267:3:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7655,
+                  "scope": 7709,
                   "src": "1259:11:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -14338,7 +14338,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7594,
+                    "id": 7648,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1259:7:16",
@@ -14351,12 +14351,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 7597,
+                  "id": 7651,
                   "mutability": "mutable",
                   "name": "value",
                   "nameLocation": "1277:5:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7655,
+                  "scope": 7709,
                   "src": "1272:10:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -14365,7 +14365,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7596,
+                    "id": 7650,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1272:4:16",
@@ -14380,12 +14380,12 @@
               "src": "1258:25:16"
             },
             "returnParameters": {
-              "id": 7599,
+              "id": 7653,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1293:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1241:425:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -14393,7 +14393,7 @@
           },
           {
             "body": {
-              "id": 7674,
+              "id": 7728,
               "nodeType": "Block",
               "src": "1723:90:16",
               "statements": [
@@ -14403,14 +14403,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 7665,
+                            "id": 7719,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "1775:4:16",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           }
@@ -14418,11 +14418,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7706",
+                              "typeIdentifier": "t_contract$_PBXPShopHolder_$7760",
                               "typeString": "contract PBXPShopHolder"
                             }
                           ],
-                          "id": 7664,
+                          "id": 7718,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -14434,14 +14434,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 7663,
+                            "id": 7717,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "1767:7:16",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 7666,
+                        "id": 7720,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -14458,7 +14458,7 @@
                       },
                       {
                         "expression": {
-                          "id": 7667,
+                          "id": 7721,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -14469,7 +14469,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 7668,
+                        "id": 7722,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -14483,11 +14483,11 @@
                         }
                       },
                       {
-                        "id": 7669,
+                        "id": 7723,
                         "name": "sku",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7657,
+                        "referencedDeclaration": 7711,
                         "src": "1794:3:16",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -14496,7 +14496,7 @@
                       },
                       {
                         "hexValue": "31",
-                        "id": 7670,
+                        "id": 7724,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14512,7 +14512,7 @@
                       },
                       {
                         "hexValue": "",
-                        "id": 7671,
+                        "id": 7725,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14551,32 +14551,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 7660,
+                        "id": 7714,
                         "name": "pbxpShopFactory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 7512,
+                        "referencedDeclaration": 7566,
                         "src": "1734:15:16",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$9603",
+                          "typeIdentifier": "t_contract$_IERC1155_$9657",
                           "typeString": "contract IERC1155"
                         }
                       },
-                      "id": 7662,
+                      "id": 7716,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 9586,
+                      "referencedDeclaration": 9640,
                       "src": "1734:32:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,address,uint256,uint256,bytes memory) external"
                       }
                     },
-                    "id": 7672,
+                    "id": 7726,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -14591,14 +14591,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 7673,
+                  "id": 7727,
                   "nodeType": "ExpressionStatement",
                   "src": "1734:71:16"
                 }
               ]
             },
             "functionSelector": "7db31711",
-            "id": 7675,
+            "id": 7729,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -14606,17 +14606,17 @@
             "nameLocation": "1683:20:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7658,
+              "id": 7712,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7657,
+                  "id": 7711,
                   "mutability": "mutable",
                   "name": "sku",
                   "nameLocation": "1709:3:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7675,
+                  "scope": 7729,
                   "src": "1704:8:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -14625,7 +14625,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7656,
+                    "id": 7710,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1704:4:16",
@@ -14640,12 +14640,12 @@
               "src": "1703:10:16"
             },
             "returnParameters": {
-              "id": 7659,
+              "id": 7713,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1723:0:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1674:139:16",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -14653,23 +14653,23 @@
           },
           {
             "body": {
-              "id": 7704,
+              "id": 7758,
               "nodeType": "Block",
               "src": "1889:123:16",
               "statements": [
                 {
                   "assignments": [
-                    7683
+                    7737
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7683,
+                      "id": 7737,
                       "mutability": "mutable",
                       "name": "a",
                       "nameLocation": "1905:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1900:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -14678,7 +14678,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7682,
+                        "id": 7736,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1900:4:16",
@@ -14690,23 +14690,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7687,
+                  "id": 7741,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7686,
+                    "id": 7740,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7684,
+                      "id": 7738,
                       "name": "input",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7677,
+                      "referencedDeclaration": 7731,
                       "src": "1909:5:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -14717,7 +14717,7 @@
                     "operator": "/",
                     "rightExpression": {
                       "hexValue": "313030",
-                      "id": 7685,
+                      "id": 7739,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -14742,17 +14742,17 @@
                 },
                 {
                   "assignments": [
-                    7689
+                    7743
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7689,
+                      "id": 7743,
                       "mutability": "mutable",
                       "name": "b",
                       "nameLocation": "1936:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1931:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -14761,7 +14761,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7688,
+                        "id": 7742,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1931:4:16",
@@ -14773,23 +14773,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7693,
+                  "id": 7747,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7692,
+                    "id": 7746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7690,
+                      "id": 7744,
                       "name": "a",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7683,
+                      "referencedDeclaration": 7737,
                       "src": "1940:1:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -14800,7 +14800,7 @@
                     "operator": "%",
                     "rightExpression": {
                       "hexValue": "313030303030303030",
-                      "id": 7691,
+                      "id": 7745,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -14825,17 +14825,17 @@
                 },
                 {
                   "assignments": [
-                    7695
+                    7749
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 7695,
+                      "id": 7749,
                       "mutability": "mutable",
                       "name": "c",
                       "nameLocation": "1969:1:16",
                       "nodeType": "VariableDeclaration",
-                      "scope": 7704,
+                      "scope": 7758,
                       "src": "1964:6:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -14844,7 +14844,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 7694,
+                        "id": 7748,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
                         "src": "1964:4:16",
@@ -14856,23 +14856,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 7701,
+                  "id": 7755,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 7700,
+                    "id": 7754,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 7696,
+                      "id": 7750,
                       "name": "b",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7689,
+                      "referencedDeclaration": 7743,
                       "src": "1973:1:16",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -14886,14 +14886,14 @@
                         "typeIdentifier": "t_rational_100000000000000_by_1",
                         "typeString": "int_const 100000000000000"
                       },
-                      "id": 7699,
+                      "id": 7753,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "lValueRequested": false,
                       "leftExpression": {
                         "hexValue": "3130",
-                        "id": 7697,
+                        "id": 7751,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14911,7 +14911,7 @@
                       "operator": "**",
                       "rightExpression": {
                         "hexValue": "3134",
-                        "id": 7698,
+                        "id": 7752,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -14942,26 +14942,26 @@
                 },
                 {
                   "expression": {
-                    "id": 7702,
+                    "id": 7756,
                     "name": "c",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 7695,
+                    "referencedDeclaration": 7749,
                     "src": "2003:1:16",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 7681,
-                  "id": 7703,
+                  "functionReturnParameters": 7735,
+                  "id": 7757,
                   "nodeType": "Return",
                   "src": "1996:8:16"
                 }
               ]
             },
             "functionSelector": "f61a2ea8",
-            "id": 7705,
+            "id": 7759,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -14969,17 +14969,17 @@
             "nameLocation": "1830:19:16",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7678,
+              "id": 7732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7677,
+                  "id": 7731,
                   "mutability": "mutable",
                   "name": "input",
                   "nameLocation": "1856:5:16",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7705,
+                  "scope": 7759,
                   "src": "1851:10:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -14988,7 +14988,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7676,
+                    "id": 7730,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1851:4:16",
@@ -15003,17 +15003,17 @@
               "src": "1850:12:16"
             },
             "returnParameters": {
-              "id": 7681,
+              "id": 7735,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7680,
+                  "id": 7734,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7705,
+                  "scope": 7759,
                   "src": "1884:4:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -15022,7 +15022,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 7679,
+                    "id": 7733,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1884:4:16",
@@ -15036,14 +15036,14 @@
               ],
               "src": "1883:6:16"
             },
-            "scope": 7706,
+            "scope": 7760,
             "src": "1821:191:16",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 7707,
+        "scope": 7761,
         "src": "343:1678:16",
         "usedErrors": []
       }
@@ -15063,7 +15063,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-05T11:16:30.402Z",
+  "updatedAt": "2021-11-09T03:19:27.126Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

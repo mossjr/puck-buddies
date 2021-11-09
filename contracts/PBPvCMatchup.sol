@@ -80,8 +80,8 @@ function getBuddiesReward() public view returns (uint, uint, uint){
 
 function updateBuddiesReward(uint r0, uint r1, uint r2) external onlyAdmin{
     reward[0] = r0;
-    reward[0] = r1;
-    reward[0] = r2;
+    reward[1] = r1;
+    reward[2] = r2;
 }
 
 function getPBXPReward() public view returns (uint){

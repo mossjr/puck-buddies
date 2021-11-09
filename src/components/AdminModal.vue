@@ -1,4 +1,4 @@
-Admin<template>
+<template>
 <div class="backdrop" @click.self="closeModal">
     <div class="admin-modal">
       <div class="admin-container">
@@ -77,7 +77,7 @@ export default {
 
 
 <style scoped>
-.ico-modal{
+.admin-modal{
   caret-color: rgba(0,0,0,0);
     position: absolute;
     left: 50%;
