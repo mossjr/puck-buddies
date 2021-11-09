@@ -194,7 +194,7 @@ async function getPvCadminInfo(){
     console.log(PvCBuddiesRewards)
     let PvCPBXPReward = await contractInstance.methods.getPBXPReward().call({from: ethereum.selectedAddress})
     console.log(PvCPBXPReward)
-    let PvCTimeouts = await contractInstance.methods.getTimeOuts().call({from: ethereum.selectedAddress})
+    let PvCTimeouts = await contractInstance.methods.getTimeOuts(0).call({from: ethereum.selectedAddress})
     console.log(PvCTimeouts)
     let PvCBuddies = await buddiesInstance.methods.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
     console.log(PvCBuddies)
@@ -251,8 +251,8 @@ async function getPvCadminInfo(){
                 PvCBuddiesReward1: web3.utils.fromWei(PvCBuddiesRewards[1]), 
                 PvCBuddiesReward2: web3.utils.fromWei(PvCBuddiesRewards[2]),
                 PvCto0: PvCTimeouts[0],
-                PvCto0: PvCTimeouts[1],
-                PvCto0: PvCTimeouts[2],
+                PvCto1: PvCTimeouts[1],
+                PvCto2: PvCTimeouts[2],
                 PvCPBXPReward: PvCPBXPReward,
                 PvCBuddies: web3.utils.fromWei(PvCBuddies),
                 pbPlayersAddress: pbPlayersAddress, 
