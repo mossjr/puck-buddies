@@ -1,24 +1,115 @@
 <template>
 <div class="backdrop" @click.self="closeModal">
-    <div class="admin-modal">
-      <div class="admin-container">
+  
+    <div v-if="statsContainer" class="admin-modal">
+      <button @click="statsContainer = !statsContainer">Stats/Actions</button>
+      <div  class="admin-container">
         <div class="admin"><h3>PvC Matchups</h3></div>
         <div class="admin-info-line"><b>PvC Matchup Address:</b> {{PvCAddress}}</div>
         <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCDifficultyMod}}</div>
         <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCBuddiesReward0}}, {{PvCBuddiesReward1}}, {{PvCBuddiesReward2}}</div>
         <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
+        <div class="admin-info-line"><b>Buddies on PvC Contract:</b> {{PvCBuddies}}</div>
       </div>
 
       <div class="admin-container">
         <div class="admin"><h3>Players</h3></div>
-        <div class="admin-info-line"><b>Players Contract Address:</b> {{PvCAddress}}</div>
-        <div class="admin-info-line"><b>PvC Matchup Difficulty Mod:</b> {{PvCDifficultyMod}}</div>
-        <div class="admin-info-line"><b>PvC Matchup Buddies Rewards:</b> {{PvCBuddiesReward0}}, {{PvCBuddiesReward1}}, {{PvCBuddiesReward2}}</div>
-        <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
+        <div class="admin-info-line"><b>Players Contract Address:</b> {{pbPlayersAddress}}</div>
+        <div class="admin-info-line"><b>Player Minting Costs: </b> {{mintCost0}}, {{mintCost1}}, {{mintCost2}}</div>
+        <div class="admin-info-line"><b>Ageout Seconds:</b> {{ageoutSeconds}}</div>
+        <div class="admin-info-line"><b>Current Player ID:</b> {{playerNextId}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>Proshop Factory</h3></div>
+        <div class="admin-info-line"><b>Proshop Factory Address:</b> {{pbProshopFactoryAddress}}</div>
+        <div class="admin-info-line"><b>Proshop Items Created:</b> {{proshopItemsCreated}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>Proshop Holder</h3></div>
+        <div class="admin-info-line"><b>Proshop Holder Address:</b> {{proshopHolderAddress}}</div>
+        <div class="admin-info-line"><b>Proshop Holder Items Sold:</b> {{proshopItemsSold}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>Proshop Marketplace</h3></div>
+        <div class="admin-info-line"><b>Proshop Marketplace Address:</b> {{proshopMarketplaceAddress}}</div>
+        <div class="admin-info-line"><b>Proshop Marketplace Fee %:</b> {{proshopMarketplaceMarketFee}}</div>
+        <div class="admin-info-line"><b>Proshop Marketplace Fee Address Buddies:</b> {{proshopFeesBuddiesBalance}}</div>
+        <div class="admin-info-line"><b>Proshop Marketplace Total Items Created:</b> {{proshopMarketplaceTotalItems}}</div>
+        <div class="admin-info-line"><b>Proshop Marketplace Total Items Completed:</b> {{proshopMarketplaceTotalComplete}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>Teams</h3></div>
+        <div class="admin-info-line"><b>Teams Address:</b> {{pbTeamsAddress}}</div>
+        <div class="admin-info-line"><b>Teams Minting Cost:</b> {{pbTeamsMintCost}}</div>
+        <div class="admin-info-line"><b>Teams Count:</b> {{pbTeamsCount}}</div>
+      </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>PBXP</h3></div>
+        <div class="admin-info-line"><b>PBXP Address:</b> {{pbPBXPAddress}}</div>
+        <div class="admin-info-line"><b>PBXP Upgrade Cost:</b> {{pbPBXPUpgradeCost}}</div>
       </div>
    
     </div>
-</div>
+
+    <div v-if="!statsContainer" class="admin-modal">
+<button @click="statsContainer = !statsContainer">Stats/Actions</button>
+
+          <div class="admin-container">
+            <div class="admin"><h3>Update PvC Reward</h3></div>
+            <div>
+              <label>r0</label>
+              <input type="text" v-model="r0">
+            </div>
+            <div>
+              <label>r1</label>
+              <input type="text" v-model="r1">
+            </div>
+            <div>
+              <label>r2</label>
+              <input type="text" v-model="r2">
+            </div>
+            <button @click="updateBuddiesReward()">Apply</button>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin"><h3>Update PvC XP Reward</h3></div>
+            <div>
+              <label>xpr</label>
+              <input type="text" v-model="xpr">
+            </div>
+            <button @click="updatePBXPReward()">Apply</button>
+        </div>
+    
+        <div class="admin-container">
+            <div class="admin"><h3>Update Player Mint/Ageout</h3></div>
+            <div>
+              <label>m1</label>
+              <input type="text" v-model="m1">
+            </div>
+            <div>
+              <label>m2</label>
+              <input type="text" v-model="m2">
+            </div>
+            <div>
+              <label>m3</label>
+              <input type="text" v-model="m3">
+            </div>
+            <div>
+              <label>Ageout Seconds</label>
+              <input type="text" v-model="aoSeconds">
+            </div>
+            <button @click="updateVariables()">Apply</button>
+        </div>
+
+      
+      </div>
+    </div>
+
 <div v-if="screenLocked">
   <LockModal  :splashImage="splashImage" />
 </div>   
@@ -38,14 +129,47 @@ export default {
             PvCBuddiesReward2:'',
             PvCDifficultyMod:'',
             PvCPBXPReward:'',
+            PvCBuddies:'',
 
+            pbPlayersAddress:'',
+            mintCost0:'',
+            mintCost1:'',
+            mintCost2:'',
+            ageoutSeconds:'',
+            playerNextId:'',
 
-            budsPerBNB:'',
-            totalBuds:'',
-            totalBudsSold:'',
-            budsToPurchase:35,
-            progressColor:'',
-            progressPercent:'',
+            pbProshopFactoryAddress:'',
+            proshopItemsCreated:'',
+
+            proshopHolderAddress:'',
+            proshopItemsSold:'',
+
+            proshopMarketplaceAddress:'',
+            proshopMarketplaceMarketFee:'',
+            proshopMarketplaceFeesAddress:'',
+            proshopFeesBuddiesBalance:'',
+            proshopMarketplaceTotalItems:'',
+            proshopMarketplaceTotalComplete:'',
+
+            pbTeamsAddress:'',
+            pbTeamsMintCost:'',
+            pbTeamsCount:'',
+
+            pbPBXPAddress:'',
+            pbPBXPUpgradeCost:'',
+
+            m1:'',
+            m2:'',
+            m3:'',
+            aoSeconds:'',
+
+            r0:'',
+            r1:'',
+            r2:'',
+
+            xpr:'',
+
+            statsContainer: true,
             splashImage: '',
             screenLocked: false
         }
@@ -59,11 +183,66 @@ export default {
         console.log(res)
         this.PvCAddress = res.PvCAddress
         this.PvCBuddiesReward0 = res.PvCBuddiesReward0
+        this.r0 = res.PvCBuddiesReward0
         this.PvCBuddiesReward1 = res.PvCBuddiesReward1
+        this.r1 = res.PvCBuddiesReward1
         this.PvCBuddiesReward2 = res.PvCBuddiesReward2
+        this.r2 = res.PvCBuddiesReward2
         this.PvCDifficultyMod = res.PvCDifficultyMod
         this.PvCPBXPReward = res.PvCPBXPReward
+        this.xpr = res.PvCPBXPReward
+        this.PvCBuddies = res.PvCBuddies
+        this.pbPlayersAddress = res.pbPlayersAddress
+        this.mintCost0 = res.mintCost0
+        this.m1 = res.mintCost0
+        this.mintCost1 = res.mintCost1
+        this.m2 = res.mintCost1
+        this.mintCost2 = res.mintCost2
+        this.m3 = res.mintCost2
+        this.ageoutSeconds = res.ageoutSeconds
+        this.aoSeconds = res.ageoutSeconds
+        this.playerNextId = res.playerNextId
+        this.pbProshopFactoryAddress = res.pbProshopFactoryAddress
+        this.proshopItemsCreated = res.proshopItemsCreated
+        this.proshopHolderAddress = res.proshopHolderAddress
+        this.proshopItemsSold = res.proshopItemsSold
+        this.proshopMarketplaceAddress = res.proshopMarketplaceAddress
+        this.proshopMarketplaceMarketFee = res.proshopMarketplaceMarketFee
+        this.proshopMarketplaceFeesAddress = res.proshopMarketplaceFeesAddress
+        this.proshopFeesBuddiesBalance = res.proshopFeesBuddiesBalance
+        this.proshopMarketplaceTotalItems = res.proshopMarketplaceTotalItems
+        this.proshopMarketplaceTotalComplete = res.proshopMarketplaceTotalComplete
+        this.pbTeamsAddress = res.pbTeamsAddress
+        this.pbTeamsMintCost = res.pbTeamsMintCost
+        this.pbTeamsCount = res.pbTeamsCount
+        this.pbPBXPAddress = res.pbPBXPAddress
+        this.pbPBXPUpgradeCost = res.pbPBXPUpgradeCost
 
+
+      })
+    },
+
+    async updateVariables(){
+      await main.updateVariables(this.m1, this.m2, this.m3, this.aoSeconds).then(res =>{
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+
+    async updateBuddiesReward(){
+      await main.updateBuddiesReward(this.r0, this.r1, this.r2).then(res =>{
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+
+    async updatePBXPReward(){
+      await main.updatePBXPReward(this.xpr).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
       })
     },
 
@@ -115,6 +294,7 @@ export default {
     background: rgba(0,0,0,0.5);
     width: 100%;
     height: 100%;
+    z-index: 9999999;
 }
 
 .ico-input{

@@ -187,38 +187,60 @@ async function getPvCadminInfo(){
 
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     let PvCAddress = await contractInstance.methods.getPBPvCMatchupsAddress().call({from: ethereum.selectedAddress})
+    console.log(PvCAddress)
     let PvCDifficultyMod = await contractInstance.methods.getDifficultyMod().call({from: ethereum.selectedAddress})
+    console.log(PvCDifficultyMod)
     let PvCBuddiesRewards = await contractInstance.methods.getBuddiesReward().call({from: ethereum.selectedAddress})
+    console.log(PvCBuddiesRewards)
     let PvCPBXPReward = await contractInstance.methods.getPBXPReward().call({from: ethereum.selectedAddress})
-    let PvCBuddies = await buddiesInstance.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
+    console.log(PvCPBXPReward)
+    let PvCBuddies = await buddiesInstance.methods.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
+    console.log(PvCBuddies)
 
     let playersContractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-    let pbPlayersAddress = await playersContractInstance.methods.getPBPlayersAddress().call({from: ethereum.selectedAddress})
+    let pbPlayersAddressFromContract = await playersContractInstance.methods.getPBPlayersAddress().call({from: ethereum.selectedAddress})
+    console.log(pbPlayersAddressFromContract)
     let mintingCosts = await playersContractInstance.methods.getMintingCosts().call({from: ethereum.selectedAddress})
+    console.log(mintingCosts)
     let playerNextId = await playersContractInstance.methods.getNextId().call({from: ethereum.selectedAddress})
+    console.log(playerNextId)
 
     let proshopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     let pbProshopFactoryAddress = await proshopContractInstance.methods.getPBProShopFactoryAddress().call({from: ethereum.selectedAddress})
+    console.log(pbProshopFactoryAddress)
     let pbProshopFactoryStats = await proshopContractInstance.methods.getProShopStats().call({from: ethereum.selectedAddress})
+    console.log(pbProshopFactoryStats)
 
     let proshopHolderContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
     let proshopHolderItemsSold = await proshopHolderContractInstance.methods.getItemsSold().call({from: ethereum.selectedAddress})
+    console.log(proshopHolderItemsSold)
     let proshopHolderAddress = await proshopHolderContractInstance.methods.getPBProShopHolderAddress().call({from: ethereum.selectedAddress})
+    console.log(proshopHolderAddress)
 
-    let proshopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
+    let proshopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
     let proshopMarketplaceAddress = await proshopMarketplaceContractInstance.methods.getPBProShopMarketplaceAddress().call({from: ethereum.selectedAddress})
+    console.log(proshopMarketplaceAddress)
     let proshopMarketplaceMarketFee = await proshopMarketplaceContractInstance.methods.getProshopMarketFeePercent().call({from: ethereum.selectedAddress})
+    console.log(proshopMarketplaceMarketFee)
     let proshopMarketplaceFeesAddress = await proshopMarketplaceContractInstance.methods.getMarketFeePayableAddress().call({from: ethereum.selectedAddress})
-    let proshopMarketplaceStats = await proshopMarketplaceContractInstance.methods.updateFeePayableAddress().call({from: ethereum.selectedAddress})
+    console.log(proshopMarketplaceFeesAddress)
+    let proshopFeesBuddiesBalance = await buddiesInstance.methods.balanceOf(proshopMarketplaceFeesAddress).call({from: ethereum.selectedAddress})
+    let proshopMarketplaceStats = await proshopMarketplaceContractInstance.methods.getMarketplaceStats().call({from: ethereum.selectedAddress})
+    console.log(proshopMarketplaceStats)
 
     let pbTeamsContractInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
     let pbTeamsAddress = await pbTeamsContractInstance.methods.getPBTeamsAddress().call({from: ethereum.selectedAddress})
+    console.log(pbTeamsAddress)
     let pbTeamsMintCost = await pbTeamsContractInstance.methods.getTeamMintCost().call({from: ethereum.selectedAddress})
+    console.log(pbTeamsMintCost)
     let pbTeamsCount = await pbTeamsContractInstance.methods.getTeamsCount().call({from: ethereum.selectedAddress})
+    console.log(pbTeamsCount)
 
     let pbPBXPContractInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     let pbPBXPAddress = await pbPBXPContractInstance.methods.getPBXPAddress().call({from: ethereum.selectedAddress})
+    console.log(pbPBXPAddress)
     let pbPBXPUpgradeCost = await pbPBXPContractInstance.methods.getUpgradeCost().call({from: ethereum.selectedAddress})
+    console.log(pbPBXPUpgradeCost)
 
 
     let obj = { PvCAddress:PvCAddress, 
@@ -227,12 +249,12 @@ async function getPvCadminInfo(){
                 PvCBuddiesReward1: web3.utils.fromWei(PvCBuddiesRewards[1]), 
                 PvCBuddiesReward2: web3.utils.fromWei(PvCBuddiesRewards[2]), 
                 PvCPBXPReward: PvCPBXPReward,
-                PvCBuddies: PvCBuddies,
+                PvCBuddies: web3.utils.fromWei(PvCBuddies),
                 pbPlayersAddress: pbPlayersAddress, 
                 mintCost0: web3.utils.fromWei(mintingCosts[0]),
                 mintCost1: web3.utils.fromWei(mintingCosts[1]),
                 mintCost2: web3.utils.fromWei(mintingCosts[2]),
-                ageoutSeconds: web3.utils.fromWei(mintingCosts[3]),
+                ageoutSeconds: mintingCosts[3],
                 playerNextId: playerNextId,
                 pbProshopFactoryAddress: pbProshopFactoryAddress,
                 proshopItemsCreated: pbProshopFactoryStats,
@@ -240,22 +262,58 @@ async function getPvCadminInfo(){
                 proshopItemsSold: proshopHolderItemsSold,
                 proshopMarketplaceAddress: proshopMarketplaceAddress,
                 proshopMarketplaceMarketFee: proshopMarketplaceMarketFee,
+                proshopFeesBuddiesBalance: web3.utils.fromWei(proshopFeesBuddiesBalance),
                 proshopMarketplaceFeesAddress: proshopMarketplaceFeesAddress,
                 proshopMarketplaceTotalItems: proshopMarketplaceStats[0],
                 proshopMarketplaceTotalComplete: proshopMarketplaceStats[1],
                 pbTeamsAddress: pbTeamsAddress,
-                pbTeamsMintCost: pbTeamsMintCost,
+                pbTeamsMintCost: web3.utils.fromWei(pbTeamsMintCost),
                 pbTeamsCount: pbTeamsCount,
                 pbPBXPAddress: pbPBXPAddress,
                 pbPBXPUpgradeCost: pbPBXPUpgradeCost,
-
-
-
-               
-
                 }
+                console.log(obj)
     return obj
 }
+
+
+async function updateVariables(_mintCost1, _mintCost2, _mintCost3, _ageoutSeconds){
+    const web3 = await Moralis.Web3.enable()
+    let m1 = web3.utils.toWei(_mintCost1.toString())
+    let m2 = web3.utils.toWei(_mintCost2.toString())
+    let m3 = web3.utils.toWei(_mintCost3.toString())
+    let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
+    await contractInstance.methods.updateVariables(m1, m2, m3,_ageoutSeconds).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+async function updateBuddiesReward(_r0, _r1, _r2){
+    const web3 = await Moralis.Web3.enable()
+    let r0 = web3.utils.toWei(_r0.toString())
+    let r1 = web3.utils.toWei(_r1.toString())
+    let r2 = web3.utils.toWei(_r2.toString())
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    await contractInstance.methods.updateBuddiesReward(r0, r1, r2).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)     
+    })
+}
+
+async function updatePBXPReward(_xpr){
+    const web3 = await Moralis.Web3.enable()
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    await contractInstance.methods.updatePBXPReward(_xpr).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+
 
 //Check Admin Functions
 async function checkPBPlayerAdmin() {
@@ -1590,7 +1648,10 @@ export default {
     giftItem,
     getBudsICOInfo,
     buyBuddies,
-    getPvCadminInfo
+    getPvCadminInfo,
+    updateVariables,
+    updateBuddiesReward,
+    updatePBXPReward
 }
 
 

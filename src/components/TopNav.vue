@@ -354,7 +354,7 @@ export default{
                 this.icoModalVisible = false
                 this.adminmodalVisble = false
                 this.updateBalanceViewer()
-                this.getTeamMintCost()
+                //this.getTeamMintCost()
 
       },
 
