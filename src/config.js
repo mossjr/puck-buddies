@@ -46,9 +46,9 @@ export const proShopItems = [{admin:pbProShopHolderAddress,sku:1694200002400001,
                              {admin:pbProShopHolderAddress,sku:1100140001200001,active:true,c1:'#04a7a6',c2:'#7c6140'}, //Bob Ross
                              {admin:pbProShopHolderAddress,sku:1100150003000001,active:true,c1:'#ffffff',c2:'#ff0000'}, //MAGA Warrior
                              {admin:pbProShopHolderAddress,sku:1100160001200001,active:true,c1:'#ffffff',c2:'#10960e'}, //Santa Suit
-                             {admin:pbProShopHolderAddress,sku:1100170001200001,active:true,c1:'#ffffff',c2:'#10960e'}, //Is this Loss?
-                             {admin:pbProShopHolderAddress,sku:1100180001200001,active:true,c1:'#ffffff',c2:'#10960e'}, //Xmas Tree
-                             {admin:pbProShopHolderAddress,sku:1100190001200001,active:true,c1:'#ffffff',c2:'#10960e'}, //Ethereum Blue
+                             {admin:pbProShopHolderAddress,sku:1100170001200001,active:true,c1:'#5d0659',c2:'#1a5362'}, //Is this Loss?
+                             {admin:pbProShopHolderAddress,sku:1100180001200001,active:true,c1:'#ffffff',c2:'#fcbc02'}, //Xmas Tree
+                             {admin:pbProShopHolderAddress,sku:1100190001200001,active:true,c1:'#8a92b2',c2:'#454a75'}, //Ethereum Blue
                             ]
 
  
