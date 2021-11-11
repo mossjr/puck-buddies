@@ -288,9 +288,9 @@ async function getPvCadminInfo(){
                 pbPBXPAddress: pbPBXPAddress,
                 icoContractAddress: icoContractAddress,
                 icoBuddiesPerBNB: icoBuddiesPerBNB,
-                icoBudsSold: icoBudsSold,
-                icoBudsBalance: icoBudsBalance,
-                icoBNBBalance: icoBNBBalance,
+                icoBudsSold: web3.utils.fromWei(icoBudsSold),
+                icoBudsBalance: web3.utils.fromWei(icoBudsBalance),
+                icoBNBBalance: web3.utils.fromWei(icoBNBBalance),
                 }
                 console.log(obj)
     return obj
