@@ -244,6 +244,17 @@ async function getPvCadminInfo(){
     let pbPBXPUpgradeCost = await pbPBXPContractInstance.methods.getUpgradeCost().call({from: ethereum.selectedAddress})
     console.log(pbPBXPUpgradeCost)
 
+    let icoContractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    let icoContractAddress = await icoContractInstance.methods.getBuddiesICOAddress().call({from: ethereum.selectedAddress})
+    console.log(icoContractAddress)
+    let icoBuddiesPerBNB = await icoContractInstance.methods.getBudsPerBNB().call({from: ethereum.selectedAddress})
+    console.log(icoBuddiesPerBNB)
+    let icoBudsSold = await icoContractInstance.methods.getBudsSold().call({from: ethereum.selectedAddress})
+    console.log(icoBudsSold)
+    let icoBudsBalance = await icoContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    console.log(icoBudsBalance)
+    let icoBNBBalance = await icoContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    console.log(icoBNBBalance)
 
     let obj = { PvCAddress:PvCAddress, 
                 PvCDifficultyMod: PvCDifficultyMod, 
@@ -275,7 +286,11 @@ async function getPvCadminInfo(){
                 pbTeamsMintCost: web3.utils.fromWei(pbTeamsMintCost),
                 pbTeamsCount: pbTeamsCount,
                 pbPBXPAddress: pbPBXPAddress,
-                pbPBXPUpgradeCost: pbPBXPUpgradeCost,
+                icoContractAddress: icoContractAddress,
+                icoBuddiesPerBNB: icoBuddiesPerBNB,
+                icoBudsSold: icoBudsSold,
+                icoBudsBalance: icoBudsBalance,
+                icoBNBBalance: icoBNBBalance,
                 }
                 console.log(obj)
     return obj
@@ -324,6 +339,27 @@ async function updatePBXPReward(_xpr){
     const web3 = await Moralis.Web3.enable()
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     await contractInstance.methods.updatePBXPReward(_xpr).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+async function updateTeamMintCost(_value){
+    const web3 = await Moralis.Web3.enable()
+    let value = web3.utils.toWei(_value.toString())
+    let pbTeamsContractInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
+    await pbTeamsContractInstance.methods.updateTeamMintCost(value).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+async function updateBudsPerBNB(_icorate){
+    const web3 = await Moralis.Web3.enable()
+    let icoContractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    await icoContractInstance.methods.updateBudsPerBNB(_icorate).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
         console.log(receipt)
     })).catch(err =>{
         console.log(err)
@@ -1669,7 +1705,9 @@ export default {
     updateVariables,
     updateBuddiesReward,
     updatePBXPReward,
-    updateTimesOut
+    updateTimesOut,
+    updateTeamMintCost,
+    updateBudsPerBNB
 }
 
 

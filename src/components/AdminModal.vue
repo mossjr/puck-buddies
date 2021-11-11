@@ -54,6 +54,15 @@
         <div class="admin-info-line"><b>PBXP Address:</b> {{pbPBXPAddress}}</div>
         <div class="admin-info-line"><b>PBXP Upgrade Cost:</b> {{pbPBXPUpgradeCost}}</div>
       </div>
+
+      <div class="admin-container">
+        <div class="admin"><h3>ICO</h3></div>
+        <div class="admin-info-line"><b>ICO Address:</b> {{icoContractAddress}}</div>
+        <div class="admin-info-line"><b>ICO Buds per BNB</b> {{icoBuddiesPerBNB}}</div>
+        <div class="admin-info-line"><b>ICO Buds Sold</b> {{icoBudsSold}}</div>
+        <div class="admin-info-line"><b>ICO Buds on Contract</b> {{icoBudsBalance}}</div>
+        <div class="admin-info-line"><b>ICO BNB on Contract</b> {{icoBNBBalance}}</div>
+      </div>
    
     </div>
 
@@ -124,6 +133,24 @@
             <button @click="updateVariables()">Apply</button>
         </div>
 
+        <div class="admin-container">
+            <div class="admin"><h3>Update Team Minting Cost</h3></div>
+            <div>
+              <label>tmc</label>
+              <input type="text" v-model="tmc">
+            </div>
+            <button @click="updateTeamMintCost()">Apply</button>
+        </div>
+
+         <div class="admin-container">
+            <div class="admin"><h3>Update ICO Details</h3></div>
+            <div>
+              <label>buds per bnb</label>
+              <input type="text" v-model="icorate">
+            </div>
+            <button @click="updateBudsPerBNB()">Apply</button>
+        </div>
+
       
       </div>
     </div>
@@ -176,6 +203,12 @@ export default {
             pbPBXPAddress:'',
             pbPBXPUpgradeCost:'',
 
+            icoContractAddress:'',
+            icoBuddiesPerBNB:'',
+            icoBudsSold:'',
+            icoBudsBalance:'',
+            icoBNBBalance:'',
+
             PvCto0:'',
             PvCto1:'',
             PvCto2:'',
@@ -194,6 +227,10 @@ export default {
             r2:'',
 
             xpr:'',
+
+            tmc:'',
+
+            icorate:'',
 
             statsContainer: true,
             splashImage: '',
@@ -246,9 +283,16 @@ export default {
         this.proshopMarketplaceTotalComplete = res.proshopMarketplaceTotalComplete
         this.pbTeamsAddress = res.pbTeamsAddress
         this.pbTeamsMintCost = res.pbTeamsMintCost
+        this.tmc = res.pbTeamsMintCost
         this.pbTeamsCount = res.pbTeamsCount
         this.pbPBXPAddress = res.pbPBXPAddress
         this.pbPBXPUpgradeCost = res.pbPBXPUpgradeCost
+        this.icoContractAddress = res.icoContractAddress
+        this.icoBuddiesPerBNB = res.icoBuddiesPerBNB
+        this.icorate = res.icoBuddiesPerBNB
+        this.icoBudsSold = res.icoBudsSold
+        this.icoBudsBalance = res.icoBudsBalance
+        this.icoBNBBalance = res.icoBNBBalance
 
 
       })
@@ -280,6 +324,22 @@ export default {
 
     async updateTimesOut(){
       await main.updateTimesOut(this.to0, this.to1, this.to2).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+
+  async updateTeamMintCost(){
+      await main.updateTeamMintCost(this.tmc).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+
+    async updateBudsPerBNB(){
+      await main.updateBudsPerBNB(this.icorate).then(res => {
         console.log(res)
       }).catch(err =>{
         console.log(err)
