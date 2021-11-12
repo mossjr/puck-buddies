@@ -29,7 +29,7 @@ export const marketfeesaddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
 //                             {admin:pbProShopHolderAddress,sku:1000290001200001,active:true,c1:'#373833',c2:'#b4b25b'},
 //                             {admin:pbProShopHolderAddress,sku:1694200002400001,active:true,c1:'#33ff99',c2:'#ff33cc'}]
 
-export const proShopItems = [{admin:pbProShopHolderAddress,sku:1694200002400001,active:true,c1:'#33ff99',c2:'#ff33cc'}, 
+export const proShopItems = [
                              {admin:pbProShopHolderAddress,sku:1100010001200001,active:true,c1:'#ae1d00',c2:'#ffc700'},
                              {admin:pbProShopHolderAddress,sku:1100020001200001,active:true,c1:'#96d8d8',c2:'#001628'},
                              {admin:pbProShopHolderAddress,sku:1100030001200001,active:true,c1:'#085d77',c2:'#0a7d04'},
@@ -42,6 +42,7 @@ export const proShopItems = [{admin:pbProShopHolderAddress,sku:1694200002400001,
                              {admin:pbProShopHolderAddress,sku:1100100001200001,active:true,c1:'#84b6f7',c2:'#ad38ad'}, //Purple Tenticle
                              {admin:pbProShopHolderAddress,sku:1100110001200001,active:true,c1:'#121315',c2:'#4c4b49'}, //Master Chief
                              {admin:pbProShopHolderAddress,sku:1100120001200001,active:true,c1:'#ddc09d',c2:'#bf9674'}, //Nuts
+                             {admin:pbProShopHolderAddress,sku:1694200002400001,active:true,c1:'#33ff99',c2:'#ff33cc'}, //Rasta
                              {admin:pbProShopHolderAddress,sku:1100130001200001,active:true,c1:'#e5b14f',c2:'#9d2c1f'}, //CoronaVARUS
                              {admin:pbProShopHolderAddress,sku:1100140001200001,active:true,c1:'#04a7a6',c2:'#7c6140'}, //Bob Ross
                              {admin:pbProShopHolderAddress,sku:1100150003000001,active:true,c1:'#ffffff',c2:'#ff0000'}, //MAGA Warrior
