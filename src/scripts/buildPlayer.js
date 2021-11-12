@@ -521,13 +521,23 @@ flag.onload=function(){
     //Skill Font
     ctx.font = "30px pixels"
     ctx.fillStyle = "black"
-    ctx.fillText("OP: " + data.offence, 270, 70)
-    ctx.fillText("DP: " + data.defence, 270, 110)
-    if(playerAge <= 40){
-        ctx.fillText("AGE: " + playerAge, 265, 150) 
-    }else if(playerAge > 40){
-        ctx.fillText("Retired", 265, 150)  
+    if(pType != 3){
+        ctx.fillText("OP: " + data.offence, 270, 70)
+        ctx.fillText("DP: " + data.defence, 270, 110)
+        if(playerAge <= 40){
+            ctx.fillText("AGE: " + playerAge, 265, 150) 
+        }else if(playerAge > 40){
+            ctx.fillText("Retired", 265, 150)  
+        }
+    }else if (pType == 3){
+        ctx.fillText("DP: " + data.defence, 270, 95)
+        if(playerAge <= 40){
+            ctx.fillText("AGE: " + playerAge, 265, 135) 
+        }else if(playerAge > 40){
+            ctx.fillText("Retired", 265, 135)  
+        }
     }
+
     if(pType == 1){
         ctx.font = "20px pixels";
         ctx.fillText("Offence", 275, 180)
