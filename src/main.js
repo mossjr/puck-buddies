@@ -3,7 +3,22 @@ import App from './App.vue'
 import Login from './components/Login.vue'
 import router from './router'
 import MetaMask from './components/MetaMask.vue'
-import {pbPlayersAddress, pbMarketplaceAddress, pbProShopFactoryAddress, pbProShopHolderAddress, pbProShopMarketplaceAddress, PBXPAddress, PBTeamsAddress, PBPvCMatchupsAddress, PBMatchupsAddress, PBMatchupsMarketAddress, buddiesaddress, marketfeesaddress, PBPvCHelperAddress, buddiesICOAddress} from '../src/config.js'
+import {pbPlayersAddress, 
+        pbMarketplaceAddress, 
+        pbProShopFactoryAddress, 
+        pbProShopHolderAddress, 
+        pbProShopMarketplaceAddress,
+        PBXPAddress, 
+        PBTeamsAddress, 
+        PBPvCMatchupsAddress, 
+        PBMatchupsAddress, 
+        PBMatchupsMarketAddress,
+        PBMatchupValidationAddress,
+        buddiesaddress, 
+        marketfeesaddress, 
+        PBPvCHelperAddress, 
+        buddiesICOAddress
+        } from '../src/config.js'
 import PBXP from '../public/assets/contracts/PBXP.json'
 import PBPLAYER from '../public/assets/contracts/PBPlayers.json'
 import PBPLAYERMARKET from '../public/assets/contracts/PBPlayerMarketplace.json'
@@ -12,7 +27,7 @@ import PBPROSHOPFACTORY from '../public/assets/contracts/PBProShopFactory.json'
 import PBPROSHOPHOLDER from '../public/assets/contracts/PBProShopHolder.json'
 import PBPROSHOPMARKETPLACE from '../public/assets/contracts/PBProShopMarketplace.json'
 import PBPVCHELPER from '../public/assets/contracts/PBPvCHelper.json'
-// import PBXPSHOPHOLDER from '../public/assets/contracts/PBXPShopHolder.json'
+import PBMATCHUPSVALIDATION from '../public/assets/contracts/PBMatchupValidation.json'
 import PBTEAMS from '../public/assets/contracts/PBTeams.json'
 import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
 import PBMATCHUPS from '../public/assets/contracts/PBMatchups.json'
@@ -1093,12 +1108,34 @@ async function getNounNames(){
 
 //Team v Computer Functions
 
+
 async function getPvCMatchupsTimestamp(){
     const caller = ethereum.selectedAddress
     const web3 = await Moralis.Web3.enable()    
     let teamInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     let teamTimeStamp = await teamInstance.methods.getPvCMatchupsTimestamp().call({from: caller})
     return teamTimeStamp
+}
+
+async function maralisRunPvC(_playerIdArray, _pageTeamId){
+let difficulty = 2
+let param = {difficulty: difficulty, 
+            pvcHelperABI: PBPVCHELPER.abi, 
+            pvcHelperAddress: PBPvCHelperAddress, 
+            pvcMatchupsABI: PBPVCMATCHUPS.abi, 
+            pvcMatchupsAddress: PBPvCMatchupsAddress,
+            selectedAddress: ethereum.selectedAddress,
+            pvcMatchupsValidationABI : PBMATCHUPSVALIDATION.abi,
+            pcvMatchupsValidationAddress: PBMatchupValidationAddress,
+            teamID: _pageTeamId,
+            playerIDs: _playerIdArray,
+            teamsAddress: PBTeamsAddress,
+            teamsABI: PBTEAMS.abi,
+
+        }
+const moralisRes = await Moralis.Cloud.run("playPvCMatchup", param)
+console.log(moralisRes)
+console.log(moralisRes.t1Score + " " + moralisRes.t2Score + " " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
 }
 
 async function loadPvCmatches(teamId){
@@ -1707,7 +1744,8 @@ export default {
     updatePBXPReward,
     updateTimesOut,
     updateTeamMintCost,
-    updateBudsPerBNB
+    updateBudsPerBNB,
+    maralisRunPvC
 }
 
 

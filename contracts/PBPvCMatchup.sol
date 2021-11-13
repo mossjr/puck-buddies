@@ -15,6 +15,8 @@ uint maxDpScore = 447;
 uint nonce = 0;
 uint dnaModulus = 10 ** 16;
 uint bellCurveIterations = 4;
+uint winToken;
+uint lossToken;
 uint[] timeoutSeconds;
 uint[] reward;
 uint xpReward;

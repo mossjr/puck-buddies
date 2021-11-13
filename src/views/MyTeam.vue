@@ -6,7 +6,7 @@
     <button @click="newPBXPtoTeamContract(PBXPqtyToMint)">Mint new PBXP</button> -->
     <!-- <button @click="getTeamDetails()">TEST</button> -->
     <img src="../assets/img/my-team.png" alt="my-team">
-
+    <button @click="maralisRunPvC()">TEST</button>
 
     <div v-for="(team, index) in teams" :key="index">
       <div v-if="team.playerPos1 != 0 && team.playerPos2 != 0 && team.playerPos3 != 0 && team.playerPos4 != 0 && team.playerPos5 != 0 && team.playerPos6 != 0 && sixActivePlayers">
@@ -297,6 +297,15 @@ export default {
   },
 
   methods:{
+    async maralisRunPvC(){
+      await main.maralisRunPvC(this.playerIdArray, this.pageTeamId ).then(res =>{
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+
+
     async getTeamDetails(){
        Promise.all(await main.displayTeam()).then(res => {
         console.log(res) 
