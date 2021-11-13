@@ -1136,6 +1136,7 @@ let param = {difficulty: difficulty,
 const moralisRes = await Moralis.Cloud.run("playPvCMatchup", param)
 console.log(moralisRes)
 console.log(moralisRes.t1Score + " " + moralisRes.t2Score + " " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
+return {gameObj: moralisRes.gameobj, gameOverTimeObj: moralisRes.gameOverTimeObj, gameShootoutObj: moralisRes.gameShootoutObj}
 }
 
 async function loadPvCmatches(teamId){

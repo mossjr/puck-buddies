@@ -298,10 +298,13 @@ export default {
 
   methods:{
     async maralisRunPvC(){
+      this.screenLockedPlay = true
       await main.maralisRunPvC(this.playerIdArray, this.pageTeamId ).then(res =>{
         console.log(res)
+        this.screenLockedPlay = false
       }).catch(err =>{
         console.log(err)
+        this.screenLockedPlay = false
       })
     },
 
