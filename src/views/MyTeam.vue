@@ -6,7 +6,7 @@
     <button @click="newPBXPtoTeamContract(PBXPqtyToMint)">Mint new PBXP</button> -->
     <!-- <button @click="getTeamDetails()">TEST</button> -->
     <img src="../assets/img/my-team.png" alt="my-team">
-    <button @click="maralisRunPvC()">TEST</button>
+    <button @click="maralisRunPvC('PB-BRB')">TEST</button>
 
     <div v-for="(team, index) in teams" :key="index">
       <div v-if="team.playerPos1 != 0 && team.playerPos2 != 0 && team.playerPos3 != 0 && team.playerPos4 != 0 && team.playerPos5 != 0 && team.playerPos6 != 0 && sixActivePlayers">
@@ -221,7 +221,7 @@
   <LockModal  :splashImage="splashImage" />
 </div> 
 <div v-if="screenLockedPlay">
-  <MatchupLock  :splashImage="splashImage" />
+  <MatchupLock  :splashImage="splashImage" :gameLog="gameLog"/>
 </div> 
 
 </div>
@@ -291,17 +291,21 @@ export default {
       splashImage: '',
       screenLocked:false,
       screenLockedPlay: false,
-      playerIdArray: []
+      playerIdArray: [],
+      gameLog:{},
 
     }
   },
 
   methods:{
-    async maralisRunPvC(){
-      this.screenLockedPlay = true
+    async maralisRunPvC(_splashImage){
+      this.splashImage = _splashImage
+      this.screenLocked = true
       await main.maralisRunPvC(this.playerIdArray, this.pageTeamId ).then(res =>{
         console.log(res)
-        this.screenLockedPlay = false
+        this.screenLocked = false
+        this.gameLog = res
+        this.screenLockedPlay = true
       }).catch(err =>{
         console.log(err)
         this.screenLockedPlay = false

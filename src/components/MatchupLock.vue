@@ -3,10 +3,20 @@
     <div class="pre-loader">
         <iframe src="/preload/index.html" title="Loading Puck Buddies" width="800" height="600" frameBorder="0"></iframe>
         <div><h2>Calculating Results. Please wait a moment.</h2></div>
+        <div>{{gameLog}}</div>
     </div>
 </div>
     
 </template>
+
+<script>
+export default {
+  components: { gameLog },
+
+}
+
+
+</script>
 
 <style scoped>
 .backdrop {
