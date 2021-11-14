@@ -6,7 +6,6 @@
     <button @click="newPBXPtoTeamContract(PBXPqtyToMint)">Mint new PBXP</button> -->
     <!-- <button @click="getTeamDetails()">TEST</button> -->
     <img src="../assets/img/my-team.png" alt="my-team">
-    <button @click="maralisRunPvC('PB-BRB')">TEST</button>
 
     <div v-for="(team, index) in teams" :key="index">
       <div v-if="team.playerPos1 != 0 && team.playerPos2 != 0 && team.playerPos3 != 0 && team.playerPos4 != 0 && team.playerPos5 != 0 && team.playerPos6 != 0 && sixActivePlayers">
@@ -25,6 +24,7 @@
             <div>
               <!-- <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">     -->
             </div>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun )">TEST</button>
             <button v-if="timestamp >= activeTo1" @click="hitTheIcePvC(1, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
             <button v-if="timestamp < activeTo1 && matches.won1" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo1 && !matches.won1" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -36,6 +36,7 @@
             <div>
               <!-- <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">     -->
             </div>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun )">TEST</button>
             <button v-if="timestamp >= activeTo2" @click="hitTheIcePvC(2, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
             <button v-if="timestamp < activeTo2 && matches.won2" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo2 && !matches.won2" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -47,6 +48,7 @@
             <div>
               <!-- <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">     -->
             </div>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun )">TEST</button>
             <button v-if="timestamp >= activeTo3" @click="hitTheIcePvC(3, team.teamId,playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
             <button v-if="timestamp < activeTo3 && matches.won3" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo3 && !matches.won3" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
@@ -221,7 +223,7 @@
   <LockModal  :splashImage="splashImage" />
 </div> 
 <div v-if="screenLockedPlay">
-  <MatchupLock  :splashImage="splashImage" :gameLog="gameLog"/>
+  <MatchupLock  :splashImage="splashImage" :gameLog="gameLog" :myTeamNoun="myTeamNoun" :oppTeamNoun="oppTeamNoun" />
 </div> 
 
 </div>
@@ -293,12 +295,17 @@ export default {
       screenLockedPlay: false,
       playerIdArray: [],
       gameLog:{},
+      teamNames:{},
+      myTeamNoun:'',
+      oppTeamNoun:''
 
     }
   },
 
   methods:{
-    async maralisRunPvC(_splashImage){
+    async maralisRunPvC(_splashImage, myTeamNoun, oppTeamNoun){
+      this.myTeamNoun = myTeamNoun
+      this.oppTeamNoun = oppTeamNoun
       this.splashImage = _splashImage
       this.screenLocked = true
       await main.maralisRunPvC(this.playerIdArray, this.pageTeamId ).then(res =>{
