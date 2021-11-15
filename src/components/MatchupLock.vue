@@ -2,7 +2,7 @@
 <div class="backdrop">
     <div class="pre-loader">
         <iframe src="/preload/index.html" title="Loading Puck Buddies" width="800" height="600" frameBorder="0"></iframe>
-        <div><h2>Calculating Results. Please wait a moment.</h2></div>
+        <!-- <div><h2>Calculating Results. Please wait a moment.</h2></div> -->
         
 <div class="container">
   <div class="box box-team1">{{myTeamNoun}}</div>
@@ -14,7 +14,7 @@
   <div class="box box-gameplay">Period<br>{{period}}</div>
   <div class="box box-gameplay">Time<br>{{minutes}}:<span v-if="seconds >= 0 && seconds <= 9">{{seconds0helper}}</span>{{seconds}}</div>
 </div>
-
+<div class="calc-warn">(Calculating Results. Please wait a moment)</div>
         
     </div>
 </div>
@@ -44,7 +44,7 @@ export default {
             let gameLogList = document.getElementById('gamelog');
             if (this.gameLog.gameObj.hasOwnProperty(this.secondsLeftReg)){
                 let event = this.gameLog.gameObj[this.secondsLeftReg]
-                //console.log(event)
+                console.log(event)
                 if(event == "T1 Shot on Goal"){
                     this.t1SOG++
                 }
@@ -182,7 +182,10 @@ body {
 
   }
 
-
+.calc-warn{
+    margin: 40px;
+    font-size: 0.8em;
+}
 
 
 </style>
