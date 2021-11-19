@@ -9,7 +9,7 @@ contract PBPvCHelper {
 address admin;
 uint winToken;
 uint lossToken;
-uint hashtoken;
+uint hashToken;
 uint difficultymod;
 uint maxOpScore = 397;
 uint maxDpScore = 447;
@@ -22,7 +22,7 @@ PBTeams public pbTeams;
 
 // uint nonce = 0;
 // uint dnaModulus = 10 ** 16;
-// uint bellCurveIterations = 4;
+uint bellCurveIterations = 4;
 // uint timeoutSeconds;
 // uint reward1;
 // uint reward2;
@@ -30,10 +30,8 @@ PBTeams public pbTeams;
 // uint xpReward;
 
 
-constructor(address _pbMatchupValidationAddress, address _pbTeamsAddress, uint _difficultymod){
+constructor(uint _difficultymod){
     admin = msg.sender;
-    pbMatchupValidation = PBMatchupValidation(_pbMatchupValidationAddress);
-    pbTeams = PBTeams(_pbTeamsAddress);
     difficultymod = _difficultymod;
 }
 
@@ -64,14 +62,14 @@ function updateAddresses(address _pbMatchupValidationAddress, address _pbTeamsAd
 }
 
 
-function performPvCMatchup(uint difficulty, uint teamId, uint[] memory playerIds) external view returns (uint) {
-    require(pbMatchupValidation.varifyPlayerAgesOnTeam(teamId, playerIds) == true, "N6");
-    uint playerOP = pbTeams.getTokenDetails(teamId).teamTotalOP;
-    uint playerDP = pbTeams.getTokenDetails(teamId).teamTotalDP;
-    uint cpuOP = generateRandomStat(difficultymod, difficulty, 1)
-    uint cpuDP = generateRandomStat(difficultymod, difficulty, 2)
+// function performPvCMatchup(uint difficulty, uint teamId, uint[] memory playerIds) external view returns (uint) {
+//     require(pbMatchupValidation.varifyPlayerAgesOnTeam(teamId, playerIds) == true, "N6");
+//     uint playerOP = pbTeams.getTokenDetails(teamId).teamTotalOP;
+//     uint playerDP = pbTeams.getTokenDetails(teamId).teamTotalDP;
+//     uint cpuOP = generateRandomStat(difficultymod, difficulty, 1);
+//     uint cpuDP = generateRandomStat(difficultymod, difficulty, 2);
 
-}
+// }
 
 function generateRandomStat(uint mod, uint difficulty, uint statType) public view returns (uint){
     uint operator;

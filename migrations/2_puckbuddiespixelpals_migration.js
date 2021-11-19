@@ -15,14 +15,8 @@ const PBMatchupsMarket = artifacts.require("PBMatchupsMarket")
 const PBPvCMatchups = artifacts.require("PBPvCMatchups")
 const BuddiesICO = artifacts.require("BuddiesICO")
 
-// //Local
+// //BSC Testnet
 const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
-
-
-//bscTestnet
-// const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
-// const secondAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
-// const thirdAddress = "0x46E008eeDE61cbAF08393a9d42688cD528eC8E43"
 
 let buddiesCoinAddress
 let PBBuddiesInstance
@@ -78,6 +72,10 @@ const skuToMint13 = "1100120001200001"
 const skuToMint14 = "1100130001200001"
 const skuToMint15 = "1100140001200001"
 const skuToMint16 = "1100150003000001"
+const skuToMint17 = "1100160001200001"
+const skuToMint18 = "1100170001200001"
+const skuToMint19 = "1100180001200001"
+const skuToMint20 = "1100190001200001"
 const quantityToMint = 20
 
 //PB PvC Deploy Settings
@@ -168,7 +166,7 @@ module.exports = function (deployer) {
 
                                     return deployer.deploy(PBPvCHelper, PvCdifficultyModifier).then(async () => {
                                         PBPvCHelperInstance = await PBPvCHelper.deployed()
-                                        await  PBPvCHelperInstance.getPBPvCMatchuypHelperAddress().then(async res => {
+                                        await  PBPvCHelperInstance.getPBPvCHelperAddress().then(async res => {
                                             PBPvCHelperAddress = res
                                         })
 
@@ -203,16 +201,16 @@ module.exports = function (deployer) {
 
                                                     })
 
-                                                    return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBMatchupValidationAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
+                                                    return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
                                                         await pbPlayersInstance.mintSuperstar(firstAddress,0,0, generateRandomDNA(),1)
                                                         for(let i = 0; i < 5; i++){
                                                             await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
                                                                 let playerID = res.logs[2].args[0].toString()
                                                                 console.log("PlayerID " + playerID + " created")
-                                                                await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
-                                                                    await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
-                                                                })
+                                                                // await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
+                                                                //     await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
+                                                                // })
                                                             })
                                                             
                                                         }
@@ -225,8 +223,8 @@ module.exports = function (deployer) {
                                                             await PBBuddiesInstance.transfer(PBPvCMatchupsAddress, PvCinitialValueOnContract.toString()) 
                                                             await PBXPInstance.updatePBPvCAddress(PBPvCMatchupsAddress)
 
-                                                            
-                                                                // await pbProShopFactoryInstance.newProduct(skuToMint1, )
+                                                                // //Mint and send to marketplace
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
                                                                 // await PBBuddiesInstance.approve(pbProShopHolderAddress, '48000000000000000000')
                                                                 // await pbProShopHolderInstance.purchaseFromStore(skuToMint1,'48000000000000000000', 20)
                                                                 // for(let i = 0; i < 20; i++){
@@ -289,6 +287,28 @@ module.exports = function (deployer) {
                                                                 //     })  
                                                                 // }
                                                                 
+
+                                                                //Mint only
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint7, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint8, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint9, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint10, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint11, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint12, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint13, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint14, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint15, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint16, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint17, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint18, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint19, 20)
+                                                                await pbProShopFactoryInstance.newProduct(skuToMint20, 20)
                                                                 
                                                          
 

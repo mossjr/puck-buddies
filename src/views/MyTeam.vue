@@ -24,8 +24,9 @@
             <div>
               <!-- <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">     -->
             </div>
-            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun )">TEST</button>
-            <button v-if="timestamp >= activeTo1" @click="hitTheIcePvC(1, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun, 1 )">TEST</button>
+            <button @click="testFunction()">Another Test</button>
+            <button v-if="timestamp >= activeTo1" @click="performPvC(1, team.teamId, matchUpNo1)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}} ({{matchUpNo1}})</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
             <button v-if="timestamp < activeTo1 && matches.won1" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo1 && !matches.won1" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
           </div>
@@ -36,8 +37,8 @@
             <div>
               <!-- <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">     -->
             </div>
-            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun )">TEST</button>
-            <button v-if="timestamp >= activeTo2" @click="hitTheIcePvC(2, team.teamId, playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun, 2 )">TEST</button>
+            <button v-if="timestamp >= activeTo2" @click="performPvC(2, team.teamId, matchUpNo2)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}} ({{matchUpNo2}})</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
             <button v-if="timestamp < activeTo2 && matches.won2" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo2 && !matches.won2" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo2" class="progress-bar-container">
@@ -48,8 +49,8 @@
             <div>
               <!-- <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">     -->
             </div>
-            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun )">TEST</button>
-            <button v-if="timestamp >= activeTo3" @click="hitTheIcePvC(3, team.teamId,playerIdArray)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
+            <button @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun, 3 )">TEST</button>
+            <button v-if="timestamp >= activeTo3" @click="performPvC(3, team.teamId, matchUpNo3)" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}} ({{matchUpNo3}})</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
             <button v-if="timestamp < activeTo3 && matches.won3" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo3 && !matches.won3" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo3" class="progress-bar-container">
@@ -223,7 +224,7 @@
   <LockModal  :splashImage="splashImage" />
 </div> 
 <div v-if="screenLockedPlay">
-  <MatchupLock  :splashImage="splashImage" :gameLog="gameLog" :myTeamNoun="myTeamNoun" :oppTeamNoun="oppTeamNoun" />
+  <MatchupLock @closePvCModal="closePvCModal()" :splashImage="splashImage" :gameLog="gameLog" :myTeamNoun="myTeamNoun" :oppTeamNoun="oppTeamNoun" />
 </div> 
 
 </div>
@@ -297,12 +298,25 @@ export default {
       gameLog:{},
       teamNames:{},
       myTeamNoun:'',
-      oppTeamNoun:''
+      oppTeamNoun:'',
+      matchUpNo1:'',
+      matchUpNo2:'',
+      matchUpNo3:'',
 
     }
   },
 
   methods:{
+
+    async performPvC(_difficulty, _teamId, _muNo){
+      const caller = ethereum.selectedAddress
+      const web3 = await Moralis.enableWeb3()
+      let wl = 99889988
+      let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: _muNo}, {t: 'uint', v: _difficulty}, {t: 'uint', v: _teamId})
+      console.log(matchValidToken)
+      await main.performPvC(matchValidToken,_difficulty,_teamId)
+    },
+
     async maralisRunPvC(_splashImage, myTeamNoun, oppTeamNoun){
       this.myTeamNoun = myTeamNoun
       this.oppTeamNoun = oppTeamNoun
@@ -654,6 +668,13 @@ export default {
       this.updateBalanceViewer()
       this.updateXpBalanceViewer()
     },
+
+    async closePvCModal(){
+      this.screenLockedPlay = false
+      this.clearIntervals()
+      this.updateBalanceViewer()
+      this.updateXpBalanceViewer()
+    },
         
     async loadCityAndNouns() {
             const cityNamesData = await main.getCityNames()
@@ -699,6 +720,10 @@ export default {
       let matchesObject = await main.loadPvCmatches(teamId)
       this.matches = matchesObject
       console.log(this.matches)
+
+      this.matchUpNo1 = this.matches.muNo1
+      this.matchUpNo2 = this.matches.muNo2
+      this.matchUpNo3 = this.matches.muNo3
 
       const progressSeconds1 = this.matches.actv1 - this.timestamp 
       console.log("Pregress Seconds 1: " + progressSeconds1)
@@ -837,6 +862,13 @@ export default {
           this.loadPvCmatches()
           console.log(err)
         })
+      },
+
+      clearIntervals(){
+        const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
+        for (let i = 1; i < interval_id; i++) {
+          window.clearInterval(i);
+        } 
       }
   },
 
@@ -851,17 +883,22 @@ export default {
 
   // },
 
+
+
   mounted: function(){
+    this.clearIntervals()
     this.loadCityAndNouns()
     this.sendPlayerData()
     this.updateBalanceViewer()
     this.updateXpBalanceViewer()
-    window.setInterval(() =>{
-      this.updateProgressBars()
+    this.updateProgressBars()
       // this.checkForMatchupRefresh()
-    }, 1000)
     
-  }
+  },
+
+  // updated: function(){
+  //   this.clearIntervals()
+  // },
 
 }
 </script>

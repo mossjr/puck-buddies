@@ -261,72 +261,72 @@ export default{
       })
     },
 
-    async sendPlayerData() {
-      this.totalFoundPlayers = 0
-      this.offenceFound = 0
-      this.defenceFound = 0
-      this.goaliesFound = 0
-      let playerArray = [] 
-      Promise.all(await main.loadPBPlayers())
-      .then(res => {
-        console.log("Result: " + res)
-        if (res.length == 0) {
-          console.log("0 Players Found")
-          this.totalFoundPlayers = 0
-        }else{  
-        for (let i = 0; i < res.length; i++) {
-            console.log(res[i].ageoutTimestamp)
-            playerArray.push({
-              'id': res[i].id, 
-              'offence': res[i].offence,  
-              'defence': res[i].defence, 
-              'dna': res[i].dna, 
-              'playertype' : res[i].playertype,
-              'isOffence' : res[i].isOffence,
-              'isDefence' : res[i].isDefence,
-              'isGoalie' : res[i].isGoalie,
-              'teamId' : res[i].teamId,
-              'teamLetter': res[i].teamLetter,
-              'position' : res[i].position,
-              'equippedJersey' : res[i].equippedJersey,
-              'equippedStick' : res[i].equippedStick,
-              'equippedToken' : res[i].equippedToken,
-              'ageoutTimestamp': res[i].ageoutTimestamp,
-              'draftTimestamp': res[i].draftTimestamp
-              }) 
-            if(res[i].playertype == 1 && res[i].teamId == 0){
-              this.offenceFound = this.offenceFound+1
-            }else if(res[i].playertype == 2 && res[i].teamId == 0){
-              this.defenceFound = this.defenceFound+1
-            }else if(res[i].playertype == 3 && res[i].teamId == 0){
-              this.goaliesFound = this.goaliesFound+1
-            }
-          }
-        }
-        this.loadingPlayers = false
-        console.log("Found " + this.offenceFound + " Offence")
-        console.log("Found " + this.defenceFound + " Defence")
-        console.log("Found " + this.goaliesFound + " Goalies")
-        console.log(playerArray)
-        return playerArray
+    // async sendPlayerData() {
+    //   this.totalFoundPlayers = 0
+    //   this.offenceFound = 0
+    //   this.defenceFound = 0
+    //   this.goaliesFound = 0
+    //   let playerArray = [] 
+    //   Promise.all(await main.loadPBPlayers())
+    //   .then(res => {
+    //     console.log("Result: " + res)
+    //     if (res.length == 0) {
+    //       console.log("0 Players Found")
+    //       this.totalFoundPlayers = 0
+    //     }else{  
+    //     for (let i = 0; i < res.length; i++) {
+    //         console.log(res[i].ageoutTimestamp)
+    //         playerArray.push({
+    //           'id': res[i].id, 
+    //           'offence': res[i].offence,  
+    //           'defence': res[i].defence, 
+    //           'dna': res[i].dna, 
+    //           'playertype' : res[i].playertype,
+    //           'isOffence' : res[i].isOffence,
+    //           'isDefence' : res[i].isDefence,
+    //           'isGoalie' : res[i].isGoalie,
+    //           'teamId' : res[i].teamId,
+    //           'teamLetter': res[i].teamLetter,
+    //           'position' : res[i].position,
+    //           'equippedJersey' : res[i].equippedJersey,
+    //           'equippedStick' : res[i].equippedStick,
+    //           'equippedToken' : res[i].equippedToken,
+    //           'ageoutTimestamp': res[i].ageoutTimestamp,
+    //           'draftTimestamp': res[i].draftTimestamp
+    //           }) 
+    //         if(res[i].playertype == 1 && res[i].teamId == 0){
+    //           this.offenceFound = this.offenceFound+1
+    //         }else if(res[i].playertype == 2 && res[i].teamId == 0){
+    //           this.defenceFound = this.defenceFound+1
+    //         }else if(res[i].playertype == 3 && res[i].teamId == 0){
+    //           this.goaliesFound = this.goaliesFound+1
+    //         }
+    //       }
+    //     }
+    //     this.loadingPlayers = false
+    //     console.log("Found " + this.offenceFound + " Offence")
+    //     console.log("Found " + this.defenceFound + " Defence")
+    //     console.log("Found " + this.goaliesFound + " Goalies")
+    //     console.log(playerArray)
+    //     return playerArray
           
-      })
-      .then(res => {
+    //   })
+    //   .then(res => {
 
-          this.totalFoundPlayers = res.length
-          this.players = res
-          this.displayTeam(res)
-          this.updateBalanceViewer()
+    //       this.totalFoundPlayers = res.length
+    //       this.players = res
+    //       this.displayTeam(res)
+    //       this.updateBalanceViewer()
       
-        })
-        .catch((err) => {
+    //     })
+    //     .catch((err) => {
 
-          this.totalFoundPlayers = 0
-          console.log("Rendering Players in My Players Error: " + err)
-          console.log(err)
-          this.players = null
-        })
-    },
+    //       this.totalFoundPlayers = 0
+    //       console.log("Rendering Players in My Players Error: " + err)
+    //       console.log(err)
+    //       this.players = null
+    //     })
+    // },
 
     async updateBalanceViewer(){
           await main.updateCoinBalance().then(res => {
@@ -439,7 +439,7 @@ export default{
   mounted(){
     this.checkPBPlayerAdmin()
     this.loadCityAndNouns()
-    this.sendPlayerData()
+    // this.sendPlayerData()
     this.getBudsAddress()
 
   }
