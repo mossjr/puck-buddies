@@ -322,7 +322,7 @@ export default {
             this.screenLocked = false
             this.clearIntervals()
             this.updateProgressBars()
-            alert("error detected, please try again")
+            alert("error detected")
             return
           }
           console.log(this.gameLog)
@@ -330,6 +330,8 @@ export default {
           this.screenLockedPlay = true
         }).catch(err =>{
           console.log(err)
+          alert("error detected")
+          this.screenLocked = false
           this.screenLockedPlay = false
         })
       }).catch(err =>{

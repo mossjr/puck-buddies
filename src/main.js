@@ -1246,7 +1246,7 @@ async function performPvC(token, difficulty, teamId, t1S, t2S){
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     console.log("Sending PvC Matchup to Blockchain")
-    let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamId, t1S, t2S).send({from: sender, gas: 512000})
+    let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamId, t1S, t2S).send({from: sender, gas: 102400})
     return(matchUpIndex) 
 }
 
