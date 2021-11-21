@@ -138,6 +138,8 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce3++;
             return 3;
+        }else{
+            return 11;
         }
 
     }else if(t2S > t1S){
@@ -164,10 +166,12 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce3++;
             return 6;
+        }else{
+            return 12;
         }
     }
     else{
-        return 0;
+        return 13;
     }
 }
 

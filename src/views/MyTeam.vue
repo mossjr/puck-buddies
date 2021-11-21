@@ -228,6 +228,7 @@
 
 <script>
 import main from '../main.js'
+import gameplay from '../gameplay.js'
 import buildCanvas from '../scripts/buildPlayer.js'
 import AssignPlayerModal from '../components/AssignPlayerModal.vue'
 import TeamNewPvPmodal from '../components/TeamNewPvPmodal.vue'
@@ -312,31 +313,33 @@ export default {
       this.oppTeamNoun = _oppTeamNoun
       this.splashImage = _splashImage
       this.screenLocked = true
-      await main.maralisRunPvC(this.playerIdArray, _teamId, _difficulty).then(async res =>{
+      await gameplay.performPvC(this.playerIdArray, _teamId, _difficulty).then(async res =>{
         console.log(res)
         this.gameLog = res
-        await main.performPvC(res.matchValidToken, _difficulty, _teamId, res.finalScore1, res.finalScore2).then(res => {
-          console.log(res)
-          if(!res){
+        // await main.performPvC(res.matchValidToken, _difficulty, _teamId, res.finalScore1, res.finalScore2).then(res => {
+        //   console.log(res)
+        //   if(!res){
             
-            this.screenLocked = false
-            this.clearIntervals()
-            this.updateProgressBars()
-            alert("error detected")
-            return
-          }
-          console.log(this.gameLog)
-          this.screenLocked = false
-          this.screenLockedPlay = true
-        }).catch(err =>{
-          console.log(err)
-          alert("error detected")
-          this.screenLocked = false
-          this.screenLockedPlay = false
-        })
+        //     this.screenLocked = false
+        //     await this.clearIntervals()
+        //     this.updateProgressBars()
+        //     alert("error detected")
+        //     return
+        //   }
+        //   console.log(this.gameLog)
+        this.screenLocked = false
+        this.screenLockedPlay = true
+        // }).catch(err =>{
+        //   console.log(err)
+        //   alert("error detected")
+        //   this.screenLocked = false
+        //   this.screenLockedPlay = false
+        // })
       }).catch(err =>{
         console.log(err)
+        this.screenLocked = false
         this.screenLockedPlay = false
+        alert("Error Detected")
       })
     },
 
