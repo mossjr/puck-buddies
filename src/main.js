@@ -128,7 +128,7 @@ async function renderGame(){
         logOut()
         location.reload();
     })
-    loadPBPlayers()
+    // loadPBPlayers("From Render Game")
 }
 
 //ICO Functions
@@ -633,10 +633,12 @@ async function checkProShopAdmin() {
     }
 
 //My Players Functions
-async function loadPBPlayers(){
+async function loadPBPlayers(source){
+    console.log("Loading Players from: " + source)
     window.web3 = await Moralis.enableWeb3()
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let array = await tokenContract.methods.getAllTokensForUser(ethereum.selectedAddress).call({from: ethereum.selectedAddress})
+    console.log(array)
     let nounsArray = NOUNS
     let teamFirstLetter
     if (array.length == 0) {
@@ -1134,8 +1136,19 @@ let param = {difficulty: _difficulty,
         }
 const moralisRes = await Moralis.Cloud.run("playPvCMatchup", param)
 console.log(moralisRes)
-console.log(moralisRes.t1Score + " " + moralisRes.t2Score + " " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
-return {gameObj: moralisRes.gameObj, gameOverTimeObj: moralisRes.gameOverTimeObj, gameShootoutObj: moralisRes.gameShootoutObj}
+console.log("Final: " + moralisRes.t1Score + " " + moralisRes.t2Score + " Regulation: " + moralisRes.t1RegScore + " " + moralisRes.t2RegScore + " Overtime: " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " Shootout: " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
+return {gameObj: moralisRes.gameObj, 
+        gameOverTimeObj: moralisRes.gameOverTimeObj, 
+        gameShootoutObj: moralisRes.gameShootoutObj, 
+        t1RegScore:moralisRes.t1RegScore, 
+        t2RegScore:moralisRes.t2RegScore,
+        t1SOScore:moralisRes.t1SOScore, 
+        t2SOScore:moralisRes.t2SOScore,
+        t1SOScore:moralisRes.t1SOScore, 
+        t2SOScore:moralisRes.t2SOScore,
+        finalScore1:moralisRes.t1Score, 
+        finalScore2:moralisRes.t2Score, 
+        matchValidToken: moralisRes.matchValidToken }
 }
 
 async function loadPvCmatches(teamId){
@@ -1227,19 +1240,14 @@ async function loadPvCmatches(teamId){
     return availablePvCobject
 }
 
-async function performPvC(token, difficulty, teamId){
+async function performPvC(token, difficulty, teamId, t1S, t2S){
+    console.log({token:token, difficulty:difficulty, teamId:teamId, t1S:t1S, t2S:t2S})
     const sender = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
-    await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamId ).send({from: sender, gas: 512000}).then(res => {
-        // let gameResult = receipt.events.gamePlayed.returnValues.isWinner
-        // console.log(receipt.events.gamePlayed.returnValues)
-        // console.log("Is Winner: " + gameResult)
-        
-        console.log(res)
-    }).catch(err => {
-        console.log(err)
-    })  
+    console.log("Sending PvC Matchup to Blockchain")
+    let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamId, t1S, t2S).send({from: sender, gas: 512000})
+    return(matchUpIndex) 
 }
 
 async function hitTheIcePvC(difficulty, teamId, playerIds){
@@ -1248,7 +1256,7 @@ async function hitTheIcePvC(difficulty, teamId, playerIds){
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     
-    await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamId, playerIds).send({from: sender, gas: 512000}).then(res => {
+    await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamId, playerIds).send({from: sender, gas: 222000}).then(res => {
         // let gameResult = receipt.events.gamePlayed.returnValues.isWinner
         // console.log(receipt.events.gamePlayed.returnValues)
         // console.log("Is Winner: " + gameResult)

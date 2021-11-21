@@ -23,13 +23,7 @@ export default {
     },
     props:  ['splashImage'
             ],
-    methods: {
-       
-
-        // closeModal() {
-        //     this.$emit('closePlayerModal')
-        // }
-    
+    methods: {    
 
     },
     computed: {

@@ -11778,7 +11778,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "convert_t_contract$_IERC20_$10578_to_t_address",
+                          "name": "convert_t_contract$_IERC20_$10547_to_t_address",
                           "nodeType": "YulIdentifier",
                           "src": "19446:46:44"
                         },
@@ -11799,7 +11799,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_contract$_IERC20_$10578_to_t_address_fromStack",
+            "name": "abi_encode_t_contract$_IERC20_$10547_to_t_address_fromStack",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -16970,7 +16970,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_contract$_IERC20_$10578_to_t_address_fromStack",
+                      "name": "abi_encode_t_contract$_IERC20_$10547_to_t_address_fromStack",
                       "nodeType": "YulIdentifier",
                       "src": "34501:59:44"
                     },
@@ -16982,7 +16982,7 @@
                 }
               ]
             },
-            "name": "abi_encode_tuple_t_contract$_IERC20_$10578__to_t_address__fromStack_reversed",
+            "name": "abi_encode_tuple_t_contract$_IERC20_$10547__to_t_address__fromStack_reversed",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -22964,7 +22964,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "convert_t_contract$_IERC20_$10578_to_t_uint160",
+                      "name": "convert_t_contract$_IERC20_$10547_to_t_uint160",
                       "nodeType": "YulIdentifier",
                       "src": "49430:46:44"
                     },
@@ -22981,7 +22981,7 @@
                 }
               ]
             },
-            "name": "convert_t_contract$_IERC20_$10578_to_t_address",
+            "name": "convert_t_contract$_IERC20_$10547_to_t_address",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -23035,7 +23035,7 @@
                 }
               ]
             },
-            "name": "convert_t_contract$_IERC20_$10578_to_t_uint160",
+            "name": "convert_t_contract$_IERC20_$10547_to_t_uint160",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
               {
@@ -28772,7 +28772,7 @@
           }
         ]
       },
-      "contents": "{\n\n    // address[]\n    function abi_decode_available_length_t_array$_t_address_$dyn_memory_ptr(offset, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_array$_t_address_$dyn_memory_ptr(length))\n        let dst := array\n\n        mstore(array, length)\n        dst := add(array, 0x20)\n\n        let src := offset\n        if gt(add(src, mul(length, 0x20)), end) {\n            revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef()\n        }\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n\n            let elementPos := src\n\n            mstore(dst, abi_decode_t_address(elementPos, end))\n            dst := add(dst, 0x20)\n            src := add(src, 0x20)\n        }\n    }\n\n    // uint256[]\n    function abi_decode_available_length_t_array$_t_uint256_$dyn_memory_ptr(offset, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_array$_t_uint256_$dyn_memory_ptr(length))\n        let dst := array\n\n        mstore(array, length)\n        dst := add(array, 0x20)\n\n        let src := offset\n        if gt(add(src, mul(length, 0x20)), end) {\n            revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef()\n        }\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n\n            let elementPos := src\n\n            mstore(dst, abi_decode_t_uint256(elementPos, end))\n            dst := add(dst, 0x20)\n            src := add(src, 0x20)\n        }\n    }\n\n    function abi_decode_available_length_t_bytes_memory_ptr(src, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_bytes_memory_ptr(length))\n        mstore(array, length)\n        let dst := add(array, 0x20)\n        if gt(add(src, length), end) { revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() }\n        copy_calldata_to_memory(src, dst, length)\n    }\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    // address[]\n    function abi_decode_t_array$_t_address_$dyn_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_array$_t_address_$dyn_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    // uint256[]\n    function abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(offset, end) -> arrayPos, length {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        length := calldataload(offset)\n        if gt(length, 0xffffffffffffffff) { revert_error_15abf5612cd996bc235ba1e55a4a30ac60e6bb601ff7ba4ad3f179b6be8d0490() }\n        arrayPos := add(offset, 0x20)\n        if gt(add(arrayPos, mul(length, 0x20)), end) { revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef() }\n    }\n\n    // uint256[]\n    function abi_decode_t_array$_t_uint256_$dyn_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_array$_t_uint256_$dyn_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function abi_decode_t_bool(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bool(value)\n    }\n\n    function abi_decode_t_bytes32(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bytes32(value)\n    }\n\n    function abi_decode_t_bytes4(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bytes4(value)\n    }\n\n    function abi_decode_t_bytes4_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_bytes4(value)\n    }\n\n    // bytes\n    function abi_decode_t_bytes_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_bytes_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_address(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptrt_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 160) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 128))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value4 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_addresst_uint256t_uint256t_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 160) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 96\n\n            value3 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 128))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value4 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptr(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptrt_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3 {\n        if slt(sub(dataEnd, headStart), 128) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_bool(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_bool(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256t_uint256(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256t_uint256t_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3 {\n        if slt(sub(dataEnd, headStart), 128) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_array$_t_address_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptr(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_array$_t_address_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_array$_t_uint256_$dyn_calldata_ptrt_array$_t_uint256_$dyn_calldata_ptrt_address(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0, value1 := abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2, value3 := abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value4 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32t_address(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes4(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes4(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes4_fromMemory(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes4_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encodeUpdatedPos_t_uint256_to_t_uint256(value0, pos) -> updatedPos {\n        abi_encode_t_uint256_to_t_uint256(value0, pos)\n        updatedPos := add(pos, 0x20)\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    // uint256[] -> uint256[]\n    function abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_uint256_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_uint256_$dyn_memory_ptr_fromStack(pos, length)\n        let baseRef := array_dataslot_t_array$_t_uint256_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            let elementValue0 := mload(srcPtr)\n            pos := abi_encodeUpdatedPos_t_uint256_to_t_uint256(elementValue0, pos)\n            srcPtr := array_nextElement_t_array$_t_uint256_$dyn_memory_ptr(srcPtr)\n        }\n        end := pos\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_t_bytes32_to_t_bytes32_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bytes32(value))\n    }\n\n    function abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_bytes_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_bytes_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_t_contract$_IERC20_$10578_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_IERC20_$10578_to_t_address(value))\n    }\n\n    function abi_encode_t_contract$_PBPlayers_$3501_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_PBPlayers_$3501_to_t_address(value))\n    }\n\n    function abi_encode_t_contract$_PBProShopHolder_$4078_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_PBProShopHolder_$4078_to_t_address(value))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, length)\n    }\n\n    function abi_encode_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 52)\n        store_literal_in_memory_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 32)\n        store_literal_in_memory_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 40)\n        store_literal_in_memory_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 20)\n        store_literal_in_memory_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 43)\n        store_literal_in_memory_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 36)\n        store_literal_in_memory_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 44)\n        store_literal_in_memory_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 16)\n        store_literal_in_memory_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 37)\n        store_literal_in_memory_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 50)\n        store_literal_in_memory_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 35)\n        store_literal_in_memory_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 56)\n        store_literal_in_memory_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 42)\n        store_literal_in_memory_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 59)\n        store_literal_in_memory_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 57)\n        store_literal_in_memory_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_to_t_string_memory_ptr_nonPadded_inplace_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, 23)\n        store_literal_in_memory_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874(pos)\n        end := add(pos, 23)\n    }\n\n    function abi_encode_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 32)\n        store_literal_in_memory_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 40)\n        store_literal_in_memory_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 33)\n        store_literal_in_memory_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_to_t_string_memory_ptr_nonPadded_inplace_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, 17)\n        store_literal_in_memory_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69(pos)\n        end := add(pos, 17)\n    }\n\n    function abi_encode_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 47)\n        store_literal_in_memory_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_uint256_to_t_uint256(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_packed_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_t_string_memory_ptr_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_t_string_memory_ptr__to_t_string_memory_ptr_t_string_memory_ptr_t_string_memory_ptr_t_string_memory_ptr__nonPadded_inplace_fromStack_reversed(pos , value1, value0) -> end {\n\n        pos := abi_encode_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_to_t_string_memory_ptr_nonPadded_inplace_fromStack( pos)\n\n        pos := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value0,  pos)\n\n        pos := abi_encode_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_to_t_string_memory_ptr_nonPadded_inplace_fromStack( pos)\n\n        pos := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value1,  pos)\n\n        end := pos\n    }\n\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr_t_bytes_memory_ptr__to_t_address_t_address_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr_t_bytes_memory_ptr__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        mstore(add(headStart, 64), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value2,  tail)\n\n        mstore(add(headStart, 96), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value3,  tail)\n\n        mstore(add(headStart, 128), sub(tail, headStart))\n        tail := abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value4,  tail)\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_uint256_t_uint256_t_bytes_memory_ptr__to_t_address_t_address_t_uint256_t_uint256_t_bytes_memory_ptr__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value3,  add(headStart, 96))\n\n        mstore(add(headStart, 128), sub(tail, headStart))\n        tail := abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value4,  tail)\n\n    }\n\n    function abi_encode_tuple_t_array$_t_uint256_$dyn_memory_ptr__to_t_array$_t_uint256_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function abi_encode_tuple_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr__to_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr__fromStack_reversed(headStart , value1, value0) -> tail {\n        tail := add(headStart, 64)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value0,  tail)\n\n        mstore(add(headStart, 32), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value1,  tail)\n\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_bytes32__to_t_bytes32__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bytes32_to_t_bytes32_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_IERC20_$10578__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_IERC20_$10578_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_PBPlayers_$3501__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_PBPlayers_$3501_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_PBProShopHolder_$4078__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_PBProShopHolder_$4078_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr__to_t_string_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_uint256_t_uint256__to_t_uint256_t_uint256__fromStack_reversed(headStart , value1, value0) -> tail {\n        tail := add(headStart, 64)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value1,  add(headStart, 32))\n\n    }\n\n    function allocate_memory(size) -> memPtr {\n        memPtr := allocate_unbounded()\n        finalize_allocation(memPtr, size)\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function array_allocation_size_t_array$_t_address_$dyn_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := mul(length, 0x20)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_allocation_size_t_array$_t_uint256_$dyn_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := mul(length, 0x20)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_allocation_size_t_bytes_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := round_up_to_mul_of_32(length)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_dataslot_t_array$_t_uint256_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function array_length_t_array$_t_uint256_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_length_t_bytes_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_nextElement_t_array$_t_uint256_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_uint256_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_bytes_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, length) -> updated_pos {\n        updated_pos := pos\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function checked_sub_t_uint256(x, y) -> diff {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        if lt(x, y) { panic_error_0x11() }\n\n        diff := sub(x, y)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function cleanup_t_bytes32(value) -> cleaned {\n        cleaned := value\n    }\n\n    function cleanup_t_bytes4(value) -> cleaned {\n        cleaned := and(value, 0xffffffff00000000000000000000000000000000000000000000000000000000)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function convert_t_contract$_IERC20_$10578_to_t_address(value) -> converted {\n        converted := convert_t_contract$_IERC20_$10578_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_IERC20_$10578_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBPlayers_$3501_to_t_address(value) -> converted {\n        converted := convert_t_contract$_PBPlayers_$3501_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBPlayers_$3501_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBProShopHolder_$4078_to_t_address(value) -> converted {\n        converted := convert_t_contract$_PBProShopHolder_$4078_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBProShopHolder_$4078_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function copy_calldata_to_memory(src, dst, length) {\n        calldatacopy(dst, src, length)\n        // clear end\n        mstore(add(dst, length), 0)\n    }\n\n    function copy_memory_to_memory(src, dst, length) {\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        if gt(i, length)\n        {\n            // clear end\n            mstore(add(dst, length), 0)\n        }\n    }\n\n    function decrement_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0x00) { panic_error_0x11() }\n        ret := sub(value, 1)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function finalize_allocation(memPtr, size) {\n        let newFreePtr := add(memPtr, round_up_to_mul_of_32(size))\n        // protect against overflow\n        if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }\n        mstore(64, newFreePtr)\n    }\n\n    function increment_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff) { panic_error_0x11() }\n        ret := add(value, 1)\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x31() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x31)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x32() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x32)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function return_data_selector() -> sig {\n        if gt(returndatasize(), 3) {\n            returndatacopy(0, 0, 4)\n            sig := shift_right_224_unsigned(mload(0))\n        }\n    }\n\n    function revert_error_15abf5612cd996bc235ba1e55a4a30ac60e6bb601ff7ba4ad3f179b6be8d0490() {\n        revert(0, 0)\n    }\n\n    function revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() {\n        revert(0, 0)\n    }\n\n    function revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef() {\n        revert(0, 0)\n    }\n\n    function revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function shift_right_224_unsigned(value) -> newValue {\n        newValue :=\n\n        shr(224, value)\n\n    }\n\n    function store_literal_in_memory_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer to non ERC1155\")\n\n        mstore(add(memPtr, 32), \"Receiver implementer\")\n\n    }\n\n    function store_literal_in_memory_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2(memPtr) {\n\n        mstore(add(memPtr, 0), \"Strings: hex length insufficient\")\n\n    }\n\n    function store_literal_in_memory_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: ERC1155Receiver rejecte\")\n\n        mstore(add(memPtr, 32), \"d tokens\")\n\n    }\n\n    function store_literal_in_memory_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a(memPtr) {\n\n        mstore(add(memPtr, 0), \"Pausable: not paused\")\n\n    }\n\n    function store_literal_in_memory_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: balance query for the z\")\n\n        mstore(add(memPtr, 32), \"ero address\")\n\n    }\n\n    function store_literal_in_memory_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: burn amount exceeds bal\")\n\n        mstore(add(memPtr, 32), \"ance\")\n\n    }\n\n    function store_literal_in_memory_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155Pausable: token transfer \")\n\n        mstore(add(memPtr, 32), \"while paused\")\n\n    }\n\n    function store_literal_in_memory_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: caller is not owner nor\")\n\n        mstore(add(memPtr, 32), \" approved\")\n\n    }\n\n    function store_literal_in_memory_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a(memPtr) {\n\n        mstore(add(memPtr, 0), \"Pausable: paused\")\n\n    }\n\n    function store_literal_in_memory_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer to the zero ad\")\n\n        mstore(add(memPtr, 32), \"dress\")\n\n    }\n\n    function store_literal_in_memory_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer caller is not \")\n\n        mstore(add(memPtr, 32), \"owner nor approved\")\n\n    }\n\n    function store_literal_in_memory_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: burn from the zero addr\")\n\n        mstore(add(memPtr, 32), \"ess\")\n\n    }\n\n    function store_literal_in_memory_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have minter role to mint\")\n\n    }\n\n    function store_literal_in_memory_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: insufficient balance fo\")\n\n        mstore(add(memPtr, 32), \"r transfer\")\n\n    }\n\n    function store_literal_in_memory_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have pauser role to unpause\")\n\n    }\n\n    function store_literal_in_memory_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have pauser role to pause\")\n\n    }\n\n    function store_literal_in_memory_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874(memPtr) {\n\n        mstore(add(memPtr, 0), \"AccessControl: account \")\n\n    }\n\n    function store_literal_in_memory_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44(memPtr) {\n\n        mstore(add(memPtr, 0), \"Only Admin can perform this call\")\n\n    }\n\n    function store_literal_in_memory_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: setting approval status\")\n\n        mstore(add(memPtr, 32), \" for self\")\n\n    }\n\n    function store_literal_in_memory_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: accounts and ids length\")\n\n        mstore(add(memPtr, 32), \" mismatch\")\n\n    }\n\n    function store_literal_in_memory_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: ids and amounts length \")\n\n        mstore(add(memPtr, 32), \"mismatch\")\n\n    }\n\n    function store_literal_in_memory_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: mint to the zero addres\")\n\n        mstore(add(memPtr, 32), \"s\")\n\n    }\n\n    function store_literal_in_memory_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69(memPtr) {\n\n        mstore(add(memPtr, 0), \" is missing role \")\n\n    }\n\n    function store_literal_in_memory_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b(memPtr) {\n\n        mstore(add(memPtr, 0), \"AccessControl: can only renounce\")\n\n        mstore(add(memPtr, 32), \" roles for self\")\n\n    }\n\n    function try_decode_error_message() -> ret {\n        if lt(returndatasize(), 0x44) { leave }\n\n        let data := allocate_unbounded()\n        returndatacopy(data, 4, sub(returndatasize(), 4))\n\n        let offset := mload(data)\n        if or(\n            gt(offset, 0xffffffffffffffff),\n            gt(add(offset, 0x24), returndatasize())\n            ) {\n            leave\n        }\n\n        let msg := add(data, offset)\n        let length := mload(msg)\n        if gt(length, 0xffffffffffffffff) { leave }\n\n        let end := add(add(msg, 0x20), length)\n        if gt(end, add(data, sub(returndatasize(), 4))) { leave }\n\n        finalize_allocation(data, add(offset, add(0x20, length)))\n        ret := msg\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bool(value) {\n        if iszero(eq(value, cleanup_t_bool(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bytes32(value) {\n        if iszero(eq(value, cleanup_t_bytes32(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bytes4(value) {\n        if iszero(eq(value, cleanup_t_bytes4(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n}\n",
+      "contents": "{\n\n    // address[]\n    function abi_decode_available_length_t_array$_t_address_$dyn_memory_ptr(offset, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_array$_t_address_$dyn_memory_ptr(length))\n        let dst := array\n\n        mstore(array, length)\n        dst := add(array, 0x20)\n\n        let src := offset\n        if gt(add(src, mul(length, 0x20)), end) {\n            revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef()\n        }\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n\n            let elementPos := src\n\n            mstore(dst, abi_decode_t_address(elementPos, end))\n            dst := add(dst, 0x20)\n            src := add(src, 0x20)\n        }\n    }\n\n    // uint256[]\n    function abi_decode_available_length_t_array$_t_uint256_$dyn_memory_ptr(offset, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_array$_t_uint256_$dyn_memory_ptr(length))\n        let dst := array\n\n        mstore(array, length)\n        dst := add(array, 0x20)\n\n        let src := offset\n        if gt(add(src, mul(length, 0x20)), end) {\n            revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef()\n        }\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n\n            let elementPos := src\n\n            mstore(dst, abi_decode_t_uint256(elementPos, end))\n            dst := add(dst, 0x20)\n            src := add(src, 0x20)\n        }\n    }\n\n    function abi_decode_available_length_t_bytes_memory_ptr(src, length, end) -> array {\n        array := allocate_memory(array_allocation_size_t_bytes_memory_ptr(length))\n        mstore(array, length)\n        let dst := add(array, 0x20)\n        if gt(add(src, length), end) { revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() }\n        copy_calldata_to_memory(src, dst, length)\n    }\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    // address[]\n    function abi_decode_t_array$_t_address_$dyn_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_array$_t_address_$dyn_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    // uint256[]\n    function abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(offset, end) -> arrayPos, length {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        length := calldataload(offset)\n        if gt(length, 0xffffffffffffffff) { revert_error_15abf5612cd996bc235ba1e55a4a30ac60e6bb601ff7ba4ad3f179b6be8d0490() }\n        arrayPos := add(offset, 0x20)\n        if gt(add(arrayPos, mul(length, 0x20)), end) { revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef() }\n    }\n\n    // uint256[]\n    function abi_decode_t_array$_t_uint256_$dyn_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_array$_t_uint256_$dyn_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function abi_decode_t_bool(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bool(value)\n    }\n\n    function abi_decode_t_bytes32(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bytes32(value)\n    }\n\n    function abi_decode_t_bytes4(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_bytes4(value)\n    }\n\n    function abi_decode_t_bytes4_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_bytes4(value)\n    }\n\n    // bytes\n    function abi_decode_t_bytes_memory_ptr(offset, end) -> array {\n        if iszero(slt(add(offset, 0x1f), end)) { revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() }\n        let length := calldataload(offset)\n        array := abi_decode_available_length_t_bytes_memory_ptr(add(offset, 0x20), length, end)\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_address(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptrt_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 160) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 128))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value4 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_addresst_uint256t_uint256t_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 160) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 96\n\n            value3 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 128))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value4 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptr(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_array$_t_uint256_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptrt_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3 {\n        if slt(sub(dataEnd, headStart), 128) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 64))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_bool(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_bool(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256t_uint256(headStart, dataEnd) -> value0, value1, value2 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_addresst_uint256t_uint256t_bytes_memory_ptr(headStart, dataEnd) -> value0, value1, value2, value3 {\n        if slt(sub(dataEnd, headStart), 128) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value2 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 96))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value3 := abi_decode_t_bytes_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_array$_t_address_$dyn_memory_ptrt_array$_t_uint256_$dyn_memory_ptr(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0 := abi_decode_t_array$_t_address_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value1 := abi_decode_t_array$_t_uint256_$dyn_memory_ptr(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_array$_t_uint256_$dyn_calldata_ptrt_array$_t_uint256_$dyn_calldata_ptrt_address(headStart, dataEnd) -> value0, value1, value2, value3, value4 {\n        if slt(sub(dataEnd, headStart), 96) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := calldataload(add(headStart, 0))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value0, value1 := abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := calldataload(add(headStart, 32))\n            if gt(offset, 0xffffffffffffffff) { revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() }\n\n            value2, value3 := abi_decode_t_array$_t_uint256_$dyn_calldata_ptr(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 64\n\n            value4 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32t_address(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes32t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes32(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes4(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes4(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_bytes4_fromMemory(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bytes4_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_decode_tuple_t_uint256t_uint256(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function abi_encodeUpdatedPos_t_uint256_to_t_uint256(value0, pos) -> updatedPos {\n        abi_encode_t_uint256_to_t_uint256(value0, pos)\n        updatedPos := add(pos, 0x20)\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    // uint256[] -> uint256[]\n    function abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value, pos)  -> end  {\n        let length := array_length_t_array$_t_uint256_$dyn_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_array$_t_uint256_$dyn_memory_ptr_fromStack(pos, length)\n        let baseRef := array_dataslot_t_array$_t_uint256_$dyn_memory_ptr(value)\n        let srcPtr := baseRef\n        for { let i := 0 } lt(i, length) { i := add(i, 1) }\n        {\n            let elementValue0 := mload(srcPtr)\n            pos := abi_encodeUpdatedPos_t_uint256_to_t_uint256(elementValue0, pos)\n            srcPtr := array_nextElement_t_array$_t_uint256_$dyn_memory_ptr(srcPtr)\n        }\n        end := pos\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_t_bytes32_to_t_bytes32_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bytes32(value))\n    }\n\n    function abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_bytes_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_bytes_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_t_contract$_IERC20_$10547_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_IERC20_$10547_to_t_address(value))\n    }\n\n    function abi_encode_t_contract$_PBPlayers_$3501_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_PBPlayers_$3501_to_t_address(value))\n    }\n\n    function abi_encode_t_contract$_PBProShopHolder_$4078_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_PBProShopHolder_$4078_to_t_address(value))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, length)\n        copy_memory_to_memory(add(value, 0x20), pos, length)\n        end := add(pos, length)\n    }\n\n    function abi_encode_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 52)\n        store_literal_in_memory_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 32)\n        store_literal_in_memory_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 40)\n        store_literal_in_memory_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 20)\n        store_literal_in_memory_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 43)\n        store_literal_in_memory_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 36)\n        store_literal_in_memory_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 44)\n        store_literal_in_memory_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 16)\n        store_literal_in_memory_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 37)\n        store_literal_in_memory_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 50)\n        store_literal_in_memory_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 35)\n        store_literal_in_memory_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 56)\n        store_literal_in_memory_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 42)\n        store_literal_in_memory_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 59)\n        store_literal_in_memory_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 57)\n        store_literal_in_memory_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_to_t_string_memory_ptr_nonPadded_inplace_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, 23)\n        store_literal_in_memory_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874(pos)\n        end := add(pos, 23)\n    }\n\n    function abi_encode_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 32)\n        store_literal_in_memory_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 41)\n        store_literal_in_memory_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 40)\n        store_literal_in_memory_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 33)\n        store_literal_in_memory_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_to_t_string_memory_ptr_nonPadded_inplace_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, 17)\n        store_literal_in_memory_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69(pos)\n        end := add(pos, 17)\n    }\n\n    function abi_encode_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 47)\n        store_literal_in_memory_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b(pos)\n        end := add(pos, 64)\n    }\n\n    function abi_encode_t_uint256_to_t_uint256(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_packed_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_t_string_memory_ptr_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_t_string_memory_ptr__to_t_string_memory_ptr_t_string_memory_ptr_t_string_memory_ptr_t_string_memory_ptr__nonPadded_inplace_fromStack_reversed(pos , value1, value0) -> end {\n\n        pos := abi_encode_t_stringliteral_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874_to_t_string_memory_ptr_nonPadded_inplace_fromStack( pos)\n\n        pos := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value0,  pos)\n\n        pos := abi_encode_t_stringliteral_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69_to_t_string_memory_ptr_nonPadded_inplace_fromStack( pos)\n\n        pos := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_nonPadded_inplace_fromStack(value1,  pos)\n\n        end := pos\n    }\n\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr_t_bytes_memory_ptr__to_t_address_t_address_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr_t_bytes_memory_ptr__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        mstore(add(headStart, 64), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value2,  tail)\n\n        mstore(add(headStart, 96), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value3,  tail)\n\n        mstore(add(headStart, 128), sub(tail, headStart))\n        tail := abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value4,  tail)\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_uint256_t_uint256_t_bytes_memory_ptr__to_t_address_t_address_t_uint256_t_uint256_t_bytes_memory_ptr__fromStack_reversed(headStart , value4, value3, value2, value1, value0) -> tail {\n        tail := add(headStart, 160)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value3,  add(headStart, 96))\n\n        mstore(add(headStart, 128), sub(tail, headStart))\n        tail := abi_encode_t_bytes_memory_ptr_to_t_bytes_memory_ptr_fromStack(value4,  tail)\n\n    }\n\n    function abi_encode_tuple_t_array$_t_uint256_$dyn_memory_ptr__to_t_array$_t_uint256_$dyn_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function abi_encode_tuple_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr__to_t_array$_t_uint256_$dyn_memory_ptr_t_array$_t_uint256_$dyn_memory_ptr__fromStack_reversed(headStart , value1, value0) -> tail {\n        tail := add(headStart, 64)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value0,  tail)\n\n        mstore(add(headStart, 32), sub(tail, headStart))\n        tail := abi_encode_t_array$_t_uint256_$dyn_memory_ptr_to_t_array$_t_uint256_$dyn_memory_ptr_fromStack(value1,  tail)\n\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_bytes32__to_t_bytes32__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bytes32_to_t_bytes32_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_IERC20_$10547__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_IERC20_$10547_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_PBPlayers_$3501__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_PBPlayers_$3501_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_contract$_PBProShopHolder_$4078__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_PBProShopHolder_$4078_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr__to_t_string_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_tuple_t_uint256_t_uint256__to_t_uint256_t_uint256__fromStack_reversed(headStart , value1, value0) -> tail {\n        tail := add(headStart, 64)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value1,  add(headStart, 32))\n\n    }\n\n    function allocate_memory(size) -> memPtr {\n        memPtr := allocate_unbounded()\n        finalize_allocation(memPtr, size)\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function array_allocation_size_t_array$_t_address_$dyn_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := mul(length, 0x20)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_allocation_size_t_array$_t_uint256_$dyn_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := mul(length, 0x20)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_allocation_size_t_bytes_memory_ptr(length) -> size {\n        // Make sure we can allocate memory without overflow\n        if gt(length, 0xffffffffffffffff) { panic_error_0x41() }\n\n        size := round_up_to_mul_of_32(length)\n\n        // add length slot\n        size := add(size, 0x20)\n\n    }\n\n    function array_dataslot_t_array$_t_uint256_$dyn_memory_ptr(ptr) -> data {\n        data := ptr\n\n        data := add(ptr, 0x20)\n\n    }\n\n    function array_length_t_array$_t_uint256_$dyn_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_length_t_bytes_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_nextElement_t_array$_t_uint256_$dyn_memory_ptr(ptr) -> next {\n        next := add(ptr, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_array$_t_uint256_$dyn_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_bytes_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_nonPadded_inplace_fromStack(pos, length) -> updated_pos {\n        updated_pos := pos\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x > (maxValue - y)\n        if gt(x, sub(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, y)) { panic_error_0x11() }\n\n        sum := add(x, y)\n    }\n\n    function checked_mul_t_uint256(x, y) -> product {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        // overflow, if x != 0 and y > (maxValue / x)\n        if and(iszero(iszero(x)), gt(y, div(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, x))) { panic_error_0x11() }\n\n        product := mul(x, y)\n    }\n\n    function checked_sub_t_uint256(x, y) -> diff {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n\n        if lt(x, y) { panic_error_0x11() }\n\n        diff := sub(x, y)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function cleanup_t_bytes32(value) -> cleaned {\n        cleaned := value\n    }\n\n    function cleanup_t_bytes4(value) -> cleaned {\n        cleaned := and(value, 0xffffffff00000000000000000000000000000000000000000000000000000000)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function convert_t_contract$_IERC20_$10547_to_t_address(value) -> converted {\n        converted := convert_t_contract$_IERC20_$10547_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_IERC20_$10547_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBPlayers_$3501_to_t_address(value) -> converted {\n        converted := convert_t_contract$_PBPlayers_$3501_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBPlayers_$3501_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBProShopHolder_$4078_to_t_address(value) -> converted {\n        converted := convert_t_contract$_PBProShopHolder_$4078_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_PBProShopHolder_$4078_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(value)\n    }\n\n    function copy_calldata_to_memory(src, dst, length) {\n        calldatacopy(dst, src, length)\n        // clear end\n        mstore(add(dst, length), 0)\n    }\n\n    function copy_memory_to_memory(src, dst, length) {\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        if gt(i, length)\n        {\n            // clear end\n            mstore(add(dst, length), 0)\n        }\n    }\n\n    function decrement_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0x00) { panic_error_0x11() }\n        ret := sub(value, 1)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function finalize_allocation(memPtr, size) {\n        let newFreePtr := add(memPtr, round_up_to_mul_of_32(size))\n        // protect against overflow\n        if or(gt(newFreePtr, 0xffffffffffffffff), lt(newFreePtr, memPtr)) { panic_error_0x41() }\n        mstore(64, newFreePtr)\n    }\n\n    function increment_t_uint256(value) -> ret {\n        value := cleanup_t_uint256(value)\n        if eq(value, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff) { panic_error_0x11() }\n        ret := add(value, 1)\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x31() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x31)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x32() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x32)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function return_data_selector() -> sig {\n        if gt(returndatasize(), 3) {\n            returndatacopy(0, 0, 4)\n            sig := shift_right_224_unsigned(mload(0))\n        }\n    }\n\n    function revert_error_15abf5612cd996bc235ba1e55a4a30ac60e6bb601ff7ba4ad3f179b6be8d0490() {\n        revert(0, 0)\n    }\n\n    function revert_error_1b9f4a0a5773e33b91aa01db23bf8c55fce1411167c872835e7fa00a4f17d46d() {\n        revert(0, 0)\n    }\n\n    function revert_error_81385d8c0b31fffe14be1da910c8bd3a80be4cfa248e04f42ec0faea3132a8ef() {\n        revert(0, 0)\n    }\n\n    function revert_error_987264b3b1d58a9c7f8255e93e81c77d86d6299019c33110a076957a3e06e2ae() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function shift_right_224_unsigned(value) -> newValue {\n        newValue :=\n\n        shr(224, value)\n\n    }\n\n    function store_literal_in_memory_00aa752fb1526000e5241602affc3d70ef506da48a27ea57140102b439e655ed(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer to non ERC1155\")\n\n        mstore(add(memPtr, 32), \"Receiver implementer\")\n\n    }\n\n    function store_literal_in_memory_04fc88320d7c9f639317c75102c103ff0044d3075a5c627e24e76e5bbb2733c2(memPtr) {\n\n        mstore(add(memPtr, 0), \"Strings: hex length insufficient\")\n\n    }\n\n    function store_literal_in_memory_0587cccad73a80a7f013db13c596f4febc1968dc77e1d3589d5e7a509a3d6503(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: ERC1155Receiver rejecte\")\n\n        mstore(add(memPtr, 32), \"d tokens\")\n\n    }\n\n    function store_literal_in_memory_0d1d997348c4b502650619e51f7d09f80514d98b6993be5051d07f703984619a(memPtr) {\n\n        mstore(add(memPtr, 0), \"Pausable: not paused\")\n\n    }\n\n    function store_literal_in_memory_1f4de6a436172e7f7b1540476031cb037fc18ede9cc346a56da1697cbd352aa9(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: balance query for the z\")\n\n        mstore(add(memPtr, 32), \"ero address\")\n\n    }\n\n    function store_literal_in_memory_294a5de01910e2350ff231c633ae2d453ed6b1b72c75506234b7aace63eae685(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: burn amount exceeds bal\")\n\n        mstore(add(memPtr, 32), \"ance\")\n\n    }\n\n    function store_literal_in_memory_382791644f51336ed3667770955aa8eb4efb839029c48708cadb22e92d271435(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155Pausable: token transfer \")\n\n        mstore(add(memPtr, 32), \"while paused\")\n\n    }\n\n    function store_literal_in_memory_394ac917f53b95ee25db2a5da5874c5b1f0af95a4fdf34992ff8b19c458f239a(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: caller is not owner nor\")\n\n        mstore(add(memPtr, 32), \" approved\")\n\n    }\n\n    function store_literal_in_memory_68571e1369f7a6dcdcd736cb0343b35a58ed0f64d245c2ed839c98d412744f8a(memPtr) {\n\n        mstore(add(memPtr, 0), \"Pausable: paused\")\n\n    }\n\n    function store_literal_in_memory_6faf1c67f278b07c6771dcf4c315a89c21c0eaed11d9ab3d51774da1cfef545d(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer to the zero ad\")\n\n        mstore(add(memPtr, 32), \"dress\")\n\n    }\n\n    function store_literal_in_memory_70a41c66829f5508884cda9ef3d2f72551b34f23e4035be97941681123d2d686(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: transfer caller is not \")\n\n        mstore(add(memPtr, 32), \"owner nor approved\")\n\n    }\n\n    function store_literal_in_memory_87fd4aee52f5758d127cd9704d5ffef70f36ed1e87eb99b6f40e37a25c79a76a(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: burn from the zero addr\")\n\n        mstore(add(memPtr, 32), \"ess\")\n\n    }\n\n    function store_literal_in_memory_8955910be8371dda281e80fa38d092164791ccbd984aaa07b76276bef2682e9c(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have minter role to mint\")\n\n    }\n\n    function store_literal_in_memory_8ac7e9556b567c1c94bb4daaa3c3a65be5ac686579615210cb910fb8cb8d65bf(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: insufficient balance fo\")\n\n        mstore(add(memPtr, 32), \"r transfer\")\n\n    }\n\n    function store_literal_in_memory_be510562063387b7714478be5eff01a8c39efbb1b76d9be224d34aac440c9e31(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have pauser role to unpause\")\n\n    }\n\n    function store_literal_in_memory_d5053a301adec69bf5c7c3782556a354b14090e41fa7ca93c4de3863fd6a98b9(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155PresetMinterPauser: must \")\n\n        mstore(add(memPtr, 32), \"have pauser role to pause\")\n\n    }\n\n    function store_literal_in_memory_da0d07ce4a2849fbfc4cb9d6f939e9bd93016c372ca4a5ff14fe06caf3d67874(memPtr) {\n\n        mstore(add(memPtr, 0), \"AccessControl: account \")\n\n    }\n\n    function store_literal_in_memory_dbe9df3db3acd2af7147de7b696cb585cecc86983b87877a930ec77b4dd9ba44(memPtr) {\n\n        mstore(add(memPtr, 0), \"Only Admin can perform this call\")\n\n    }\n\n    function store_literal_in_memory_df9806c6dc743de602e49918a67b580590d69ab768bdb59f977c0a884a91a7c2(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: setting approval status\")\n\n        mstore(add(memPtr, 32), \" for self\")\n\n    }\n\n    function store_literal_in_memory_e155f5d69798c6205436a388a4f3a5fd42f54147b40f4d63a2c8071ff8a9fee5(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: accounts and ids length\")\n\n        mstore(add(memPtr, 32), \" mismatch\")\n\n    }\n\n    function store_literal_in_memory_e909e0c9a8f96b4f9af03b716811ece20beb070be416893ed1d50619b5930807(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: ids and amounts length \")\n\n        mstore(add(memPtr, 32), \"mismatch\")\n\n    }\n\n    function store_literal_in_memory_ebf031a1b7ee1d0b3a7752b450a3268e8b6c334561b48c1c0ba0f5bac05749f2(memPtr) {\n\n        mstore(add(memPtr, 0), \"ERC1155: mint to the zero addres\")\n\n        mstore(add(memPtr, 32), \"s\")\n\n    }\n\n    function store_literal_in_memory_f986ce851518a691bccd44ea42a5a185d1b866ef6cb07984a09b81694d20ab69(memPtr) {\n\n        mstore(add(memPtr, 0), \" is missing role \")\n\n    }\n\n    function store_literal_in_memory_fb06fa8ff2141e8ed74502f6792273793f25f0e9d3cf15344f3f5a0d4948fd4b(memPtr) {\n\n        mstore(add(memPtr, 0), \"AccessControl: can only renounce\")\n\n        mstore(add(memPtr, 32), \" roles for self\")\n\n    }\n\n    function try_decode_error_message() -> ret {\n        if lt(returndatasize(), 0x44) { leave }\n\n        let data := allocate_unbounded()\n        returndatacopy(data, 4, sub(returndatasize(), 4))\n\n        let offset := mload(data)\n        if or(\n            gt(offset, 0xffffffffffffffff),\n            gt(add(offset, 0x24), returndatasize())\n            ) {\n            leave\n        }\n\n        let msg := add(data, offset)\n        let length := mload(msg)\n        if gt(length, 0xffffffffffffffff) { leave }\n\n        let end := add(add(msg, 0x20), length)\n        if gt(end, add(data, sub(returndatasize(), 4))) { leave }\n\n        finalize_allocation(data, add(offset, add(0x20, length)))\n        ret := msg\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bool(value) {\n        if iszero(eq(value, cleanup_t_bool(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bytes32(value) {\n        if iszero(eq(value, cleanup_t_bytes32(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_bytes4(value) {\n        if iszero(eq(value, cleanup_t_bytes4(value))) { revert(0, 0) }\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n}\n",
       "id": 44,
       "language": "Yul",
       "name": "#utility.yul"
@@ -28786,64 +28786,64 @@
     "absolutePath": "project:/contracts/PBProShopFactory.sol",
     "exportedSymbols": {
       "AccessControl": [
-        7969
+        7938
       ],
       "AccessControlEnumerable": [
-        8159
+        8128
       ],
       "Address": [
-        11878
+        11847
       ],
       "Context": [
-        11899
+        11868
       ],
       "Counters": [
-        11973
+        11942
       ],
       "ERC1155": [
-        9376
+        9345
       ],
       "ERC1155Burnable": [
-        9608
+        9577
       ],
       "ERC1155Holder": [
-        9920
+        9889
       ],
       "ERC1155Pausable": [
-        9656
+        9625
       ],
       "ERC1155PresetMinterPauser": [
-        9869
+        9838
       ],
       "ERC1155Receiver": [
-        9954
+        9923
       ],
       "ERC165": [
-        12200
+        12169
       ],
       "EnumerableSet": [
-        12721
+        12690
       ],
       "IAccessControl": [
-        7645
+        7614
       ],
       "IAccessControlEnumerable": [
-        7991
+        7960
       ],
       "IERC1155": [
-        9498
+        9467
       ],
       "IERC1155MetadataURI": [
-        9671
+        9640
       ],
       "IERC1155Receiver": [
-        9539
+        9508
       ],
       "IERC165": [
-        12212
+        12181
       ],
       "IERC20": [
-        10578
+        10547
       ],
       "PBPlayers": [
         3501
@@ -28855,13 +28855,13 @@
         4078
       ],
       "Pausable": [
-        8251
+        8220
       ],
       "ReentrancyGuard": [
-        8291
+        8260
       ],
       "Strings": [
-        12176
+        12145
       ]
     },
     "id": 3807,
@@ -28889,7 +28889,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 8292,
+        "sourceUnit": 8261,
         "src": "69:78:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28901,7 +28901,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 10579,
+        "sourceUnit": 10548,
         "src": "149:72:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28913,7 +28913,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 9499,
+        "sourceUnit": 9468,
         "src": "223:76:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28925,7 +28925,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 9870,
+        "sourceUnit": 9839,
         "src": "301:101:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28937,7 +28937,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 7970,
+        "sourceUnit": 7939,
         "src": "404:74:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28949,7 +28949,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 11974,
+        "sourceUnit": 11943,
         "src": "480:68:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -28986,7 +28986,7 @@
               "id": 3512,
               "name": "ERC1155PresetMinterPauser",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 9869,
+              "referencedDeclaration": 9838,
               "src": "667:25:8"
             },
             "id": 3513,
@@ -28998,7 +28998,7 @@
               "id": 3514,
               "name": "ReentrancyGuard",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 8291,
+              "referencedDeclaration": 8260,
               "src": "694:15:8"
             },
             "id": 3515,
@@ -29012,21 +29012,21 @@
         "id": 3806,
         "linearizedBaseContracts": [
           3806,
-          8291,
-          9869,
-          9656,
-          8251,
-          9608,
-          9376,
-          9671,
-          9498,
-          8159,
-          7969,
-          12200,
-          12212,
-          7645,
-          11899,
-          7991
+          8260,
+          9838,
+          9625,
+          8220,
+          9577,
+          9345,
+          9640,
+          9467,
+          8128,
+          7938,
+          12169,
+          12181,
+          7614,
+          11868,
+          7960
         ],
         "name": "PBProShopFactory",
         "nameLocation": "647:16:8",
@@ -29207,7 +29207,7 @@
               "id": 3528,
               "name": "Counters",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 11973,
+              "referencedDeclaration": 11942,
               "src": "918:8:8"
             },
             "nodeType": "UsingForDirective",
@@ -29219,13 +29219,13 @@
                 "id": 3529,
                 "name": "Counters.Counter",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 11905,
+                "referencedDeclaration": 11874,
                 "src": "931:16:8"
               },
-              "referencedDeclaration": 11905,
+              "referencedDeclaration": 11874,
               "src": "931:16:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Counter_$11905_storage_ptr",
+                "typeIdentifier": "t_struct$_Counter_$11874_storage_ptr",
                 "typeString": "struct Counters.Counter"
               }
             }
@@ -29242,7 +29242,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Counter_$11905_storage",
+              "typeIdentifier": "t_struct$_Counter_$11874_storage",
               "typeString": "struct Counters.Counter"
             },
             "typeName": {
@@ -29252,13 +29252,13 @@
                 "id": 3532,
                 "name": "Counters.Counter",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 11905,
+                "referencedDeclaration": 11874,
                 "src": "954:16:8"
               },
-              "referencedDeclaration": 11905,
+              "referencedDeclaration": 11874,
               "src": "954:16:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Counter_$11905_storage_ptr",
+                "typeIdentifier": "t_struct$_Counter_$11874_storage_ptr",
                 "typeString": "struct Counters.Counter"
               }
             },
@@ -29277,7 +29277,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC20_$10578",
+              "typeIdentifier": "t_contract$_IERC20_$10547",
               "typeString": "contract IERC20"
             },
             "typeName": {
@@ -29287,13 +29287,13 @@
                 "id": 3535,
                 "name": "IERC20",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 10578,
+                "referencedDeclaration": 10547,
                 "src": "1006:6:8"
               },
-              "referencedDeclaration": 10578,
+              "referencedDeclaration": 10547,
               "src": "1006:6:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$10578",
+                "typeIdentifier": "t_contract$_IERC20_$10547",
                 "typeString": "contract IERC20"
               }
             },
@@ -29641,7 +29641,7 @@
                       "referencedDeclaration": 3537,
                       "src": "1407:7:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
@@ -29673,10 +29673,10 @@
                         "name": "IERC20",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 10578,
+                        "referencedDeclaration": 10547,
                         "src": "1417:6:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10578_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10547_$",
                           "typeString": "type(contract IERC20)"
                         }
                       },
@@ -29691,13 +29691,13 @@
                       "src": "1417:27:8",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
                     "src": "1407:37:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$10578",
+                      "typeIdentifier": "t_contract$_IERC20_$10547",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -29815,7 +29815,7 @@
                   "id": 3561,
                   "name": "ERC1155PresetMinterPauser",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 9869,
+                  "referencedDeclaration": 9838,
                   "src": "1314:25:8"
                 },
                 "nodeType": "ModifierInvocation",
@@ -30095,7 +30095,7 @@
                             "referencedDeclaration": 3534,
                             "src": "1753:20:8",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Counter_$11905_storage",
+                              "typeIdentifier": "t_struct$_Counter_$11874_storage",
                               "typeString": "struct Counters.Counter storage ref"
                             }
                           },
@@ -30106,10 +30106,10 @@
                           "lValueRequested": false,
                           "memberName": "current",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 11917,
+                          "referencedDeclaration": 11886,
                           "src": "1753:28:8",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$11905_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$11905_storage_ptr_$",
+                            "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$11874_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$11874_storage_ptr_$",
                             "typeString": "function (struct Counters.Counter storage pointer) view returns (uint256)"
                           }
                         },
@@ -30238,7 +30238,7 @@
                       "referencedDeclaration": 3537,
                       "src": "1890:7:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
@@ -30270,10 +30270,10 @@
                         "name": "IERC20",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 10578,
+                        "referencedDeclaration": 10547,
                         "src": "1900:6:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10578_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10547_$",
                           "typeString": "type(contract IERC20)"
                         }
                       },
@@ -30288,13 +30288,13 @@
                       "src": "1900:27:8",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
                     "src": "1890:37:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$10578",
+                      "typeIdentifier": "t_contract$_IERC20_$10547",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -31090,7 +31090,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8907,
+                      "referencedDeclaration": 8876,
                       "src": "2725:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -31163,7 +31163,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2770:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -31236,7 +31236,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2820:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -31309,7 +31309,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2869:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -31382,7 +31382,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2930:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -31421,7 +31421,7 @@
                         "referencedDeclaration": 3534,
                         "src": "2990:20:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Counter_$11905_storage",
+                          "typeIdentifier": "t_struct$_Counter_$11874_storage",
                           "typeString": "struct Counters.Counter storage ref"
                         }
                       },
@@ -31432,10 +31432,10 @@
                       "lValueRequested": false,
                       "memberName": "increment",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 11931,
+                      "referencedDeclaration": 11900,
                       "src": "2990:30:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$11905_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$11905_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$11874_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$11874_storage_ptr_$",
                         "typeString": "function (struct Counters.Counter storage pointer)"
                       }
                     },
@@ -31670,7 +31670,7 @@
                       "name": "safeBatchTransferFrom",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8601,
+                      "referencedDeclaration": 8570,
                       "src": "3138:21:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
@@ -31890,7 +31890,7 @@
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9085,
+                      "referencedDeclaration": 9054,
                       "src": "3288:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
@@ -32082,7 +32082,7 @@
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9085,
+                      "referencedDeclaration": 9054,
                       "src": "3404:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
@@ -32281,7 +32281,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8907,
+                      "referencedDeclaration": 8876,
                       "src": "3511:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -32497,64 +32497,64 @@
     "absolutePath": "project:/contracts/PBProShopFactory.sol",
     "exportedSymbols": {
       "AccessControl": [
-        7969
+        7938
       ],
       "AccessControlEnumerable": [
-        8159
+        8128
       ],
       "Address": [
-        11878
+        11847
       ],
       "Context": [
-        11899
+        11868
       ],
       "Counters": [
-        11973
+        11942
       ],
       "ERC1155": [
-        9376
+        9345
       ],
       "ERC1155Burnable": [
-        9608
+        9577
       ],
       "ERC1155Holder": [
-        9920
+        9889
       ],
       "ERC1155Pausable": [
-        9656
+        9625
       ],
       "ERC1155PresetMinterPauser": [
-        9869
+        9838
       ],
       "ERC1155Receiver": [
-        9954
+        9923
       ],
       "ERC165": [
-        12200
+        12169
       ],
       "EnumerableSet": [
-        12721
+        12690
       ],
       "IAccessControl": [
-        7645
+        7614
       ],
       "IAccessControlEnumerable": [
-        7991
+        7960
       ],
       "IERC1155": [
-        9498
+        9467
       ],
       "IERC1155MetadataURI": [
-        9671
+        9640
       ],
       "IERC1155Receiver": [
-        9539
+        9508
       ],
       "IERC165": [
-        12212
+        12181
       ],
       "IERC20": [
-        10578
+        10547
       ],
       "PBPlayers": [
         3501
@@ -32566,13 +32566,13 @@
         4078
       ],
       "Pausable": [
-        8251
+        8220
       ],
       "ReentrancyGuard": [
-        8291
+        8260
       ],
       "Strings": [
-        12176
+        12145
       ]
     },
     "id": 3807,
@@ -32600,7 +32600,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 8292,
+        "sourceUnit": 8261,
         "src": "69:78:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32612,7 +32612,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 10579,
+        "sourceUnit": 10548,
         "src": "149:72:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32624,7 +32624,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 9499,
+        "sourceUnit": 9468,
         "src": "223:76:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32636,7 +32636,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 9870,
+        "sourceUnit": 9839,
         "src": "301:101:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32648,7 +32648,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 7970,
+        "sourceUnit": 7939,
         "src": "404:74:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32660,7 +32660,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3807,
-        "sourceUnit": 11974,
+        "sourceUnit": 11943,
         "src": "480:68:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -32697,7 +32697,7 @@
               "id": 3512,
               "name": "ERC1155PresetMinterPauser",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 9869,
+              "referencedDeclaration": 9838,
               "src": "667:25:8"
             },
             "id": 3513,
@@ -32709,7 +32709,7 @@
               "id": 3514,
               "name": "ReentrancyGuard",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 8291,
+              "referencedDeclaration": 8260,
               "src": "694:15:8"
             },
             "id": 3515,
@@ -32723,21 +32723,21 @@
         "id": 3806,
         "linearizedBaseContracts": [
           3806,
-          8291,
-          9869,
-          9656,
-          8251,
-          9608,
-          9376,
-          9671,
-          9498,
-          8159,
-          7969,
-          12200,
-          12212,
-          7645,
-          11899,
-          7991
+          8260,
+          9838,
+          9625,
+          8220,
+          9577,
+          9345,
+          9640,
+          9467,
+          8128,
+          7938,
+          12169,
+          12181,
+          7614,
+          11868,
+          7960
         ],
         "name": "PBProShopFactory",
         "nameLocation": "647:16:8",
@@ -32918,7 +32918,7 @@
               "id": 3528,
               "name": "Counters",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 11973,
+              "referencedDeclaration": 11942,
               "src": "918:8:8"
             },
             "nodeType": "UsingForDirective",
@@ -32930,13 +32930,13 @@
                 "id": 3529,
                 "name": "Counters.Counter",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 11905,
+                "referencedDeclaration": 11874,
                 "src": "931:16:8"
               },
-              "referencedDeclaration": 11905,
+              "referencedDeclaration": 11874,
               "src": "931:16:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Counter_$11905_storage_ptr",
+                "typeIdentifier": "t_struct$_Counter_$11874_storage_ptr",
                 "typeString": "struct Counters.Counter"
               }
             }
@@ -32953,7 +32953,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Counter_$11905_storage",
+              "typeIdentifier": "t_struct$_Counter_$11874_storage",
               "typeString": "struct Counters.Counter"
             },
             "typeName": {
@@ -32963,13 +32963,13 @@
                 "id": 3532,
                 "name": "Counters.Counter",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 11905,
+                "referencedDeclaration": 11874,
                 "src": "954:16:8"
               },
-              "referencedDeclaration": 11905,
+              "referencedDeclaration": 11874,
               "src": "954:16:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Counter_$11905_storage_ptr",
+                "typeIdentifier": "t_struct$_Counter_$11874_storage_ptr",
                 "typeString": "struct Counters.Counter"
               }
             },
@@ -32988,7 +32988,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC20_$10578",
+              "typeIdentifier": "t_contract$_IERC20_$10547",
               "typeString": "contract IERC20"
             },
             "typeName": {
@@ -32998,13 +32998,13 @@
                 "id": 3535,
                 "name": "IERC20",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 10578,
+                "referencedDeclaration": 10547,
                 "src": "1006:6:8"
               },
-              "referencedDeclaration": 10578,
+              "referencedDeclaration": 10547,
               "src": "1006:6:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$10578",
+                "typeIdentifier": "t_contract$_IERC20_$10547",
                 "typeString": "contract IERC20"
               }
             },
@@ -33352,7 +33352,7 @@
                       "referencedDeclaration": 3537,
                       "src": "1407:7:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
@@ -33384,10 +33384,10 @@
                         "name": "IERC20",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 10578,
+                        "referencedDeclaration": 10547,
                         "src": "1417:6:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10578_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10547_$",
                           "typeString": "type(contract IERC20)"
                         }
                       },
@@ -33402,13 +33402,13 @@
                       "src": "1417:27:8",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
                     "src": "1407:37:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$10578",
+                      "typeIdentifier": "t_contract$_IERC20_$10547",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -33526,7 +33526,7 @@
                   "id": 3561,
                   "name": "ERC1155PresetMinterPauser",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 9869,
+                  "referencedDeclaration": 9838,
                   "src": "1314:25:8"
                 },
                 "nodeType": "ModifierInvocation",
@@ -33806,7 +33806,7 @@
                             "referencedDeclaration": 3534,
                             "src": "1753:20:8",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Counter_$11905_storage",
+                              "typeIdentifier": "t_struct$_Counter_$11874_storage",
                               "typeString": "struct Counters.Counter storage ref"
                             }
                           },
@@ -33817,10 +33817,10 @@
                           "lValueRequested": false,
                           "memberName": "current",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 11917,
+                          "referencedDeclaration": 11886,
                           "src": "1753:28:8",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$11905_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$11905_storage_ptr_$",
+                            "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$11874_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$11874_storage_ptr_$",
                             "typeString": "function (struct Counters.Counter storage pointer) view returns (uint256)"
                           }
                         },
@@ -33949,7 +33949,7 @@
                       "referencedDeclaration": 3537,
                       "src": "1890:7:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
@@ -33981,10 +33981,10 @@
                         "name": "IERC20",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 10578,
+                        "referencedDeclaration": 10547,
                         "src": "1900:6:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10578_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC20_$10547_$",
                           "typeString": "type(contract IERC20)"
                         }
                       },
@@ -33999,13 +33999,13 @@
                       "src": "1900:27:8",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC20_$10578",
+                        "typeIdentifier": "t_contract$_IERC20_$10547",
                         "typeString": "contract IERC20"
                       }
                     },
                     "src": "1890:37:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$10578",
+                      "typeIdentifier": "t_contract$_IERC20_$10547",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -34801,7 +34801,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8907,
+                      "referencedDeclaration": 8876,
                       "src": "2725:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -34874,7 +34874,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2770:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -34947,7 +34947,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2820:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -35020,7 +35020,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2869:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -35093,7 +35093,7 @@
                       "name": "setApprovalForAll",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8505,
+                      "referencedDeclaration": 8474,
                       "src": "2930:17:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_bool_$returns$__$",
@@ -35132,7 +35132,7 @@
                         "referencedDeclaration": 3534,
                         "src": "2990:20:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Counter_$11905_storage",
+                          "typeIdentifier": "t_struct$_Counter_$11874_storage",
                           "typeString": "struct Counters.Counter storage ref"
                         }
                       },
@@ -35143,10 +35143,10 @@
                       "lValueRequested": false,
                       "memberName": "increment",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 11931,
+                      "referencedDeclaration": 11900,
                       "src": "2990:30:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$11905_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$11905_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$11874_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$11874_storage_ptr_$",
                         "typeString": "function (struct Counters.Counter storage pointer)"
                       }
                     },
@@ -35381,7 +35381,7 @@
                       "name": "safeBatchTransferFrom",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8601,
+                      "referencedDeclaration": 8570,
                       "src": "3138:21:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
@@ -35601,7 +35601,7 @@
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9085,
+                      "referencedDeclaration": 9054,
                       "src": "3288:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
@@ -35793,7 +35793,7 @@
                       "name": "_burn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 9085,
+                      "referencedDeclaration": 9054,
                       "src": "3404:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
@@ -35992,7 +35992,7 @@
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8907,
+                      "referencedDeclaration": 8876,
                       "src": "3511:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -36432,8 +36432,8 @@
         }
       },
       "links": {},
-      "address": "0x9A37A5aab0f8Bb873f4752DC946A6CD95670C16C",
-      "transactionHash": "0xe77b55df9422aae34acff0836e6dc169bd0574c98c476968a93afe943f933169"
+      "address": "0x29D1a66099C5bD8B97015fC5B695CE6AA620093F",
+      "transactionHash": "0x6008e6e7adde495286d942e54fa970cadccce218702de61cfe4652a0c79734f9"
     },
     "5777": {
       "events": {
@@ -36663,7 +36663,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-19T19:52:01.546Z",
+  "updatedAt": "2021-11-21T07:03:19.871Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

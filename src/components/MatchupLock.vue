@@ -22,8 +22,8 @@
   <div class="box box-score">{{t2Score}}</div>
   <div class="box box-sog">SOG <br> {{t2SOG}} </div>
   <div class="box box-left box-team2">{{oppTeamNoun}}</div>
-  <div class="box box-gameplay">Period<br>{{period}}</div>
-  <div class="box box-gameplay">Time<br>{{minutes}}:<span v-if="seconds >= 0 && seconds <= 9">{{seconds0helper}}</span>{{seconds}}</div>
+  <div class="box box-gameplay"  v-if="!matchComplete">Period<br>{{period}}</div>
+  <div class="box box-gameplay"  v-if="!matchComplete">Time<br>{{minutes}}:<span v-if="seconds >= 0 && seconds <= 9">{{seconds0helper}}</span>{{seconds}}</div>
 </div>
 
 <div v-if="showShootOut">
@@ -60,10 +60,8 @@
     </div>
 </div>
 
-
-<div class="calc-warn" v-if="!matchComplete">(Calculating Results. Please wait a moment)</div>
-<div  v-if="!matchComplete"><button  class="action-button">Skip Simulation</button></div>
-<div  v-if="matchComplete"><button @click="closeModal()" class="action-button">Close</button></div>
+<div  v-if="!matchComplete"><button @click="skipSimulation()" class="action-button margin-button">Skip Simulation</button></div>
+<div  v-if="matchComplete"><button @click="closeModal()" class="action-button margin-button">Close</button></div>
         
     </div>
 </div>
@@ -132,9 +130,17 @@ export default {
     },
   props: [ 'gameLog', 'myTeamNoun', 'oppTeamNoun'],
   methods: {
+
+    
        
 
         updateGameProgress(){
+            console.log(this.gameLog.gameObj)
+            console.log(this.gameLog.gameOverTimeObj)
+            console.log(this.gameLog.gameShootoutObj)
+            console.log(this.gameLog.finalScore1)
+            console.log(this.gameLog.finalScore2)
+
 
             let timer = window.setInterval(() =>{
                 console.log("Regulation")
@@ -437,11 +443,16 @@ export default {
         },
 
 
-        team1Wins(){
+        skipSimulation(){
+            // Get a reference to the last interval + 1
+            const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
 
-        },
+            // Clear any timeout/interval up to that id
+            for (let i = 1; i < interval_id; i++) {
+            window.clearInterval(i);
+            }
 
-        team1Loses(){
+            this.closeModal()
 
         },
 
@@ -586,6 +597,10 @@ body {
 .calc-warn{
     margin: 40px;
     font-size: 0.8em;
+}
+
+.margin-button{
+    margin-top: 50px;
 }
 
 
