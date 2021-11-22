@@ -14,7 +14,7 @@
             <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="matchesLoading && !matchesLoaded">
         </div>
 
-      <div v-if="matchesLoaded">
+      <div v-if="matchesLoaded && !matchPlaying">
         <div class="loading-icon-container">
             <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="matchesLoading">
         </div>
@@ -268,6 +268,7 @@ export default {
       buddiesReward:''.id,
       matchesLoaded: false,
       matchesLoading: false,
+      matchPlaying: false,
       PBXPqtyToMint: '',
       myFunds:'',
       myXp:'',
@@ -309,32 +310,22 @@ export default {
 
 
     async maralisRunPvC(_splashImage, _myTeamNoun, _oppTeamNoun, _difficulty, _teamId, _muNo){
+      this.matchPlaying = true
       this.myTeamNoun = _myTeamNoun
       this.oppTeamNoun = _oppTeamNoun
       this.splashImage = _splashImage
       this.screenLocked = true
       await gameplay.performPvC(this.playerIdArray, _teamId, _difficulty).then(async res =>{
-        console.log(res)
+        //console.log(res)
         this.gameLog = res
-        // await main.performPvC(res.matchValidToken, _difficulty, _teamId, res.finalScore1, res.finalScore2).then(res => {
-        //   console.log(res)
-        //   if(!res){
-            
-        //     this.screenLocked = false
-        //     await this.clearIntervals()
-        //     this.updateProgressBars()
-        //     alert("error detected")
-        //     return
-        //   }
-        //   console.log(this.gameLog)
-        this.screenLocked = false
-        this.screenLockedPlay = true
-        // }).catch(err =>{
-        //   console.log(err)
-        //   alert("error detected")
-        //   this.screenLocked = false
-        //   this.screenLockedPlay = false
-        // })
+        if(res.bcResult == ''){
+          this.screenLocked = false
+          alert("Something went wrong, please try again")
+          return
+        }else if (res.bcResult != ''){
+          this.screenLocked = false
+          this.screenLockedPlay = true
+        }
       }).catch(err =>{
         console.log(err)
         this.screenLocked = false
@@ -346,7 +337,7 @@ export default {
 
     async getTeamDetails(){
        Promise.all(await main.displayTeam()).then(res => {
-        console.log(res) 
+        //console.log(res) 
       })
    
     },
@@ -355,8 +346,8 @@ export default {
     async displayTeam(playerArray){
       Promise.all(await main.displayTeam())
       .then(res => {
-        console.log("Result: " + res)
-        console.log(res)
+        //console.log("Result: " + res)
+        //console.log(res)
         let teamArray = []
         for (let i = 0; i < res.length; i++){
           
@@ -435,9 +426,9 @@ export default {
           if (indexPlayer6 >= 0){pos6id = playerArray[indexPlayer6].id} else {pos6id = ''}
           if (indexPlayer6 >= 0){pos6OP = playerArray[indexPlayer6].offence} else {pos6OP = ''}
           if (indexPlayer6 >= 0){pos6DP = playerArray[indexPlayer6].defence} else {pos6DP = ''}
-          console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
-          console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
-          console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
+          //console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
+          //console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
+          //console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
           this.playerIdArray = [pos1id,pos2id,pos3id,pos4id,pos5id,pos6id]
 
 
@@ -450,7 +441,7 @@ export default {
           
           let teamName = this.nouns[teamNounNumber].noun
           let teamLetter = teamName.slice(0,1)        
-          console.log(teamLetter)
+          //console.log(teamLetter)
 
           teamArray.push({
             'teamId': res[i].teamId,
@@ -494,6 +485,7 @@ export default {
         }
         
         this.loadingTeams = false
+        this.matchPlaying = false
         return {teamArray: teamArray, players: playerArray }
       })
       .then(res2 => {
@@ -501,8 +493,8 @@ export default {
         for (let i = 0; i < res2.players.length; i++){
          buildCanvas.preloadPlayerInfo(res2.players[i].id, res2.players[i], "player-no")
         }
-        console.log("Active Player Count: " + res)
-        console.log(res)
+        //console.log("Active Player Count: " + res)
+        //console.log(res)
         if(res2.teamArray[0].activePlayerCount == 6){
           this.sixActivePlayers = true
         }        
@@ -528,8 +520,8 @@ export default {
     async benchPlayer(_splashImage, _teamId, _position, _playerId){
       this.splashImage = _splashImage
       this.screenLocked = true
-      console.log(_teamId)
-      console.log(_position)
+      //console.log(_teamId)
+      //console.log(_position)
       
       await main.removeFromPosition(_teamId, _playerId).then(res => {
         this.screenLocked = false
@@ -555,12 +547,12 @@ export default {
       this.goaliesFound = 0
       let playerArray = []  
       this.loadCount++
-      console.log("Player Load Count: " + this.loadCount)
+      //console.log("Player Load Count: " + this.loadCount)
       Promise.all(await main.loadPBPlayers("My Teams Player Loader"))
       .then(res => {
-        console.log("Result: " + res)
+        //console.log("Result: " + res)
         if (res.length == 0) {
-          console.log("0 Players Found")
+          //console.log("0 Players Found")
           this.totalFoundPlayers = 0
         }else{  
         for (let i = 0; i < res.length; i++) {
@@ -580,7 +572,7 @@ export default {
               isDef = false
               isGoal = true
             }
-            console.log(res[i].ageoutTimestamp)
+            //console.log(res[i].ageoutTimestamp)
             playerArray.push({
               'id': res[i].id, 
               'offence': res[i].offence,  
@@ -609,10 +601,10 @@ export default {
           }
         }
         this.loadingPlayers = false
-        console.log("Found " + this.offenceFound + " Offence")
-        console.log("Found " + this.defenceFound + " Defence")
-        console.log("Found " + this.goaliesFound + " Goalies")
-        console.log(playerArray)
+        //console.log("Found " + this.offenceFound + " Offence")
+        //console.log("Found " + this.defenceFound + " Defence")
+        //console.log("Found " + this.goaliesFound + " Goalies")
+        //console.log(playerArray)
         return playerArray
           
       })
@@ -729,73 +721,73 @@ export default {
       this.matchesLoading = true
       this.matchesLoaded = false
       this.timestamp = await main.getPvCMatchupsTimestamp()
-      console.log("Current TimeStamp: " + this.timestamp)
+      //console.log("Current TimeStamp: " + this.timestamp)
       let cpuTimeStamp = (Date.now())/1000
-      console.log(cpuTimeStamp)
+      //console.log(cpuTimeStamp)
       this.timestamp = cpuTimeStamp
       let matchesObject = await main.loadPvCmatches(teamId)
       this.matches = matchesObject
-      console.log(this.matches)
+      //console.log(this.matches)
 
       this.matchUpNo1 = this.matches.muNo1
       this.matchUpNo2 = this.matches.muNo2
       this.matchUpNo3 = this.matches.muNo3
 
       const progressSeconds1 = this.matches.actv1 - this.timestamp 
-      console.log("Pregress Seconds 1: " + progressSeconds1)
+      //console.log("Pregress Seconds 1: " + progressSeconds1)
       const progressPer1 = 100-((progressSeconds1/this.matches.to1)*100)
-      console.log("Progress % 1 :" + progressPer1)
+      //console.log("Progress % 1 :" + progressPer1)
       this.progressPercent1 = progressPer1
       this.activeTo1 = this.matches.actv1
 
       const progressSeconds2 = this.matches.actv2 - this.timestamp 
-      console.log("Pregress Seconds 2: " + progressSeconds2)
+      //console.log("Pregress Seconds 2: " + progressSeconds2)
       const progressPer2 = 100-((progressSeconds2/this.matches.to2)*100)
-      console.log("Progress % 2 :" + progressPer2)
+      //console.log("Progress % 2 :" + progressPer2)
       this.progressPercent2 = progressPer2
       this.activeTo2 = this.matches.actv2
 
       const progressSeconds3 = this.matches.actv3 - this.timestamp 
-      console.log("Pregress Seconds 3: " + progressSeconds3)
+      //console.log("Pregress Seconds 3: " + progressSeconds3)
       const progressPer3 = 100-((progressSeconds3/this.matches.to3)*100)
-      console.log("Progress % 3 :" + progressPer3)
+      //console.log("Progress % 3 :" + progressPer3)
       this.progressPercent3 = progressPer3
       this.activeTo3 = this.matches.actv3
-      console.log("Active TimeOut 3: " + this.activeTo3)
+      //console.log("Active TimeOut 3: " + this.activeTo3)
 
       if(this.activeTo1 >= this.activeTo2 && this.activeTo1 >= this.activeTo3){
         this.maxActiveTo = this.activeTo1
-        console.log("Max Active TO is to1: " + this.activeTo1)
+        //console.log("Max Active TO is to1: " + this.activeTo1)
       }else if(this.activeTo2 >= this.activeTo1 && this.activeTo2 >= this.activeTo3){
         this.maxActiveTo = this.activeTo2
-        console.log("Max Active TO is to2: " + this.activeTo2)
+        //console.log("Max Active TO is to2: " + this.activeTo2)
       }else if(this.activeTo3 >= this.activeTo1 && this.activeTo3 >= this.activeTo2){
         this.maxActiveTo = this.activeTo3
-        console.log("Max Active TO is to3: " + this.activeTo3)
+        //console.log("Max Active TO is to3: " + this.activeTo3)
       }
     
       let color1 = await this.calculateProgressColor(progressPer1/100)
       let color2 = await this.calculateProgressColor(progressPer2/100)
       let color3 = await this.calculateProgressColor(progressPer3/100)
-      console.log(color1)
-      console.log(color2)
-      console.log(color3)
+      //console.log(color1)
+      //console.log(color2)
+      //console.log(color3)
       this.progressColor1 = color1
       this.progressColor2 = color2
       this.progressColor3 = color3
-      console.log(this.progressColor1)
-      console.log(this.progressColor2)
-      console.log(this.progressColor3)
+      //console.log(this.progressColor1)
+      //console.log(this.progressColor2)
+     // console.log(this.progressColor3)
 
-      console.log("Matchup 1 TS: " + this.matches.to1)
-      console.log("Matchup 2 TS: " + this.matches.to2)
-      console.log("Matchup 3 TS: " + this.matches.to3)
-      console.log("Matchup 1 LW: " + this.matches.won1)
-      console.log("Matchup 2 LW: " + this.matches.won2)
-      console.log("Matchup 3 LW: " + this.matches.won3)
-      console.log("Matchup 1 Actv: " + this.matches.actv1)
-      console.log("Matchup 2 Actv: " + this.matches.actv2)
-      console.log("Matchup 3 Actv: " + this.matches.actv3)
+      //console.log("Matchup 1 TS: " + this.matches.to1)
+      //console.log("Matchup 2 TS: " + this.matches.to2)
+      //console.log("Matchup 3 TS: " + this.matches.to3)
+      //console.log("Matchup 1 LW: " + this.matches.won1)
+      //console.log("Matchup 2 LW: " + this.matches.won2)
+      //console.log("Matchup 3 LW: " + this.matches.won3)
+      //console.log("Matchup 1 Actv: " + this.matches.actv1)
+      //console.log("Matchup 2 Actv: " + this.matches.actv2)
+      //console.log("Matchup 3 Actv: " + this.matches.actv3)
       this.matchesLoading = false
       this.matchesLoaded = true
     },
@@ -846,24 +838,24 @@ export default {
           })
       },
 
-      async hitTheIcePvC(difficulty, teamId, playerIdArray){
+      // async hitTheIcePvC(difficulty, teamId, playerIdArray){
         
-        this.screenLockedPlay = true
-        console.log(difficulty)
-        console.log(teamId)
-        let matchObject = await main.hitTheIcePvC(difficulty, teamId, playerIdArray).then(res => {
-            this.screenLockedPlay = false
-            console.log(matchObject)
-            this.loadPvCmatches(teamId)
-            this.updateBalanceViewer()
-            this.updateXpBalanceViewer()
-        })
-        .catch(err => {
-          this.screenLockedPlay = false
-          this.loadPvCmatches()
-          console.log(err)
-        })
-      },
+      //   this.screenLockedPlay = true
+      //   console.log(difficulty)
+      //   console.log(teamId)
+      //   let matchObject = await main.hitTheIcePvC(difficulty, teamId, playerIdArray).then(res => {
+      //       this.screenLockedPlay = false
+      //       console.log(matchObject)
+      //       this.loadPvCmatches(teamId)
+      //       this.updateBalanceViewer()
+      //       this.updateXpBalanceViewer()
+      //   })
+      //   .catch(err => {
+      //     this.screenLockedPlay = false
+      //     this.loadPvCmatches()
+      //     console.log(err)
+      //   })
+      // },
 
       //  async hitTheIcePvCTester(difficulty, teamId){
       //   console.log(difficulty)

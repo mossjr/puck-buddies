@@ -14,6 +14,7 @@ const PBMatchups = artifacts.require("PBMatchups")
 const PBMatchupsMarket = artifacts.require("PBMatchupsMarket")
 const PBPvCMatchups = artifacts.require("PBPvCMatchups")
 const BuddiesICO = artifacts.require("BuddiesICO")
+const Validator = artifacts.require("Validator")
 
 // //BSC Testnet
 const firstAddress = "0x27Dc255C37a28b4eCDea766122E5bb557Fc043ec"
@@ -46,6 +47,9 @@ let PBPvCMatchupsInstance
 let PBPvCMatchupsAddress
 let buddiesICOInstance
 let buddiesICOAddress
+let validatorInstance
+let validatorAddress
+
 
 //PB Players Deploy Settings
 const mintCost1 = "5000000000000000000"
@@ -80,14 +84,14 @@ const quantityToMint = 20
 
 //PB PvC Deploy Settings
 let PvCTimeout = [60,130,230]
-let PvCReward = ["25000000000000000","50000000000000000","100000000000000000"]
+let PvCReward = ["250000000000000000","500000000000000000","1000000000000000000"]
 let PvCxpReward = 25
 let PvCdifficultyModifier = 100
 let PvCinitialValueOnContract = web3.utils.toWei('1000')
 
 //ICO Settings
 let initialICOBuddies = '100000000000000000000000'
-let initalICOBudsPerBNB = '50'
+let initalICOBudsPerBNB = '140'
 
 
 module.exports = function (deployer) {
@@ -204,16 +208,16 @@ module.exports = function (deployer) {
                                                     return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
                                                         await pbPlayersInstance.mintSuperstar(firstAddress,0,0, generateRandomDNA(),1)
-                                                        for(let i = 0; i < 5; i++){
-                                                            await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
-                                                                let playerID = res.logs[2].args[0].toString()
-                                                                console.log("PlayerID " + playerID + " created")
-                                                                // await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
-                                                                //     await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
-                                                                // })
-                                                            })
-                                                            
-                                                        }
+                                                            for(let i = 0; i < 5; i++){
+                                                                await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
+                                                                    let playerID = res.logs[2].args[0].toString()
+                                                                    console.log("PlayerID " + playerID + " created")
+                                                                    // await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
+                                                                    //     await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
+                                                                    // })
+                                                                })
+                                                                
+                                                            }
                                                        
                                                    
 
@@ -222,7 +226,16 @@ module.exports = function (deployer) {
                                                             PBPvCMatchupsAddress = res
                                                             await PBBuddiesInstance.transfer(PBPvCMatchupsAddress, PvCinitialValueOnContract.toString()) 
                                                             await PBXPInstance.updatePBPvCAddress(PBPvCMatchupsAddress)
+                                                        })
 
+                                                        return deployer.deploy(Validator, PBPvCMatchupsAddress, 99889988, 88998899).then(async res => {
+                                                            validatorInstance = await Validator.deployed()
+                                                            await validatorInstance.getValidatorAddres().then(async res => {
+                                                                validatorAddress = res
+                                                                await PBPvCMatchupsInstance.updateValidator(validatorAddress)
+                                                            
+                                                            
+                                                      
                                                                 // //Mint and send to marketplace
                                                                 // await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
                                                                 // await PBBuddiesInstance.approve(pbProShopHolderAddress, '48000000000000000000')
@@ -349,7 +362,8 @@ module.exports = function (deployer) {
                                                                 if (err) throw err;
                                                                 console.log('Data written to file');
                                                             })
-                                                            }) 
+                                                            })
+                                                        }) 
 
 
                                                         })    

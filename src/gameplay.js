@@ -3,20 +3,20 @@ import {
         PBTeamsAddress, 
         PBPvCMatchupsAddress,
         PBPvCHelperAddress, 
+        PBMatchupValidationAddress
         } from '../src/config.js'
 import PBPVCHELPER from '../public/assets/contracts/PBPvCHelper.json'
 import PBTEAMS from '../public/assets/contracts/PBTeams.json'
 import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
+import PBPVCMATCHUPVALIDATION from '../public/assets/contracts/PBMatchupValidation.json'
 
     async function performPvC(_playerIDs, _teamID, _difficulty) {
-
-        //const web3 = Moralis.web3ByChain("0x61"); //bsc testnet
-        //const web3 = Moralis.web3ByChain("0x38"); //bsc mainnet
         const web3 = await Moralis.enableWeb3()
     
         const pvcMatchupsHelperInstance = new web3.eth.Contract(PBPVCHELPER.abi, PBPvCHelperAddress);
         const pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
         const teamsInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
+        const pbPvCMatchupValidationInstance = new web3.eth.Contract(PBPVCMATCHUPVALIDATION.abi, PBMatchupValidationAddress)
         
         const caller = ethereum.selectedAddress
         const difficulty = _difficulty
@@ -45,9 +45,18 @@ import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
           }else if(difficulty == 3){
             thisMatchupNo = mu3
           }
-  
-          let w = 99889988 //replace with codes from Moralis
-          let l = 88998899 //replace with codes from Moralis
+
+          let playersOfAge = await pbPvCMatchupValidationInstance.methods.varifyPlayerAgesOnTeam(_teamID, _playerIDs).call({from: caller})
+          let w
+          let l
+          if (playersOfAge == true){    
+            const moralisRes = await Moralis.Cloud.run("getWL")
+            w = moralisRes.w 
+            l = moralisRes.l 
+         }else if(playersOfAge == false){
+             w = ''
+             l = ''
+         }
   
           let t2OP
           let t2DP
@@ -107,9 +116,7 @@ import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
   
           let generatingGameLog = true
     
-        //Validation
-        //let ageCheck = await pcvMatchupsValidationInstance.methods.varifyPlayerAgesOnTeam(teamID, playerIDs)
-        //console.log(ageCheck)
+
           
           
           let gameObj = {}
@@ -330,11 +337,14 @@ import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
   let teamIDint = parseInt(teamID)
   let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: thisMatchupNo}, {t: 'uint', v: difficulty}, {t: 'uint', v: teamIDint}, {t: 'uint', v: t1Score}, {t: 'uint', v: t2Score})
   const sender = ethereum.selectedAddress
-  console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
-  let bcResult = await pvcMatchhupsInstance.methods.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score).send({from: sender, gas: 102400})
-  console.log(bcResult.status) 
+  //console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
+  let bcResult = await pvcMatchhupsInstance.methods.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score).send({from: sender, gas:204800})
+  //console.log(bcResult)
+  //console.log(bcResult.status) 
+  let result
+  if(bcResult.status == true){
 
-          let result = {difficultyMod:difficultyMod, 
+          result = {difficultyMod:difficultyMod, 
                         opStat1:opStat1, 
                         dpStat1:dpStat1, 
                         opStat2:opStat2, 
@@ -382,7 +392,9 @@ import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
                         thisMatchupNo:thisMatchupNo,
                         bcResult:bcResult    
                        }
-    
+                    }else if(bcResult.status == false){
+                        result = {bcResult: ''}
+                    }
                
                    
 

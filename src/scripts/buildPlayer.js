@@ -44,8 +44,8 @@ function renderPlayer (id, data, firstName, lastName, pos){
     // let canvas = document.getElementById('canvas-'+ pos + "-" + id )
     // canvas.classList.add('hide')
     if(data.id == 999999999){
-        console.log("ID: " + data.id)
-        console.log(data)
+        //console.log("ID: " + data.id)
+        //console.log(data)
     }
     
     let pHelper
@@ -612,14 +612,14 @@ function playerCountry(){
         }
 
         let threshold = data.dna.slice(8,12)
-        console.log("Country Threshold Player " + id + ": " + threshold)
+        //console.log("Country Threshold Player " + id + ": " + threshold)
         threshold = threshold - 0
     
         total = 0;
         for (let i = 0; i < countries.length - 1; ++i) {
             total += countries[i][1]
             if (total >= threshold) {
-                console.log("Selected Country Player " + id + ": " + countries[i][0])
+                //console.log("Selected Country Player " + id + ": " + countries[i][0])
                 return countries[i][0]
                 
             }

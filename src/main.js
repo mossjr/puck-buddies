@@ -1159,30 +1159,30 @@ async function loadPvCmatches(teamId){
     let difficultyMod = await pvcMatchhupsInstance.methods.getDifficultyMod().call({from: caller})
 
     let opStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 1).call({from: caller})
-    console.log(opStat1)
+    //console.log(opStat1)
     let dpStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 2).call({from: caller})
-    console.log(dpStat1)
+    //console.log(dpStat1)
     let opStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 1).call({from: caller})
-    console.log(opStat2)
+    //console.log(opStat2)
     let dpStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 2).call({from: caller})
-    console.log(dpStat2)
+    //console.log(dpStat2)
     let opStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 1).call({from: caller})
-    console.log(opStat3)
+    //console.log(opStat3)
     let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
-    console.log(dpStat3)
+    //console.log(dpStat3)
     
     let team1DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(1, 1, teamId).call({from: caller})
-    console.log(team1DNA)
+    //console.log(team1DNA)
     let team2DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(2, 2, teamId).call({from: caller})
-    console.log(team2DNA)
+    //console.log(team2DNA)
     let team3DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(3, 3, teamId).call({from: caller})
-    console.log(team3DNA)
+    //console.log(team3DNA)
 
     let timeouts = await pvcMatchhupsInstance.methods.getTimeOuts(teamId).call({from: caller})
-        console.log(timeouts)
+        //console.log(timeouts)
         
     let matchUpNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamId).call({from: caller})
-        console.log(matchUpNos)
+        //console.log(matchUpNos)
 
     let to1 = timeouts[0]
     let to2 = timeouts[1]
@@ -1236,7 +1236,7 @@ async function loadPvCmatches(teamId){
         'muNo2': muNo2,
         'muNo3': muNo3,
     })
-    console.log(availablePvCobject)
+    //console.log(availablePvCobject)
     return availablePvCobject
 }
 

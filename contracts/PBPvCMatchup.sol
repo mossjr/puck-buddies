@@ -5,12 +5,11 @@ import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "../contracts/PBTeams.sol";
 import "../contracts/PBPvCHelper.sol";
+import "../contracts/validator.sol";
 
 contract PBPvCMatchups is ReentrancyGuard {
 
 address admin;
-uint private winT = 99889988;
-uint private lossT = 88998899;
 uint dnaModulus = 10 ** 16;
 uint bellCurveIterations = 4;
 uint winToken;
@@ -23,6 +22,7 @@ IERC20 public buddies;
 PBTeams public pbTeams;
 PBXP public PBXPToken;
 PBPvCHelper public pbPvCHelper;
+Validator private validator;
 
     struct TeamPvCMatchups {
         uint teamId;
@@ -57,9 +57,8 @@ modifier onlyAdmin() {
     _;
 }
 
-function updateValidation(uint val1, uint val2) external onlyAdmin {
-    winT = val1;
-    lossT = val2;
+function updateValidator(address _validator) external onlyAdmin {
+    validator = Validator(_validator);
 }
 
 function getPBPvCMatchupsAddress() public view returns (address){
@@ -100,7 +99,7 @@ function widthdrawBuddiesFromContract(address _widthdrawAddress, uint _amount) e
 
 
 
-function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S, uint t2S) external returns (uint resultIndex) {
+function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S, uint t2S) external {
     TeamPvCMatchups storage teamPvCmatchup = _teamPvCMatchups[_teamId];
     uint matchNonce;
     if(_difficulty == 1){
@@ -112,7 +111,7 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
     }
 
     if(t1S > t2S){
-        require(_token == keccak256(abi.encodePacked(msg.sender, winT, matchNonce, _difficulty, _teamId, t1S, t2S)), "T1");
+        require(_token == validator.validateW(msg.sender, matchNonce, _difficulty, _teamId, t1S, t2S), "T1");
 
         if(_difficulty == 1){
             require(block.timestamp >= teamPvCmatchup.activeTimestamp1, "N1");
@@ -121,7 +120,7 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             buddies.transfer(msg.sender, reward[0]);
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce1++;
-            return 1;
+           
         }else if(_difficulty == 2){
             require(block.timestamp >=  teamPvCmatchup.activeTimestamp2, "N2");
             teamPvCmatchup.activeTimestamp2 = block.timestamp + timeoutSeconds[1];
@@ -129,7 +128,7 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             buddies.transfer(msg.sender, reward[1]);
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce2++;
-            return 2;
+            
         }else if(_difficulty == 3){
             require(block.timestamp >= teamPvCmatchup.activeTimestamp3, "N3");
             teamPvCmatchup.activeTimestamp3 = block.timestamp + timeoutSeconds[2];
@@ -137,13 +136,11 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             buddies.transfer(msg.sender, reward[2]);
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce3++;
-            return 3;
-        }else{
-            return 11;
+            
         }
 
     }else if(t2S > t1S){
-        require(_token == keccak256(abi.encodePacked(msg.sender, lossT, matchNonce, _difficulty, _teamId, t1S, t2S)), "T2");
+        require(_token == validator.validateL(msg.sender, matchNonce, _difficulty, _teamId, t1S, t2S), "T2");
 
         if(_difficulty == 1){
             require(block.timestamp >= teamPvCmatchup.activeTimestamp1, "N4");
@@ -151,27 +148,22 @@ function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S
             teamPvCmatchup.lastMatchWon1 = false;
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce1++;
-            return 4;
+            
         }else if(_difficulty == 2){
             require(block.timestamp >=  teamPvCmatchup.activeTimestamp2, "N5");
             teamPvCmatchup.activeTimestamp2 = block.timestamp + timeoutSeconds[1];
             teamPvCmatchup.lastMatchWon2 = false;
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce2++;
-            return 5;
+            
         }else if(_difficulty == 3){
             require(block.timestamp >= teamPvCmatchup.activeTimestamp3, "N6");
             teamPvCmatchup.activeTimestamp3 = block.timestamp + timeoutSeconds[2];
             teamPvCmatchup.lastMatchWon3 = false;
             PBXPToken.earnPBXP(msg.sender, xpReward);
             teamPvCmatchup.nonce3++;
-            return 6;
-        }else{
-            return 12;
+            
         }
-    }
-    else{
-        return 13;
     }
 }
 
