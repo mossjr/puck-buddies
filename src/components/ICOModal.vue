@@ -71,8 +71,8 @@ export default {
     async getBudsICOInfo(){
       await main.getBudsICOInfo().then(res => {
         this.budsPerBNB = res.budsPerBNB
-        this.totalBuds = res.budsBalance
-        this.totalBudsSold = res.budsSold
+        this.totalBuds = Math.floor(res.budsBalance)
+        this.totalBudsSold = Math.floor(res.budsSold)
         this.updateProgressBars()
       }).catch(err => {
         console.log(err)
