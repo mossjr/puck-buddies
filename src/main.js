@@ -658,6 +658,9 @@ async function loadPBPlayers(source){
             //console.log (details.teamId) 
             //console.log (teamName)
         }
+
+    let playercountry = await playerCountry(details.dna)
+    let playerAge = await getPlayerAge(details.ageoutTimestamp, details.draftTimestamp)
         
         return {
           id: playerId,
@@ -677,10 +680,67 @@ async function loadPBPlayers(source){
           equippedStick: details.equippedStick,
           equippedToken: details.equippedToken,
           ageoutTimestamp: details.ageoutTimestamp,
-          draftTimestamp: details.draftTimestamp          
+          draftTimestamp: details.draftTimestamp,
+          playercountry: playercountry ,
+          playerAge:playerAge         
         }
       }).sort((a, b) => b.count - a.count)
       return playerdata
+}
+
+function playerCountry(_dna){
+    const countries = [
+        ['Canada', 4274],
+        ['United States', 2793],
+        ['Sweden', 967],
+        ['Finland', 582],
+        ['Russia', 523],
+        ['Czech Republic', 335],
+        ['Switzerland', 118],
+        ['Slovakia', 98],
+        ['Germany', 88],
+        ['Denmark', 78],
+        ['Latvia', 39],
+        ['France', 29],
+        ['Belarus', 19],
+        ['Slovenia', 14],
+        ['Norway', 13],
+        ['Austria', 11],
+        ['Netherlands', 10],
+        ['Australia', 9]
+    ]
+
+    let total = 0
+    for (let i = 0; i < countries.length; ++i) {
+        total += countries[i][1];
+        
+    }
+
+    let threshold = _dna.slice(8,12)
+    //console.log("Country Threshold Player " + id + ": " + threshold)
+    threshold = threshold - 0
+
+    total = 0;
+    for (let i = 0; i < countries.length - 1; ++i) {
+        total += countries[i][1]
+        if (total >= threshold) {
+            //console.log("Selected Country Player " + id + ": " + countries[i][0])
+            return countries[i][0]
+            
+        }
+    }
+    return countries[countries.length - 1][0]
+}
+
+function getPlayerAge(_ageoutTimestamp, _draftTimestamp){
+    let yearsActve = 22
+    let startAge = 18
+    let careerLength = _ageoutTimestamp - _draftTimestamp
+    let careerProgress = Math.floor(Date.now() / 10 ** 3) - _draftTimestamp
+    let oneYearSpan = careerLength/yearsActve
+    let yearsIntoCareer = Math.floor(careerProgress/oneYearSpan)
+    let playerAge = startAge + yearsIntoCareer
+    return playerAge
 }
 
 
@@ -723,7 +783,7 @@ async function getUpgradeCost() {
 async function increaseStats(tokenId, statType, qty, xp) {
     console.log("Token Id: " + tokenId + " statType: " +  statType + " qty: " + qty + " xp: " + xp)
     const sender = ethereum.selectedAddress
-    window.web3 = await Moralis.enableWeb3()
+    
     const tokenContract = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     await tokenContract.methods.increaseStats(tokenId, statType, qty, xp).send({from: sender, gas: 512000}).on("receipt", ( (receipt) => {
         console.log("Successfully increased Stat")

@@ -245,7 +245,7 @@ export default {
             }
           
             buildCanvas.preloadPlayerInfo(res[i].id, res[i], "player-no")
-            
+           
             playerArray.push({
               'id': res[i].id, 
               'offence': res[i].offence,  
@@ -262,7 +262,9 @@ export default {
               //'equippedStick' : res[i].equippedStick,
               'equippedToken' : res[i].equippedToken,
               'ageoutTimestamp': res[i].ageoutTimestamp,
-              'draftTimestamp': res[i].draftTimestamp
+              'draftTimestamp': res[i].draftTimestamp,
+              'playercountry':res[i].playercountry,
+              'playerAge':res[i].playerAge,
               }) 
         }
         console.log(playerArray)

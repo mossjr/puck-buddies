@@ -7,24 +7,35 @@
                 <canvas class="player-canvas" :id="`canvas-modal-no-${selectedId}`"></canvas>
             </div>
             <div class="flip-card-back">
-                <div>Each Stat Point costs {{upgradeCost}} PBXP</div>
+                <div class="name-block">{{playerName}}</div>
+                <div class="stats-block">
+                    <div class="content-block"><b>Country:</b> {{playerData.playercountry}}</div>
+                    <div class="content-block"><b>Age:</b> {{playerData.playerAge}}</div>
+                    <div v-if="playerData.playertype != 3" class="content-block"><b>Offensive Power:</b> {{playerData.offence}}</div>
+                    <div class="content-block"><b>Defensive Power: </b>{{playerData.defence}}</div>
+                </div>
+                <!-- <div>Each Stat Point costs {{upgradeCost}} PBXP</div>
                 <div>{{myXp}} PBXP</div>
-                <div>{{myXPplus}}</div>
+                <div>{{myXPplus}}</div> -->
                 
-                <div class="xp-buttons-container">
+                <div v-if="myXp >= upgradeCost" class="xp-buttons-container">
                     
                     <div>
-                        <button class="power-select-button" @click="selectPower(1)" :class="{powerselected: opPowerSelected}">Offensive Power</button>
-                        <button class="power-select-button" @click="selectPower(2)" :class="{powerselected: dpPowerSelected}">Defensive Power</button>
+                        <button class="power-select-button" v-if="playerData.playertype != 3" @click="selectPower(1)" :class="{powerselected: opPowerSelected}">OP</button>
+                        <button class="power-select-button" @click="selectPower(2)" :class="{powerselected: dpPowerSelected}">DP</button>
                     </div>
-                    <button class="xp-to-send-button" @click="increaseStats('PB-BRB', selectedId, selectPowerNumber, opToIncrease, totalXpOp)">Increase {{selectedPower}} <br>by {{opToIncrease}} point<span v-if="opToIncrease > 1">s</span> <br> {{totalXpOp}} PBXP</button>
+                    <button class="xp-to-send-button" @click="increaseStats('PB-BRB', selectedId, selectPowerNumber, opToIncrease, totalXpOp)">Increase <b>{{selectedPower}}</b> <br>by <b>{{opToIncrease}} point</b><span v-if="opToIncrease > 1">s</span> <br> <b>{{totalXpOp}}</b> PBXP</button>
                     <div>
-                        <button class="decrease-button" @click="decreaseOpToSend()">&#8592;</button>
-                        <button class="increase-button" @click="increaseOpToSend(playerData.offence)" v-if="myXp >= (myXPplus) ">&#8594;</button>
+                        <button class="decrease-button"  v-if="totalXpOp != upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
+                        <button class="decrease-grey-button" v-if="totalXpOp == upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
+                        <button class="increase-button" @click="increaseOpToSend(playerData.offence)" v-if="myXp >= (myXPplus)">&#8594; {{myXPplus}}</button>
                         <button class="increase-grey-button" v-if="myXp < (myXPplus) ">&#8594;</button>
                     </div>
+
+                    
                     
                 </div>
+                <div class="no-xp-warn" v-if="myXp < upgradeCost" >Play more matches to earn PBXP to upgrade stats</div>
             </div>
         </div>
         </div>
@@ -88,13 +99,14 @@ export default {
             dpToIncrease:1,
             upgradeCost:'',
             myXp:'',
-            opPowerSelected:true,
-            dpPowerSelected:false,
-            selectedPower:"Offensive Power",
+            opPowerSelected:false,
+            dpPowerSelected:true,
+            selectedPower:"Defensive Power",
             selectPowerNumber:1,
             splashImage: '',
             screenLocked: false,
             receipientAddress: '',
+            playerName:'',
         }
     },
     props:  ['selectedId', 
@@ -123,9 +135,28 @@ export default {
         closeModal() {
             this.$emit('closePlayerModal')
         },
+
         loadPlayer() {
+            console.log(this.playerData)
+            let firstName = ""
+            let lastName = ""
+            let firstNameDna = ("" + Math.floor((this.playerData.dna.slice(0,1)/2)) + this.playerData.dna.slice(1,4))
+            let lastNameDna = ("" + Math.floor((this.playerData.dna.slice(4,5)/2)) + this.playerData.dna.slice(5,8))
+            firstNameDna = firstNameDna - 0
+            lastNameDna = lastNameDna - 0
+            const playerNames = async () => {
+                const response = await fetch('/assets/data/names.json')
+                const json  = await response.json();
+                return json
+                }
+            playerNames().then(namedata => {
+                firstName = namedata[firstNameDna].first_name
+                lastName = namedata[lastNameDna].last_name
+                this.playerName = firstName + " " + lastName
+            })
             playerCanvasBuild.preloadPlayerInfo(this.selectedId,this.playerData, "modal-no") 
         },
+
         gotoFreeAgency() {
             this.freeAgencyButton = !this.freeAgencyButton
         },
@@ -496,7 +527,7 @@ transition: 0.3s ease;
 .xp-to-send-button{
     margin-top: 10px;
     margin-bottom: 20px;
-    font-size: 23px;
+    font-size: 12px;
     color: #fff;
     background: rgb(11, 145, 100);
     text-decoration: none;
@@ -553,9 +584,26 @@ transition: 0.3s ease;
     height: 50px;
 }
 
+.decrease-grey-button{
+     
+   margin: 0 2.5% 0 0;
+    font-size: 23px;
+    color: rgb(0, 0, 0);
+    background: rgb(209, 209, 209);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s ease; 
+    width: 45%;
+    height: 50px;
+}
+
 .power-select-button{
     margin: 5px; 
-    font-size: 23px;
+    font-size: 12px;
+    color:white;
+    font-weight: bold;
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;
@@ -569,7 +617,7 @@ transition: 0.3s ease;
 
 .powerselected{
     margin: 5px;  
-    font-size: 23px;
+    font-size: 12px;
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;
@@ -585,7 +633,30 @@ transition: 0.3s ease;
     font-size: 0.85em;
 }
 
+.name-block{
+    background: wheat;
+    color:black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+}
 
+.stats-block{
+    background-color:brown;
+    padding-left: 20%;
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align: start;
+}
 
+.content-block{
+    margin:0px 20px 5px 20px;
+}
+
+.no-xp-warn{
+    margin-top: 20px;
+    padding:20px 0 20px 0;
+    color:brown;
+    background-color: wheat;
+}
 
 </style>
