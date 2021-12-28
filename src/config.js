@@ -6,14 +6,11 @@ export const pbProShopFactoryAddress = contractAddresses.addresses[2].address
 export const pbProShopHolderAddress = contractAddresses.addresses[3].address
 export const pbProShopMarketplaceAddress = contractAddresses.addresses[4].address
 export const PBXPAddress = contractAddresses.addresses[5].address
-export const PBMatchupValidationAddress = contractAddresses.addresses[6].address
-export const PBTeamsAddress = contractAddresses.addresses[7].address
-export const PBMatchupsAddress = contractAddresses.addresses[8].address
-export const PBMatchupsMarketAddress = contractAddresses.addresses[9].address
-export const PBPvCMatchupsAddress = contractAddresses.addresses[10].address
-export const PBPvCHelperAddress = contractAddresses.addresses[11].address
-export const buddiesaddress = contractAddresses.addresses[12].address
-export const buddiesICOAddress = contractAddresses.addresses[13].address
+export const PBTeamsAddress = contractAddresses.addresses[6].address
+export const PBPvCMatchupsAddress = contractAddresses.addresses[7].address
+export const PBPvCHelperAddress = contractAddresses.addresses[8].address
+export const buddiesaddress = contractAddresses.addresses[9].address
+export const buddiesICOAddress = contractAddresses.addresses[10].address
 
 // export const buddiesaddress = "0xDb183249F3CEf45B1B026856adfB3037dBdf7109" //BSC Testnet Address 2 Oct 2021
 

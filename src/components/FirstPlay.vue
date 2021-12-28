@@ -51,7 +51,7 @@ export default {
             async mintNewTeam(_splashImage){
                 this.splashImage = _splashImage
                 this.screenLocked=true
-                await main.mintNewTeam(this.teamMintCost).then(res => {
+                await main.mintNewTeamMoralis(this.teamMintCost).then(res => {
                     this.screenLocked=false
                     console.log(res)
                     this.$emit('teamFound')
@@ -98,6 +98,7 @@ export default {
         this.loadingData = true
         this.updateBalanceViewer()
         this.getTeamMintCost()
+        
     })
 
   }

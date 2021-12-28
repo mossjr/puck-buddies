@@ -1,4 +1,4 @@
-const feesAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc"
+const feesAddress = "0x8AF61DCa85C2e0bb5bE3b06CF6DEe42Df68F5c98"
 
 const PBBuddies = artifacts.require("PBBuddies")
 const PBPlayers = artifacts.require("PBPlayers")
@@ -7,7 +7,6 @@ const PBProShopFactory = artifacts.require("PBProShopFactory")
 const PBProShopHolder = artifacts.require("PBProShopHolder")
 const PBProShopMarketplace = artifacts.require("PBProShopMarketplace")
 const PBXP = artifacts.require("PBXP")
-const PBMatchupValidation = artifacts.require("PBMatchupValidation")
 const PBPvCHelper = artifacts.require("PBPvCHelper")
 const PBTeams = artifacts.require("PBTeams")
 const PBMatchups = artifacts.require("PBMatchups")
@@ -34,7 +33,6 @@ let pbProShopMarketplaceAddress
 let PBXPInstance
 let PBXPAddress
 let PBMatchupValidationInstance
-let PBMatchupValidationAddress
 let PBPvCHelperInstance
 let PBPvCHelperAddress
 let PBTeamsInstance
@@ -182,28 +180,28 @@ module.exports = function (deployer) {
                                                 await PBXPInstance.updatePBTeamsAddress(PBTeamsAddress)
                                             })
 
-                                            return deployer.deploy(PBMatchupValidation, PBTeamsAddress, pbPlayersAddress).then(async () => {
-                                                PBMatchupValidationInstance = await PBMatchupValidation.deployed()
-                                                await PBMatchupValidationInstance.getPBMatchupsAddress().then(async res => {
-                                                    PBMatchupValidationAddress = res
-                                                    await PBTeamsInstance.updatePBMatchupValidationAddress(PBMatchupValidationAddress)                                                    
-                                                })
+                                            // return deployer.deploy(PBMatchupValidation, PBTeamsAddress, pbPlayersAddress).then(async () => {
+                                            //     PBMatchupValidationInstance = await PBMatchupValidation.deployed()
+                                            //     await PBMatchupValidationInstance.getPBMatchupsAddress().then(async res => {
+                                            //         PBMatchupValidationAddress = res
+                                            //         await PBTeamsInstance.updatePBMatchupValidationAddress(PBMatchupValidationAddress)                                                    
+                                            //     })
 
-                                            return deployer.deploy(PBMatchups,buddiesCoinAddress, feesAddress, PBTeamsAddress, PBMatchupValidationAddress).then(async () => {
-                                                PBMatchupsInstance = await PBMatchups.deployed()
-                                                await PBMatchupsInstance.getPbMatchupsAddress().then(async res => {
-                                                    PBMatchupsAddress = res
-                                                    await PBXPInstance.updatePBMatchupsAddress(PBMatchupsAddress)
-                                                })
+                                            // return deployer.deploy(PBMatchups,buddiesCoinAddress, feesAddress, PBTeamsAddress).then(async () => {
+                                            //     PBMatchupsInstance = await PBMatchups.deployed()
+                                            //     await PBMatchupsInstance.getPbMatchupsAddress().then(async res => {
+                                            //         PBMatchupsAddress = res
+                                            //         await PBXPInstance.updatePBMatchupsAddress(PBMatchupsAddress)
+                                            //     })
 
-                                                return deployer.deploy(PBMatchupsMarket).then(async () => {
-                                                    PBMatchupsMarketInstance = await PBMatchupsMarket.deployed()
-                                                    await PBMatchupsMarketInstance.getPBMatchupsMarketAddress().then(async res => {
-                                                        PBMatchupsMarketAddress = res
-                                                        await PBMatchupsInstance.updateMatchupsMarketAddress(PBMatchupsMarketAddress)
-                                                        //add additional contract functions here
+                                            //     return deployer.deploy(PBMatchupsMarket).then(async () => {
+                                            //         PBMatchupsMarketInstance = await PBMatchupsMarket.deployed()
+                                            //         await PBMatchupsMarketInstance.getPBMatchupsMarketAddress().then(async res => {
+                                            //             PBMatchupsMarketAddress = res
+                                            //             await PBMatchupsInstance.updateMatchupsMarketAddress(PBMatchupsMarketAddress)
+                                            //             //add additional contract functions here
 
-                                                    })
+                                            //         })
 
                                                     return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
@@ -331,10 +329,7 @@ module.exports = function (deployer) {
                                                             console.log("export const pbProShopHolderAddress = \"" + pbProShopHolderAddress +"\"")
                                                             console.log("export const pbProShopMarketplaceAddress = \"" + pbProShopMarketplaceAddress +"\"") 
                                                             console.log("export const PBXPAddress = \"" + PBXPAddress +"\"") 
-                                                            console.log("export const PBMatchupValidationAddress = \"" + PBMatchupValidationAddress +"\"")
                                                             console.log("export const PBTeamsAddress = \"" + PBTeamsAddress +"\"")
-                                                            console.log("export const PBMatchupsAddress = \"" + PBMatchupsAddress +"\"")
-                                                            console.log("export const PBMatchupsMarketAddress = \"" + PBMatchupsMarketAddress +"\"")
                                                             console.log("export const PBPvCMatchupsAddress = \"" + PBPvCMatchupsAddress +"\"")
                                                             console.log("export const buddiesCoinAddress = \"" + buddiesCoinAddress +"\"")
                                                             console.log("export const buddiesICOAddress = \"" + buddiesICOAddress +"\"")
@@ -346,10 +341,7 @@ module.exports = function (deployer) {
                                                             obj.addresses.push({addressname: 'pbProShopHolderAddress', address: pbProShopHolderAddress})
                                                             obj.addresses.push({addressname: 'pbProShopMarketplaceAddress', address: pbProShopMarketplaceAddress})
                                                             obj.addresses.push({addressname: 'PBXPAddress', address: PBXPAddress})
-                                                            obj.addresses.push({addressname: 'PBMatchupValidationAddress', address: PBMatchupValidationAddress})
                                                             obj.addresses.push({addressname: 'PBTeamsAddress', address: PBTeamsAddress})
-                                                            obj.addresses.push({addressname: 'PBMatchupsAddress', address: PBMatchupsAddress})
-                                                            obj.addresses.push({addressname: 'PBMatchupsMarketAddress', address: PBMatchupsMarketAddress})
                                                             obj.addresses.push({addressname: 'PBPvCMatchupsAddress', address: PBPvCMatchupsAddress})
                                                             obj.addresses.push({addressname: 'PBPvCHelperAddress', address: PBPvCHelperAddress})
                                                             obj.addresses.push({addressname: 'buddiesCoinAddress', address: buddiesCoinAddress})
@@ -370,9 +362,9 @@ module.exports = function (deployer) {
                                                     })
                                                 })
                                             })
-                                        })
-                                    })
-                                })
+                                        // })
+                                //     })
+                                // })
                             })
                         })
                     })

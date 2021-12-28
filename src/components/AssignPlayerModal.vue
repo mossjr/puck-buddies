@@ -10,21 +10,21 @@
 <div class="player-container" v-if="!loadingPlayers">
   <div v-for="(player, index) in players" :key="index" :class="`playertype-${player.playertype}`">
     
-        <div v-if="player.isOffence && playerType == 1 && player.teamId == 0  && player.id !=0 && !player.retired">
+        <div v-if="player.isOffence && playerType == 1 && player.isOnTeam == false  && player.id !=0 && !player.retired">
           <div class="play-select-card"  v-if="index + 1 <= playersToShow">    
             <canvas class="player-canvas" :id="`canvas-assign-player-no-${player.id}`"></canvas>
             <button @click="assignToPosition('PB-BRB',player.id)" class="green-button-sm">Assign to {{ modalPos }}</button>
         </div>
       </div>
 
-              <div v-if="player.isDefence && playerType == 2 && player.teamId == 0 && player.id !=0 && !player.retired">
+              <div v-if="player.isDefence && playerType == 2 && player.isOnTeam == false && player.id !=0 && !player.retired">
             <div class="play-select-card"  v-if="index + 1 <= playersToShow">    
             <canvas class="player-canvas" :id="`canvas-assign-player-no-${player.id}`"></canvas>
             <button @click="assignToPosition('PB-BRB',player.id)" class="green-button-sm">Assign to {{ modalPos }}</button>
         </div>
       </div>
 
-              <div v-if="player.isGoalie && playerType == 3 && player.teamId == 0 && player.id !=0 && !player.retired">
+              <div v-if="player.isGoalie && playerType == 3 && player.isOnTeam == false && player.id !=0 && !player.retired">
             <div class="play-select-card"  v-if="index + 1 <= playersToShow">    
             <canvas class="player-canvas" :id="`canvas-assign-player-no-${player.id}`"></canvas>
             <button @click="assignToPosition('PB-BRB',player.id)" class="green-button-sm">Assign to {{ modalPos }}</button>
@@ -70,10 +70,21 @@ export default {
     props:  ['teamId', 'position', 'modalPos', 'playerType', 'teamDna'],
     methods: {
 
+      async doubleCheckIfPlayer(){
+        await main.doubleCheckIfPlayer(this.position).then(res => {
+          console.log(res)
+          if(res == true){
+            this.screenLocked = false
+            this.closeModal()
+          }
+        })
+      },
+
     async sendPlayerData() {
     //   this.checkPBPAdmin()
-      Promise.all(await main.loadPBPlayers())
+      Promise.all(await main.loadPBPlayers("Assign Modal"))
       .then(res => {
+        console.log(res)
         console.log("Found " + res.length + " Players")
         let playerArray = []
         for (let i = 0; i < res.length; i++) {
@@ -110,7 +121,7 @@ export default {
               'isDefence' : isDef,
               'isGoalie' : isGoal,
               'equippedToken' : res[i].equippedToken,
-              'teamId' : res[i].teamId,
+              'isOnTeam' : res[i].isOnTeam,
               'teamLetter': res[i].teamLetter,
               'ageoutTimestamp': res[i].ageoutTimestamp,
               'retired': retired
@@ -137,11 +148,11 @@ export default {
     async assignToPosition(_splashImage, playerId){
         this.splashImage = _splashImage
         this.screenLocked = true
-        console.log("Sending: " +this.teamId )
-        console.log("Sending: " +this.position )
+
+        console.log("Sending Position: " +this.position )
         console.log("Sending DNA: " +this.teamDna )
-        console.log("Sending: " +playerId )
-        await main.assignToPosition(this.teamId, this.position, playerId, this.teamDna).then(res => {
+        console.log("Sending Player ID: " +playerId )
+        await main.assignToPosition(this.position, playerId).then(res => {
             this.screenLocked = false
             console.log("Result from assignment to position")
             console.log(res)
@@ -188,6 +199,7 @@ export default {
     },
 
     mounted: function(){
+        this.doubleCheckIfPlayer()
         this.sendPlayerData()
     }
 }

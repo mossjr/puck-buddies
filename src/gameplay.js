@@ -1,22 +1,29 @@
 
 import {
-        PBTeamsAddress, 
+        pbPlayersAddress, 
         PBPvCMatchupsAddress,
         PBPvCHelperAddress, 
-        PBMatchupValidationAddress
+        
         } from '../src/config.js'
 import PBPVCHELPER from '../public/assets/contracts/PBPvCHelper.json'
-import PBTEAMS from '../public/assets/contracts/PBTeams.json'
+import PBPLAYER from '../public/assets/contracts/PBPlayers.json'
 import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
-import PBPVCMATCHUPVALIDATION from '../public/assets/contracts/PBMatchupValidation.json'
 
-    async function performPvC(_playerIDs, _teamID, _difficulty) {
+function encode(string) {
+  var number = "0x";
+  var length = string.length;
+  for (var i = 0; i < length; i++)
+      number += string.charCodeAt(i).toString(16);
+  return number;
+}
+
+    async function performPvC(_playerIDs, _teamIDRaw, _difficulty) {
+        const _teamID = encode(_teamIDRaw)
         const web3 = await Moralis.enableWeb3()
     
         const pvcMatchupsHelperInstance = new web3.eth.Contract(PBPVCHELPER.abi, PBPvCHelperAddress);
         const pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
-        const teamsInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
-        const pbPvCMatchupValidationInstance = new web3.eth.Contract(PBPVCMATCHUPVALIDATION.abi, PBMatchupValidationAddress)
+        const pbPlayersInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
         
         const caller = ethereum.selectedAddress
         const difficulty = _difficulty
@@ -29,14 +36,63 @@ import PBPVCMATCHUPVALIDATION from '../public/assets/contracts/PBMatchupValidati
           let opStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 1).call({from: caller})
           let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
           let teamID = _teamID
+          console.log("Team Id: " + teamID)
           let playerIDs = _playerIDs
-          let teamDetails = await teamsInstance.methods.getTokenDetails(teamID).call({from: caller})
+
+          const query = new Moralis.Query("PBTeams")
+          query.equalTo('ownerAddress', ethereum.selectedAddress)
+          const teams = await query.find()
+
+          //let teamDetails = await teamsInstance.methods.getTokenDetails(teamID).call({from: caller})
           let matchupNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamID).call({from: caller})
           let mu1 = matchupNos[0]
           let mu2 = matchupNos[1]
           let mu3 = matchupNos[2]
-          let teamOP = teamDetails.teamTotalOP
-          let teamDP = teamDetails.teamTotalDP
+          console.log(matchupNos)
+
+          
+          let p1 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[0]).call({from: caller})
+          let p2 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[1]).call({from: caller})
+          let p3 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[2]).call({from: caller})
+          let p4 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[3]).call({from: caller})
+          let p5 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[4]).call({from: caller})
+          let p6 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[5]).call({from: caller})
+
+          console.log([p1,p2,p3,p4,p5,p6])
+
+          if(_playerIDs[0] != teams[0].attributes.p1){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          if(_playerIDs[1] != teams[0].attributes.p2){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          if(_playerIDs[2] != teams[0].attributes.p3){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          if(_playerIDs[3] != teams[0].attributes.p4){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          if(_playerIDs[4] != teams[0].attributes.p5){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          if(_playerIDs[5] != teams[0].attributes.p6){
+            console.log("Mismatch Player ID")
+            return
+          }
+
+          let teamOP = parseInt(p1.offence) + parseInt(p2.offence) + parseInt(p3.offence) + parseInt(p4.offence) + parseInt(p5.offence) + parseInt(p6.offence)
+          let teamDP = parseInt(p1.defence) + parseInt(p2.defence) + parseInt(p3.defence) + parseInt(p4.defence) + parseInt(p5.defence) + parseInt(p6.defence)
+          console.log(teamOP + " " + teamDP)
           let thisMatchupNo
           if(difficulty == 1){
             thisMatchupNo = mu1
@@ -46,7 +102,52 @@ import PBPVCMATCHUPVALIDATION from '../public/assets/contracts/PBMatchupValidati
             thisMatchupNo = mu3
           }
 
-          let playersOfAge = await pbPvCMatchupValidationInstance.methods.varifyPlayerAgesOnTeam(_teamID, _playerIDs).call({from: caller})
+          let playersOfAge = true
+
+          if(p1.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P1 Valid")
+          }else if(p1.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P1 Retired")
+            playersOfAge = false
+          }
+
+          if(p2.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P2 Valid")
+          }else if(p2.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P2 Retired")
+            playersOfAge = false
+          }
+
+          if(p3.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P3 Valid")
+          }else if(p3.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P3 Retired")
+            playersOfAge = false
+          }
+
+          if(p4.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P4 Valid")
+          }else if(p4.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P4 Retired")
+            playersOfAge = false
+          }
+
+          if(p5.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P5 Valid")
+          }else if(p5.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P5 Retired")
+            playersOfAge = false
+          }
+
+          if(p6.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
+            console.log("P6 Valid")
+          }else if(p6.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
+            console.log("P6 Retired")
+            playersOfAge = false
+          }
+
+
+
           let w
           let l
           if (playersOfAge == true){    
@@ -335,7 +436,8 @@ import PBPVCMATCHUPVALIDATION from '../public/assets/contracts/PBMatchupValidati
     wl = l
   }
   let teamIDint = parseInt(teamID)
-  let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: thisMatchupNo}, {t: 'uint', v: difficulty}, {t: 'uint', v: teamIDint}, {t: 'uint', v: t1Score}, {t: 'uint', v: t2Score})
+  console.log(teamID)
+  let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: thisMatchupNo}, {t: 'uint', v: difficulty}, {t: 'uint', v: teamID}, {t: 'uint', v: t1Score}, {t: 'uint', v: t2Score})
   const sender = ethereum.selectedAddress
   //console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
   let bcResult = await pvcMatchhupsInstance.methods.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score).send({from: sender, gas:204800})

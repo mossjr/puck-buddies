@@ -10,10 +10,7 @@ import {pbPlayersAddress,
         pbProShopMarketplaceAddress,
         PBXPAddress, 
         PBTeamsAddress, 
-        PBPvCMatchupsAddress, 
-        PBMatchupsAddress, 
-        PBMatchupsMarketAddress,
-        PBMatchupValidationAddress,
+        PBPvCMatchupsAddress,
         buddiesaddress, 
         marketfeesaddress, 
         PBPvCHelperAddress, 
@@ -27,11 +24,8 @@ import PBPROSHOPFACTORY from '../public/assets/contracts/PBProShopFactory.json'
 import PBPROSHOPHOLDER from '../public/assets/contracts/PBProShopHolder.json'
 import PBPROSHOPMARKETPLACE from '../public/assets/contracts/PBProShopMarketplace.json'
 import PBPVCHELPER from '../public/assets/contracts/PBPvCHelper.json'
-import PBMATCHUPSVALIDATION from '../public/assets/contracts/PBMatchupValidation.json'
 import PBTEAMS from '../public/assets/contracts/PBTeams.json'
 import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
-import PBMATCHUPS from '../public/assets/contracts/PBMatchups.json'
-import PBMATCHUPSMARKET from '../public/assets/contracts/PBMatchupsMarket.json'
 import BUDDIESICO from '../public/assets/contracts/BuddiesICO.json'
 import CITIES from '../public/assets/data/cities.json'
 import NOUNS from '../public/assets/data/nouns.json'
@@ -634,23 +628,34 @@ async function checkProShopAdmin() {
 
 //My Players Functions
 async function loadPBPlayers(source){
+    const query = new Moralis.Query("PBTeams")
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const teams = await query.find()
+    // console.log(teams[0])
+    // console.log(teams[0].attributes.teamDNA)
     console.log("Loading Players from: " + source)
     window.web3 = await Moralis.enableWeb3()
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let array = await tokenContract.methods.getAllTokensForUser(ethereum.selectedAddress).call({from: ethereum.selectedAddress})
-    console.log(array)
+    // console.log(array)
     let nounsArray = NOUNS
     let teamFirstLetter
     if (array.length == 0) {
         let emptyArray = []
       return emptyArray
-      } 
+      }
+   
+      
+      
     const playerdata = array.map(async (playerId) => {
       let details = await tokenContract.methods.getTokenDetails(playerId).call({from: ethereum.selectedAddress})
-        if(details.teamDna == 0){
+      
+        if(teams[0].attributes.teamDNA == 0){
             teamFirstLetter = ''
         }else{
-            let dna = details.teamDna
+            
+            let dnaInt = teams[0].attributes.teamDNA
+            let dna = dnaInt.toString()
             console.log(dna)
             let teamNounNumber = parseInt(dna.slice(5,8))
             let teamName = nounsArray[teamNounNumber].noun
@@ -659,30 +664,95 @@ async function loadPBPlayers(source){
             //console.log (teamName)
         }
 
+    let isOffence = false
+    let isDefence = false
+    let isGoalie = false
+    
+    if(details.playertype == 1){
+        isOffence = true
+    }else if(details.playertype == 2){
+        isDefence = true
+    }else if(details.playertype == 3){
+        isGoalie = true
+    }
+
+    // console.log(playerId + " " + teams[0].attributes.p1)
+    // console.log(playerId + " " + teams[0].attributes.p2)
+    // console.log(playerId + " " + teams[0].attributes.p3)
+    // console.log(playerId + " " + teams[0].attributes.p4)
+    // console.log(playerId + " " + teams[0].attributes.p5)
+    // console.log(playerId + " " + teams[0].attributes.p6)
+
+    let playerPOS = 0
+    let isOnTeam = false
+    if(playerId == teams[0].attributes.p1){
+        playerPOS = 1
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }else if(playerId == teams[0].attributes.p2){
+        playerPOS = 2
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }else if(playerId == teams[0].attributes.p3){
+        playerPOS = 3
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }else if(playerId == teams[0].attributes.p4){
+        playerPOS = 4
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }else if(playerId == teams[0].attributes.p5){
+        playerPOS = 5
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }else if(playerId == teams[0].attributes.p6){
+        playerPOS = 6
+        isOnTeam = true
+        // console.log("Assigned Player POS: " + playerPOS)
+    }
+
     let playercountry = await playerCountry(details.dna)
     let playerAge = await getPlayerAge(details.ageoutTimestamp, details.draftTimestamp)
-        
+        // console.log(details)
+        // console.log({
+        //     id: playerId,
+        //     offence: details.offence,
+        //     defence: details.defence,
+        //     dna: details.dna,
+        //     playertype: details.playertype,
+        //     isOffence:isOffence,
+        //     isDefence:isDefence,
+        //     isGoalie:isGoalie,
+        //     teamId: details.teamId,
+        //     teamLetter: teamFirstLetter,
+        //     position: playerPOS,
+        //     mainColor: details.mainColor,
+        //     equippedJersey: details.equippedJersey,
+        //     equippedToken: details.equippedToken,
+        //     ageoutTimestamp: details.ageoutTimestamp,
+        //     draftTimestamp: details.draftTimestamp,
+        //     playercountry: playercountry ,
+        //     playerAge:playerAge         
+        //   })
         return {
-          id: playerId,
-          offence: details.offence,
-          defence: details.defence,
-          dna: details.dna,
-          playertype: details.playertype,
-          isOffence: details.isOffence,
-          isDefence: details.isDefence,
-          isGoalie: details.isGoalie,
-          teamId: details.teamId,
-          teamLetter: teamFirstLetter,
-          position: details.position,
-          jerseyId: details.jerseyId,
-          mainColor: details.mainColor,
-          equippedJersey: details.equippedJersey,
-          equippedStick: details.equippedStick,
-          equippedToken: details.equippedToken,
-          ageoutTimestamp: details.ageoutTimestamp,
-          draftTimestamp: details.draftTimestamp,
-          playercountry: playercountry ,
-          playerAge:playerAge         
+            id: playerId,
+            offence: details.offence,
+            defence: details.defence,
+            dna: details.dna,
+            playertype: details.playertype,
+            isOffence:isOffence,
+            isDefence:isDefence,
+            isGoalie:isGoalie,
+            isOnTeam: isOnTeam,
+            teamLetter: teamFirstLetter,
+            position:playerPOS,
+            mainColor: details.mainColor,
+            equippedJersey: details.equippedJersey,
+            equippedToken: details.equippedToken,
+            ageoutTimestamp: details.ageoutTimestamp,
+            draftTimestamp: details.draftTimestamp,
+            playercountry: playercountry ,
+            playerAge:playerAge         
         }
       }).sort((a, b) => b.count - a.count)
       return playerdata
@@ -1046,40 +1116,370 @@ async function burnPBXPStock(sku, qty) {
 //My Team Functions
 
 async function displayTeam(){
-    console.log("Begin Display Teams")
+    console.log("Begin Display Teams - NEED TO SWITCH TO MORALIS")
+    const query = new Moralis.Query("PBTeams")
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const teams = await query.find()
+    if(teams.length >= 1){
+        console.log("Team Found")
+        console.log(teams[0])
+        let p1ID = teams[0].attributes.p1
+        let p2ID = teams[0].attributes.p2
+        let p3ID = teams[0].attributes.p3
+        let p4ID = teams[0].attributes.p4
+        let p5ID = teams[0].attributes.p5
+        let p6ID = teams[0].attributes.p6
+        let p1Details
+        let p2Details
+        let p3Details
+        let p4Details
+        let p5Details
+        let p6Details
+        let teamOP = 0
+        let teamDP = 0
+
+        if (p1ID > 0){
+            console.log("looking up POS 1 player: " + p1ID)
+            p1Details = await getSinglePlayerData(p1ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p1ID == 0 || p1ID == ""){
+            console.log("POS 1 Player not found")
+            p1Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+
+         if (p2ID > 0){
+            console.log("looking up POS 2 player: " + p2ID)
+            p2Details = await getSinglePlayerData(p2ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p2ID == 0 || p2ID == ""){
+            console.log("POS 2 Player not found")
+            p2Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+        
+        if (p3ID > 0){
+            console.log("looking up POS 3 player: " + p3ID)
+            p3Details = await getSinglePlayerData(p3ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p3ID == 0 || p3ID == ""){
+            console.log("POS 3 Player not found")
+            p3Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+        
+        if (p4ID > 0){
+            console.log("looking up POS 4 player: " + p4ID)
+            p4Details = await getSinglePlayerData(p4ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p4ID == 0 || p4ID == ""){
+            console.log("POS 4 Player not found")
+            p4Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+        
+        if (p5ID > 0){
+            console.log("looking up POS 5 player: " + p5ID)
+            p5Details = await getSinglePlayerData(p5ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p5ID == 0 || p5ID == ""){
+            console.log("POS 5 Player not found")
+            p5Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+        
+        if (p6ID > 0){
+            console.log("looking up POS 6 player: " + p6ID)
+            p6Details = await getSinglePlayerData(p6ID).then(res => {
+                console.log(res)
+                teamOP = teamOP + parseInt(res.offence)
+                teamDP = teamDP + parseInt(res.defence)
+                return res
+            })
+        }else if(p6ID == 0 || p6ID == ""){
+            console.log("POS 6 Player not found")
+            p6Details = {
+            id: "",
+            offence: 0,
+            defence: 0,
+            dna: 0,
+            playertype: 0,
+            ageoutTimestamp: 100000000000,
+            draftTimestamp: 0,
+            equippedJersey: 0,
+            equippedStick: 0,
+            equippedToken: 0,
+            isDefence: false,
+            isGoalie: false,
+            isOffence: false,
+            mainColor: 0,
+            position: 0,
+            teamId: 0
+            }
+        }
+
+  
+        console.log(teamOP + " " + teamDP)
+
+        // const web3 = await Moralis.enableWeb3()
+        // let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+        // let PvCTimeouts = await contractInstance.methods.getTimeOuts().call({from: ethereum.selectedAddress})
+        let teamObj = {
+            teamIndex: 0, 
+            teamId: teams[0].id,
+            teamDna: teams[0].attributes.teamDNA,
+            teamTotalOP: teamOP,
+            teamTotalDP: teamDP,  
+            activeTimestamp1: teams[0].attributes.activeTimestamp1,
+            activeTimestamp2: teams[0].attributes.activeTimestamp2,
+            activeTimestamp3: teams[0].attributes.activeTimestamp3,
+            lastMatchWon1: teams[0].attributes.lastMatchWon1,
+            lastMatchWon2: teams[0].attributes.lastMatchWon2,
+            lastMatchWon3: teams[0].attributes.lastMatchWon3,
+            ownerAddress: teams[0].attributes.ownerAddress,
+            p1: p1Details,
+            p2: p2Details,
+            p3: p3Details,
+            p4: p4Details,
+            p5: p5Details,
+            p6: p6Details,
+            
+          }
+        console.log(teamObj)
+
+        return teamObj
+    }else if(teams.length == 0){
+        console.log("No Team Found")
+        return false
+    }
+
+
+    // const minter = ethereum.selectedAddress
+    // const web3 = await Moralis.enableWeb3()
+    // let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
+    // let teamArray = await teamInstance.methods.getAllTokensForUser(minter).call({from: minter})
+    // if (teamArray.length == 0) {
+    //     console.log("No Teams Found")
+    //     return
+    //     } 
+
+    // console.log("Team Array: " + teamArray)
+    // console.log(teamArray)
+    //   const teamdata = teamArray.map(async (teamIndex) => {
+    //     let details = await teamInstance.methods.getTokenDetails(teamIndex).call({from: ethereum.selectedAddress})
+    //       return {
+    //       teamIndex: teamIndex, 
+    //       teamId: details.teamId,
+    //       teamDna: details.teamDna,
+    //       teamTotalOP: details.teamTotalOP,
+    //       teamTotalDP: details.teamTotalDP,  
+    //       activeTimestamp1: details.activeTimestamp1,
+    //       activeTimestamp2: details.activeTimestamp2,
+    //       activeTimestamp3: details.activeTimestamp3,
+    //       lastMatchWon1: details.lastMatchWon1,
+    //       lastMatchWon2: details.lastMatchWon2,
+    //       lastMatchWon3: details.lastMatchWon3,
+    //       ownerAddress: details.ownerAddress
+          
+    //       }
+    //     }).sort((a, b) => b.count - a.count)
+    //     return teamdata
+}
+
+async function getTeamFromMoralis(){
+    const query = new Moralis.Query("PBTeams")
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const teams = await query.find()
+    if(teams.length >= 1){
+        console.log("Team Found")
+        return true
+    }else if(teams.length == 0){
+        console.log("No Team Found")
+        return false
+    }
+}
+
+async function mintNewTeamMoralis(value){
+
+    const puckBuddiesTeam = Moralis.Object.extend("PBTeams")
+    const pbTeams = new puckBuddiesTeam()
+    const query = new Moralis.Query("PBTeams")
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const teams = await query.find()
+    if(teams.length >= 1){
+        console.log("Team Found")
+        return
+    }
+    let playerIds 
+    await buySixPackofCards(value).then(res => {
+        console.log(res.events.sixPackPlayer.returnValues)
+        playerIds = res.events.sixPackPlayer.returnValues
+    }).catch(err => {
+        console.log(err)
+        return
+    })
+    console.log(playerIds)
+    let dnaLength = 16
+    let random_integer = Math.random()*101|0
+    let rand = web3.utils.soliditySha3(ethereum.selectedAddress, Date.now(), random_integer) 
+    let dna = rand % 10 ** dnaLength
+    let digitFix = dnaLength - dna.toString().length 
+    for(let i=0; i < digitFix; i++){
+        dna = dna * 10
+    }
+    
+    pbTeams.set('ownerAddress', ethereum.selectedAddress)
+    pbTeams.set('teamDNA', dna)
+    pbTeams.set('p1', playerIds[0])
+    pbTeams.set('p2', playerIds[1])
+    pbTeams.set('p3', playerIds[2])
+    pbTeams.set('p4', playerIds[3])
+    pbTeams.set('p5', playerIds[4])
+    pbTeams.set('p6', playerIds[5])
+    pbTeams.set('user', Moralis.User.current())
+    pbTeams.set('activeTimestamp1', 0)
+    pbTeams.set('activeTimestamp2', 0)
+    pbTeams.set('activeTimestamp3', 0)
+    pbTeams.set('lastMatchWon1', false)
+    pbTeams.set('lastMatchWon2', false)
+    pbTeams.set('lastMatchWon3', false)
+    await pbTeams.save()
+    return teams
+}
+
+async function buySixPackofCards(value){
+    let approved = false
     const minter = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()
-    let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
-    let teamArray = await teamInstance.methods.getAllTokensForUser(minter).call({from: minter})
-    if (teamArray.length == 0) {
-        console.log("No Teams Found")
-        return
-        } 
-
-    console.log("Team Array: " + teamArray)
-    console.log(teamArray)
-      const teamdata = teamArray.map(async (teamIndex) => {
-        let details = await teamInstance.methods.getTokenDetails(teamIndex).call({from: ethereum.selectedAddress})
-          return {
-          teamIndex: teamIndex, 
-          teamId: details.teamId,
-          teamDna: details.teamDna,
-          teamTotalOP: details.teamTotalOP,
-          teamTotalDP: details.teamTotalDP,  
-          activeTimestamp1: details.activeTimestamp1,
-          activeTimestamp2: details.activeTimestamp2,
-          activeTimestamp3: details.activeTimestamp3,
-          lastMatchWon1: details.lastMatchWon1,
-          lastMatchWon2: details.lastMatchWon2,
-          lastMatchWon3: details.lastMatchWon3,
-          ownerAddress: details.ownerAddress
-          
-          }
-        }).sort((a, b) => b.count - a.count)
-        return teamdata
+    let costtodraft = web3.utils.toWei(value)
+    let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
+    await buddiesInstance.methods.approve(PBTeamsAddress, costtodraft).send({from: minter, gas: 72000}).on("receipt", ( () => {
+        approved = true
+    }))
+    .catch(err => {
+        console.log(err)
+    })
+    if(approved == true){
+        console.log("Approved Buddies Spend")
+        approved = false
+        let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
+        let playerIds = await teamInstance.methods.mintSixPack(costtodraft).send({from: minter, gas: 2100000}).on("receipt", ((receipt) =>{
+            // console.log(receipt)
+            // console.log(receipt.events.sixPackPlayer.returnValues)
+            // playerIds = receipt.events.sixPackPlayer.returnValues
+            
+        }))
+        return playerIds
+    }else{
+        approved = false
+        return 'Error'
+    }
 }
 
 async function mintNewTeam(value){
+
+
+
     let approved = false
     const minter = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()
@@ -1100,7 +1500,7 @@ async function mintNewTeam(value){
     }))
     }else{
         approved = false
-        return 
+        return 'Error'
     }
 }
 
@@ -1113,16 +1513,16 @@ async function mintNewTeam(value){
 //         return res
 //     }))
 // }
-async function checkIfTeam(){
-    window.web3 = await Moralis.enableWeb3()
-    const teamContract = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
-    let checkTeam = await teamContract.methods.balanceOf(ethereum.selectedAddress).call({from: ethereum.selectedAddress})
-    if (checkTeam == 0 ){
-        return false
-    } else if (checkTeam >= 1){
-        return true
-    }
-}
+// async function checkIfTeam(){
+//     window.web3 = await Moralis.enableWeb3()
+//     const teamContract = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
+//     let checkTeam = await teamContract.methods.balanceOf(ethereum.selectedAddress).call({from: ethereum.selectedAddress})
+//     if (checkTeam == 0 ){
+//         return false
+//     } else if (checkTeam >= 1){
+//         return true
+//     }
+// }
 
 async function getTeamMintCost(){
     window.web3 = await Moralis.enableWeb3()
@@ -1133,29 +1533,147 @@ async function getTeamMintCost(){
     return mintTeamValue
 }
 
-async function assignToPosition(teamId, position, playerId, teamDna){
-    const sender = ethereum.selectedAddress
-    const web3 = await Moralis.enableWeb3()
-    const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-    console.log("Sending this TeamId: " + teamId)
-    let receipt = await playerContract.methods.assignToTeam(teamId, position, playerId, teamDna).send({from: sender, gas: 512000})
-        console.log("Here is the receipt: " + receipt)
-        return (receipt)
+async function assignToPosition(posID, playerId){
+    const puckBuddiesTeam = Moralis.Object.extend("PBTeams")
+    // const pbTeams = new puckBuddiesTeam()
+    const query = new Moralis.Query(puckBuddiesTeam)
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const results = await query.find();
+    console.log(results[0].id)
+    
+    query.get(results[0].id).then((puckBuddiesTeam) =>{
+        console.log("Team Found")
+        if(posID == 1){
+            puckBuddiesTeam.set('p1', playerId)
+        }else if(posID == 2){
+            puckBuddiesTeam.set('p2', playerId)
+        }else if(posID == 3){
+            puckBuddiesTeam.set('p3', playerId)
+        }else if(posID == 4){
+            puckBuddiesTeam.set('p4', playerId)
+        }else if(posID == 5){
+            puckBuddiesTeam.set('p5', playerId)
+        }else if(posID == 6){
+            puckBuddiesTeam.set('p6', playerId)
+        }
+        return puckBuddiesTeam.save()
+        
+    }).catch( (error) => {
+        console.log(error)
+    })
+
+    // const sender = ethereum.selectedAddress
+    // const web3 = await Moralis.enableWeb3()
+    // const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
+    // console.log("Sending this TeamId: " + teamId)
+    // let receipt = await playerContract.methods.assignToTeam(teamId, position, playerId, teamDna).send({from: sender, gas: 512000})
+    //     console.log("Here is the receipt: " + receipt)
+    //     return (receipt)
 }
 
-async function removeFromPosition(teamId, playerId){
-    const sender = ethereum.selectedAddress
-    const web3 = await Moralis.enableWeb3()
-    const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-    console.log("Sending this TeamId: " + teamId)
-    console.log("Sending this PlayerId: " + playerId)
-    await playerContract.methods.removeFromTeam(teamId, playerId).send({from: sender, gas: 1512000}).on("receipt", (receipt) => {
-        console.log("Here is the receipt: " + receipt)
-        return (receipt)
-    }).catch(err =>{
-        console.log(err)
-    })
+async function doubleCheckIfPlayer(posID){
+    const puckBuddiesTeam = Moralis.Object.extend("PBTeams")
+    const query = new Moralis.Query(puckBuddiesTeam)
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const results = await query.find();
+    console.log(results[0])
+    console.log(results[0].attributes.p1)
+    
+    if(posID == 1){
+        if(results[0].attributes.p1 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    if(posID == 2){
+        if(results[0].attributes.p2 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    if(posID == 3){
+        if(results[0].attributes.p3 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    if(posID == 4){
+        if(results[0].attributes.p4 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    if(posID == 5){
+        if(results[0].attributes.p5 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    if(posID == 6){
+        if(results[0].attributes.p6 != ""){
+            return true
+        }else{
+            return false
+        }
+    }
+  
+
+}
+
+// async function removeFromPosition(teamId, playerId){
+//     const sender = ethereum.selectedAddress
+//     const web3 = await Moralis.enableWeb3()
+//     const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
+//     console.log("Sending this TeamId: " + teamId)
+//     console.log("Sending this PlayerId: " + playerId)
+//     await playerContract.methods.removeFromTeam(teamId, playerId).send({from: sender, gas: 1512000}).on("receipt", (receipt) => {
+//         console.log("Here is the receipt: " + receipt)
+//         return (receipt)
+//     }).catch(err =>{
+//         console.log(err)
+//     })
         
+// }
+
+async function removeFromPosition(posID){
+    const puckBuddiesTeam = Moralis.Object.extend("PBTeams")
+    // const pbTeams = new puckBuddiesTeam()
+    const query = new Moralis.Query(puckBuddiesTeam)
+    query.equalTo('ownerAddress', ethereum.selectedAddress)
+    const results = await query.find();
+    console.log(results[0].id)
+    
+    query.get(results[0].id).then((puckBuddiesTeam) =>{
+        console.log("Team Found")
+        if(posID == 1){
+            puckBuddiesTeam.set('p1', "")
+        }else if(posID == 2){
+            puckBuddiesTeam.set('p2', "")
+        }else if(posID == 3){
+            puckBuddiesTeam.set('p3', "")
+        }else if(posID == 4){
+            puckBuddiesTeam.set('p4', "")
+        }else if(posID == 5){
+            puckBuddiesTeam.set('p5', "")
+        }else if(posID == 6){
+            puckBuddiesTeam.set('p6', "")
+        }
+        return puckBuddiesTeam.save()
+        
+    }).catch( (error) => {
+        console.log(error)
+    })
+  
 }
 
 
@@ -1211,7 +1729,17 @@ return {gameObj: moralisRes.gameObj,
         matchValidToken: moralisRes.matchValidToken }
 }
 
+function encode(string) {
+    var number = "0x";
+    var length = string.length;
+    for (var i = 0; i < length; i++)
+        number += string.charCodeAt(i).toString(16);
+    return number;
+}
+
 async function loadPvCmatches(teamId){
+    let teamIdFix = encode(teamId) 
+    console.log(teamIdFix)
     const caller = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()
     let pvcMatchupsHelperInstance = new web3.eth.Contract(PBPVCHELPER.abi, PBPvCHelperAddress)
@@ -1231,18 +1759,18 @@ async function loadPvCmatches(teamId){
     let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
     //console.log(dpStat3)
     
-    let team1DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(1, 1, teamId).call({from: caller})
+    let team1DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(1, 1, teamIdFix).call({from: caller})
     //console.log(team1DNA)
-    let team2DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(2, 2, teamId).call({from: caller})
+    let team2DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(2, 2, teamIdFix).call({from: caller})
     //console.log(team2DNA)
-    let team3DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(3, 3, teamId).call({from: caller})
+    let team3DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(3, 3, teamIdFix).call({from: caller})
     //console.log(team3DNA)
 
-    let timeouts = await pvcMatchhupsInstance.methods.getTimeOuts(teamId).call({from: caller})
-        //console.log(timeouts)
+    let timeouts = await pvcMatchhupsInstance.methods.getTimeOuts(teamIdFix).call({from: caller})
+        console.log(timeouts)
         
-    let matchUpNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamId).call({from: caller})
-        //console.log(matchUpNos)
+    let matchUpNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamIdFix).call({from: caller})
+        console.log(matchUpNos)
 
     let to1 = timeouts[0]
     let to2 = timeouts[1]
@@ -1301,22 +1829,24 @@ async function loadPvCmatches(teamId){
 }
 
 async function performPvC(token, difficulty, teamId, t1S, t2S){
-    console.log({token:token, difficulty:difficulty, teamId:teamId, t1S:t1S, t2S:t2S})
+    let teamIdFix = encode(teamId) 
+    console.log(teamIdFix)
+    console.log({token:token, difficulty:difficulty, teamId:teamIdFix, t1S:t1S, t2S:t2S})
     const sender = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     console.log("Sending PvC Matchup to Blockchain")
-    let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamId, t1S, t2S).send({from: sender, gas: 102400})
+    let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamIdFix, t1S, t2S).send({from: sender, gas: 102400})
     return(matchUpIndex) 
 }
 
-async function hitTheIcePvC(difficulty, teamId, playerIds){
+async function hitTheIcePvC(difficulty, teamIdFix, playerIds){
     console.log(playerIds)
     const sender = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     
-    await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamId, playerIds).send({from: sender, gas: 222000}).then(res => {
+    await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamIdFix, playerIds).send({from: sender, gas: 222000}).then(res => {
         // let gameResult = receipt.events.gamePlayed.returnValues.isWinner
         // console.log(receipt.events.gamePlayed.returnValues)
         // console.log("Is Winner: " + gameResult)
@@ -1793,7 +2323,6 @@ export default {
     burnStock,
     applyEquipmentToPlayer,
     removeProShopEquipment,
-    checkIfTeam,
     displayTeam,
     assignToPosition,
     getCityNames,
@@ -1838,7 +2367,11 @@ export default {
     updateTeamMintCost,
     updateBudsPerBNB,
     maralisRunPvC,
-    performPvC
+    performPvC,
+    getTeamFromMoralis,
+    mintNewTeamMoralis,
+    buySixPackofCards,
+    doubleCheckIfPlayer
 }
 
 

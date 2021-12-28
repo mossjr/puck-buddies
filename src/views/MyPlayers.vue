@@ -222,7 +222,7 @@ export default {
     async sendPlayerData() {
       this.getTimestamp()
       this.checkPBPlayerAdmin()
-      Promise.all(await main.loadPBPlayers())
+      Promise.all(await main.loadPBPlayers("My Players"))
       .then(res => {
         console.log("Found " + res.length + " Players")
         let playerArray = []     
@@ -259,7 +259,6 @@ export default {
               'teamLetter': res[i].teamLetter,
               'position' : res[i].position,
               'equippedJersey' : res[i].equippedJersey,
-              //'equippedStick' : res[i].equippedStick,
               'equippedToken' : res[i].equippedToken,
               'ageoutTimestamp': res[i].ageoutTimestamp,
               'draftTimestamp': res[i].draftTimestamp,
@@ -298,7 +297,7 @@ export default {
     
     async showRetiredPlayers(){
       this.showRetired = !this.showRetired
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
     
     async updateXpBalanceViewer(){
@@ -388,7 +387,7 @@ export default {
         this.costToDraft2 = res.dv2
         this.costToDraft3 = res.dv3
       })
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async updateDraftPrice() {
@@ -401,39 +400,39 @@ export default {
       await main.getMarketFeePercent().then(res => {
         this.marketFeePercent = res
       })
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
       async updateMarketFeePercent() {
       await main.updateMarketFeePercent(this.newMarketFeePercent)
       await this.getMarketFeePercent()
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async getFeePayableAddress(){
       await main.getMarketFeePayableAddress().then(res => {
         this.marketfeepayableaddress = res
       })
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async updateFeePayableAddress(){
       await main.updateFeePayableAddress(this.newmarketfeepaybleaddress)
       await this.getFeePayableAddress()
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async getMarketplaceAddress(){
       await main.getMarketplaceAddress().then(res => {
         this.marketplaceAddress = res
       })
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async updateMarketplaceAddress(){
       await main.updateMarketplaceAddress(this.newMarketplaceAddress)
       await this.getMarketplaceAddress()
-      this.sendPlayerData()
+      //this.sendPlayerData()
     },
 
     async checkPBPlayerAdmin() {

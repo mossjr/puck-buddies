@@ -83,11 +83,11 @@ contract PBXP is ERC1155 {
         return balance;
     }
 
-     function newTeamPBXP(address mintToAddress) external onlyTeams returns (uint){
-        _mint(mintToAddress, 0, (upgradeCost * 2), "");
-        uint balance = balanceOf(mintToAddress, 0);
-        return balance;
-    }
+    //  function newTeamPBXP(address mintToAddress) external onlyTeams returns (uint){
+    //     _mint(mintToAddress, 0, (upgradeCost * 2), "");
+    //     uint balance = balanceOf(mintToAddress, 0);
+    //     return balance;
+    // }
 
     function burnItems(address owner, uint token, uint qty ) external onlyAdmin {
         _burn(owner, token, qty);

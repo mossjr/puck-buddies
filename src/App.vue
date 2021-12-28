@@ -1,7 +1,7 @@
 <template>
   <topnav v-if="hasTeam && !checkingTeam" />
   <router-view v-if="hasTeam && !checkingTeam"/>
-  <firstPlay @teamFound="checkIfTeam()" v-if="!hasTeam && !checkingTeam" />
+  <firstPlay @teamFound="getTeamFromMoralis()" v-if="!hasTeam && !checkingTeam" />
 </template>
 
 <script>
@@ -20,32 +20,39 @@ export default {
   },
   methods: {
 
-    // async getTeamMintCost(){
-    //   await main.getTeamMintCost().then(res =>{
-    //     this.teamMintCost = res
-    //   }).catch(err =>{
-    //     console.log(err)
-    //   })
-    // },
-
-    async checkIfTeam(){
-      await main.checkIfTeam().then(res => {
-        this.hasTeam = res
-        this.preloading = false
-        this.checkingTeam = false
-      }).catch(err => {
-        console.log(err)
-        this.preloading = false
-        this.checkingTeam = false
-      })
+    async getTeamFromMoralis(){
+       await main.getTeamFromMoralis().then(res => {
+          console.log(res)
+          this.hasTeam = res
+          this.preloading = false
+          this.checkingTeam = false
+       }).catch(err => {
+          console.log(err)
+          this.preloading = false
+          this.checkingTeam = false
+       })
     }
-},
+
+//     async checkIfTeam(){
+//       await main.checkIfTeam().then(res => {
+//         console.log(res)
+//         this.hasTeam = res
+//         this.preloading = false
+//         this.checkingTeam = false
+//       }).catch(err => {
+//         console.log(err)
+//         this.preloading = false
+//         this.checkingTeam = false
+//       })
+//     }
+ },
 
   mounted() {
     console.log("MOUNTED")
     this.$nextTick(function(){
       // this.getTeamMintCost()
-      this.checkIfTeam()  
+      //this.checkIfTeam() 
+      this.getTeamFromMoralis() 
     })
     
   }

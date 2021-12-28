@@ -4,11 +4,10 @@
     <!-- <button @click="loadPvCmatches()">TEST</button>
     <input v-model="PBXPqtyToMint" type="number">
     <button @click="newPBXPtoTeamContract(PBXPqtyToMint)">Mint new PBXP</button> -->
-    <!-- <button @click="getTeamDetails()">TEST</button> -->
     <img src="../assets/img/my-team.png" alt="my-team">
 
     <div v-for="(team, index) in teams" :key="index">
-      <div v-if="team.playerPos1 != 0 && team.playerPos2 != 0 && team.playerPos3 != 0 && team.playerPos4 != 0 && team.playerPos5 != 0 && team.playerPos6 != 0 && sixActivePlayers">
+      <div v-if="team.activePlayerCount == 6">
       <!-- <button id="team-action-button" v-if="!matchesLoaded && !matchesLoading" @click="loadPvCmatches(team.teamId)">Load Matcheups</button> -->
       <div class="loading-icon-container">
             <img class="loadingicon" src="../assets/img/loading.gif" alt="loading" v-if="matchesLoading && !matchesLoaded">
@@ -24,7 +23,7 @@
             <div>
               <!-- <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo1" @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun, 1, team.teamId, matchUpNo1 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}} ({{matchUpNo1}})</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
+            <button v-if="timestamp >= activeTo1" @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun, 1, team.teamId, matchUpNo1 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i><br> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
             <button v-if="timestamp < activeTo1 && matches.won1" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo1 && !matches.won1" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
           </div>
@@ -35,7 +34,7 @@
             <div>
               <!-- <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo2"  @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun, 2, team.teamId, matchUpNo2 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}} ({{matchUpNo2}})</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
+            <button v-if="timestamp >= activeTo2"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun, 2, team.teamId, matchUpNo2 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i><br> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
             <button v-if="timestamp < activeTo2 && matches.won2" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo2 && !matches.won2" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo2" class="progress-bar-container">
@@ -46,7 +45,7 @@
             <div>
               <!-- <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo3"  @click="maralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun, 3, team.teamId, matchUpNo3 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}} ({{matchUpNo3}})</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
+            <button v-if="timestamp >= activeTo3"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun, 3, team.teamId, matchUpNo3 )" id="team-pvc-button">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i><br> <b>VS</b> <br> The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i><br> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
             <button v-if="timestamp < activeTo3 && matches.won3" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo3 && !matches.won3" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo3" class="progress-bar-container">
@@ -69,7 +68,7 @@
       
 
       <div class="team-name-container">
-        <div class="team-name"> {{team.teamId}}: The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i></div>
+        <div class="team-name">The {{cityNames[team.teamCityNumber].city}} <i>{{nouns[team.teamNounNumber].noun}}</i></div>
       </div>
 
 
@@ -84,15 +83,15 @@
 
 
 
-    <div  v-if="!loadingPlayers">
+    <div >
       <div class="player-container-team" v-for="(team, index) in teams" :key="index">
         <div class="player-container-inside">
           <div class="card" v-if="!team.pos1ret">
             <h4>Center</h4>
             <canvas v-if="team.playerPos1" class="player-canvas" :id="`canvas-player-no-${team.playerPos1}`">
             </canvas>
-            <button v-if="!team.playerPos1 && offenceFound > 0" @click="openModal('Center', 1, 1, team.teamId, team.teamDna)" id="team-action-button">Assign Center</button>
-            <button v-if="team.playerPos1 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 1, team.playerPos1)" id="bench-action-button">Bench Center</button>
+            <button v-if="!team.playerPos1" @click="openModal('Center', 1, 1, team.teamId, team.teamDna)" id="team-action-button">Assign Center</button>
+            <button v-if="team.playerPos1 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 1)" id="bench-action-button">Bench Center</button>
             <button v-if="team.playerPos1 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -100,8 +99,8 @@
             <h4>Center</h4>
             <canvas v-if="team.playerPos1" class="player-canvas" :id="`canvas-player-no-${team.playerPos1}`">
             </canvas>
-            <button v-if="!team.playerPos1 && offenceFound > 0" @click="openModal('Center', 1, 1, team.teamId, team.teamDna)" id="team-action-button">Assign Center</button>
-            <button v-if="team.playerPos1 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 1, team.playerPos1)" id="bench-action-button">Bench Center</button>
+            <button v-if="!team.playerPos1" @click="openModal('Center', 1, 1, team.teamId, team.teamDna)" id="team-action-button">Assign Center</button>
+            <button v-if="team.playerPos1 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 1)" id="bench-action-button">Bench Center</button>
             <button v-if="team.playerPos1 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -109,8 +108,8 @@
             <h4>Right Wing</h4>
             <canvas v-if="team.playerPos2" class="player-canvas" :id="`canvas-player-no-${team.playerPos2}`">
             </canvas>
-            <button v-if="!team.playerPos2 && offenceFound > 0" @click="openModal('Right Wing', 1, 2, team.teamId, team.teamDna)" id="team-action-button">Assign Right Wing</button>
-            <button v-if="team.playerPos2 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 2, team.playerPos2)" id="bench-action-button">Bench Right Wing</button>
+            <button v-if="!team.playerPos2" @click="openModal('Right Wing', 1, 2, team.teamId, team.teamDna)" id="team-action-button">Assign Right Wing</button>
+            <button v-if="team.playerPos2 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 2)" id="bench-action-button">Bench Right Wing</button>
             <button v-if="team.playerPos2 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -118,8 +117,8 @@
             <h4>Right Wing</h4>
             <canvas v-if="team.playerPos2" class="player-canvas" :id="`canvas-player-no-${team.playerPos2}`">
             </canvas>
-            <button v-if="!team.playerPos2 && offenceFound > 0" @click="openModal('Right Wing', 1, 2, team.teamId, team.teamDna)" id="team-action-button">Assign Right Wing</button>
-            <button v-if="team.playerPos2 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 2, team.playerPos2)" id="bench-action-button">Bench Right Wing</button>
+            <button v-if="!team.playerPos2" @click="openModal('Right Wing', 1, 2, team.teamId, team.teamDna)" id="team-action-button">Assign Right Wing</button>
+            <button v-if="team.playerPos2 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 2)" id="bench-action-button">Bench Right Wing</button>
             <button v-if="team.playerPos2 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -127,8 +126,8 @@
             <h4>Left Wing</h4>
             <canvas v-if="team.playerPos3" class="player-canvas" :id="`canvas-player-no-${team.playerPos3}`">
             </canvas>
-            <button v-if="!team.playerPos3 && offenceFound > 0" @click="openModal('Left Wing', 1, 3, team.teamId, team.teamDna)" id="team-action-button">Assign Left Wing</button>
-            <button v-if="team.playerPos3 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 3, team.playerPos3)" id="bench-action-button">Bench Left Wing</button>
+            <button v-if="!team.playerPos3" @click="openModal('Left Wing', 1, 3, team.teamId, team.teamDna)" id="team-action-button">Assign Left Wing</button>
+            <button v-if="team.playerPos3 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 3)" id="bench-action-button">Bench Left Wing</button>
             <button v-if="team.playerPos3 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -136,8 +135,8 @@
             <h4>Left Wing</h4>
             <canvas v-if="team.playerPos3" class="player-canvas" :id="`canvas-player-no-${team.playerPos3}`">
             </canvas>
-            <button v-if="!team.playerPos3 && offenceFound > 0" @click="openModal('Left Wing', 1, 3, team.teamId, team.teamDna)" id="team-action-button">Assign Left Wing</button>
-            <button v-if="team.playerPos3 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 3, team.playerPos3)" id="bench-action-button">Bench Left Wing</button>
+            <button v-if="!team.playerPos3" @click="openModal('Left Wing', 1, 3, team.teamId, team.teamDna)" id="team-action-button">Assign Left Wing</button>
+            <button v-if="team.playerPos3 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB',3)" id="bench-action-button">Bench Left Wing</button>
             <button v-if="team.playerPos3 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -145,8 +144,8 @@
             <h4>Right Defence</h4>
              <canvas v-if="team.playerPos4" class="player-canvas" :id="`canvas-player-no-${team.playerPos4}`">
             </canvas>
-            <button v-if="!team.playerPos4 && defenceFound > 0" @click="openModal('Right Defence', 2, 4, team.teamId, team.teamDna)" id="team-action-button">Assign Right Defence</button>
-            <button v-if="team.playerPos4 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 4, team.playerPos4)" id="bench-action-button">Bench Right Defence</button>
+            <button v-if="!team.playerPos4" @click="openModal('Right Defence', 2, 4, team.teamId, team.teamDna)" id="team-action-button">Assign Right Defence</button>
+            <button v-if="team.playerPos4 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 4)" id="bench-action-button">Bench Right Defence</button>
             <button v-if="team.playerPos4 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -154,8 +153,8 @@
             <h4>Right Defence</h4>
              <canvas v-if="team.playerPos4" class="player-canvas" :id="`canvas-player-no-${team.playerPos4}`">
             </canvas>
-            <button v-if="!team.playerPos4 && defenceFound > 0" @click="openModal('Right Defence', 2, 4, team.teamId, team.teamDna)" id="team-action-button">Assign Right Defence</button>
-            <button v-if="team.playerPos4 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 4, team.playerPos4)" id="bench-action-button">Bench Right Defence</button>
+            <button v-if="!team.playerPos4" @click="openModal('Right Defence', 2, 4, team.teamId, team.teamDna)" id="team-action-button">Assign Right Defence</button>
+            <button v-if="team.playerPos4 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB',4)" id="bench-action-button">Bench Right Defence</button>
             <button v-if="team.playerPos4 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -163,8 +162,8 @@
             <h4>Left Defence</h4>
             <canvas v-if="team.playerPos5" class="player-canvas" :id="`canvas-player-no-${team.playerPos5}`">
             </canvas>
-            <button v-if="!team.playerPos5 && defenceFound > 0" @click="openModal('Left Defence', 2, 5, team.teamId, team.teamDna)" id="team-action-button">Assign Left Defence</button>
-            <button v-if="team.playerPos5 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 5, team.playerPos5)" id="bench-action-button">Bench Left Defence</button>
+            <button v-if="!team.playerPos5" @click="openModal('Left Defence', 2, 5, team.teamId, team.teamDna)" id="team-action-button">Assign Left Defence</button>
+            <button v-if="team.playerPos5 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 5)" id="bench-action-button">Bench Left Defence</button>
             <button v-if="team.playerPos5 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -172,8 +171,8 @@
             <h4>Left Defence</h4>
             <canvas v-if="team.playerPos5" class="player-canvas" :id="`canvas-player-no-${team.playerPos5}`">
             </canvas>
-            <button v-if="!team.playerPos5 && defenceFound > 0" @click="openModal('Left Defence', 2, 5, team.teamId, team.teamDna)" id="team-action-button">Assign Left Defence</button>
-            <button v-if="team.playerPos5 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 5, team.playerPos5)" id="bench-action-button">Bench Left Defence</button>
+            <button v-if="!team.playerPos5" @click="openModal('Left Defence', 2, 5, team.teamId, team.teamDna)" id="team-action-button">Assign Left Defence</button>
+            <button v-if="team.playerPos5 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 5)" id="bench-action-button">Bench Left Defence</button>
             <button v-if="team.playerPos5 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -181,8 +180,8 @@
             <h4>Goalie</h4>
             <canvas v-if="team.playerPos6" class="player-canvas" :id="`canvas-player-no-${team.playerPos6}`">
             </canvas>
-            <button v-if="!team.playerPos6 && goaliesFound > 0" @click="openModal('Goalie', 3, 6, team.teamId, team.teamDna)" id="team-action-button">Assign Goalie</button>
-            <button v-if="team.playerPos6 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 6, team.playerPos6)" id="bench-action-button">Bench Goalie</button>
+            <button v-if="!team.playerPos6" @click="openModal('Goalie', 3, 6, team.teamId, team.teamDna)" id="team-action-button">Assign Goalie</button>
+            <button v-if="team.playerPos6 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 6)" id="bench-action-button">Bench Goalie</button>
             <button v-if="team.playerPos6 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>
 
@@ -190,8 +189,8 @@
             <h4>Goalie</h4>
             <canvas v-if="team.playerPos6" class="player-canvas" :id="`canvas-player-no-${team.playerPos6}`">
             </canvas>
-            <button v-if="!team.playerPos6 && goaliesFound > 0" @click="openModal('Goalie', 3, 6, team.teamId, team.teamDna)" id="team-action-button">Assign Goalie</button>
-            <button v-if="team.playerPos6 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', team.teamId, 6, team.playerPos6)" id="bench-action-button">Bench Goalie</button>
+            <button v-if="!team.playerPos6" @click="openModal('Goalie', 3, 6, team.teamId, team.teamDna)" id="team-action-button">Assign Goalie</button>
+            <button v-if="team.playerPos6 && timestamp > maxActiveTo" @click="benchPlayer('PB-BRB', 6)" id="bench-action-button">Bench Goalie</button>
             <button v-if="team.playerPos6 && timestamp <= maxActiveTo" id="locked-action-button">Player Locked</button>
         </div>      
 
@@ -210,7 +209,7 @@
   
     
 <div v-if="showAssignModal">
-<AssignPlayerModal @closeAssignPlayerModal="closeModal()" :teamId="modalTeam" :position="modalPosition" :modalPos="modalPosName" :playerType="modalPlayerType" :teamDna="teamDna"/>
+<AssignPlayerModal @closeAssignPlayerModal="closeModal()" :position="modalPosition" :modalPos="modalPosName" :playerType="modalPlayerType" :teamDna="teamDna"/>
 </div>
 
 <div v-if="showNewPvPmodal">
@@ -243,6 +242,7 @@ export default {
   data(){
     return{
       teams: [],
+      teamPlayers: 0,
       players: [],
       matches: {},
       pageTeamId:'',
@@ -307,9 +307,15 @@ export default {
 
   methods:{
 
+    async mintNewTeamMoralis(){
+      await main.mintNewTeamMoralis().then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
 
-
-    async maralisRunPvC(_splashImage, _myTeamNoun, _oppTeamNoun, _difficulty, _teamId, _muNo){
+    async moralisRunPvC(_splashImage, _myTeamNoun, _oppTeamNoun, _difficulty, _teamId, _muNo){
       this.matchPlaying = true
       this.myTeamNoun = _myTeamNoun
       this.oppTeamNoun = _oppTeamNoun
@@ -336,45 +342,261 @@ export default {
 
 
     async getTeamDetails(){
-       Promise.all(await main.displayTeam()).then(res => {
-        //console.log(res) 
-      })
-   
-    },
-
-
-    async displayTeam(playerArray){
-      Promise.all(await main.displayTeam())
-      .then(res => {
-        //console.log("Result: " + res)
-        //console.log(res)
+        await main.displayTeam().then(res => {
+        console.log(res) 
         let teamArray = []
-        for (let i = 0; i < res.length; i++){
+        let playerArray = [] 
+
+         let teamDNA = res.teamDna
+          teamDNA = teamDNA.toString()
+          console.log(teamDNA)
+          let teamCityStarter = parseInt(teamDNA.slice(1,4))
+          let teamCityNumber = Math.floor((teamCityStarter/1000) * 529)
+          let teamNounNumber = parseInt(teamDNA.slice(5,8))
           
-          let indexPlayer1 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "1")
-          let indexPlayer2 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "2")
-          let indexPlayer3 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "3")
-          let indexPlayer4 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "4")
-          let indexPlayer5 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "5")
-          let indexPlayer6 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "6")
-          let pos1id
-          let pos1OP
-          let pos1DP
-          let pos2id
-          let pos2OP
-          let pos2DP
-          let pos3id
-          let pos3OP
-          let pos3DP
-          let pos4id
-          let pos4OP
-          let pos4DP
-          let pos5id
-          let pos5OP
-          let pos5DP
-          let pos6id
-          let pos6OP
-          let pos6DP
+          let teamName = this.nouns[teamNounNumber].noun
+          let teamLetter = teamName.slice(0,1)        
+          //console.log(teamLetter)
+        
+        if(res.p1.id != ""){
+          console.log("Player POS 1 Found")
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p1.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p1.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p1.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p1.id, 
+              'offence': res.p1.offence,  
+              'defence': res.p1.defence, 
+              'dna': res.p1.dna, 
+              'playertype' : res.p1.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 1,
+              'equippedJersey' : res.p1.equippedJersey,
+              'equippedStick' : res.p1.equippedStick,
+              'equippedToken' : res.p1.equippedToken,
+              'ageoutTimestamp': res.p1.ageoutTimestamp,
+              'draftTimestamp': res.p1.draftTimestamp
+              }) 
+        
+        }
+
+
+ if(res.p2.id != 0){
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p2.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p2.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p2.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p2.id, 
+              'offence': res.p2.offence,  
+              'defence': res.p2.defence, 
+              'dna': res.p2.dna, 
+              'playertype' : res.p2.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 2,
+              'equippedJersey' : res.p2.equippedJersey,
+              'equippedStick' : res.p2.equippedStick,
+              'equippedToken' : res.p2.equippedToken,
+              'ageoutTimestamp': res.p2.ageoutTimestamp,
+              'draftTimestamp': res.p2.draftTimestamp
+              }) 
+        } 
+
+
+         if(res.p3.id != 0){
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p3.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p3.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p3.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p3.id, 
+              'offence': res.p3.offence,  
+              'defence': res.p3.defence, 
+              'dna': res.p3.dna, 
+              'playertype' : res.p3.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 3,
+              'equippedJersey' : res.p3.equippedJersey,
+              'equippedStick' : res.p3.equippedStick,
+              'equippedToken' : res.p3.equippedToken,
+              'ageoutTimestamp': res.p3.ageoutTimestamp,
+              'draftTimestamp': res.p3.draftTimestamp
+              }) 
+        } 
+
+
+         if(res.p4.id != 0){
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p4.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p4.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p4.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p4.id, 
+              'offence': res.p4.offence,  
+              'defence': res.p4.defence, 
+              'dna': res.p4.dna, 
+              'playertype' : res.p4.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 4,
+              'equippedJersey' : res.p4.equippedJersey,
+              'equippedStick' : res.p4.equippedStick,
+              'equippedToken' : res.p4.equippedToken,
+              'ageoutTimestamp': res.p4.ageoutTimestamp,
+              'draftTimestamp': res.p4.draftTimestamp
+              }) 
+        } 
+
+
+         if(res.p5.id != 0){
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p5.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p5.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p5.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p5.id, 
+              'offence': res.p5.offence,  
+              'defence': res.p5.defence, 
+              'dna': res.p5.dna, 
+              'playertype' : res.p5.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 5,
+              'equippedJersey' : res.p5.equippedJersey,
+              'equippedStick' : res.p5.equippedStick,
+              'equippedToken' : res.p5.equippedToken,
+              'ageoutTimestamp': res.p5.ageoutTimestamp,
+              'draftTimestamp': res.p5.draftTimestamp
+              }) 
+        } 
+
+
+         if(res.p6.id != 0){
+            let isOff
+            let isDef
+            let isGoal
+            if(res.p6.playertype == 1){
+              isOff = true
+              isDef = false
+              isGoal = false
+            }else if (res.p6.playertype == 2){
+              isOff = false
+              isDef = true
+              isGoal = false
+            }else if (res.p6.playertype == 3){
+              isOff = false
+              isDef = false
+              isGoal = true
+            }
+     
+         playerArray.push({
+              'id': res.p6.id, 
+              'offence': res.p6.offence,  
+              'defence': res.p6.defence, 
+              'dna': res.p6.dna, 
+              'playertype' : res.p6.playertype,
+              'isOffence' : isOff,
+              'isDefence' : isDef,
+              'isGoalie' : isGoal,
+              'teamId' : res.teamId,
+              'teamLetter': teamLetter,
+              'position' : 6,
+              'equippedJersey' : res.p6.equippedJersey,
+              'equippedStick' : res.p6.equippedStick,
+              'equippedToken' : res.p6.equippedToken,
+              'ageoutTimestamp': res.p6.ageoutTimestamp,
+              'draftTimestamp': res.p6.draftTimestamp
+              }) 
+        } 
+        console.log(playerArray)
+        this.teamPlayers == playerArray.length
+
+         
+
           let currentTime = Math.floor(Date.now() / 10 ** 3)
           let pos1ret = false
           let pos2ret = false
@@ -382,24 +604,13 @@ export default {
           let pos4ret = false
           let pos5ret = false
           let pos6ret = false
-          if (indexPlayer1 >= 0){
-            if(playerArray[indexPlayer1].ageoutTimestamp > currentTime){pos1ret = false} else {pos1ret = true}
-          }
-          if (indexPlayer2 >= 0){
-            if(playerArray[indexPlayer2].ageoutTimestamp > currentTime){pos2ret = false} else {pos2ret = true}
-          }
-          if (indexPlayer3 >= 0){
-           if(playerArray[indexPlayer3].ageoutTimestamp > currentTime){pos3ret = false} else {pos3ret = true}
-          }
-          if (indexPlayer4 >= 0){
-           if(playerArray[indexPlayer4].ageoutTimestamp > currentTime){pos4ret = false} else {pos4ret = true}
-          }
-          if (indexPlayer5 >= 0){
-           if(playerArray[indexPlayer5].ageoutTimestamp > currentTime){pos5ret = false} else {pos5ret = true}
-          }
-          if (indexPlayer6 >= 0){
-           if(playerArray[indexPlayer6].ageoutTimestamp > currentTime){pos6ret = false} else {pos6ret = true}
-          }
+      
+          if(res.p1.ageoutTimestamp > currentTime){pos1ret = false} else {pos1ret = true}
+          if(res.p2.ageoutTimestamp > currentTime){pos2ret = false} else {pos2ret = true}
+          if(res.p3.ageoutTimestamp > currentTime){pos3ret = false} else {pos3ret = true}
+          if(res.p4.ageoutTimestamp > currentTime){pos4ret = false} else {pos4ret = true}
+          if(res.p5.ageoutTimestamp > currentTime){pos5ret = false} else {pos5ret = true}
+          if(res.p6.ageoutTimestamp > currentTime){pos6ret = false} else {pos6ret = true}
           let activePlayerCount = 0;
           
           if(pos1ret == false){activePlayerCount = activePlayerCount +1}
@@ -408,82 +619,49 @@ export default {
           if(pos4ret == false){activePlayerCount = activePlayerCount +1}
           if(pos5ret == false){activePlayerCount = activePlayerCount +1}
           if(pos6ret == false){activePlayerCount = activePlayerCount +1}
-          if (indexPlayer1 >= 0){pos1id = playerArray[indexPlayer1].id} else {pos1id = ''}
-          if (indexPlayer1 >= 0){pos1OP = playerArray[indexPlayer1].offence} else {pos1OP = ''}
-          if (indexPlayer1 >= 0){pos1DP = playerArray[indexPlayer1].defence} else {pos1DP = ''}
-          if (indexPlayer2 >= 0){pos2id = playerArray[indexPlayer2].id} else {pos2id = ''}
-          if (indexPlayer2 >= 0){pos2OP = playerArray[indexPlayer2].offence} else {pos2OP = ''}
-          if (indexPlayer2 >= 0){pos2DP = playerArray[indexPlayer2].defence} else {pos2DP = ''}
-          if (indexPlayer3 >= 0){pos3id = playerArray[indexPlayer3].id} else {pos3id = ''}
-          if (indexPlayer3 >= 0){pos3OP = playerArray[indexPlayer3].offence} else {pos3OP = ''}
-          if (indexPlayer3 >= 0){pos3DP = playerArray[indexPlayer3].defence} else {pos3DP = ''}
-          if (indexPlayer4 >= 0){pos4id = playerArray[indexPlayer4].id} else {pos4id = ''}
-          if (indexPlayer4 >= 0){pos4OP = playerArray[indexPlayer4].offence} else {pos4OP = ''}
-          if (indexPlayer4 >= 0){pos4DP = playerArray[indexPlayer4].defence} else {pos4DP = ''}
-          if (indexPlayer5 >= 0){pos5id = playerArray[indexPlayer5].id} else {pos5id = ''}
-          if (indexPlayer5 >= 0){pos5OP = playerArray[indexPlayer5].offence} else {pos5OP = ''}
-          if (indexPlayer5 >= 0){pos5DP = playerArray[indexPlayer5].defence} else {pos5DP = ''}
-          if (indexPlayer6 >= 0){pos6id = playerArray[indexPlayer6].id} else {pos6id = ''}
-          if (indexPlayer6 >= 0){pos6OP = playerArray[indexPlayer6].offence} else {pos6OP = ''}
-          if (indexPlayer6 >= 0){pos6DP = playerArray[indexPlayer6].defence} else {pos6DP = ''}
-          //console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
-          //console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
-          //console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
-          this.playerIdArray = [pos1id,pos2id,pos3id,pos4id,pos5id,pos6id]
 
+          this.playerIdArray = [res.p1.id,res.p2.id,res.p3.id,res.p4.id,res.p5.id,res.p6.id]
 
-          let opTotal = Number(pos1OP) + Number(pos2OP) + Number(pos3OP) + Number(pos4OP) + Number(pos5OP) + Number(pos6OP)
-          let dpTotal = Number(pos1DP) + Number(pos2DP) + Number(pos3DP) + Number(pos4DP) + Number(pos5DP) + Number(pos6DP)
-
-          let teamCityStarter = parseInt(res[i].teamDna.slice(1,4))
-          let teamCityNumber = Math.floor((teamCityStarter/1000) * 529)
-          let teamNounNumber = parseInt(res[i].teamDna.slice(5,8))
-          
-          let teamName = this.nouns[teamNounNumber].noun
-          let teamLetter = teamName.slice(0,1)        
-          //console.log(teamLetter)
-
-          teamArray.push({
-            'teamId': res[i].teamId,
-            'teamDna': res[i].teamDna,
-            'teamTotalOP': res[i].teamTotalOP,
-            'teamTotalDP': res[i].teamTotalDP,
+         teamArray.push({
+            'teamId': res.teamId,
+            'teamDna': res.teamDna,
+            'teamTotalOP': res.teamTotalOP,
+            'teamTotalDP': res.teamTotalDP,
             'teamCityNumber': teamCityNumber,
             'teamNounNumber': teamNounNumber,
             'teamLetter': teamLetter,
-            'timeActive': res[i].timeActive,
-            'gamesPlayed': res[i].gamesPlayed,
-            'equippedItem': res[i].equippedItem,
-            'playerPos1': pos1id,
-            'playerPos1OP': pos1OP,
-            'playerPos1DP': pos1DP,
+            'timeActive': res.timeActive,
+            'gamesPlayed': res.gamesPlayed,
+            'equippedItem': res.equippedItem,
+            'playerPos1': res.p1.id,
+            'playerPos1OP': res.p1.offence,
+            'playerPos1DP': res.p1.defence,
             'pos1ret':pos1ret,
-            'playerPos2': pos2id,
-            'playerPos2OP': pos2OP,
-            'playerPos2DP': pos2DP,
-            'pos2ret':pos2ret,
-            'playerPos3': pos3id,
-            'playerPos3OP': pos3OP,
-            'playerPos3DP': pos3DP,
-            'pos3ret':pos3ret,
-            'playerPos4': pos4id,
-            'playerPos4OP': pos4OP,
-            'playerPos4DP': pos4DP,
-            'pos4ret':pos4ret,
-            'playerPos5': pos5id,
-            'playerPos5OP': pos5OP,
-            'playerPos5DP': pos5DP,
-            'pos5ret':pos5ret,
-            'playerPos6': pos6id,
-            'playerPos6OP': pos6OP,
-            'playerPos6DP': pos6DP,
-            'pos6ret':pos6ret,
-            'opTotal': opTotal,
-            'dpTotal': dpTotal,
+            'playerPos2': res.p2.id,
+            'playerPos2OP': res.p2.offence,
+            'playerPos2DP': res.p2.defence,
+            'pos1ret':pos2ret,
+            'playerPos3': res.p3.id,
+            'playerPos3OP': res.p3.offence,
+            'playerPos3DP': res.p3.defence,
+            'pos1ret':pos3ret,
+            'playerPos4': res.p4.id,
+            'playerPos4OP': res.p4.offence,
+            'playerPos4DP': res.p4.defence,
+            'pos1ret':pos4ret,
+            'playerPos5': res.p5.id,
+            'playerPos5OP': res.p5.offence,
+            'playerPos5DP': res.p5.defence,
+            'pos1ret':pos5ret,
+            'playerPos6': res.p6.id,
+            'playerPos6OP': res.p6.offence,
+            'playerPos6DP': res.p6.defence,
+            'pos1ret':pos6ret,
+            'opTotal': res.teamTotalOP,
+            'dpTotal': res.teamTotalDP,
             'activePlayerCount': activePlayerCount
           })
-        }
-        
+
         this.loadingTeams = false
         this.matchPlaying = false
         return {teamArray: teamArray, players: playerArray }
@@ -494,7 +672,7 @@ export default {
          buildCanvas.preloadPlayerInfo(res2.players[i].id, res2.players[i], "player-no")
         }
         //console.log("Active Player Count: " + res)
-        //console.log(res)
+        console.log(res)
         if(res2.teamArray[0].activePlayerCount == 6){
           this.sixActivePlayers = true
         }        
@@ -517,15 +695,190 @@ export default {
       })
     },
 
-    async benchPlayer(_splashImage, _teamId, _position, _playerId){
+
+    // async displayTeam(playerArray){
+    //   Promise.all(await main.displayTeam())
+    //   .then(res => {
+    //     //console.log("Result: " + res)
+    //     //console.log(res)
+    //     let teamArray = []
+    //     for (let i = 0; i < res.length; i++){
+          
+    //       let indexPlayer1 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "1")
+    //       let indexPlayer2 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "2")
+    //       let indexPlayer3 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "3")
+    //       let indexPlayer4 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "4")
+    //       let indexPlayer5 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "5")
+    //       let indexPlayer6 = playerArray.findIndex(e => e.teamId === res[i].teamId && e.position === "6")
+    //       let pos1id
+    //       let pos1OP
+    //       let pos1DP
+    //       let pos2id
+    //       let pos2OP
+    //       let pos2DP
+    //       let pos3id
+    //       let pos3OP
+    //       let pos3DP
+    //       let pos4id
+    //       let pos4OP
+    //       let pos4DP
+    //       let pos5id
+    //       let pos5OP
+    //       let pos5DP
+    //       let pos6id
+    //       let pos6OP
+    //       let pos6DP
+    //       let currentTime = Math.floor(Date.now() / 10 ** 3)
+    //       let pos1ret = false
+    //       let pos2ret = false
+    //       let pos3ret = false
+    //       let pos4ret = false
+    //       let pos5ret = false
+    //       let pos6ret = false
+    //       if (indexPlayer1 >= 0){
+    //         if(playerArray[indexPlayer1].ageoutTimestamp > currentTime){pos1ret = false} else {pos1ret = true}
+    //       }
+    //       if (indexPlayer2 >= 0){
+    //         if(playerArray[indexPlayer2].ageoutTimestamp > currentTime){pos2ret = false} else {pos2ret = true}
+    //       }
+    //       if (indexPlayer3 >= 0){
+    //        if(playerArray[indexPlayer3].ageoutTimestamp > currentTime){pos3ret = false} else {pos3ret = true}
+    //       }
+    //       if (indexPlayer4 >= 0){
+    //        if(playerArray[indexPlayer4].ageoutTimestamp > currentTime){pos4ret = false} else {pos4ret = true}
+    //       }
+    //       if (indexPlayer5 >= 0){
+    //        if(playerArray[indexPlayer5].ageoutTimestamp > currentTime){pos5ret = false} else {pos5ret = true}
+    //       }
+    //       if (indexPlayer6 >= 0){
+    //        if(playerArray[indexPlayer6].ageoutTimestamp > currentTime){pos6ret = false} else {pos6ret = true}
+    //       }
+    //       let activePlayerCount = 0;
+          
+    //       if(pos1ret == false){activePlayerCount = activePlayerCount +1}
+    //       if(pos2ret == false){activePlayerCount = activePlayerCount +1}
+    //       if(pos3ret == false){activePlayerCount = activePlayerCount +1}
+    //       if(pos4ret == false){activePlayerCount = activePlayerCount +1}
+    //       if(pos5ret == false){activePlayerCount = activePlayerCount +1}
+    //       if(pos6ret == false){activePlayerCount = activePlayerCount +1}
+    //       if (indexPlayer1 >= 0){pos1id = playerArray[indexPlayer1].id} else {pos1id = ''}
+    //       if (indexPlayer1 >= 0){pos1OP = playerArray[indexPlayer1].offence} else {pos1OP = ''}
+    //       if (indexPlayer1 >= 0){pos1DP = playerArray[indexPlayer1].defence} else {pos1DP = ''}
+    //       if (indexPlayer2 >= 0){pos2id = playerArray[indexPlayer2].id} else {pos2id = ''}
+    //       if (indexPlayer2 >= 0){pos2OP = playerArray[indexPlayer2].offence} else {pos2OP = ''}
+    //       if (indexPlayer2 >= 0){pos2DP = playerArray[indexPlayer2].defence} else {pos2DP = ''}
+    //       if (indexPlayer3 >= 0){pos3id = playerArray[indexPlayer3].id} else {pos3id = ''}
+    //       if (indexPlayer3 >= 0){pos3OP = playerArray[indexPlayer3].offence} else {pos3OP = ''}
+    //       if (indexPlayer3 >= 0){pos3DP = playerArray[indexPlayer3].defence} else {pos3DP = ''}
+    //       if (indexPlayer4 >= 0){pos4id = playerArray[indexPlayer4].id} else {pos4id = ''}
+    //       if (indexPlayer4 >= 0){pos4OP = playerArray[indexPlayer4].offence} else {pos4OP = ''}
+    //       if (indexPlayer4 >= 0){pos4DP = playerArray[indexPlayer4].defence} else {pos4DP = ''}
+    //       if (indexPlayer5 >= 0){pos5id = playerArray[indexPlayer5].id} else {pos5id = ''}
+    //       if (indexPlayer5 >= 0){pos5OP = playerArray[indexPlayer5].offence} else {pos5OP = ''}
+    //       if (indexPlayer5 >= 0){pos5DP = playerArray[indexPlayer5].defence} else {pos5DP = ''}
+    //       if (indexPlayer6 >= 0){pos6id = playerArray[indexPlayer6].id} else {pos6id = ''}
+    //       if (indexPlayer6 >= 0){pos6OP = playerArray[indexPlayer6].offence} else {pos6OP = ''}
+    //       if (indexPlayer6 >= 0){pos6DP = playerArray[indexPlayer6].defence} else {pos6DP = ''}
+    //       //console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
+    //       //console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
+    //       //console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
+    //       this.playerIdArray = [pos1id,pos2id,pos3id,pos4id,pos5id,pos6id]
+
+
+    //       let opTotal = Number(pos1OP) + Number(pos2OP) + Number(pos3OP) + Number(pos4OP) + Number(pos5OP) + Number(pos6OP)
+    //       let dpTotal = Number(pos1DP) + Number(pos2DP) + Number(pos3DP) + Number(pos4DP) + Number(pos5DP) + Number(pos6DP)
+
+    //       let teamCityStarter = parseInt(res[i].teamDna.slice(1,4))
+    //       let teamCityNumber = Math.floor((teamCityStarter/1000) * 529)
+    //       let teamNounNumber = parseInt(res[i].teamDna.slice(5,8))
+          
+    //       let teamName = this.nouns[teamNounNumber].noun
+    //       let teamLetter = teamName.slice(0,1)        
+    //       //console.log(teamLetter)
+
+    //       teamArray.push({
+    //         'teamId': res[i].teamId,
+    //         'teamDna': res[i].teamDna,
+    //         'teamTotalOP': res[i].teamTotalOP,
+    //         'teamTotalDP': res[i].teamTotalDP,
+    //         'teamCityNumber': teamCityNumber,
+    //         'teamNounNumber': teamNounNumber,
+    //         'teamLetter': teamLetter,
+    //         'timeActive': res[i].timeActive,
+    //         'gamesPlayed': res[i].gamesPlayed,
+    //         'equippedItem': res[i].equippedItem,
+    //         'playerPos1': pos1id,
+    //         'playerPos1OP': pos1OP,
+    //         'playerPos1DP': pos1DP,
+    //         'pos1ret':pos1ret,
+    //         'playerPos2': pos2id,
+    //         'playerPos2OP': pos2OP,
+    //         'playerPos2DP': pos2DP,
+    //         'pos2ret':pos2ret,
+    //         'playerPos3': pos3id,
+    //         'playerPos3OP': pos3OP,
+    //         'playerPos3DP': pos3DP,
+    //         'pos3ret':pos3ret,
+    //         'playerPos4': pos4id,
+    //         'playerPos4OP': pos4OP,
+    //         'playerPos4DP': pos4DP,
+    //         'pos4ret':pos4ret,
+    //         'playerPos5': pos5id,
+    //         'playerPos5OP': pos5OP,
+    //         'playerPos5DP': pos5DP,
+    //         'pos5ret':pos5ret,
+    //         'playerPos6': pos6id,
+    //         'playerPos6OP': pos6OP,
+    //         'playerPos6DP': pos6DP,
+    //         'pos6ret':pos6ret,
+    //         'opTotal': opTotal,
+    //         'dpTotal': dpTotal,
+    //         'activePlayerCount': activePlayerCount
+    //       })
+    //     }
+        
+    //     this.loadingTeams = false
+    //     this.matchPlaying = false
+    //     return {teamArray: teamArray, players: playerArray }
+    //   })
+    //   .then(res2 => {
+    //     let res = res2.teamArray
+    //     for (let i = 0; i < res2.players.length; i++){
+    //      buildCanvas.preloadPlayerInfo(res2.players[i].id, res2.players[i], "player-no")
+    //     }
+    //     //console.log("Active Player Count: " + res)
+    //     //console.log(res)
+    //     if(res2.teamArray[0].activePlayerCount == 6){
+    //       this.sixActivePlayers = true
+    //     }        
+    //     this.totalTeamsFound = res.length
+    //     this.teams = res
+    //     this.playersLoaded = true
+    //     this.loadPvCmatches(res2.teamArray[0].teamId)
+    //     this.pageTeamId = res2.teamArray[0].teamId
+    //     this.updateBalanceViewer()
+    //     this.updateXpBalanceViewer()
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error rendering Teams: " + err)
+    //     console.log(err)
+    //     this.totalTeamsFound = 0
+    //     this.teams = null
+    //     this.playersLoaded = true
+    //     this.updateBalanceViewer()
+    //     this.updateXpBalanceViewer()
+    //   })
+    // },
+
+    async benchPlayer(_splashImage, _posID){
       this.splashImage = _splashImage
       this.screenLocked = true
       //console.log(_teamId)
       //console.log(_position)
       
-      await main.removeFromPosition(_teamId, _playerId).then(res => {
+      await main.removeFromPosition(_posID).then(res => {
         this.screenLocked = false
-        this.sendPlayerData()
+        this.getTeamDetails()
         this.updateBalanceViewer()
         this.updateXpBalanceViewer()
         
@@ -533,100 +886,100 @@ export default {
       .catch(err => {
         this.screenLocked = false
         console.log(err)
-        this.sendPlayerData()
+        //this.sendPlayerData()
         this.updateBalanceViewer()
         this.updateXpBalanceViewer()
       })
       
     },
 
-    async sendPlayerData() {
-      this.totalFoundPlayers = 0
-      this.offenceFound = 0
-      this.defenceFound = 0
-      this.goaliesFound = 0
-      let playerArray = []  
-      this.loadCount++
-      //console.log("Player Load Count: " + this.loadCount)
-      Promise.all(await main.loadPBPlayers("My Teams Player Loader"))
-      .then(res => {
-        //console.log("Result: " + res)
-        if (res.length == 0) {
-          //console.log("0 Players Found")
-          this.totalFoundPlayers = 0
-        }else{  
-        for (let i = 0; i < res.length; i++) {
-           let isOff
-            let isDef
-            let isGoal
-            if(res[i].playertype == 1){
-              isOff = true
-              isDef = false
-              isGoal = false
-            }else if (res[i].playertype == 2){
-              isOff = false
-              isDef = true
-              isGoal = false
-            }else if (res[i].playertype == 3){
-              isOff = false
-              isDef = false
-              isGoal = true
-            }
-            //console.log(res[i].ageoutTimestamp)
-            playerArray.push({
-              'id': res[i].id, 
-              'offence': res[i].offence,  
-              'defence': res[i].defence, 
-              'dna': res[i].dna, 
-              'playertype' : res[i].playertype,
-              'isOffence' : isOff,
-              'isDefence' : isDef,
-              'isGoalie' : isGoal,
-              'teamId' : res[i].teamId,
-              'teamLetter': res[i].teamLetter,
-              'position' : res[i].position,
-              'equippedJersey' : res[i].equippedJersey,
-              'equippedStick' : res[i].equippedStick,
-              'equippedToken' : res[i].equippedToken,
-              'ageoutTimestamp': res[i].ageoutTimestamp,
-              'draftTimestamp': res[i].draftTimestamp
-              }) 
-            if(res[i].playertype == 1 && res[i].teamId == 0){
-              this.offenceFound = this.offenceFound+1
-            }else if(res[i].playertype == 2 && res[i].teamId == 0){
-              this.defenceFound = this.defenceFound+1
-            }else if(res[i].playertype == 3 && res[i].teamId == 0){
-              this.goaliesFound = this.goaliesFound+1
-            }
-          }
-        }
-        this.loadingPlayers = false
-        //console.log("Found " + this.offenceFound + " Offence")
-        //console.log("Found " + this.defenceFound + " Defence")
-        //console.log("Found " + this.goaliesFound + " Goalies")
-        //console.log(playerArray)
-        return playerArray
+    // async sendPlayerData() {
+    //   this.totalFoundPlayers = 0
+    //   this.offenceFound = 0
+    //   this.defenceFound = 0
+    //   this.goaliesFound = 0
+    //   let playerArray = []  
+    //   this.loadCount++
+    //   //console.log("Player Load Count: " + this.loadCount)
+    //   Promise.all(await main.loadPBPlayers("My Teams Player Loader"))
+    //   .then(res => {
+    //     //console.log("Result: " + res)
+    //     if (res.length == 0) {
+    //       //console.log("0 Players Found")
+    //       this.totalFoundPlayers = 0
+    //     }else{  
+    //     for (let i = 0; i < res.length; i++) {
+    //        let isOff
+    //         let isDef
+    //         let isGoal
+    //         if(res[i].playertype == 1){
+    //           isOff = true
+    //           isDef = false
+    //           isGoal = false
+    //         }else if (res[i].playertype == 2){
+    //           isOff = false
+    //           isDef = true
+    //           isGoal = false
+    //         }else if (res[i].playertype == 3){
+    //           isOff = false
+    //           isDef = false
+    //           isGoal = true
+    //         }
+    //         //console.log(res[i].ageoutTimestamp)
+    //         playerArray.push({
+    //           'id': res[i].id, 
+    //           'offence': res[i].offence,  
+    //           'defence': res[i].defence, 
+    //           'dna': res[i].dna, 
+    //           'playertype' : res[i].playertype,
+    //           'isOffence' : isOff,
+    //           'isDefence' : isDef,
+    //           'isGoalie' : isGoal,
+    //           'teamId' : res[i].teamId,
+    //           'teamLetter': res[i].teamLetter,
+    //           'position' : res[i].position,
+    //           'equippedJersey' : res[i].equippedJersey,
+    //           'equippedStick' : res[i].equippedStick,
+    //           'equippedToken' : res[i].equippedToken,
+    //           'ageoutTimestamp': res[i].ageoutTimestamp,
+    //           'draftTimestamp': res[i].draftTimestamp
+    //           }) 
+    //         if(res[i].playertype == 1 && res[i].teamId == 0){
+    //           this.offenceFound = this.offenceFound+1
+    //         }else if(res[i].playertype == 2 && res[i].teamId == 0){
+    //           this.defenceFound = this.defenceFound+1
+    //         }else if(res[i].playertype == 3 && res[i].teamId == 0){
+    //           this.goaliesFound = this.goaliesFound+1
+    //         }
+    //       }
+    //     }
+    //     this.loadingPlayers = false
+    //     //console.log("Found " + this.offenceFound + " Offence")
+    //     //console.log("Found " + this.defenceFound + " Defence")
+    //     //console.log("Found " + this.goaliesFound + " Goalies")
+    //     //console.log(playerArray)
+    //     return playerArray
           
-      })
-      .then(res => {
+    //   })
+    //   .then(res => {
 
-          this.totalFoundPlayers = res.length
-          this.players = res
-          this.displayTeam(res)
-          this.updateBalanceViewer()
-          this.updateXpBalanceViewer()
+    //       this.totalFoundPlayers = res.length
+    //       this.players = res
+    //       this.displayTeam(res)
+    //       this.updateBalanceViewer()
+    //       this.updateXpBalanceViewer()
       
-        })
-        .catch((err) => {
+    //     })
+    //     .catch((err) => {
 
-          this.totalFoundPlayers = 0
-          console.log("Rendering Players in My Players Error: " + err)
-          console.log(err)
-          this.players = null
-          this.updateBalanceViewer()
-          this.updateXpBalanceViewer()
-        })
-    },
+    //       this.totalFoundPlayers = 0
+    //       console.log("Rendering Players in My Players Error: " + err)
+    //       console.log(err)
+    //       this.players = null
+    //       this.updateBalanceViewer()
+    //       this.updateXpBalanceViewer()
+    //     })
+    // },
 
     // async mintTeam() {
     //   Promise.all(await main.mintTeam()).then(async () => {
@@ -662,9 +1015,9 @@ export default {
       this.modalPosition = ''
       this.modalTeam = ''
       this.showAssignModal = !this.showAssignModal
-      this.updateBalanceViewer()
-      this.updateXpBalanceViewer()
-      this.sendPlayerData()
+      await this.updateBalanceViewer()
+      await this.updateXpBalanceViewer()
+      await this.getTeamDetails()
     },
 
     async closeNewPvPModal(){
@@ -676,7 +1029,7 @@ export default {
     async closePvCModal(){
       this.screenLockedPlay = false
     await this.loadCityAndNouns()
-    await this.sendPlayerData()
+    await this.getTeamDetails()
     await this.updateBalanceViewer()
     await this.updateXpBalanceViewer()
     this.updateProgressBars()
@@ -896,7 +1249,7 @@ export default {
   mounted: async function(){
     //await this.clearIntervals()
     await this.loadCityAndNouns()
-    await this.sendPlayerData()
+    await this.getTeamDetails()
     await this.updateBalanceViewer()
     await this.updateXpBalanceViewer()
     this.updateProgressBars()

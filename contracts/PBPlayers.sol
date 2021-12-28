@@ -34,9 +34,6 @@ contract PBPlayers is ERC721 {
         uint defence;
         uint dna;
         uint playertype;
-        uint teamId;
-        uint teamDna;
-        uint position;
         uint mainColor;
         uint ageoutTimestamp;
         uint draftTimestamp;
@@ -134,32 +131,33 @@ contract PBPlayers is ERC721 {
         require(allowance >= value, "B1");
         buddies.transferFrom(msg.sender, address(this), value);
         if(playerType == 1){
-            _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 50, _randHelper(1)), _generateRandAtrrib(msg.sender, 50, 0, _randHelper(2)), _generateRandDna(msg.sender, _randHelper(1)), playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 50, _randHelper(1)), _generateRandAtrrib(msg.sender, 50, 0, _randHelper(2)), _generateRandDna(msg.sender, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }else if(playerType == 2){
-             _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 0, _randHelper(3)), _generateRandAtrrib(msg.sender, 50, 50, _randHelper(4)), _generateRandDna(msg.sender, _randHelper(3)), playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+             _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 0, _randHelper(3)), _generateRandAtrrib(msg.sender, 50, 50, _randHelper(4)), _generateRandDna(msg.sender, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }else if (playerType == 3){
-             _tokenDetails[nextId] = Player(0, _generateRandAtrrib(msg.sender, 25, 75, _randHelper(5)), _generateRandDna(msg.sender, _randHelper(5)), playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+             _tokenDetails[nextId] = Player(0, _generateRandAtrrib(msg.sender, 25, 75, _randHelper(5)), _generateRandDna(msg.sender, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         } 
         _safeMint(msg.sender, nextId);
         setApprovalForAll(marketplaceAddress, true);
         nextId++;
     }
 
-     function mintPlayerToTeam(uint _op, uint _dp, address minter, uint playerType, uint teamId, uint teamDna, uint teamPos) public onlyTeams returns (uint, uint) {
+     function mintSixPackPlayer(uint _op, uint _dp, address minter, uint playerType) public onlyTeams returns (uint) {
         if(nextId == 0){
             require(msg.sender == admin, "A1");
         }
+        uint currentId = nextId;
         if(playerType == 1) {
-            _tokenDetails[nextId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(1)), playerType, teamId,teamDna,teamPos,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         } else if (playerType == 2){
-            _tokenDetails[nextId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(3)), playerType, teamId,teamDna,teamPos,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         } else if (playerType == 3) {
-            _tokenDetails[nextId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(5)), playerType, teamId,teamDna,teamPos,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }        
-        _safeMint(minter, nextId);
+        _safeMint(minter, currentId);
         setApprovalForAll(marketplaceAddress, true);
         nextId++;
-        return (_tokenDetails[nextId].offence, _tokenDetails[nextId].defence);
+        return (currentId);
     }
 
     function _randHelper(uint a) public view returns (uint){
@@ -168,11 +166,11 @@ contract PBPlayers is ERC721 {
 
     function mintSuperstar(address playerOwner, uint opScore, uint dpScore, uint dna, uint playerType) external onlyAdmin {
         if(playerType == 1){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }else if(playerType == 2){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }else if(playerType == 3){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType, 0,0,0,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0);
         }
         _safeMint(playerOwner, nextId);
         setApprovalForAll(marketplaceAddress, true);
@@ -223,40 +221,36 @@ contract PBPlayers is ERC721 {
         pbProShopFactory.mintOnUnequip(msg.sender, returnToken);
     }
 
-    function assignToTeam(uint teamId, uint position, uint playerid, uint teamDna) public {
-        require(ownerOf(playerid) == msg.sender);
-        require(pbTeams.getTokenDetails(teamId).ownerAddress == msg.sender);
-         _tokenDetails[playerid].teamId = teamId;
-         _tokenDetails[playerid].position = position;
-         _tokenDetails[playerid].teamDna = teamDna;
-         uint playerOp = _tokenDetails[playerid].offence;
-         uint playerDp = _tokenDetails[playerid].defence;
-         pbTeams.addStatsToTeam(teamId, msg.sender, playerOp, playerDp);
-    }
+    // function assignToTeam(uint teamId, uint position, uint playerid, uint teamDna) public {
+    //     require(ownerOf(playerid) == msg.sender);
+    //     require(pbTeams.getTokenDetails(teamId).ownerAddress == msg.sender);
+    //      _tokenDetails[playerid].position = position;
+    //      uint playerOp = _tokenDetails[playerid].offence;
+    //      uint playerDp = _tokenDetails[playerid].defence;
+    //      pbTeams.addStatsToTeam(teamId, msg.sender, playerOp, playerDp);
+    // }
 
-    function removeFromTeam(uint teamId, uint playerid) public {
-        require(ownerOf(playerid) == msg.sender);
-        require(pbTeams.getTokenDetails(teamId).ownerAddress == msg.sender);
-         _tokenDetails[playerid].teamId = 0;
-         _tokenDetails[playerid].position = 0;
-         _tokenDetails[playerid].teamDna = 0;
-         uint playerOp = _tokenDetails[playerid].offence;
-         uint playerDp = _tokenDetails[playerid].defence;
-         pbTeams.removeStatsFromTeam(teamId, msg.sender, playerOp, playerDp);
-    }
+    // function removeFromTeam(uint teamId, uint playerid) public {
+    //     require(ownerOf(playerid) == msg.sender);
+    //     require(pbTeams.getTokenDetails(teamId).ownerAddress == msg.sender);
+    //      _tokenDetails[playerid].teamId = 0;
+    //      _tokenDetails[playerid].position = 0;
+    //      _tokenDetails[playerid].teamDna = 0;
+    //      uint playerOp = _tokenDetails[playerid].offence;
+    //      uint playerDp = _tokenDetails[playerid].defence;
+    //      pbTeams.removeStatsFromTeam(teamId, msg.sender, playerOp, playerDp);
+    // }
 
     function addOp(uint tokenId, uint qty, address owner) public onlyPBXP {
+        require(ownerOf(tokenId) == owner, "O1");
+        require(_tokenDetails[tokenId].offence <= 99, "S1");
        _tokenDetails[tokenId].offence = _tokenDetails[tokenId].offence + qty;
-       if(_tokenDetails[tokenId].teamId != 0){
-        pbTeams.addOPToTeam(_tokenDetails[tokenId].teamId,owner, qty);
-       }
     }
 
     function addDp(uint tokenId, uint qty, address owner) public onlyPBXP {
+        require(ownerOf(tokenId) == owner, "O1");
+        require(_tokenDetails[tokenId].defence <= 99, "S2");
        _tokenDetails[tokenId].defence = _tokenDetails[tokenId].defence + qty;
-       if(_tokenDetails[tokenId].teamId != 0){
-           pbTeams.addDPToTeam(_tokenDetails[tokenId].teamId, owner, qty);
-       }
     }
 
     function _generateRandDna (address sender, uint randHelper) public view returns (uint){
@@ -274,30 +268,34 @@ contract PBPlayers is ERC721 {
         return primaryAttrib + base;
     }
 
-    function getTeamOP (uint _teamId) public view returns (uint) {
-            uint resultIndex = 0;
-            uint i;
-            for(i = 0; i < nextId; i++){
-                if(getTokenDetails(i).teamId == _teamId){
-                    resultIndex = resultIndex + getTokenDetails(i).offence; 
-            }
-        }
-        return resultIndex;
-    }
-
-    function getTeamDP (uint _teamId) public view returns (uint) {
-            uint resultIndex = 0;
-            uint i;
-            for(i = 0; i < nextId; i++){
-                if(getTokenDetails(i).teamId == _teamId){
-                    resultIndex = resultIndex + getTokenDetails(i).defence; 
-            }
-        }
-        return resultIndex;
-    }
-
-    // function withdrawBuddies(address payable _to, uint _amount) public onlyAdmin {
-    //     _to.transfer(_amount);
+    // function getTeamOP (uint _teamId) public view returns (uint) {
+    //         uint resultIndex = 0;
+    //         uint i;
+    //         for(i = 0; i < nextId; i++){
+    //             if(getTokenDetails(i).teamId == _teamId){
+    //                 resultIndex = resultIndex + getTokenDetails(i).offence; 
+    //         }
+    //     }
+    //     return resultIndex;
     // }
+
+    // function getTeamDP (uint _teamId) public view returns (uint) {
+    //         uint resultIndex = 0;
+    //         uint i;
+    //         for(i = 0; i < nextId; i++){
+    //             if(getTokenDetails(i).teamId == _teamId){
+    //                 resultIndex = resultIndex + getTokenDetails(i).defence; 
+    //         }
+    //     }
+    //     return resultIndex;
+    // }
+
+    function getBuddiesOnContract() public view onlyAdmin returns (uint){
+       return buddies.balanceOf(address(this));
+    }
+
+    function withdrawBuddies(uint value) public onlyAdmin {
+        buddies.transferFrom(address(this), msg.sender, value);
+    }
 
 }

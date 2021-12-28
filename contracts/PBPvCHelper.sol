@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import "../contracts/PBTeams.sol";
-import "../contracts/PBMatchupValidation.sol";
 
 contract PBPvCHelper {
 
@@ -13,8 +11,6 @@ uint hashToken;
 uint difficultymod;
 uint maxOpScore = 397;
 uint maxDpScore = 447;
-PBMatchupValidation public pbMatchupValidation;
-PBTeams public pbTeams;
 
 
 
@@ -54,11 +50,6 @@ function updateVariables(uint _winToken, uint _lossToken, uint _hashToken) exter
     winToken = _winToken;
     lossToken = _lossToken;
     hashToken = _hashToken;
-}
-
-function updateAddresses(address _pbMatchupValidationAddress, address _pbTeamsAddress ) external onlyAdmin {
-    pbMatchupValidation = PBMatchupValidation(_pbMatchupValidationAddress);
-    pbTeams = PBTeams(_pbTeamsAddress);
 }
 
 
