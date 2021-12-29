@@ -244,12 +244,12 @@ export default {
                     clearInterval(timer)
                 }
 
-                if (this.t1ScoreOT > this.t2ScoreOT && this.secondsLeftOT <= 0){
+                if (this.t1ScoreOT > this.t2ScoreOT){
                 this.matchComplete = true
                 this.team1Winner = true
                 }
                 
-                if (this.t1ScoreOT < this.t2ScoreOT && this.secondsLeftOT <= 0){
+                if (this.t1ScoreOT < this.t2ScoreOT){
                     this.matchComplete = true
                     this.team1Loser = true
                 }
