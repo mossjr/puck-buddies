@@ -6,40 +6,34 @@
             <div class="flip-card-front">
                 <canvas class="player-canvas" :id="`canvas-modal-no-${selectedId}`"></canvas>
             </div>
-            <!-- <div class="flip-card-back">
-                <div>Each Stat Point costs {{upgradeCost}} PBXP</div>
-                <div>{{myXp}} PBXP</div>
-                
-                <div class="xp-buttons-container">
-                    
-                    <div>
-                        <button class="power-select-button" @click="selectPower(1)" :class="{powerselected: opPowerSelected}">Offensive Power</button>
-                        <button class="power-select-button" @click="selectPower(2)" :class="{powerselected: dpPowerSelected}">Defensive Power</button>
-                    </div>
-                    <button class="xp-to-send-button" @click="increaseStats(selectedId, selectPowerNumber, opToIncrease, totalXpOp)">Increase {{selectedPower}} <br>by {{opToIncrease}} point<span v-if="opToIncrease > 1">s</span> <br> {{totalXpOp}} PBXP</button>
-                    <div>
-                        <button class="decrease-button" @click="decreaseOpToSend()">&#8592;</button>
-                        <button class="increase-button" @click="increaseOpToSend(playerData.offence)" v-if="myXp > totalXpOp ">&#8594;</button>
-                        <button class="increase-grey-button" v-if="myXp <= totalXpOp ">&#8594;</button>
-                    </div>
-                    
-                </div>
-            </div> -->
+                <div class="flip-card-back">
+                        <div class="name-block">{{playerName}}</div>
+                        <div class="stats-block">
+                            <div class="content-block"><b>Country:</b> {{playerData.playercountry}}</div>
+                            <div class="content-block"><b>Age:</b> {{playerData.playerAge}}</div>
+                            <div v-if="playerData.playertype != 3" class="content-block"><b>Offensive Power:</b> {{playerData.offence}}</div>
+                            <div class="content-block"><b>Defensive Power: </b>{{playerData.defence}}</div>
+                        </div>
+                    </div> 
         </div>
         </div>
         
-<div class="button-bar">
-    <button class="green-button" v-if="playerData.teamId == 0" @click="gotoFreeAgency">Send to Player Market</button>
-    <button class="grey-button" v-if="playerData.teamId != 0">Send to Player Market</button>
-</div>
-<div class="send-to-market" :class="{freeagencyactive: freeAgencyButton}">
-    <form @submit.prevent="sendPlayerToMarket()">
-    <label>Listing Amount</label>
-    <input type="text" required v-model="sellingValue">
-    <button class="send-to-market-button">Send To Player Market for <b>{{ sellingValue }} BUDS</b> <br> + {{sellingFeePercent}}% ({{sellingFee}}) market fee</button>
-    </form>
-
-</div>
+ <div v-if="playerData.isOnTeam == false" class="button-bar">
+            <form @submit.prevent="sendPlayerToMarket('PB-BRB')">
+            <label>Listing Amount</label>
+            <input type="text" required v-model="sellingValue">
+            <button class="send-to-market-button" v-if="playerData.isOnTeam == false">Send To Player Market for <b>{{ sellingValue }} BUDS</b> <br> + {{sellingFeePercent}}% ({{sellingFee}}) market fee</button>
+            <button class="grey-button" v-if="playerData.isOnTeam == true">Send to Player Market</button>
+            </form>
+            
+        </div>
+            
+        
+        <div v-if="playerData.isOnTeam == false" class="button-bar">
+             <input v-model="receipientAddress" class="small-warning" type="text" placeholder="Receipient Address Here">
+             <div class="small-warning">Enter address carefully, this transaction <b>cannot be reversed.</b></div>
+            <button @click="giftPlayer('PB-BRB', playerData.id, receipientAddress)" class="green-button">Gift Player</button>
+        </div>
 
 <div class="button-bar">
     <button class="green-button" v-if="playerData.equippedToken != 0" @click="removeProShopEquipment">Remove Pro Shop Equipment</button>

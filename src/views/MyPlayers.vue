@@ -225,6 +225,7 @@ export default {
       Promise.all(await main.loadPBPlayers("My Players"))
       .then(res => {
         console.log("Found " + res.length + " Players")
+        console.log(res)
         let playerArray = []     
         for (let i = 0; i < res.length; i++) {
             let isOff
@@ -255,7 +256,7 @@ export default {
               'isOffence' : isOff,
               'isDefence' : isDef,
               'isGoalie' : isGoal,
-              'teamId' : res[i].teamId,
+              'isOnTeam' : res[i].isOnTeam,
               'teamLetter': res[i].teamLetter,
               'position' : res[i].position,
               'equippedJersey' : res[i].equippedJersey,

@@ -18,42 +18,41 @@
                 <div>{{myXp}} PBXP</div>
                 <div>{{myXPplus}}</div> -->
                 
-                <div v-if="myXp >= upgradeCost" class="xp-buttons-container">
-                    
-                    <div>
-                        <button class="power-select-button" v-if="playerData.playertype != 3" @click="selectPower(1)" :class="{powerselected: opPowerSelected}">OP</button>
-                        <button class="power-select-button" @click="selectPower(2)" :class="{powerselected: dpPowerSelected}">DP</button>
-                    </div>
-                    <button class="xp-to-send-button" @click="increaseStats('PB-BRB', selectedId, selectPowerNumber, opToIncrease, totalXpOp)">Increase <b>{{selectedPower}}</b> <br>by <b>{{opToIncrease}} point</b><span v-if="opToIncrease > 1">s</span> <br> <b>{{totalXpOp}}</b> PBXP</button>
-                    <div>
-                        <button class="decrease-button"  v-if="totalXpOp != upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
-                        <button class="decrease-grey-button" v-if="totalXpOp == upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
-                        <button class="increase-button" @click="increaseOpToSend(playerData.offence)" v-if="myXp >= (myXPplus)">&#8594; {{myXPplus}}</button>
-                        <button class="increase-grey-button" v-if="myXp < (myXPplus) ">&#8594;</button>
+                    <div v-if="myXp >= upgradeCost" class="xp-buttons-container">  
+                        <div>
+                            <button class="power-select-button" v-if="playerData.playertype != 3" @click="selectPower(1)" :class="{powerselected: opPowerSelected}">OP</button>
+                            <button class="power-select-button" @click="selectPower(2)" :class="{powerselected: dpPowerSelected}">DP</button>
+                        </div>
+                        <button class="xp-to-send-button" @click="increaseStats('PB-BRB', selectedId, selectPowerNumber, opToIncrease, totalXpOp)">Increase <b>{{selectedPower}}</b> <br>by <b>{{opToIncrease}} point</b><span v-if="opToIncrease > 1">s</span> <br> <b>{{totalXpOp}}</b> PBXP</button>
+                        <div>
+                            <button class="decrease-button"  v-if="totalXpOp != upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
+                            <button class="decrease-grey-button" v-if="totalXpOp == upgradeCost" @click="decreaseOpToSend()">&#8592;</button>
+                            <button class="increase-button" @click="increaseOpToSend(playerData.offence)" v-if="myXp >= (myXPplus)">&#8594; {{myXPplus}}</button>
+                            <button class="increase-grey-button" v-if="myXp < (myXPplus) ">&#8594;</button>
+                        </div>
                     </div>
 
-                    
-                    
-                </div>
-                <div class="no-xp-warn" v-if="myXp < upgradeCost" >Play more matches to earn PBXP to upgrade stats</div>
+                    <div class="no-xp-warn" v-if="myXp < upgradeCost" >Play more matches to earn PBXP to upgrade stats</div>
+
             </div>
         </div>
         </div>
 
-        <div v-if="playerData.teamId == 0" class="button-bar">
+        <div v-if="playerData.isOnTeam == false" class="button-bar">
             <form @submit.prevent="sendPlayerToMarket('PB-BRB')">
             <label>Listing Amount</label>
             <input type="text" required v-model="sellingValue">
-            <button class="send-to-market-button">Send To Player Market for <b>{{ sellingValue }} BUDS</b> <br> + {{sellingFeePercent}}% ({{sellingFee}}) market fee</button>
+            <button class="send-to-market-button" v-if="playerData.isOnTeam == false">Send To Player Market for <b>{{ sellingValue }} BUDS</b> <br> + {{sellingFeePercent}}% ({{sellingFee}}) market fee</button>
+            <button class="grey-button" v-if="playerData.isOnTeam == true">Send to Player Market</button>
             </form>
             
         </div>
             
         
-        <div v-if="playerData.teamId == 0" class="button-bar">
+        <div v-if="playerData.isOnTeam == false" class="button-bar">
              <input v-model="receipientAddress" class="small-warning" type="text" placeholder="Receipient Address Here">
              <div class="small-warning">Enter address carefully, this transaction <b>cannot be reversed.</b></div>
-            <button @click="giftPlayer('PB-BRB', playerData.id, receipientAddress)" class="green-button" v-if="playerData.teamId == 0">Gift Player</button>
+            <button @click="giftPlayer('PB-BRB', playerData.id, receipientAddress)" class="green-button">Gift Player</button>
         </div>
         
 <!-- <div class="button-bar">
@@ -97,8 +96,8 @@ export default {
             sellingFee: '',
             opToIncrease:1,
             dpToIncrease:1,
-            upgradeCost:'',
-            myXp:'',
+            upgradeCost:0,
+            myXp:0,
             opPowerSelected:false,
             dpPowerSelected:true,
             selectedPower:"Defensive Power",
@@ -178,13 +177,15 @@ export default {
         async updateXpBalanceViewer(){
           await main.updateXPBalance().then(res => {
             document.getElementById('xp-balance').innerHTML = res
-            this.myXp = res
+            console.log(parseInt(res))
+            this.myXp = parseInt(res)
           })
       },
 
         async getUpgradeCost(){
             await main.getUpgradeCost().then(res => {
-                this.upgradeCost = res
+                console.log(parseInt(res))
+                this.upgradeCost = parseInt(res)
             })
         },
 
@@ -573,8 +574,9 @@ transition: 0.3s ease;
 .increase-grey-button{
      
     font-size: 23px;
-    color: rgb(0, 0, 0);
-    background: rgb(209, 209, 209);
+    cursor:not-allowed;
+    color: rgb(85, 85, 85);
+    background: rgb(85, 85, 85);
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;

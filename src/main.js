@@ -244,7 +244,7 @@ async function getPvCadminInfo(){
     console.log(pbTeamsAddress)
     let pbTeamsMintCost = await pbTeamsContractInstance.methods.getTeamMintCost().call({from: ethereum.selectedAddress})
     console.log(pbTeamsMintCost)
-    let pbTeamsCount = await pbTeamsContractInstance.methods.getTeamsCount().call({from: ethereum.selectedAddress})
+    let pbTeamsCount = 0 //await pbTeamsContractInstance.methods.getTeamsCount().call({from: ethereum.selectedAddress})
     console.log(pbTeamsCount)
 
     let pbPBXPContractInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
@@ -682,32 +682,38 @@ async function loadPBPlayers(source){
     // console.log(playerId + " " + teams[0].attributes.p4)
     // console.log(playerId + " " + teams[0].attributes.p5)
     // console.log(playerId + " " + teams[0].attributes.p6)
-
+    let myLetter = ""
     let playerPOS = 0
     let isOnTeam = false
     if(playerId == teams[0].attributes.p1){
         playerPOS = 1
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p2){
         playerPOS = 2
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p3){
         playerPOS = 3
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p4){
         playerPOS = 4
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p5){
         playerPOS = 5
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p6){
         playerPOS = 6
         isOnTeam = true
+        myLetter = teamFirstLetter
         // console.log("Assigned Player POS: " + playerPOS)
     }
 
@@ -744,7 +750,7 @@ async function loadPBPlayers(source){
             isDefence:isDefence,
             isGoalie:isGoalie,
             isOnTeam: isOnTeam,
-            teamLetter: teamFirstLetter,
+            teamLetter: myLetter,
             position:playerPOS,
             mainColor: details.mainColor,
             equippedJersey: details.equippedJersey,
