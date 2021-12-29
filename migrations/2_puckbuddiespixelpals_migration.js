@@ -332,7 +332,7 @@ module.exports = function (deployer) {
                                                             console.log("export const PBTeamsAddress = \"" + PBTeamsAddress +"\"")
                                                             console.log("export const PBPvCMatchupsAddress = \"" + PBPvCMatchupsAddress +"\"")
                                                             console.log("export const buddiesCoinAddress = \"" + buddiesCoinAddress +"\"")
-                                                            console.log("export const buddiesICOAddress = \"" + buddiesICOAddress +"\"")
+                                                            //console.log("export const buddiesICOAddress = \"" + buddiesICOAddress +"\"")
 
                                                             let obj = {addresses: []}
                                                             obj.addresses.push({addressname: 'pbPlayersAddress', address: pbPlayersAddress})
