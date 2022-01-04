@@ -47,6 +47,8 @@ export const proShopItems = [
                              {admin:pbProShopHolderAddress,sku:1100170001200001,active:true,c1:'#5d0659',c2:'#1a5362'}, //Is this Loss?
                              {admin:pbProShopHolderAddress,sku:1100180001200001,active:true,c1:'#ffffff',c2:'#fcbc02'}, //Xmas Tree
                              {admin:pbProShopHolderAddress,sku:1100190001200001,active:true,c1:'#8a92b2',c2:'#454a75'}, //Ethereum Blue
+                             {admin:pbProShopHolderAddress,sku:1100200001200001,active:true,c1:'#9e9d9d',c2:'#050636'}, //Spades
+                             {admin:pbProShopHolderAddress,sku:1100220001200001,active:true,c1:'#fca311',c2:'#14213d'}, //Honey Bees
                             ]
 
  

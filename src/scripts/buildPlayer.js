@@ -1,13 +1,23 @@
 import {proShopItems} from '../config.js'
 
+function convertRange( value, r1, r2 ) { 
+    return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
+}
 
 function preloadPlayerInfo(id, data, pos) {
     let firstName = ""
+    let nickName = ""
     let lastName = ""
-    let firstNameDna = ("" + Math.floor((data.dna.slice(0,1)/2)) + data.dna.slice(1,4))
-    let lastNameDna = ("" + Math.floor((data.dna.slice(4,5)/2)) + data.dna.slice(5,8))
-    firstNameDna = firstNameDna - 0
-    lastNameDna = lastNameDna - 0
+    let firstNameDna = Math.floor(convertRange(data.dna.slice(0,4), [0,9999], [1,7978]))
+    let lastNameDna = Math.floor(convertRange(data.dna.slice(4,8), [0,9999], [1,7978]))
+    let nickNameDna = Math.floor(convertRange(data.dna.slice(8,12), [0,9999], [1,7978]))
+    console.log("LOOK HERE")
+    console.log(firstNameDna + " " + lastNameDna + " " + nickNameDna)
+    // let firstNameDna = ("" + Math.floor((data.dna.slice(0,1)/2)) + data.dna.slice(1,4))
+    // let lastNameDna = ("" + Math.floor((data.dna.slice(4,5)/2)) + data.dna.slice(5,8))
+    // let nickName = ("" + Math.floor((data.dna.slice(4,5)/2)) + data.dna.slice(5,8))
+    // firstNameDna = firstNameDna - 0
+    // lastNameDna = lastNameDna - 0
     if(data.id == 999999999){
 
     }
@@ -18,29 +28,32 @@ function preloadPlayerInfo(id, data, pos) {
         }
     playerNames().then(namedata => {
         firstName = namedata[firstNameDna].first_name
+        nickName = namedata[nickNameDna].nick_name
         lastName = namedata[lastNameDna].last_name
+        console.log(firstName + " " + nickName + " " + lastName)
         let pdata = data
         let pid = id
         //console.log(pdata)
         
-        preloadFont(pid, pdata, firstName, lastName, pos);
+        preloadFont(pid, pdata, firstName, nickName, lastName, pos);
     })
 }
 
-function preloadFont (id,data, firstName, lastName, pos) {
+function preloadFont (id,data, firstName, nickName, lastName, pos) {
     let myFont = new FontFace('pixels','url(/assets/fonts/pixels.ttf)')
     let pid = id
     let pdata = data
     let fname = firstName
     let lname = lastName
+    let nname = nickName
     myFont.load().then(function(font){
         document.fonts.add(font)
-        renderPlayer(pid, pdata, fname, lname, pos)
+        renderPlayer(pid, pdata, fname, nname, lname, pos)
     })
 
 }
 
-function renderPlayer (id, data, firstName, lastName, pos){
+function renderPlayer (id, data, firstName, nickName, lastName, pos){
     // let canvas = document.getElementById('canvas-'+ pos + "-" + id )
     // canvas.classList.add('hide')
     if(data.id == 999999999){
@@ -551,7 +564,13 @@ flag.onload=function(){
 
     //First Name Last Name
     ctx.font = "30px pixels";
-    let fNameWidth = ctx.measureText(firstName)
+    let fullFirstName = ""
+    if(nickName.length > 0){
+        fullFirstName = firstName + " " + nickName
+    }else{
+        fullFirstName = firstName
+    }
+    let fNameWidth = ctx.measureText(fullFirstName)
     let lNameWidth = ctx.measureText(lastName)
     let fNameX = 400 - (fNameWidth.width + 10)
     let fNameY = 400
@@ -559,16 +578,16 @@ flag.onload=function(){
     let lNameY = 430
     let fNameThicc = 3
     ctx.fillStyle = "black"
-    ctx.fillText(firstName, fNameX+fNameThicc, fNameY+fNameThicc)
-    ctx.fillText(firstName, fNameX-fNameThicc, fNameY+fNameThicc)
-    ctx.fillText(firstName, fNameX+fNameThicc, fNameY-fNameThicc)
-    ctx.fillText(firstName, fNameX-fNameThicc, fNameY-fNameThicc)
+    ctx.fillText(fullFirstName, fNameX+fNameThicc, fNameY+fNameThicc)
+    ctx.fillText(fullFirstName, fNameX-fNameThicc, fNameY+fNameThicc)
+    ctx.fillText(fullFirstName, fNameX+fNameThicc, fNameY-fNameThicc)
+    ctx.fillText(fullFirstName, fNameX-fNameThicc, fNameY-fNameThicc)
     ctx.fillText(lastName, lNameX+fNameThicc, lNameY+fNameThicc)
     ctx.fillText(lastName, lNameX-fNameThicc, lNameY+fNameThicc)
     ctx.fillText(lastName, lNameX+fNameThicc, lNameY-fNameThicc)
     ctx.fillText(lastName, lNameX-fNameThicc, lNameY-fNameThicc)
     ctx.fillStyle = "white"
-    ctx.fillText(firstName, fNameX, fNameY)
+    ctx.fillText(fullFirstName, fNameX, fNameY)
     ctx.fillText(lastName, lNameX, lNameY)
     //Id Number
     ctx.font = "20px pixels";
