@@ -172,7 +172,7 @@ function encode(string) {
               t2DP = dpStat3
           }  
           
-          let range = 100000
+          let range = 200000
           
           let scoringRange = 100
           let hitThePostRange = 75
