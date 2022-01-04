@@ -8,9 +8,9 @@ function preloadPlayerInfo(id, data, pos) {
     let firstName = ""
     let nickName = ""
     let lastName = ""
-    let firstNameDna = Math.floor(convertRange(data.dna.slice(0,4), [0,9999], [1,7978]))
-    let lastNameDna = Math.floor(convertRange(data.dna.slice(4,8), [0,9999], [1,7978]))
-    let nickNameDna = Math.floor(convertRange(data.dna.slice(8,12), [0,9999], [1,7978]))
+    let firstNameDna = Math.floor(convertRange(data.dna.slice(0,4), [0,9999], [1,7982]))
+    let lastNameDna = Math.floor(convertRange(data.dna.slice(4,8), [0,9999], [1,7982]))
+    let nickNameDna = Math.floor(convertRange(data.dna.slice(8,12), [0,9999], [1,7982]))
     console.log("LOOK HERE")
     console.log(firstNameDna + " " + lastNameDna + " " + nickNameDna)
     // let firstNameDna = ("" + Math.floor((data.dna.slice(0,1)/2)) + data.dna.slice(1,4))
