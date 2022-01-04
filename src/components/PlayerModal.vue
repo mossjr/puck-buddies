@@ -101,7 +101,7 @@ export default {
             opPowerSelected:false,
             dpPowerSelected:true,
             selectedPower:"Defensive Power",
-            selectPowerNumber:1,
+            selectPowerNumber:2,
             splashImage: '',
             screenLocked: false,
             receipientAddress: '',

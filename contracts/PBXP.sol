@@ -83,12 +83,6 @@ contract PBXP is ERC1155 {
         return balance;
     }
 
-    //  function newTeamPBXP(address mintToAddress) external onlyTeams returns (uint){
-    //     _mint(mintToAddress, 0, (upgradeCost * 2), "");
-    //     uint balance = balanceOf(mintToAddress, 0);
-    //     return balance;
-    // }
-
     function burnItems(address owner, uint token, uint qty ) external onlyAdmin {
         _burn(owner, token, qty);
     }
@@ -96,6 +90,10 @@ contract PBXP is ERC1155 {
     function earnPBXP(address earnerAddress, uint qty) external {
         require(msg.sender == pbTeamsAddress || msg.sender == pbPvCAddress || msg.sender == pbMatchupsAddress);
         _mint(earnerAddress, PBXPTokenId, qty, "");
+    }
+
+    function awardPBXP(address awardeeAddress, uint qty) external onlyAdmin {
+        _mint(awardeeAddress, PBXPTokenId, qty, "");
     }
 
     function increaseStats(uint tokenId, uint statType, uint qty, uint xp) public {
@@ -107,7 +105,7 @@ contract PBXP is ERC1155 {
             require(pbPlayers.getTokenDetails(tokenId).playertype != 3);
             require(pbPlayers.getTokenDetails(tokenId).offence < 99);
             pbPlayers.addOp(tokenId, qty, msg.sender);
-        }else if (statType == 2) {
+        }else if (statType == 2){
             require(pbPlayers.getTokenDetails(tokenId).defence < 99);
             pbPlayers.addDp(tokenId, qty, msg.sender);
         }

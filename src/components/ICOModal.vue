@@ -12,9 +12,13 @@
                 </div>
                 
             </div>
+            <div>
+                  <h3>ICO STAGE 1 - {{percentFixed}}% COMPLETE</h3>
+                </div>
        <div class="ico-progress-bar-container">
               <div class="ico-progress" id="ico-play-animation" :style="{width: progressPercent + '%', 'background-color': '#'+ progressColor}"></div>
       </div>
+      
     </div>
 
        <div>
@@ -146,6 +150,12 @@ export default {
 
       budsRemaining: function() {
         let n = this.totalBuds - this.totalBudsSold
+        return n
+      },
+
+      percentFixed: function() {
+        let n = this.progressPercent * 1
+        n = n.toFixed(2)
         return n
       }
     },

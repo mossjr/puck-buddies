@@ -1,0 +1,212 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_exContract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_wt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lt",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getValidatorAddres",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_admin",
+						"type": "address"
+					}
+				],
+				"name": "updateAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_excontract",
+						"type": "address"
+					}
+				],
+				"name": "updateExContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_wt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lt",
+						"type": "uint256"
+					}
+				],
+				"name": "updateValidation",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_mNonce",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_diff",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_t1s",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_t2s",
+						"type": "uint256"
+					}
+				],
+				"name": "validateL",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_mNonce",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_diff",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_t1s",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_t2s",
+						"type": "uint256"
+					}
+				],
+				"name": "validateW",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/validator.sol": "Validator"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/validator.sol": {
+			"keccak256": "0x5140ccd250a58bddfb9033d1e49dcf3fa40833bc0ba6571eb9a409a4b762f5b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://45d191662454c8216644208c3961395a67cd3b40e1fbf52cfbf4c9a420009880",
+				"dweb:/ipfs/QmQJcQuQDn4pV4Sh9rFdZAUGBEex8UeUP11eNZ4tRs9MTn"
+			]
+		}
+	},
+	"version": 1
+}

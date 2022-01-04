@@ -1,4 +1,4 @@
-const feesAddress = "0x8AF61DCa85C2e0bb5bE3b06CF6DEe42Df68F5c98"
+const feesAddress = "0xb851e028EEAeb2B2eC32186AaC93E3855d5242Cc" 
 
 const PBBuddies = artifacts.require("PBBuddies")
 const PBPlayers = artifacts.require("PBPlayers")
@@ -55,7 +55,7 @@ const mintCost2 = "5000000000000000000"
 const mintCost3 = "10000000000000000000"
 const teamMintCost = "35000000000000000000"
 const upgradeCost = "500"
-const ageoutSeconds = "604800"
+const ageoutSeconds = "15552000"
 
 //PB ProShop Factory Deploy Settings
 const skuToMint1 = "1694200002400001"
@@ -78,18 +78,18 @@ const skuToMint17 = "1100160001200001"
 const skuToMint18 = "1100170001200001"
 const skuToMint19 = "1100180001200001"
 const skuToMint20 = "1100190001200001"
-const quantityToMint = 20
+const quantityToMint = 1000
 
 //PB PvC Deploy Settings
-let PvCTimeout = [60,130,230]
+let PvCTimeout = [120,120,120]
 let PvCReward = ["250000000000000000","500000000000000000","1000000000000000000"]
 let PvCxpReward = 25
 let PvCdifficultyModifier = 100
 let PvCinitialValueOnContract = web3.utils.toWei('1000')
 
 //ICO Settings
-let initialICOBuddies = '100000000000000000000000'
-let initalICOBudsPerBNB = '140'
+let initialICOBuddies = web3.utils.toWei('333333')
+let initalICOBudsPerBNB = '700'
 
 
 module.exports = function (deployer) {
@@ -148,6 +148,10 @@ module.exports = function (deployer) {
                             await pbProShopFactoryInstance.newProduct(skuToMint14, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint15, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint16, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint17, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint18, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint19, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint20, quantityToMint)
                         })
 
                         return deployer.deploy(PBProShopMarketplace, buddiesCoinAddress, pbProShopFactoryAddress, feesAddress).then(async () => {
@@ -300,26 +304,26 @@ module.exports = function (deployer) {
                                                                 
 
                                                                 //Mint only
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint7, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint8, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint9, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint10, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint11, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint12, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint13, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint14, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint15, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint16, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint17, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint18, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint19, 20)
-                                                                await pbProShopFactoryInstance.newProduct(skuToMint20, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint1, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint2, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint3, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint4, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint5, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint6, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint7, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint8, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint9, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint10, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint11, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint12, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint13, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint14, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint15, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint16, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint17, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint18, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint19, 20)
+                                                                // await pbProShopFactoryInstance.newProduct(skuToMint20, 20)
                                                                 
                                                          
 

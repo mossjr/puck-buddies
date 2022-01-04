@@ -66,13 +66,13 @@ function renderPlayer (id, data, firstName, lastName, pos){
 
 //Skates    
 let skates = new Image()
-let skatesDna = data.dna.slice(12, 13)
+let skatesDna = data.dna.slice(12, 15)
 let nSkates = 0
-if(skatesDna <= 6){
+if(skatesDna <= 9){
     nSkates = 0
-} else if(skatesDna <= 8){
+} else if(skatesDna <= 391){
     nSkates = 1
-} else if(skatesDna == 9){
+} else {
     nSkates = 2
 }
 let skatesImg = "/assets/player-" + pHelper+ "-img/PPP-skates-" + pHelper+ "-"+ nSkates + ".png"
@@ -80,16 +80,16 @@ skates.src=skatesImg;
 
 //Laces
 let laces = new Image()
-let lacesDna = data.dna.slice(13, 16)
+let lacesDna = data.dna.slice(15, 18)
 let nLaces = 0
 if(lacesDna <= 1){
     nLaces = 3
 } else if(lacesDna <= 10){
     nLaces = 2
-} else if(lacesDna <= 500){
-    nLaces = 0
-} else {
+} else if(lacesDna <= 666){
     nLaces = 1
+} else {
+    nLaces = 0
 }
 let lacesImg = "/assets/player-" + pHelper+ "-img/PPP-laces-" + pHelper+ "-" + nLaces + ".png"
 laces.src=lacesImg;
@@ -97,7 +97,7 @@ laces.src=lacesImg;
 //Legs
 let legs = new Image()
 if(data.equippedJersey == 0){
-    let legsDna = data.dna.slice(16,17)
+    let legsDna = data.dna.slice(18,19)
     let nLegs = legsDna % 10
     let legsImg = "/assets/player-" + pHelper+ "-img/PPP-legs-" + pHelper + "-" + nLegs + ".png"
     legs.src=legsImg;
@@ -110,7 +110,7 @@ if(data.equippedJersey == 0){
 //Shorts
 let shorts = new Image()
 if(data.equippedJersey == 0){
-    let shortsDna = data.dna.slice(17,18)
+    let shortsDna = data.dna.slice(19,20)
     let nShorts = shortsDna % 10
     let shortsImg = "/assets/player-" + pHelper + "-img/PPP-shorts-" + pHelper + "-" + nShorts + ".png"
     shorts.src=shortsImg;
@@ -122,7 +122,7 @@ if(data.equippedJersey == 0){
 //Jerseys
 let jerseys = new Image()
 if(data.equippedJersey == 0){
-    let jerseysDna = data.dna.slice(18,19)
+    let jerseysDna = data.dna.slice(20,21)
     let nJerseys = jerseysDna % 10
     let jerseysImg = "/assets/player-" + pHelper + "-img/PPP-jersey-" + pHelper + "-" + nJerseys + ".png"
     jerseys.src=jerseysImg;
@@ -141,7 +141,7 @@ if(data.equippedJersey == 0 && data.teamLetter != ""){
 
 //Sticks
 let sticks = new Image()
-let sticksDna = data.dna.slice(19, 21)
+let sticksDna = data.dna.slice(21, 23)
 let nSticks = 0
 if(sticksDna <= 6){
     nSticks = 0
@@ -156,7 +156,7 @@ sticks.src=sticksImg;
 //Gloves
 let gloves = new Image()
 if(data.equippedJersey == 0){
-    let glovesDna = data.dna.slice(21,22)
+    let glovesDna = data.dna.slice(23,24)
     let nGloves = glovesDna % 10
     let glovesImg = "/assets/player-" + pHelper + "-img/PPP-gloves-" + pHelper + "-" + nGloves + ".png"
     gloves.src=glovesImg;
@@ -167,21 +167,21 @@ if(data.equippedJersey == 0){
 
 //Faces
 let faces = new Image()
-let facesDna = data.dna.slice(22,23)
+let facesDna = data.dna.slice(24,25)
 let nFaces = facesDna % 7
 let facesImg = "/assets/player-" + pHelper + "-img/PPP-face-" + pHelper + "-" + nFaces + ".png"
 faces.src=facesImg;
 
 //Facial Hair
 let facialHair = new Image()
-let facialHairDna = data.dna.slice(23,25)
+let facialHairDna = data.dna.slice(25,27)
 let nFacialHair = facialHairDna % 26
 let facialHairImg = "/assets/player-" + pHelper + "-img/PPP-facial-hair-" + pHelper + "-" + nFacialHair + ".png"
 facialHair.src=facialHairImg;
 
 //Hair
 let hair = new Image()
-let hairDna = data.dna.slice(25,26)
+let hairDna = data.dna.slice(27,28)
 let nHair = hairDna % 6
 let hairImg = "/assets/player-" + pHelper + "-img/PPP-hair-" + pHelper + "-" + nHair + ".png"
 hair.src=hairImg;
@@ -189,7 +189,7 @@ hair.src=hairImg;
 //Helmet
 let helmet = new Image()
 if(data.equippedJersey == 0){
-    let helmetDna = data.dna.slice(26,27)
+    let helmetDna = data.dna.slice(28,29)
     let nHelmet = helmetDna % 10
     let helmetImg = "/assets/player-" + pHelper + "-img/PPP-helmet-" + pHelper + "-" + nHelmet + ".png"
     helmet.src=helmetImg;
@@ -200,7 +200,7 @@ if(data.equippedJersey == 0){
 
 //Visor
 let visor = new Image()
-let visorDna = data.dna.slice(27,28)
+let visorDna = data.dna.slice(29,30)
 let nVisor = visorDna % 10
 let visorImg = "/assets/player-" + pHelper + "-img/PPP-visor-" + pHelper + "-" + nVisor + ".png"
 visor.src=visorImg;

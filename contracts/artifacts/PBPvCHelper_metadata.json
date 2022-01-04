@@ -1,0 +1,171 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_difficultymod",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "firstGoalsFor",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "firstGoalsAgainst",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "sencondGoalsFor",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "secondGoalsAgainst",
+						"type": "uint256"
+					}
+				],
+				"name": "gamePlay",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "mod",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "difficulty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "statType",
+						"type": "uint256"
+					}
+				],
+				"name": "generateRandomStat",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPBPvCHelperAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTokensAdmin",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_winToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lossToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_hashToken",
+						"type": "uint256"
+					}
+				],
+				"name": "updateVariables",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PBPvCHelper.sol": "PBPvCHelper"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/PBPvCHelper.sol": {
+			"keccak256": "0xe6e67a366904b600254b20cfbce39468fc1a15c183ac95c70bb02b7140000583",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://84c8af4366906a4665d7a44c132170e0b8fc0dcb8e7480d3a029e300d2544de6",
+				"dweb:/ipfs/QmTuBZqX9CYSX9Nqch3N9D9FJnSYcwKVDz1sdv6MjaXezo"
+			]
+		}
+	},
+	"version": 1
+}

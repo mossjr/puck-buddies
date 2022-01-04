@@ -51,20 +51,22 @@ module.exports = {
      network_id: "*",       // Any network (default: none)
     },
     bscTestnet: {
-      provider: () => new HDWalletProvider(mnemonic, `https://speedy-nodes-nyc.moralis.io/45f5118b317a0251c313a3a8/bsc/testnet`), 
+      //provider: () => new HDWalletProvider(mnemonic, `https://speedy-nodes-nyc.moralis.io/45f5118b317a0251c313a3a8/bsc/testnet`), 
+      provider: () => new HDWalletProvider(mnemonic, `wss://speedy-nodes-nyc.moralis.io/45f5118b317a0251c313a3a8/bsc/testnet/ws`), 
       network_id: 97,
       gas: 8500000,
       confirmations: 10,
-      timeoutBlocks: 200,
-      networkCheckTimeout: 1000000000,
+      timeoutBlocks: 200000,
+      networkCheckTimeout: 10000000,
       skipDryRun: true
     },
     testnet: {
-      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-2-s3.binance.org:8545`),
+      //provider: () => new HDWalletProvider(mnemonic, `wss://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
       confirmations: 10,
-      timeoutBlocks: 200,
-      networkCheckTimeout: 1000000000,
+      timeoutBlocks: 200000,
+      networkCheckTimeout: 10000000,
       skipDryRun: true
     },
     // Another network with more advanced options...
