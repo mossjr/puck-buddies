@@ -329,15 +329,17 @@ export default{
     // },
 
     async updateBalanceViewer(){
-          await main.updateCoinBalance().then(res => {
-          document.getElementById('coin-balance').innerHTML = res
+         await main.updateCoinBalance().then(res => {
+                let resBalance = "My BUDDIES coins: " + res
+                document.getElementById('coin-balance').innerHTML = resBalance
           this.myFunds = res
         })
       }, 
 
       async updateXpBalanceViewer(){
                   await main.updateXPBalance().then(res => {
-          document.getElementById('xp-balance').innerHTML = res
+                    let myPBXP = "My PBXP balance: " + res
+          document.getElementById('xp-balance').innerHTML = myPBXP
           this.myXp = res
           })
       },

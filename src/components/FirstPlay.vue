@@ -5,8 +5,14 @@
     <h2>Welcome to</h2>
     <h1>Puck Buddies!</h1>
     <div>
-        <p>In order to play, you will need a team and some players.</p>
-        <p>Click the button below to get your first team!</p>
+        <div v-if="myBuds < teamMintCost">
+        <p>In order to play, you will some BUDDIES coins.</p>
+        <p>Click the ICO button above to get started!</p>
+        </div>
+        <div v-if="myBuds >= teamMintCost">
+        <p >In order to play, you will need a team and some players.</p>
+        <p>Click the button below to mint your first team!</p>
+        </div>
             <div class="coin-container">
                 <div class="coinbalancecard">
                     <div  class="buds-coin"><img @click="addBuddiesToMetaMask()" src="../assets/img/buddies-coin-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="coin-balance"></div>
@@ -15,7 +21,7 @@
                 
             </div> 
     </div>
-  <button id="login_button" @click="mintNewTeam('PB-BRB')">Mint Your First Team for <br><b>{{teamMintCost}} BUDS</b></button>
+  <button v-if="myBuds >= teamMintCost" id="login_button" @click="mintNewTeam('PB-BRB')">Mint Your First Team for <br><b>{{teamMintCost}} BUDS</b></button>
   </div>
 </div>
 
@@ -39,7 +45,8 @@ export default {
     data() {
     return{
         loadingData: true,
-        teamMintCost:'',
+        teamMintCost:0,
+        myBuds:0,
         splashImage:'',
         screenLocked: false,
         icoModalVisible: false,
@@ -49,17 +56,26 @@ export default {
     methods:{
 
             async mintNewTeam(_splashImage){
-                this.splashImage = _splashImage
-                this.screenLocked=true
-                await main.mintNewTeamMoralis(this.teamMintCost).then(res => {
-                    this.screenLocked=false
+                let teamFound
+                await main.getTeamFromMoralis().then(res =>{
+                    teamFound = res
                     console.log(res)
-                    this.$emit('teamFound')
-                }).catch(err => {
-                    this.screenLocked=false
-                    console.log(err)
-                    this.$emit('teamFound')
                 })
+                if(teamFound == false){
+                    this.splashImage = _splashImage
+                    this.screenLocked=true
+                    await main.mintNewTeamMoralis(this.teamMintCost).then(res => {
+                        this.screenLocked=false
+                        console.log(res)
+                        this.$emit('teamFound')
+                    }).catch(err => {
+                        this.screenLocked=false
+                        console.log(err)
+                        this.$emit('teamFound')
+                    })
+                }else if(teamFound == true){
+                    alert("Team detected on this profile. Please refresh your window.")
+                }
             },
 
             async getTeamMintCost(){
@@ -83,8 +99,9 @@ export default {
 
             async updateBalanceViewer(){
                 await main.updateCoinBalance().then(res => {
-                console.log(res)
-                document.getElementById('coin-balance').innerHTML = res
+                let resBalance = "My BUDDIES coins: " + res
+                document.getElementById('coin-balance').innerHTML = resBalance
+                this.myBuds = res
                 })
             },
 
