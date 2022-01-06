@@ -358,7 +358,7 @@ export default {
           let teamNounNumber1 = parseInt(teamDNA.slice(5,9))
           
           console.log("Team Number 1: " + teamNounNumber1)
-          let teamNounNumber = Math.floor(this.convertRange(teamNounNumber1, [0,9999], [1,2374]))
+          let teamNounNumber = Math.floor(this.convertRange(teamNounNumber1, [0,9999], [1,3142]))
       
           console.log("Team Number: " + teamNounNumber)
 
