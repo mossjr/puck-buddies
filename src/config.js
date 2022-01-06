@@ -11,6 +11,7 @@ export const PBPvCMatchupsAddress = contractAddresses.addresses[7].address
 export const PBPvCHelperAddress = contractAddresses.addresses[8].address
 export const buddiesaddress = contractAddresses.addresses[9].address
 export const buddiesICOAddress = contractAddresses.addresses[10].address
+export const validatorAddress = contractAddresses.addresses[11].address
 
 // export const buddiesaddress = "0xDb183249F3CEf45B1B026856adfB3037dBdf7109" //BSC Testnet Address 2 Oct 2021
 

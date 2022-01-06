@@ -151,6 +151,18 @@
             <button @click="updateBudsPerBNB()">Apply</button>
         </div>
 
+        <div class="admin-container">
+            <div class="admin"><h3>Update Validator</h3></div>
+            <div>
+              <label>w</label>
+              <input type="text" v-model="w">
+              <br>
+              <label>l</label>
+              <input type="text" v-model="l">
+            </div>
+            <button @click="updateValidator()">Apply</button>
+        </div>
+
       
       </div>
     </div>
@@ -231,6 +243,9 @@ export default {
             tmc:'',
 
             icorate:'',
+
+            w:'',
+            l:'',
 
             statsContainer: true,
             splashImage: '',
@@ -346,6 +361,13 @@ export default {
       })
     },
 
+    async updateValidator(){
+      await main.updateValidator(this.w, this.l).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
 
         closeModal() {
             this.$emit('closeIcoModal')

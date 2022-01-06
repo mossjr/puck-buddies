@@ -350,6 +350,7 @@ module.exports = function (deployer) {
                                                             obj.addresses.push({addressname: 'PBPvCHelperAddress', address: PBPvCHelperAddress})
                                                             obj.addresses.push({addressname: 'buddiesCoinAddress', address: buddiesCoinAddress})
                                                             obj.addresses.push({addressname: 'buddiesICOAddress', address: buddiesICOAddress})
+                                                            obj.addresses.push({addressname: 'validatorAddress', address: validatorAddress})
                                                             
 
                                                             let json = JSON.stringify(obj)

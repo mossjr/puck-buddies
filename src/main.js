@@ -14,7 +14,8 @@ import {pbPlayersAddress,
         buddiesaddress, 
         marketfeesaddress, 
         PBPvCHelperAddress, 
-        buddiesICOAddress
+        buddiesICOAddress,
+        validatorAddress
         } from '../src/config.js'
 import PBXP from '../public/assets/contracts/PBXP.json'
 import PBPLAYER from '../public/assets/contracts/PBPlayers.json'
@@ -29,6 +30,7 @@ import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
 import BUDDIESICO from '../public/assets/contracts/BuddiesICO.json'
 import CITIES from '../public/assets/data/cities.json'
 import NOUNS from '../public/assets/data/nouns.json'
+import VALIDATOR from '../public/assets/contracts/Validator.json'
 
 
 
@@ -303,6 +305,16 @@ async function getPvCadminInfo(){
                 }
                 console.log(obj)
     return obj
+}
+
+async function updateValidator(_w, _l){
+    const web3 = await Moralis.enableWeb3()
+    let contractInstance = new web3.eth.Contract(VALIDATOR.abi, validatorAddress)
+    await contractInstance.methods.updateValidation(_w, _l).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
 }
 
 
@@ -1358,38 +1370,6 @@ async function displayTeam(){
         console.log("No Team Found")
         return false
     }
-
-
-    // const minter = ethereum.selectedAddress
-    // const web3 = await Moralis.enableWeb3()
-    // let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
-    // let teamArray = await teamInstance.methods.getAllTokensForUser(minter).call({from: minter})
-    // if (teamArray.length == 0) {
-    //     console.log("No Teams Found")
-    //     return
-    //     } 
-
-    // console.log("Team Array: " + teamArray)
-    // console.log(teamArray)
-    //   const teamdata = teamArray.map(async (teamIndex) => {
-    //     let details = await teamInstance.methods.getTokenDetails(teamIndex).call({from: ethereum.selectedAddress})
-    //       return {
-    //       teamIndex: teamIndex, 
-    //       teamId: details.teamId,
-    //       teamDna: details.teamDna,
-    //       teamTotalOP: details.teamTotalOP,
-    //       teamTotalDP: details.teamTotalDP,  
-    //       activeTimestamp1: details.activeTimestamp1,
-    //       activeTimestamp2: details.activeTimestamp2,
-    //       activeTimestamp3: details.activeTimestamp3,
-    //       lastMatchWon1: details.lastMatchWon1,
-    //       lastMatchWon2: details.lastMatchWon2,
-    //       lastMatchWon3: details.lastMatchWon3,
-    //       ownerAddress: details.ownerAddress
-          
-    //       }
-    //     }).sort((a, b) => b.count - a.count)
-    //     return teamdata
 }
 
 async function getTeamFromMoralis(){
@@ -2377,7 +2357,8 @@ export default {
     getTeamFromMoralis,
     mintNewTeamMoralis,
     buySixPackofCards,
-    doubleCheckIfPlayer
+    doubleCheckIfPlayer,
+    updateValidator
 }
 
 
