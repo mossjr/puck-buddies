@@ -57,4 +57,8 @@ contract BuddiesICO {
         _to.transfer(_amount);
     }
 
+    function transferBUDS(address _to, uint _amount) external onlyAdmin {
+        buddies.transfer(_to, _amount);
+    }
+
 }
