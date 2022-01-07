@@ -13,7 +13,7 @@ contract PBProShopHolder is ERC1155Holder{
     IERC20 public buddies;
         
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only Admin can perform this call");
+        require(msg.sender == admin, "A1");
         _;
     }
 
@@ -50,7 +50,7 @@ contract PBProShopHolder is ERC1155Holder{
         require(checkValue == value, "P1");
         require(pbproshopfactory.balanceOf(address(this), sku) >= 1);
         uint allowance = buddies.allowance(msg.sender, address(this));
-        require(allowance >= value, "A1");
+        require(allowance >= value, "W1");
         buddies.transferFrom(msg.sender, address(this), value);
         pbproshopfactory.setApprovalForAll(proshopmarketplaceaddress, true);
         pbproshopfactory.safeTransferFrom(address(this), msg.sender, sku, qty, "");
@@ -66,6 +66,22 @@ contract PBProShopHolder is ERC1155Holder{
         uint b = a % 100000000;
         uint c = b * 10 ** 14;
         return c;
+    }
+
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
     }
     
 }

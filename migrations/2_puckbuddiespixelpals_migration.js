@@ -78,6 +78,8 @@ const skuToMint17 = "1100160001200001"
 const skuToMint18 = "1100170001200001"
 const skuToMint19 = "1100180001200001"
 const skuToMint20 = "1100190001200001"
+const skuToMint21 = "1100200001200001"
+const skuToMint22 = "1100220001200001"
 const quantityToMint = 1000
 
 //PB PvC Deploy Settings
@@ -152,6 +154,8 @@ module.exports = function (deployer) {
                             await pbProShopFactoryInstance.newProduct(skuToMint18, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint19, quantityToMint)
                             await pbProShopFactoryInstance.newProduct(skuToMint20, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint21, quantityToMint)
+                            await pbProShopFactoryInstance.newProduct(skuToMint22, quantityToMint)
                         })
 
                         return deployer.deploy(PBProShopMarketplace, buddiesCoinAddress, pbProShopFactoryAddress, feesAddress).then(async () => {
@@ -210,16 +214,16 @@ module.exports = function (deployer) {
                                                     return deployer.deploy(PBPvCMatchups, buddiesCoinAddress, PBXPAddress, PBTeamsAddress, PBPvCHelperAddress, PvCTimeout, PvCReward, PvCxpReward, PvCdifficultyModifier).then(async () => {
                                                         PBPvCMatchupsInstance = await PBPvCMatchups.deployed()
                                                         await pbPlayersInstance.mintSuperstar(firstAddress,0,0, generateRandomDNA(),1)
-                                                            for(let i = 0; i < 5; i++){
-                                                                await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
-                                                                    let playerID = res.logs[2].args[0].toString()
-                                                                    console.log("PlayerID " + playerID + " created")
-                                                                    // await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
-                                                                    //     await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
-                                                                    // })
-                                                                })
+                                                            // for(let i = 0; i < 5; i++){
+                                                            //     await pbPlayersInstance.mintSuperstar(firstAddress, gerateRandomStat(50, 99), gerateRandomStat(0, 49), generateRandomDNA(), 1).then(async res => {
+                                                            //         let playerID = res.logs[2].args[0].toString()
+                                                            //         console.log("PlayerID " + playerID + " created")
+                                                            //         // await pbPlayersInstance.approve(pbMarketplaceAddress, playerID).then(async res => {
+                                                            //         //     await pbMarketplaceInstance.createMarketItem(pbPlayersAddress,playerID, '961538461538462000', '38461538461538000')
+                                                            //         // })
+                                                            //     })
                                                                 
-                                                            }
+                                                            // }
                                                        
                                                    
 
@@ -230,7 +234,7 @@ module.exports = function (deployer) {
                                                             await PBXPInstance.updatePBPvCAddress(PBPvCMatchupsAddress)
                                                         })
 
-                                                        return deployer.deploy(Validator, PBPvCMatchupsAddress, 99889988, 88998899).then(async res => {
+                                                        return deployer.deploy(Validator, PBPvCMatchupsAddress, 1, 2).then(async res => {
                                                             validatorInstance = await Validator.deployed()
                                                             await validatorInstance.getValidatorAddres().then(async res => {
                                                                 validatorAddress = res

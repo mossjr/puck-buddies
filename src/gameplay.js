@@ -36,7 +36,7 @@ function encode(string) {
           let opStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 1).call({from: caller})
           let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
           let teamID = _teamID
-          console.log("Team Id: " + teamID)
+          //console.log("Team Id: " + teamID)
           let playerIDs = _playerIDs
 
           const query = new Moralis.Query("PBTeams")
@@ -48,7 +48,7 @@ function encode(string) {
           let mu1 = matchupNos[0]
           let mu2 = matchupNos[1]
           let mu3 = matchupNos[2]
-          console.log(matchupNos)
+          //console.log(matchupNos)
 
           
           let p1 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[0]).call({from: caller})
@@ -58,41 +58,41 @@ function encode(string) {
           let p5 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[4]).call({from: caller})
           let p6 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[5]).call({from: caller})
 
-          console.log([p1,p2,p3,p4,p5,p6])
+          //console.log([p1,p2,p3,p4,p5,p6])
 
           if(_playerIDs[0] != teams[0].attributes.p1){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           if(_playerIDs[1] != teams[0].attributes.p2){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           if(_playerIDs[2] != teams[0].attributes.p3){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           if(_playerIDs[3] != teams[0].attributes.p4){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           if(_playerIDs[4] != teams[0].attributes.p5){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           if(_playerIDs[5] != teams[0].attributes.p6){
-            console.log("Mismatch Player ID")
+            //console.log("Mismatch Player ID")
             return
           }
 
           let teamOP = parseInt(p1.offence) + parseInt(p2.offence) + parseInt(p3.offence) + parseInt(p4.offence) + parseInt(p5.offence) + parseInt(p6.offence)
           let teamDP = parseInt(p1.defence) + parseInt(p2.defence) + parseInt(p3.defence) + parseInt(p4.defence) + parseInt(p5.defence) + parseInt(p6.defence)
-          console.log(teamOP + " " + teamDP)
+          //console.log(teamOP + " " + teamDP)
           let thisMatchupNo
           if(difficulty == 1){
             thisMatchupNo = mu1
@@ -105,44 +105,44 @@ function encode(string) {
           let playersOfAge = true
 
           if(p1.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P1 Valid")
+            //console.log("P1 Valid")
           }else if(p1.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P1 Retired")
+            //console.log("P1 Retired")
             playersOfAge = false
           }
 
           if(p2.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P2 Valid")
+            //console.log("P2 Valid")
           }else if(p2.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P2 Retired")
+            //console.log("P2 Retired")
             playersOfAge = false
           }
 
           if(p3.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P3 Valid")
+            //console.log("P3 Valid")
           }else if(p3.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P3 Retired")
+            //console.log("P3 Retired")
             playersOfAge = false
           }
 
           if(p4.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P4 Valid")
+            //console.log("P4 Valid")
           }else if(p4.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P4 Retired")
+            //console.log("P4 Retired")
             playersOfAge = false
           }
 
           if(p5.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P5 Valid")
+            //console.log("P5 Valid")
           }else if(p5.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P5 Retired")
+            //console.log("P5 Retired")
             playersOfAge = false
           }
 
           if(p6.ageoutTimestamp >= Math.floor(Date.now() / 10 ** 3)){
-            console.log("P6 Valid")
+            //console.log("P6 Valid")
           }else if(p6.ageoutTimestamp < Math.floor(Date.now() / 10 ** 3)){
-            console.log("P6 Retired")
+            //console.log("P6 Retired")
             playersOfAge = false
           }
 
@@ -436,13 +436,13 @@ function encode(string) {
     wl = l
   }
   let teamIDint = parseInt(teamID)
-  console.log(teamID)
+  //console.log(teamID)
   let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: thisMatchupNo}, {t: 'uint', v: difficulty}, {t: 'uint', v: teamID}, {t: 'uint', v: t1Score}, {t: 'uint', v: t2Score})
   const sender = ethereum.selectedAddress
-  //console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
+  ////console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
   let bcResult = await pvcMatchhupsInstance.methods.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score).send({from: sender, gas:204800})
-  //console.log(bcResult)
-  //console.log(bcResult.status) 
+  ////console.log(bcResult)
+  ////console.log(bcResult.status) 
   let result
   if(bcResult.status == true){
 

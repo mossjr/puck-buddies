@@ -206,8 +206,10 @@ async function getPvCadminInfo(){
     //console.log(PvCPBXPReward)
     let PvCTimeouts = await contractInstance.methods.getTimeOuts(0).call({from: ethereum.selectedAddress})
     //console.log(PvCTimeouts)
-    let PvCBuddies = await buddiesInstance.methods.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
+    let PvCBuddies = await contractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
     //console.log(PvCBuddies)
+    let PvCBNB = await contractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(PvCBNB)
 
     let playersContractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let pbPlayersAddressFromContract = await playersContractInstance.methods.getPBPlayersAddress().call({from: ethereum.selectedAddress})
@@ -216,18 +218,27 @@ async function getPvCadminInfo(){
     //console.log(mintingCosts)
     let playerNextId = await playersContractInstance.methods.getNextId().call({from: ethereum.selectedAddress})
     //console.log(playerNextId)
+    let playerBuds = await playersContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    let playerBNB = await playersContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    let currentEdition = await playersContractInstance.methods.getCurrentEdition().call({from: ethereum.selectedAddress})
 
     let proshopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     let pbProshopFactoryAddress = await proshopContractInstance.methods.getPBProShopFactoryAddress().call({from: ethereum.selectedAddress})
     //console.log(pbProshopFactoryAddress)
     let pbProshopFactoryStats = await proshopContractInstance.methods.getProShopStats().call({from: ethereum.selectedAddress})
     //console.log(pbProshopFactoryStats)
+    let pbProshopFactoryBuddies = await proshopContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    //console.log(pbProshopFactoryBuddies)
+    let pbProshopFactoryBNB = await proshopContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(pbProshopFactoryBNB)
 
     let proshopHolderContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
     let proshopHolderItemsSold = await proshopHolderContractInstance.methods.getItemsSold().call({from: ethereum.selectedAddress})
     //console.log(proshopHolderItemsSold)
     let proshopHolderAddress = await proshopHolderContractInstance.methods.getPBProShopHolderAddress().call({from: ethereum.selectedAddress})
     //console.log(proshopHolderAddress)
+    let proshopHolderBNB = await proshopHolderContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(proshopHolderBNB)
 
     let proshopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
     let proshopMarketplaceAddress = await proshopMarketplaceContractInstance.methods.getPBProShopMarketplaceAddress().call({from: ethereum.selectedAddress})
@@ -239,6 +250,10 @@ async function getPvCadminInfo(){
     let proshopFeesBuddiesBalance = await buddiesInstance.methods.balanceOf(proshopMarketplaceFeesAddress).call({from: ethereum.selectedAddress})
     let proshopMarketplaceStats = await proshopMarketplaceContractInstance.methods.getMarketplaceStats().call({from: ethereum.selectedAddress})
     //console.log(proshopMarketplaceStats)
+    let proshopMarketplaceBNB = await proshopMarketplaceContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(proshopMarketplaceBNB)
+    let proshopMarketplaceBuddies = await proshopMarketplaceContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    //console.log(proshopMarketplaceBuddies)
 
     let pbTeamsContractInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
     let pbTeamsAddress = await pbTeamsContractInstance.methods.getPBTeamsAddress().call({from: ethereum.selectedAddress})
@@ -247,12 +262,20 @@ async function getPvCadminInfo(){
     //console.log(pbTeamsMintCost)
     let pbTeamsCount = 0
     ////console.log(pbTeamsCount)
+    let teamsBuddies = await pbTeamsContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    //console.log(teamsBuddies)
+    let teamsBNB = await pbTeamsContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(teamsBNB)
 
     let pbPBXPContractInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     let pbPBXPAddress = await pbPBXPContractInstance.methods.getPBXPAddress().call({from: ethereum.selectedAddress})
     //console.log(pbPBXPAddress)
     let pbPBXPUpgradeCost = await pbPBXPContractInstance.methods.getUpgradeCost().call({from: ethereum.selectedAddress})
     //console.log(pbPBXPUpgradeCost)
+    let pbxpBuddies = await pbPBXPContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
+    //console.log(pbxpBuddies)
+    let pbxpBNB = await pbPBXPContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
+    //console.log(pbxpBNB)
 
     let icoContractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
     let icoContractAddress = await icoContractInstance.methods.getBuddiesICOAddress().call({from: ethereum.selectedAddress})
@@ -276,18 +299,27 @@ async function getPvCadminInfo(){
                 PvCto2: PvCTimeouts[2],
                 PvCPBXPReward: PvCPBXPReward,
                 PvCBuddies: web3.utils.fromWei(PvCBuddies),
+                PvCBNB: web3.utils.fromWei(PvCBNB),
                 pbPlayersAddress: pbPlayersAddress, 
                 mintCost0: web3.utils.fromWei(mintingCosts[0]),
                 mintCost1: web3.utils.fromWei(mintingCosts[1]),
                 mintCost2: web3.utils.fromWei(mintingCosts[2]),
                 ageoutSeconds: mintingCosts[3],
                 playerNextId: playerNextId,
+                playerBuds: web3.utils.fromWei(playerBuds),
+                playerBNB: web3.utils.fromWei(playerBNB),
+                currentEdition: currentEdition,
                 pbProshopFactoryAddress: pbProshopFactoryAddress,
                 proshopItemsCreated: pbProshopFactoryStats,
+                pbProshopFactoryBuddies: pbProshopFactoryBuddies,
+                pbProshopFactoryBNB: pbProshopFactoryBNB,
                 proshopHolderAddress: proshopHolderAddress,
+                proshopHolderBNB: proshopHolderBNB,
                 proshopItemsSold: proshopHolderItemsSold,
                 proshopMarketplaceAddress: proshopMarketplaceAddress,
                 proshopMarketplaceMarketFee: proshopMarketplaceMarketFee,
+                proshopMarketplaceBNB: proshopMarketplaceBNB,
+                proshopMarketplaceBuddies: proshopMarketplaceBuddies,
                 proshopFeesBuddiesBalance: web3.utils.fromWei(proshopFeesBuddiesBalance),
                 proshopMarketplaceFeesAddress: proshopMarketplaceFeesAddress,
                 proshopMarketplaceTotalItems: proshopMarketplaceStats[0],
@@ -295,7 +327,12 @@ async function getPvCadminInfo(){
                 pbTeamsAddress: pbTeamsAddress,
                 pbTeamsMintCost: web3.utils.fromWei(pbTeamsMintCost),
                 pbTeamsCount: pbTeamsCount,
+                teamsBuddies: teamsBuddies,
+                teamsBNB: teamsBNB,
                 pbPBXPAddress: pbPBXPAddress,
+                pbPBXPUpgradeCost: pbPBXPUpgradeCost,
+                pbxpBuddies: pbxpBuddies,
+                pbxpBNB: pbxpBNB,
                 icoContractAddress: icoContractAddress,
                 icoBuddiesPerBNB: icoBuddiesPerBNB,
                 icoBudsSold: web3.utils.fromWei(icoBudsSold),
@@ -306,14 +343,24 @@ async function getPvCadminInfo(){
     return obj
 }
 
-async function transferBUDS(to, amount){
+async function transferPBPlayersBUDS(amount){
     const web3 = await Moralis.enableWeb3()
     let valueWei =  web3.utils.toWei(amount.toString())
-    let contractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
-    await contractInstance.methods.transferBUDS(to, valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        //console.log(receipt)
+    let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
+    await contractInstance.methods.withdrawBuddies(valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
     })).catch(err =>{
-        //console.log(err)
+        console.log(err)
+    })
+}
+
+async function transferBUDS(to, amount){
+    const web3 = await Moralis.enableWeb3()
+    let contractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    await contractInstance.methods.transferBUDS(to, amount).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
     })
 }
 
@@ -322,9 +369,9 @@ async function transferBNB(to, amount){
     let valueWei =  web3.utils.toWei(amount.toString())
     let contractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
     await contractInstance.methods.transferBNB(to, valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        //console.log(receipt)
+        console.log(receipt)
     })).catch(err =>{
-        //console.log(err)
+        console.log(err)
     })
 }
 
@@ -334,9 +381,9 @@ async function updateValidator(_w, _l){
     const web3 = await Moralis.enableWeb3()
     let contractInstance = new web3.eth.Contract(VALIDATOR.abi, validatorAddress)
     await contractInstance.methods.updateValidation(_w, _l).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        //console.log(receipt)
+        console.log(receipt)
     })).catch(err =>{
-        //console.log(err)
+        console.log(err)
     })
 }
 
@@ -2383,6 +2430,7 @@ export default {
     doubleCheckIfPlayer,
     transferBUDS,
     transferBNB,
+    transferPBPlayersBUDS,
     updateValidator
 }
 

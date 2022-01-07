@@ -39,10 +39,6 @@ contract BuddiesICO {
         return budsSold;
     }
 
-    function getBudsBalance() external view returns (uint) {
-        return buddies.balanceOf(address(this));
-    }
-
     function buyBuddies() external payable {
         require(msg.value > 0);
         buddies.transfer(msg.sender, (msg.value*budsPerBNB));
@@ -52,13 +48,17 @@ contract BuddiesICO {
     function getBNBBalance() external view onlyAdmin returns (uint) {
         return address(this).balance;
     }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
 
     function transferBNB(address payable _to, uint _amount) external onlyAdmin {
         _to.transfer(_amount);
     }
 
-    function transferBUDS(address _to, uint _amount) external onlyAdmin {
-        buddies.transfer(_to, _amount);
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
     }
 
 }

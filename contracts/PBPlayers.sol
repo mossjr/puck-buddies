@@ -21,6 +21,7 @@ contract PBPlayers is ERC721 {
     uint dnaModulus = 10 ** dnaDigits;
     uint bellCurveIterations = 4;
     uint ageoutSeconds;
+    uint currentEdition = 1;
     
     IERC20 public buddies;
     PBProShopFactory public pbProShopFactory;
@@ -39,8 +40,7 @@ contract PBPlayers is ERC721 {
         uint draftTimestamp;
         uint equippedJersey;
         uint equippedToken;
-        uint equippedItem;
-        uint itemToken;
+        uint edition;
         
     }
 
@@ -134,11 +134,11 @@ contract PBPlayers is ERC721 {
         require(allowance >= value, "B1");
         buddies.transferFrom(msg.sender, address(this), value);
         if(playerType == 1){
-            _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 50, _randHelper(1)), _generateRandAtrrib(msg.sender, 50, 0, _randHelper(2)), _generateRandDna(msg.sender, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 50, _randHelper(1)), _generateRandAtrrib(msg.sender, 50, 0, _randHelper(2)), _generateRandDna(msg.sender, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }else if(playerType == 2){
-             _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 0, _randHelper(3)), _generateRandAtrrib(msg.sender, 50, 50, _randHelper(4)), _generateRandDna(msg.sender, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+             _tokenDetails[nextId] = Player(_generateRandAtrrib(msg.sender, 50, 0, _randHelper(3)), _generateRandAtrrib(msg.sender, 50, 50, _randHelper(4)), _generateRandDna(msg.sender, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }else if (playerType == 3){
-             _tokenDetails[nextId] = Player(0, _generateRandAtrrib(msg.sender, 25, 75, _randHelper(5)), _generateRandDna(msg.sender, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+             _tokenDetails[nextId] = Player(0, _generateRandAtrrib(msg.sender, 25, 75, _randHelper(5)), _generateRandDna(msg.sender, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         } 
         _safeMint(msg.sender, nextId);
         setApprovalForAll(marketplaceAddress, true);
@@ -151,11 +151,11 @@ contract PBPlayers is ERC721 {
         }
         uint currentId = nextId;
         if(playerType == 1) {
-            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(1)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         } else if (playerType == 2){
-            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(3)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         } else if (playerType == 3) {
-            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[currentId] = Player(_op,_dp, _generateRandDna(minter, _randHelper(5)), playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }        
         _safeMint(minter, currentId);
         setApprovalForAll(marketplaceAddress, true);
@@ -169,11 +169,11 @@ contract PBPlayers is ERC721 {
 
     function mintSuperstar(address playerOwner, uint opScore, uint dpScore, uint dna, uint playerType) external onlyAdmin {
         if(playerType == 1){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }else if(playerType == 2){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }else if(playerType == 3){
-            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0,0,0);
+            _tokenDetails[nextId] = Player(opScore, dpScore, dna, playerType,0,block.timestamp + ageoutSeconds,block.timestamp,0,0, currentEdition);
         }
         _safeMint(playerOwner, nextId);
         setApprovalForAll(marketplaceAddress, true);
@@ -224,23 +224,6 @@ contract PBPlayers is ERC721 {
         pbProShopFactory.mintOnUnequip(msg.sender, returnToken);
     }
 
-    function updateItem(uint token, uint sku, uint playerid) public {
-        uint tokenBalance = pbProShopFactory.balanceOf(msg.sender, token);
-        require(tokenBalance >= 1);
-        _tokenDetails[playerid].equippedItem = sku;
-        _tokenDetails[playerid].itemToken = token;     
-        pbProShopFactory.burnOnEquip(msg.sender, token);
-    }
-
-    function removeItem(uint playerid) public {
-        require(_tokenDetails[playerid].itemToken != 0);
-        uint returnToken;
-        returnToken = _tokenDetails[playerid].itemToken;
-        _tokenDetails[playerid].equippedItem = 0;
-        _tokenDetails[playerid].itemToken = 0;
-        pbProShopFactory.mintOnUnequip(msg.sender, returnToken);
-    }
-
     function addOp(uint tokenId, uint qty, address owner) public onlyPBXP {
         require(ownerOf(tokenId) == owner, "O1");
         require(_tokenDetails[tokenId].offence <= 99, "S1");
@@ -268,12 +251,28 @@ contract PBPlayers is ERC721 {
         return primaryAttrib + base;
     }
 
-    function getBuddiesOnContract() public view onlyAdmin returns (uint){
-       return buddies.balanceOf(address(this));
+    function getCurrentEdition() external view returns (uint) {
+        return currentEdition;
     }
 
-    function withdrawBuddies(uint value) public onlyAdmin {
-        buddies.transferFrom(address(this), msg.sender, value);
+    function updateCurrentEdition(uint _edition) external onlyAdmin {
+        currentEdition =  _edition;
+    }
+
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
     }
 
 }

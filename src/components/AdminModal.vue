@@ -11,6 +11,7 @@
         <div class="admin-info-line"><b>PvC Matchup Timeouts:</b> {{PvCto0}}, {{PvCto1}}, {{PvCto2}}</div>
         <div class="admin-info-line"><b>PvC Matchup PBXP Rewards:</b> {{PvCPBXPReward}}</div>
         <div class="admin-info-line"><b>Buddies on PvC Contract:</b> {{PvCBuddies}}</div>
+        <div class="admin-info-line"><b>BNB on PvC Contract:</b> {{PvCBNB}}</div>
       </div>
 
       <div class="admin-container">
@@ -19,18 +20,24 @@
         <div class="admin-info-line"><b>Player Minting Costs: </b> {{mintCost0}}, {{mintCost1}}, {{mintCost2}}</div>
         <div class="admin-info-line"><b>Ageout Seconds:</b> {{ageoutSeconds}}</div>
         <div class="admin-info-line"><b>Current Player ID:</b> {{playerNextId}}</div>
+        <div class="admin-info-line"><b>Current Edition:</b> {{currentEdition}}</div>
+        <div class="admin-info-line"><b>Buddies on Players Contract:</b> {{playerBuds}}</div>
+        <div class="admin-info-line"><b>BNB on Players Contract:</b> {{playerBNB}}</div>
       </div>
 
       <div class="admin-container">
         <div class="admin"><h3>Proshop Factory</h3></div>
         <div class="admin-info-line"><b>Proshop Factory Address:</b> {{pbProshopFactoryAddress}}</div>
         <div class="admin-info-line"><b>Proshop Items Created:</b> {{proshopItemsCreated}}</div>
+        <div class="admin-info-line"><b>Proshop Factory Buddies:</b> {{pbProshopFactoryBuddies}}</div>
+        <div class="admin-info-line"><b>Proshop Factory BNB:</b> {{pbProshopFactoryBNB}}</div>
       </div>
 
       <div class="admin-container">
         <div class="admin"><h3>Proshop Holder</h3></div>
         <div class="admin-info-line"><b>Proshop Holder Address:</b> {{proshopHolderAddress}}</div>
         <div class="admin-info-line"><b>Proshop Holder Items Sold:</b> {{proshopItemsSold}}</div>
+        <div class="admin-info-line"><b>BNB on Proshop Holder Contract:</b> {{proshopHolderBNB}}</div>
       </div>
 
       <div class="admin-container">
@@ -40,6 +47,8 @@
         <div class="admin-info-line"><b>Proshop Marketplace Fee Address Buddies:</b> {{proshopFeesBuddiesBalance}}</div>
         <div class="admin-info-line"><b>Proshop Marketplace Total Items Created:</b> {{proshopMarketplaceTotalItems}}</div>
         <div class="admin-info-line"><b>Proshop Marketplace Total Items Completed:</b> {{proshopMarketplaceTotalComplete}}</div>
+        <div class="admin-info-line"><b>Buddies on Proshop Marketplace Contract:</b> {{proshopMarketplaceBuddies}}</div>
+        <div class="admin-info-line"><b>BNB on Proshop Marketplace Contract:</b> {{proshopMarketplaceBNB}}</div>
       </div>
 
       <div class="admin-container">
@@ -47,12 +56,16 @@
         <div class="admin-info-line"><b>Teams Address:</b> {{pbTeamsAddress}}</div>
         <div class="admin-info-line"><b>Teams Minting Cost:</b> {{pbTeamsMintCost}}</div>
         <div class="admin-info-line"><b>Teams Count:</b> {{pbTeamsCount}}</div>
+        <div class="admin-info-line"><b>Buddies on Teams Contract:</b> {{teamsBuddies}}</div>
+        <div class="admin-info-line"><b>BNB on Teams Contract:</b> {{teamsBNB}}</div>
       </div>
 
       <div class="admin-container">
         <div class="admin"><h3>PBXP</h3></div>
         <div class="admin-info-line"><b>PBXP Address:</b> {{pbPBXPAddress}}</div>
         <div class="admin-info-line"><b>PBXP Upgrade Cost:</b> {{pbPBXPUpgradeCost}}</div>
+        <div class="admin-info-line"><b>Buddies on Teams Contract:</b> {{pbxpBuddies}}</div>
+        <div class="admin-info-line"><b>BNB on Teams Contract:</b> {{pbxpBNB}}</div>
       </div>
 
       <div class="admin-container">
@@ -60,8 +73,8 @@
         <div class="admin-info-line"><b>ICO Address:</b> {{icoContractAddress}}</div>
         <div class="admin-info-line"><b>ICO Buds per BNB</b> {{icoBuddiesPerBNB}}</div>
         <div class="admin-info-line"><b>ICO Buds Sold</b> {{icoBudsSold}}</div>
-        <div class="admin-info-line"><b>ICO Buds on Contract</b> {{icoBudsBalance}}</div>
-        <div class="admin-info-line"><b>ICO BNB on Contract</b> {{icoBNBBalance}}</div>
+        <div class="admin-info-line"><b>Buddies on ICO Contract</b> {{icoBudsBalance}}</div>
+        <div class="admin-info-line"><b>BNB on ICO Contract</b> {{icoBNBBalance}}</div>
       </div>
    
     </div>
@@ -142,6 +155,15 @@
             <button @click="updateTeamMintCost()">Apply</button>
         </div>
 
+        <div class="admin-container">
+            <div class="admin"><h3>Transfer PB Players BUDS</h3></div>
+            <div>
+              <label>Amount: </label>
+              <input type="text" v-model="pbPlayersAmount">
+            </div>
+            <button @click="transferPBPlayersBUDS()">Transfer</button>
+        </div>
+
          <div class="admin-container">
             <div class="admin"><h3>Update ICO Details</h3></div>
             <div>
@@ -211,6 +233,7 @@ export default {
             PvCDifficultyMod:'',
             PvCPBXPReward:'',
             PvCBuddies:'',
+            PvCBNB:'',
 
             pbPlayersAddress:'',
             mintCost0:'',
@@ -218,12 +241,19 @@ export default {
             mintCost2:'',
             ageoutSeconds:'',
             playerNextId:'',
+            playerBuds:'',
+            playerBNB:'',
+            currentEdition:'',
+
 
             pbProshopFactoryAddress:'',
             proshopItemsCreated:'',
+            pbProshopFactoryBuddies:'',
+            pbProshopFactoryBNB:'',
 
             proshopHolderAddress:'',
             proshopItemsSold:'',
+            proshopHolderBNB:'',
 
             proshopMarketplaceAddress:'',
             proshopMarketplaceMarketFee:'',
@@ -231,13 +261,19 @@ export default {
             proshopFeesBuddiesBalance:'',
             proshopMarketplaceTotalItems:'',
             proshopMarketplaceTotalComplete:'',
+            proshopMarketplaceBNB:'',
+            proshopMarketplaceBuddies:'',
 
             pbTeamsAddress:'',
             pbTeamsMintCost:'',
             pbTeamsCount:'',
+            teamsBuddies:'',
+            teamsBNB:'',
 
             pbPBXPAddress:'',
             pbPBXPUpgradeCost:'',
+            pbxpBuddies:'',
+            pbxpBNB:'',
 
             icoContractAddress:'',
             icoBuddiesPerBNB:'',
@@ -249,6 +285,8 @@ export default {
             BUDSAmount:0,
             BNBAddress:'',
             BNBAmount:0,
+            pbPlayersAmount:0,
+            pbPlayersAmountBNB:0,
 
             PvCto0:'',
             PvCto1:'',
@@ -305,6 +343,7 @@ export default {
         this.PvCPBXPReward = res.PvCPBXPReward
         this.xpr = res.PvCPBXPReward
         this.PvCBuddies = res.PvCBuddies
+        this.PvCBNB = res.PvCBNB
         this.pbPlayersAddress = res.pbPlayersAddress
         this.mintCost0 = res.mintCost0
         this.m1 = res.mintCost0
@@ -317,7 +356,10 @@ export default {
         this.playerNextId = res.playerNextId
         this.pbProshopFactoryAddress = res.pbProshopFactoryAddress
         this.proshopItemsCreated = res.proshopItemsCreated
+        this.pbProshopFactoryBNB = res.pbProshopFactoryBNB
+        this.pbProshopFactoryBuddies = res.pbProshopFactoryBuddies
         this.proshopHolderAddress = res.proshopHolderAddress
+        this.proshopHolderBNB = res.proshopHolderBNB
         this.proshopItemsSold = res.proshopItemsSold
         this.proshopMarketplaceAddress = res.proshopMarketplaceAddress
         this.proshopMarketplaceMarketFee = res.proshopMarketplaceMarketFee
@@ -325,12 +367,18 @@ export default {
         this.proshopFeesBuddiesBalance = res.proshopFeesBuddiesBalance
         this.proshopMarketplaceTotalItems = res.proshopMarketplaceTotalItems
         this.proshopMarketplaceTotalComplete = res.proshopMarketplaceTotalComplete
+        this.proshopMarketplaceBNB = res.proshopMarketplaceBNB
+        this.proshopMarketplaceBuddies = res.proshopMarketplaceBuddies
         this.pbTeamsAddress = res.pbTeamsAddress
         this.pbTeamsMintCost = res.pbTeamsMintCost
         this.tmc = res.pbTeamsMintCost
         this.pbTeamsCount = res.pbTeamsCount
+        this.teamsBuddies = res.teamsBuddies
+        this.teamsBNB = res.teamsBNB
         this.pbPBXPAddress = res.pbPBXPAddress
         this.pbPBXPUpgradeCost = res.pbPBXPUpgradeCost
+        this.pbxpBuddies = res.pbxpBuddies
+        this.pbxpBNB = res.pbxpBNB
         this.icoContractAddress = res.icoContractAddress
         this.icoBuddiesPerBNB = res.icoBuddiesPerBNB
         this.icorate = res.icoBuddiesPerBNB
@@ -339,6 +387,11 @@ export default {
         this.icoBNBBalance = res.icoBNBBalance
         this.BUDSAmount = res.icoBudsBalance
         this.BNBAmount = res.icoBNBBalance
+        this.playerBuds = res.playerBuds
+        this.pbPlayersAmount = res.playerBuds
+        this.playerBNB = res.playerBNB
+        this.pbPlayersAmountBNB = res.playerBNB
+        this.currentEdition = res.currentEdition
 
 
       })
@@ -407,6 +460,14 @@ export default {
         console.log(err)
       })
     },
+
+  async transferPBPlayersBUDS(){
+      await main.transferPBPlayersBUDS(this.pbPlayersAmount).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }, 
 
     async updateValidator(){
       await main.updateValidator(this.w, this.l).then(res => {

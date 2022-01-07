@@ -13,7 +13,7 @@ contract PBXPShopHolder is ERC1155Holder{
     
         
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only Admin can perform this call");
+        require(msg.sender == admin, "A1");
         _;
     }
 
@@ -37,7 +37,7 @@ contract PBXPShopHolder is ERC1155Holder{
     
     function buyItems(uint256 sku, uint value) external {
         uint weiFromSku = calculateWeiFromSku(sku);
-        require(weiFromSku == value, "Value sent does not match required value");
+        require(weiFromSku == value, "V1");
         require(pbxpShopFactory.balanceOf(address(this), sku) >= 1);
         PBXPToken.safeTransferFrom(msg.sender, address(this), 0, value,"");
         pbxpShopFactory.safeTransferFrom(address(this), msg.sender, sku, 1, "");
@@ -52,6 +52,14 @@ contract PBXPShopHolder is ERC1155Holder{
         uint b = a % 100000000;
         uint c = b * 10 ** 14;
         return c;
+    }
+
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
     }
     
 }

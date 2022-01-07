@@ -112,4 +112,20 @@ contract PBXP is ERC1155 {
         _burn(msg.sender, 0, xp);
     }
 
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
+    }
+
 }

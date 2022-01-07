@@ -27,7 +27,7 @@ contract PBProShopFactory is ERC1155PresetMinterPauser, ReentrancyGuard {
     PBProShopHolder public pbProShopHolder;
 
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only Admin can perform this call");
+        require(msg.sender == admin, "A1");
         _;
     }
 
@@ -97,6 +97,22 @@ contract PBProShopFactory is ERC1155PresetMinterPauser, ReentrancyGuard {
 
     function getTimestamp() external view returns (uint){
         return block.timestamp;
+    }
+
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
     }
 
 

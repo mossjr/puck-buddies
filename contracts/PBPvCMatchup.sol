@@ -97,8 +97,6 @@ function widthdrawBuddiesFromContract(address _widthdrawAddress, uint _amount) e
     buddies.transfer(_widthdrawAddress, _amount);
 }
 
-
-
 function rewardMatchup (bytes32 _token, uint _difficulty, uint _teamId, uint t1S, uint t2S) external {
     TeamPvCMatchups storage teamPvCmatchup = _teamPvCMatchups[_teamId];
     uint matchNonce;
@@ -193,6 +191,22 @@ function getNoMatchups(uint teamId) public view returns (uint, uint, uint){
 function getPvCMatchupsTimestamp() public view returns (uint) {
     return block.timestamp;
 }
+
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
+    }
 
 }
 

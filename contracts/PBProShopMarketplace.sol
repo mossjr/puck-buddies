@@ -37,7 +37,7 @@ struct ProShopMarketItem {
 mapping(uint => ProShopMarketItem) private _proShopMarketItems;
 
  modifier onlyAdmin() {
-        require(admin == msg.sender, "This function is only accessable by the admin of the contract" );
+        require(admin == msg.sender, "A1" );
         _;
   }
 
@@ -78,7 +78,7 @@ function updateFeePayableAddress(address payable newaddress) onlyAdmin external 
   }
 
 function createProShopMarketItem(uint _tokenId, uint _sellingPrice) public nonReentrant {
-    require(_sellingPrice > 0, "Price cannot be 0");
+    require(_sellingPrice > 0, "Z1");
     _itemIds.increment();
     _proShopMarketItems[_itemIds.current()] = ProShopMarketItem(
         _itemIds.current(),
@@ -93,7 +93,7 @@ function createProShopMarketItem(uint _tokenId, uint _sellingPrice) public nonRe
 }
 
 function createProShopMarketplaceSale(uint _marketTokenId) external nonReentrant {
-    require(_proShopMarketItems[_marketTokenId].valid == true, "This is an invalid market Token");
+    require(_proShopMarketItems[_marketTokenId].valid == true, "M1");
     uint buddiesPayout = ((_proShopMarketItems[_marketTokenId].sellingPrice/(marketFeePercent+10000))*10000);
     uint feesPayout = _proShopMarketItems[_marketTokenId].sellingPrice - buddiesPayout;
     _proShopMarketItems[_marketTokenId].buyer = msg.sender;
@@ -105,8 +105,8 @@ function createProShopMarketplaceSale(uint _marketTokenId) external nonReentrant
 }
 
 function cancelProShopMarketplaceSale(uint _marketTokenId) external nonReentrant {
-    require(_proShopMarketItems[_marketTokenId].valid == true, "This is an invalid market Token");
-    require(_proShopMarketItems[_marketTokenId].seller == msg.sender, "Only the owner of this sale can cancel this sale");
+    require(_proShopMarketItems[_marketTokenId].valid == true, "M!");
+    require(_proShopMarketItems[_marketTokenId].seller == msg.sender, "O1");
      _proShopMarketItems[_marketTokenId].valid = false;
     proShopItems.safeTransferFrom(address(this), msg.sender,  _proShopMarketItems[_marketTokenId].tokenId, 1, "");
     _itemsComplete.increment(); 
@@ -128,5 +128,20 @@ function getProShopMarketItems() public view returns (ProShopMarketItem[] memory
 return items;
 }
 
+    function getBNBBalance() external view onlyAdmin returns (uint) {
+        return address(this).balance;
+    }
+    
+    function getBudsBalance() external view returns (uint) {
+        return buddies.balanceOf(address(this));
+    }
+
+    function transferBNB(address payable _to, uint _amount) external onlyAdmin {
+        _to.transfer(_amount);
+    }
+
+    function transferBUDS(uint _amount) external onlyAdmin {
+        buddies.transfer(msg.sender, _amount);
+    }
 
 }
