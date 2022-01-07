@@ -87,7 +87,7 @@ let PvCTimeout = [120,120,120]
 let PvCReward = ["250000000000000000","500000000000000000","1000000000000000000"]
 let PvCxpReward = 25
 let PvCdifficultyModifier = 100
-let PvCinitialValueOnContract = web3.utils.toWei('1000')
+let PvCinitialValueOnContract = web3.utils.toWei('1000000')
 
 //ICO Settings
 let initialICOBuddies = web3.utils.toWei('333333')

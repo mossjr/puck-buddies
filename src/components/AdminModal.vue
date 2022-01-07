@@ -124,6 +124,26 @@
             </div>
             <button @click="updatePBXPReward()">Apply</button>
         </div>
+
+        <div class="admin-container">
+            <div class="admin"><h3>Transfer PvC BUDS</h3></div>
+            <div>
+              <label>Amount: </label>
+              <input type="text" v-model="PvCAmount">
+            </div>
+            <button @click="transferPvCBUDS()">Transfer</button>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin"><h3>Transfer PvC BNB</h3></div>
+            <div>
+              <label>Amount: </label>
+              <input type="text" v-model="PvCBNBAmount">
+            </div>
+            <button @click="transferPvCBNB()">Transfer</button>
+        </div>
+
+        
     
         <div class="admin-container">
             <div class="admin"><h3>Update Player Mint/Ageout</h3></div>
@@ -234,6 +254,8 @@ export default {
             PvCPBXPReward:'',
             PvCBuddies:'',
             PvCBNB:'',
+            PvCAmount:'',
+            PvCBNBAmount:'',
 
             pbPlayersAddress:'',
             mintCost0:'',
@@ -344,6 +366,8 @@ export default {
         this.xpr = res.PvCPBXPReward
         this.PvCBuddies = res.PvCBuddies
         this.PvCBNB = res.PvCBNB
+        this.PvCAmount = res.PvCBuddies
+        this.PvCBNBAmount = res.PvCBNB
         this.pbPlayersAddress = res.pbPlayersAddress
         this.mintCost0 = res.mintCost0
         this.m1 = res.mintCost0
@@ -463,6 +487,22 @@ export default {
 
   async transferPBPlayersBUDS(){
       await main.transferPBPlayersBUDS(this.pbPlayersAmount).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }, 
+
+  async transferPvCBUDS(){
+      await main.transferPvCBUDS(this.PvCAmount).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }, 
+
+  async transferPvCBNB(){
+      await main.transferPvCBNB(this.PvCBNBAmount).then(res => {
         console.log(res)
       }).catch(err =>{
         console.log(err)

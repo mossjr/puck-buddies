@@ -347,7 +347,7 @@ async function transferPBPlayersBUDS(amount){
     const web3 = await Moralis.enableWeb3()
     let valueWei =  web3.utils.toWei(amount.toString())
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-    await contractInstance.methods.withdrawBuddies(valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+    await contractInstance.methods.transferBUDS(valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
         console.log(receipt)
     })).catch(err =>{
         console.log(err)
@@ -374,6 +374,30 @@ async function transferBNB(to, amount){
         console.log(err)
     })
 }
+
+async function transferPvCBUDS(amount){
+    const web3 = await Moralis.enableWeb3()
+    let valueWei =  web3.utils.toWei(amount.toString())
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    await contractInstance.methods.transferBUDS(valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+async function transferPvCBNB(amount){
+    const web3 = await Moralis.enableWeb3()
+    let valueWei =  web3.utils.toWei(amount.toString())
+    let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
+    await contractInstance.methods.transferBNB(ethereum.selectedAddress, valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        console.log(receipt)
+    })).catch(err =>{
+        console.log(err)
+    })
+}
+
+
 
 
 
@@ -2431,6 +2455,8 @@ export default {
     transferBUDS,
     transferBNB,
     transferPBPlayersBUDS,
+    transferPvCBUDS,
+    transferPvCBNB,
     updateValidator
 }
 
