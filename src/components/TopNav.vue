@@ -192,7 +192,7 @@ export default{
           
           let teamName = this.nouns[teamNounNumber].noun
           let teamLetter = teamName.slice(0,1)        
-          console.log(teamLetter)
+          ////console.log(teamLetter)
 
           teamArray.push({
             'teamId': res[i].teamId,
@@ -241,8 +241,8 @@ export default{
         // for (let i = 0; i < res2.players.length; i++){
         //  buildCanvas.preloadPlayerInfo(res2.players[i].id, res2.players[i], "player-no")
         // }
-        console.log("Active Player Count: " + res)
-        console.log(res)
+        ////console.log("Active Player Count: " + res)
+        ////console.log(res)
         if(res2.teamArray[0].activePlayerCount == 6){
           this.sixActivePlayers = true
         }        
@@ -253,8 +253,8 @@ export default{
         this.pageTeamId = res2.teamArray[0].teamId
       })
       .catch((err) => {
-        console.log("Error rendering Teams: " + err)
-        console.log(err)
+        ////console.log("Error rendering Teams: " + err)
+        ////console.log(err)
         this.totalTeamsFound = 0
         this.teams = null
         this.playersLoaded = true
@@ -269,13 +269,13 @@ export default{
     //   let playerArray = [] 
     //   Promise.all(await main.loadPBPlayers())
     //   .then(res => {
-    //     console.log("Result: " + res)
+    //     ////console.log("Result: " + res)
     //     if (res.length == 0) {
-    //       console.log("0 Players Found")
+    //       ////console.log("0 Players Found")
     //       this.totalFoundPlayers = 0
     //     }else{  
     //     for (let i = 0; i < res.length; i++) {
-    //         console.log(res[i].ageoutTimestamp)
+    //         ////console.log(res[i].ageoutTimestamp)
     //         playerArray.push({
     //           'id': res[i].id, 
     //           'offence': res[i].offence,  
@@ -304,10 +304,10 @@ export default{
     //       }
     //     }
     //     this.loadingPlayers = false
-    //     console.log("Found " + this.offenceFound + " Offence")
-    //     console.log("Found " + this.defenceFound + " Defence")
-    //     console.log("Found " + this.goaliesFound + " Goalies")
-    //     console.log(playerArray)
+    //     ////console.log("Found " + this.offenceFound + " Offence")
+    //     ////console.log("Found " + this.defenceFound + " Defence")
+    //     ////console.log("Found " + this.goaliesFound + " Goalies")
+    //     ////console.log(playerArray)
     //     return playerArray
           
     //   })
@@ -322,8 +322,8 @@ export default{
     //     .catch((err) => {
 
     //       this.totalFoundPlayers = 0
-    //       console.log("Rendering Players in My Players Error: " + err)
-    //       console.log(err)
+    //       ////console.log("Rendering Players in My Players Error: " + err)
+    //       ////console.log(err)
     //       this.players = null
     //     })
     // },
@@ -364,37 +364,37 @@ export default{
 
     async approveBuddyCoinSpend(approveAddress, valueToApprove){
       await main.approveBuddyCoinSpend(approveAddress, valueToApprove).then(res => {
-        console.log(res)
+        ////console.log(res)
       })
       .catch(err => {
-        console.log(err)
+        ////console.log(err)
       })
     },
 
     async checkBuddiesAllowance(addressToCheck){
       await main.checkBuddiesAllowance(addressToCheck).then(res =>{
-        console.log(res)
+        ////console.log(res)
         this.approvedAmount = res
       })
     },
 
     async newPBXPtoTeamContract(amount){
       await main.newPBXPtoTeamContract(amount).then(res => {
-        console.log(res)
+        ////console.log(res)
         this.xpBalanceOnTeamContract = res
       })
     },
 
     async checkXPBalanceonTeamContract(){
       await main.checkXPBalanceonTeamContract().then(res => {
-        console.log(res)
+        ////console.log(res)
         this.xpBalanceOnTeamContract = res
       })
     },
 
     async checkPBPlayerAdmin() {
       await main.checkPBPlayerAdmin().then(res => {
-        console.log("Is PBP Admin: " + res)
+        ////console.log("Is PBP Admin: " + res)
         this.isAdmin = res
       })
     },
@@ -434,7 +434,7 @@ export default{
     async getWeb3Accounts(){
       window.web3 = await Moralis.Web3.enable()
       web3.eth.getAccounts().then(res => {
-        console.log(res)
+        ////console.log(res)
       })
     }
   },

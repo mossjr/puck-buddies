@@ -22,12 +22,12 @@ export default {
 
     async getTeamFromMoralis(){
        await main.getTeamFromMoralis().then(res => {
-          console.log(res)
+          //console.log(res)
           this.hasTeam = res
           this.preloading = false
           this.checkingTeam = false
        }).catch(err => {
-          console.log(err)
+          //console.log(err)
           this.preloading = false
           this.checkingTeam = false
        })
@@ -35,12 +35,12 @@ export default {
 
 //     async checkIfTeam(){
 //       await main.checkIfTeam().then(res => {
-//         console.log(res)
+//         //console.log(res)
 //         this.hasTeam = res
 //         this.preloading = false
 //         this.checkingTeam = false
 //       }).catch(err => {
-//         console.log(err)
+//         //console.log(err)
 //         this.preloading = false
 //         this.checkingTeam = false
 //       })
@@ -48,7 +48,7 @@ export default {
  },
 
   mounted() {
-    console.log("MOUNTED")
+    //console.log("MOUNTED")
     this.$nextTick(function(){
       // this.getTeamMintCost()
       //this.checkIfTeam() 

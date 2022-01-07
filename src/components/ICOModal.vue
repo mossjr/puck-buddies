@@ -79,7 +79,7 @@ export default {
         this.totalBudsSold = Math.floor(res.budsSold)
         this.updateProgressBars()
       }).catch(err => {
-        console.log(err)
+        //console.log(err)
         this.updateProgressBars()
       })
     },
@@ -123,7 +123,7 @@ export default {
          this.screenLocked = false
          this.closeModal()
        }).catch(err => {
-         console.log(err)
+         //console.log(err)
          this.screenLocked = false
        })
         }

@@ -60,16 +60,16 @@ export default {
 
 methods: {
         async loadMyEquipment(){
-            console.log(proShopItems)
+            //console.log(proShopItems)
             let _proShopItems = proShopItems.map(a => a.sku)
-            console.log(_proShopItems)
+            //console.log(_proShopItems)
             await main.loadMyEquipment(_proShopItems).then(res => {
-                console.log(res)
+                //console.log(res)
                 this.items = res
-                console.log(this.items)
+                //console.log(this.items)
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
                 this.updateBalanceViewer()
             })
             this.loadingItems = false

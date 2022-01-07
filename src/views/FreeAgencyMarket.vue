@@ -129,17 +129,17 @@ export default ({
             
           })
           }
-          console.log("Found " + playerIdArray.length + " player Ids in the Market")
+          //console.log("Found " + playerIdArray.length + " player Ids in the Market")
         }
         
         return playerIdArray
       })
       .then(async res =>  {
         
-        console.log("Canvas Array:")
-        console.log(this.players)
-        console.log("Found " + res.length + " Players in Market")
-        console.log(res)
+        //console.log("Canvas Array:")
+        //console.log(this.players)
+        //console.log("Found " + res.length + " Players in Market")
+        //console.log(res)
         let playerData
         let playerArray = []
         for (let i = 0; i < res.length; i++) {
@@ -160,8 +160,8 @@ export default ({
                 isGoal = true
               }
             playerData = await main.getSinglePlayerData(res[i].playerId)
-                console.log("Data for player token " + playerData.ageoutTimestamp)
-                console.log(playerData.ageoutTimestamp) 
+                //console.log("Data for player token " + playerData.ageoutTimestamp)
+                //console.log(playerData.ageoutTimestamp) 
                   let sellerPriceFromWei = web3.utils.fromWei(res[i].sellerPrice)
                   let marketFeeFromWei = web3.utils.fromWei(res[i].marketFee)
                   let totalPriceFromWei = web3.utils.fromWei(res[i].totalPrice)
@@ -189,16 +189,16 @@ export default ({
                     'draftTimestamp': playerData.draftTimestamp,
                     'isMine': res[i].isMine
                   })
-                  console.log("Sellers Adress is: " + playerArray[i].seller)
+                  //console.log("Sellers Adress is: " + playerArray[i].seller)
               }
               this.totalFoundPlayers = playerArray.length;
               this.players = playerArray
-              console.log(playerArray)
+              //console.log(playerArray)
               return {_playerArray: playerArray, _res: res} 
       })
       .then(res2 => {
-        console.log("Passing Data")
-        console.log(res2._playerArray)
+        //console.log("Passing Data")
+        //console.log(res2._playerArray)
          for (let i = 0; i < res2._playerArray.length; i++) {
           buildCanvas.preloadPlayerInfo(res2._playerArray[i].id, res2._playerArray[i], "market-no")
          }
@@ -209,12 +209,12 @@ export default ({
                  this.loadingPlayers = false
                  this.updateBalanceViewer()
 
-                 console.log("This is the Players:")
-                 console.log(this.players)
+                 //console.log("This is the Players:")
+                 //console.log(this.players)
       })
       .catch((err) => {
-        console.log("Rendering Players in Market Error: " + err)
-        console.log(err)
+        //console.log("Rendering Players in Market Error: " + err)
+        //console.log(err)
         this.players = null
       })
     },
@@ -245,15 +245,15 @@ export default ({
           })
           .catch(err => {
             this.screenLocked = false
-            console.log("error buying MarketPlayer")
-            console.log(err)
+            //console.log("error buying MarketPlayer")
+            //console.log(err)
           })
       },
 
       async cancelMarketSale(_splashImage, playerId){
         this.splashImage = _splashImage
         this.screenLocked = true
-        console.log("Cancelling Market Sale: " + playerId)
+        //console.log("Cancelling Market Sale: " + playerId)
         await main.cancelMarketSale(playerId).then(res => {
           this.screenLocked = false
           this.getMarketPlayers()
@@ -266,7 +266,7 @@ export default ({
         const web3 = await Moralis.Web3.enable()
         let myAdd = await web3.eth.getAccounts();
         this.myAddress = myAdd
-        console.log("Users Address: " + myAdd)
+        //console.log("Users Address: " + myAdd)
       },
       
       async getTimestamp(){

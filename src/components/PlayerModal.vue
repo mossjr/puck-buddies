@@ -122,7 +122,7 @@ export default {
             let a = sellerPrice * (100 + f) / 100
             let b = a - sellerPrice
             let fee = b.toFixed(4)
-           console.log(id + " SV: " + sellerPrice + " SF: " + fee)
+           ////console.log(id + " SV: " + sellerPrice + " SF: " + fee)
            await main.sendPlayerToMarket(id, sellerPrice, fee).then(res => {
               this.screenLocked = false
            }).catch(err => {
@@ -136,7 +136,7 @@ export default {
         },
 
         loadPlayer() {
-            console.log(this.playerData)
+            ////console.log(this.playerData)
             let firstName = ""
             let lastName = ""
             let firstNameDna = ("" + Math.floor((this.playerData.dna.slice(0,1)/2)) + this.playerData.dna.slice(1,4))
@@ -177,20 +177,20 @@ export default {
         async updateXpBalanceViewer(){
           await main.updateXPBalance().then(res => {
             document.getElementById('xp-balance').innerHTML = res
-            console.log(parseInt(res))
+            ////console.log(parseInt(res))
             this.myXp = parseInt(res)
           })
       },
 
         async getUpgradeCost(){
             await main.getUpgradeCost().then(res => {
-                console.log(parseInt(res))
+                ////console.log(parseInt(res))
                 this.upgradeCost = parseInt(res)
             })
         },
 
         async increaseStats(_splashImage, tokenId, statType, qty, xp){
-            console.log("Token Id: " + tokenId + " statType: " +  statType + " qty: " + qty + " xp: " + xp)
+            ////console.log("Token Id: " + tokenId + " statType: " +  statType + " qty: " + qty + " xp: " + xp)
             this.splashImage = _splashImage
             this.screenLocked = true
             await main.increaseStats(tokenId, statType, qty, xp).then(res=> {
@@ -224,7 +224,7 @@ export default {
             })
             .catch(err => {
                 this.screenLocked = false
-                console.log(err)
+                ////console.log(err)
                 this.closeModal()
             })
         },

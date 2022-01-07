@@ -94,8 +94,8 @@ export default {
         async displayTeam(playerArray){
       Promise.all(await main.displayTeam())
       .then(res => {
-        console.log("Result: " + res)
-        console.log(res)
+        //console.log("Result: " + res)
+        //console.log(res)
         let teamArray = []
         for (let i = 0; i < res.length; i++){
           
@@ -141,9 +141,9 @@ export default {
           if (indexPlayer6 >= 0){pos6id = playerArray[indexPlayer6].id} else {pos6id = ''}
           if (indexPlayer6 >= 0){pos6OP = playerArray[indexPlayer6].offence} else {pos6OP = ''}
           if (indexPlayer6 >= 0){pos6DP = playerArray[indexPlayer6].defence} else {pos6DP = ''}
-          console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
-          console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
-          console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
+          //console.log(pos1id + " " + pos2id + " " + pos3id + " " + pos4id + " " + pos5id + " " + pos6id)
+          //console.log(pos1OP + " " + pos2OP + " " + pos3OP + " " + pos4OP + " " + pos5OP + " " + pos6OP)
+          //console.log(pos1DP + " " + pos2DP + " " + pos3DP + " " + pos4DP + " " + pos5DP + " " + pos6DP)
 
 
           let opTotal = Number(pos1OP) + Number(pos2OP) + Number(pos3OP) + Number(pos4OP) + Number(pos5OP) + Number(pos6OP)
@@ -155,7 +155,7 @@ export default {
           
           let teamName = this.nouns[teamNounNumber].noun
           let teamLetter = teamName.slice(0,1)        
-          console.log(teamLetter)
+          //console.log(teamLetter)
 
           teamArray.push({
             'teamId': res[i].teamId,
@@ -205,8 +205,8 @@ export default {
         this.pageTeamId = res2.teamArray[0].teamId
       })
       .catch((err) => {
-        console.log("Error rendering Teams: " + err)
-        console.log(err)
+        //console.log("Error rendering Teams: " + err)
+        //console.log(err)
         this.totalTeamsFound = 0
         this.teams = null
         this.playersLoaded = true
@@ -221,9 +221,9 @@ export default {
       let playerArray = [] 
       Promise.all(await main.loadPBPlayers())
       .then(res => {
-        console.log("Result: " + res)
+        //console.log("Result: " + res)
         if (res.length == 0) {
-          console.log("0 Players Found")
+          //console.log("0 Players Found")
           this.totalFoundPlayers = 0
         }else{  
         for (let i = 0; i < res.length; i++) {
@@ -254,9 +254,9 @@ export default {
           }
         }
         this.loadingPlayers = false
-        console.log("Found " + this.offenceFound + " Offence")
-        console.log("Found " + this.defenceFound + " Defence")
-        console.log("Found " + this.goaliesFound + " Goalies")
+        //console.log("Found " + this.offenceFound + " Offence")
+        //console.log("Found " + this.defenceFound + " Defence")
+        //console.log("Found " + this.goaliesFound + " Goalies")
         return playerArray
           
       })
@@ -271,8 +271,8 @@ export default {
         .catch((err) => {
 
           this.totalFoundPlayers = 0
-          console.log("Rendering Players in My Players Error: " + err)
-          console.log(err)
+          //console.log("Rendering Players in My Players Error: " + err)
+          //console.log(err)
           this.players = null
         })
     },
@@ -280,14 +280,14 @@ export default {
 
 
     async hitTheIcePvP(reward, pvpmatchupId, chalTeamId){
-            console.log(reward)
-            console.log(pvpmatchupId)
-            console.log(chalTeamId)
+            //console.log(reward)
+            //console.log(pvpmatchupId)
+            //console.log(chalTeamId)
             await main.hitTheIcePvP(reward, pvpmatchupId, chalTeamId).then(res =>{
                 this.closeModal()
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
             })
         },
 

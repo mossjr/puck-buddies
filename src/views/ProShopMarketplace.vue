@@ -69,7 +69,7 @@ export default {
     methods: {
         async loadProshopMarketItems(){
             await main.loadProshopMarketItems().then(res =>{
-                //console.log(res)
+                ////console.log(res)
                 this.itemsFound = res.length
                 let itemsArray = []
                 for (let i = 0; i < res.length; i++) {
@@ -77,10 +77,10 @@ export default {
                         let sku =  res[i].tokenId.slice(0,6)
                         let sellingPriceFromWei = res[i].sellingPrice/(10 ** 18)
                         let isMine = false
-                        // console.log(ethereum.selectedAddress)
-                        // console.log(res[i].seller)
+                        // //console.log(ethereum.selectedAddress)
+                        // //console.log(res[i].seller)
                         if(res[i].seller.toLowerCase() == ethereum.selectedAddress){
-                            console.log("MINE!")
+                            //console.log("MINE!")
                             isMine = true
                         }
                         itemsArray.push({
@@ -97,12 +97,12 @@ export default {
                 itemsArray.sort((a, b) => {
                     return a.sellingPrice - b.sellingPrice
                 })
-                console.log(itemsArray)
+                //console.log(itemsArray)
                 this.items =  itemsArray
                 this.loadingItems = false
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
                 this.loadingItems = false
             })
         },
@@ -133,7 +133,7 @@ export default {
               this.loadProshopMarketItems()
               this.screenLocked = false
           }).catch(err =>{
-              console.log(err)
+              //console.log(err)
               this.screenLocked = false
           })
       },

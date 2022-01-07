@@ -78,7 +78,7 @@ export default {
             let a = sellerPrice * (100 + f) / 100
             let b = a - sellerPrice
             let fee = b.toFixed(4)
-           console.log(id + " SV: " + sellerPrice + " SF: " + fee)
+           //console.log(id + " SV: " + sellerPrice + " SF: " + fee)
            await main.sendPlayerToMarket(id, sellerPrice, fee)
            this.closeModal()
         },
@@ -132,7 +132,7 @@ export default {
                  this.closeModal()
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
                 this.closeModal()
             })
         },

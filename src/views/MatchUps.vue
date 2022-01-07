@@ -174,14 +174,14 @@ export default {
                }
                return matchupsArray
             }).then(res => {
-                console.log(res)
+                //console.log(res)
                 this.loadingItems = false
                 this.updateBalanceViewer()
                 this.foundMatchups = res.length
                 this.matchups = res
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
                 this.loadingItems = false
                 this.updateBalanceViewer()
             })
@@ -191,13 +191,13 @@ export default {
         async getTimestamp(){
             await main.getTimestamp()
             .catch(err => {
-                console.log(err)
+                //console.log(err)
             })
         },
 
         async getJSTimestamp(){
             let currentTime = Math.floor(Date.now() / 10 ** 3)
-            console.log(currentTime)
+            //console.log(currentTime)
         },
 
         async loadCityAndNouns() {
@@ -223,8 +223,8 @@ export default {
       },
 
       async openPvPTeamModal(_matchupReward, _matchupId){
-          console.log(_matchupReward)
-          console.log(_matchupId)
+          //console.log(_matchupReward)
+          //console.log(_matchupId)
           this.matchupReward = _matchupReward
           this.matchupId = _matchupId
           this.viewPvPTeamModal = !this.viewPvPTeamModal

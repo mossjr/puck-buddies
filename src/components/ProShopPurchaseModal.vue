@@ -47,10 +47,10 @@ export default {
             this.screenLocked = true
             await main.purchaseFromStore(value, tokenId, qty).then(res => {
                 this.screenLocked = false
-                console.log(res)
+                //console.log(res)
                 this.closeModal()
             }).catch(err =>{
-              console.log(err)
+              //console.log(err)
               this.screenLocked = false
             })
         },

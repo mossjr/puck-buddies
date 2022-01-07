@@ -135,21 +135,21 @@ export default {
        
 
         updateGameProgress(){
-            //console.log(this.gameLog.gameObj)
-            //console.log(this.gameLog.gameOverTimeObj)
-            //console.log(this.gameLog.gameShootoutObj)
-            //console.log(this.gameLog.finalScore1)
-            //console.log(this.gameLog.finalScore2)
+            ////console.log(this.gameLog.gameObj)
+            ////console.log(this.gameLog.gameOverTimeObj)
+            ////console.log(this.gameLog.gameShootoutObj)
+            ////console.log(this.gameLog.finalScore1)
+            ////console.log(this.gameLog.finalScore2)
 
 
             let timer = window.setInterval(() =>{
-                //console.log("Regulation")
+                ////console.log("Regulation")
             if(this.matchComplete == true){
                     clearInterval(timer)
                 }
             if (this.gameLog.gameObj.hasOwnProperty(this.secondsLeftReg)){
                 let event = this.gameLog.gameObj[this.secondsLeftReg]
-                //console.log(event)
+                ////console.log(event)
                 if(event == "T1 Shot on Goal"){
                     this.t1SOG++
                 }
@@ -210,14 +210,14 @@ export default {
         updateGameProgressOT(){
             
             let timer = window.setInterval(() =>{
-                //console.log("Overtime")
+                ////console.log("Overtime")
                 this.period = "OT"
                 if(this.matchComplete == true){
                     clearInterval(timer)
                 }
                 if (this.gameLog.gameOverTimeObj.hasOwnProperty(this.secondsLeftOT)){
                     let event = this.gameLog.gameOverTimeObj[this.secondsLeftOT]
-                    //console.log(event)
+                    ////console.log(event)
                     if(event == "T1 Shot on Goal"){
                         this.t1SOG++
                     }
@@ -265,11 +265,11 @@ export default {
             this.showShootOut = true
             let rounds = this.gameLog.gameShootoutObj.length
             let timer = window.setInterval(() =>{
-                //console.log("Shootout")
+                ////console.log("Shootout")
                 if(this.matchComplete == true){
                     clearInterval(timer)
                 }
-                //console.log(this.soRound)
+                ////console.log(this.soRound)
                this.period = "SO"
                let event = this.gameLog.gameShootoutObj[this.soRound]
 

@@ -102,19 +102,19 @@ export default {
 
     methods:{
         async getInStockData(){
-            console.log(proShopItems)
+            //console.log(proShopItems)
             let _proShopItems = proShopItems.map(a => a.sku)
             let _proShopItemAdmin = proShopItems.map(a => a.admin)
             let _proShopActive = proShopItems.map(a => a.active)
-            console.log(_proShopItems)
-            console.log(_proShopItemAdmin)
+            //console.log(_proShopItems)
+            //console.log(_proShopItemAdmin)
             await main.loadProshopItems(_proShopItemAdmin,_proShopItems, _proShopActive).then(res => {
-                console.log(res)
+                //console.log(res)
                 this.items = res
-                console.log(this.items)
+                //console.log(this.items)
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
                 this.updateBalanceViewer()
             })
             this.loadingItems = false
@@ -123,31 +123,31 @@ export default {
 
         async sendProShopAddress() {
             await main.sendProShopAddress().then(res => {
-                console.log(res)
+                //console.log(res)
             })
             .catch(err => {
-                console.log(err)
+                //console.log(err)
             })
         },
 
         async checkProShopAdmin() {
             await main.checkProShopAdmin().then(res => {
-                console.log("Is Pro Shop Admin: " + res)
+                //console.log("Is Pro Shop Admin: " + res)
                 this.isProShopAdmin = res
             })
         },
 
         async addStockToProShop() {
             await main.addStockToProShop(this.skutosend, this.howmanytocreate).then(res => {
-                console.log("Item(s) Added to the Pro Shop " + res)
-                console.log(res)
+                //console.log("Item(s) Added to the Pro Shop " + res)
+                //console.log(res)
                 this.getInStockData()
             })
         },
 
         async burnStock() {
             await main.burnStock(this.skutosend, this.howmanytoburn).then(res => {
-                console.log("Items Burned " + res )
+                //console.log("Items Burned " + res )
                 this.getInStockData()
             })
         },
@@ -168,9 +168,9 @@ export default {
         },
 
         // async purchaseFromStore(value, sku) {
-        //     console.log("Sending this Sku: " + sku)
+        //     //console.log("Sending this Sku: " + sku)
         //     await main.purchaseFromStore(value, sku).then(res => {
-        //         console.log(res)
+        //         //console.log(res)
         //         this.getInStockData()
         //     })
         // },
@@ -184,7 +184,7 @@ export default {
 
        async checkXPBalanceonTeamContract(){
       await main.checkXPBalanceonTeamContract().then(res => {
-        console.log(res)
+        //console.log(res)
         this.xpBalanceOnTeamContract = res
       })
     },

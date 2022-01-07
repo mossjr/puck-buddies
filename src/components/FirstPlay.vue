@@ -59,18 +59,18 @@ export default {
                 let teamFound
                 await main.getTeamFromMoralis().then(res =>{
                     teamFound = res
-                    console.log(res)
+                    //console.log(res)
                 })
                 if(teamFound == false){
                     this.splashImage = _splashImage
                     this.screenLocked=true
                     await main.mintNewTeamMoralis(this.teamMintCost).then(res => {
                         this.screenLocked=false
-                        console.log(res)
+                        //console.log(res)
                         this.$emit('teamFound')
                     }).catch(err => {
                         this.screenLocked=false
-                        console.log(err)
+                        //console.log(err)
                         this.$emit('teamFound')
                     })
                 }else if(teamFound == true){
@@ -82,7 +82,7 @@ export default {
                 await main.getTeamMintCost().then(res =>{
                     this.teamMintCost = res
                 }).catch(err =>{
-                    console.log(err)
+                    //console.log(err)
                 })
             },
 

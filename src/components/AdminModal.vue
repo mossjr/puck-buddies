@@ -258,7 +258,7 @@ export default {
   
     async getPvCadminInfo() {
       await main.getPvCadminInfo().then(res => {
-        console.log(res)
+        //console.log(res)
         this.PvCAddress = res.PvCAddress
         this.PvCBuddiesReward0 = res.PvCBuddiesReward0
         this.r0 = res.PvCBuddiesReward0
@@ -315,57 +315,57 @@ export default {
 
     async updateVariables(){
       await main.updateVariables(this.m1, this.m2, this.m3, this.aoSeconds).then(res =>{
-        console.log(res)
+        //console.log(res)
       }).catch(err => {
-        console.log(err)
+        //console.log(err)
       })
     },
 
     async updateBuddiesReward(){
       await main.updateBuddiesReward(this.r0, this.r1, this.r2).then(res =>{
-        console.log(res)
+        //console.log(res)
       }).catch(err => {
-        console.log(err)
+        //console.log(err)
       })
     },
 
     async updatePBXPReward(){
       await main.updatePBXPReward(this.xpr).then(res => {
-        console.log(res)
+        //console.log(res)
       }).catch(err => {
-        console.log(err)
+        //console.log(err)
       })
     },
 
     async updateTimesOut(){
       await main.updateTimesOut(this.to0, this.to1, this.to2).then(res => {
-        console.log(res)
+        //console.log(res)
       }).catch(err =>{
-        console.log(err)
+        //console.log(err)
       })
     },
 
   async updateTeamMintCost(){
       await main.updateTeamMintCost(this.tmc).then(res => {
-        console.log(res)
+        //console.log(res)
       }).catch(err =>{
-        console.log(err)
+        //console.log(err)
       })
     },
 
     async updateBudsPerBNB(){
       await main.updateBudsPerBNB(this.icorate).then(res => {
-        console.log(res)
+        //console.log(res)
       }).catch(err =>{
-        console.log(err)
+        //console.log(err)
       })
     },
 
     async updateValidator(){
       await main.updateValidator(this.w, this.l).then(res => {
-        console.log(res)
+        //console.log(res)
       }).catch(err =>{
-        console.log(err)
+        //console.log(err)
       })
     },
 

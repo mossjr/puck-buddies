@@ -39,25 +39,25 @@ Moralis.serverURL = "https://onhkokfjpssy.moralisweb3.com:2053/server"//Server u
 
 //Account Functions
 Moralis.Web3.onAccountsChanged(function(accounts) {
-    console.log(accounts);
+    //console.log(accounts);
     location.reload();
 });
 
 if(typeof window.ethereum !== 'undefined') {
-    console.log('MetaMask is installed!')
+    //console.log('MetaMask is installed!')
     init();
 }else{
     renderGetMetaMask()
 }
 
 async function init() {
-    console.log("Initializing...")
+    //console.log("Initializing...")
     try {
         let user = Moralis.User.current();
-        console.log(user)
+        //console.log(user)
         
         if(!user){
-            console.log("Moralis User Not Detected")
+            //console.log("Moralis User Not Detected")
             createApp(Login).mount('#login')
             $("#login").show()
             $("#app").hide()
@@ -66,23 +66,23 @@ async function init() {
             }
             )
         }else if(user){
-            console.log("Rendering game from previous login")
+            //console.log("Rendering game from previous login")
             renderGame()
         }        
      
     } catch (err) {
-        console.log("Error Trying to Log In")
-        console.log(err);
+        //console.log("Error Trying to Log In")
+        //console.log(err);
     }
 }
 
 async function renderGetMetaMask(){
-    console.log("Begin Render Get Meta Mask...")
+    //console.log("Begin Render Get Meta Mask...")
     $("#login").hide()
     $("#app").hide()
     createApp(MetaMask).mount('#metamask')
     $("#metamask-button").click( async () => {
-        console.log("Metamask Button Cicked")
+        //console.log("Metamask Button Cicked")
         window.open(
             'https://metamask.io/',
             '_blank'
@@ -95,27 +95,27 @@ async function login() {
     if (!user) {
       user = await Moralis.Web3.authenticate();
     }
-    console.log("logged in user:", user);
+    //console.log("logged in user:", user);
     renderGame()
     location.reload();
   }
 
 async function logOut() {
     await Moralis.User.logOut();
-    console.log("logged out");
+    //console.log("logged out");
     let user = Moralis.User.current();
-    console.log(user)
+    //console.log(user)
     if(!user){
-        console.log("Hide App")
+        //console.log("Hide App")
         $("#app").hide()
-        console.log("Show Login Info")
+        //console.log("Show Login Info")
         $("#login").show()
         location.reload();
     }
   }
 
 async function renderGame(){
-    console.log("Begin Render Game...")
+    //console.log("Begin Render Game...")
     createApp(App).use(router).mount('#app')
     $("#login").hide()
     $("#player_row").html("")
@@ -124,7 +124,6 @@ async function renderGame(){
         logOut()
         location.reload();
     })
-    // loadPBPlayers("From Render Game")
 }
 
 //ICO Functions
@@ -143,13 +142,13 @@ async function buyBuddies(_value) {
     let valueWei =  web3.utils.toWei(_value.toString())
     let ICOcontractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
     await ICOcontractInstance.methods.buyBuddies().send({from: ethereum.selectedAddress, value: valueWei, gas: 510000}).on("receipt", ( (receipt) => {
-        console.log("ICO Purchase Successful")
-        console.log(receipt)
+        //console.log("ICO Purchase Successful")
+        //console.log(receipt)
         return
     }))
         .catch(err =>{
-        console.log("ICO Purchase Error")
-        console.log(err)
+        //console.log("ICO Purchase Error")
+        //console.log(err)
     })
 }
 
@@ -177,12 +176,12 @@ async function addBuddiesToMetaMask(){
         });
       
         if (wasAdded) {
-          console.log('Thanks for your interest!');
+          //console.log('Thanks for your interest!');
         } else {
-          console.log('Your loss!');
+          //console.log('Your loss!');
         }
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
 }
 
@@ -198,74 +197,74 @@ async function getPvCadminInfo(){
 
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     let PvCAddress = await contractInstance.methods.getPBPvCMatchupsAddress().call({from: ethereum.selectedAddress})
-    console.log(PvCAddress)
+    //console.log(PvCAddress)
     let PvCDifficultyMod = await contractInstance.methods.getDifficultyMod().call({from: ethereum.selectedAddress})
-    console.log(PvCDifficultyMod)
+    //console.log(PvCDifficultyMod)
     let PvCBuddiesRewards = await contractInstance.methods.getBuddiesReward().call({from: ethereum.selectedAddress})
-    console.log(PvCBuddiesRewards)
+    //console.log(PvCBuddiesRewards)
     let PvCPBXPReward = await contractInstance.methods.getPBXPReward().call({from: ethereum.selectedAddress})
-    console.log(PvCPBXPReward)
+    //console.log(PvCPBXPReward)
     let PvCTimeouts = await contractInstance.methods.getTimeOuts(0).call({from: ethereum.selectedAddress})
-    console.log(PvCTimeouts)
+    //console.log(PvCTimeouts)
     let PvCBuddies = await buddiesInstance.methods.balanceOf(PBPvCMatchupsAddress).call({from: ethereum.selectedAddress})
-    console.log(PvCBuddies)
+    //console.log(PvCBuddies)
 
     let playersContractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let pbPlayersAddressFromContract = await playersContractInstance.methods.getPBPlayersAddress().call({from: ethereum.selectedAddress})
-    console.log(pbPlayersAddressFromContract)
+    //console.log(pbPlayersAddressFromContract)
     let mintingCosts = await playersContractInstance.methods.getMintingCosts().call({from: ethereum.selectedAddress})
-    console.log(mintingCosts)
+    //console.log(mintingCosts)
     let playerNextId = await playersContractInstance.methods.getNextId().call({from: ethereum.selectedAddress})
-    console.log(playerNextId)
+    //console.log(playerNextId)
 
     let proshopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     let pbProshopFactoryAddress = await proshopContractInstance.methods.getPBProShopFactoryAddress().call({from: ethereum.selectedAddress})
-    console.log(pbProshopFactoryAddress)
+    //console.log(pbProshopFactoryAddress)
     let pbProshopFactoryStats = await proshopContractInstance.methods.getProShopStats().call({from: ethereum.selectedAddress})
-    console.log(pbProshopFactoryStats)
+    //console.log(pbProshopFactoryStats)
 
     let proshopHolderContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
     let proshopHolderItemsSold = await proshopHolderContractInstance.methods.getItemsSold().call({from: ethereum.selectedAddress})
-    console.log(proshopHolderItemsSold)
+    //console.log(proshopHolderItemsSold)
     let proshopHolderAddress = await proshopHolderContractInstance.methods.getPBProShopHolderAddress().call({from: ethereum.selectedAddress})
-    console.log(proshopHolderAddress)
+    //console.log(proshopHolderAddress)
 
     let proshopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
     let proshopMarketplaceAddress = await proshopMarketplaceContractInstance.methods.getPBProShopMarketplaceAddress().call({from: ethereum.selectedAddress})
-    console.log(proshopMarketplaceAddress)
+    //console.log(proshopMarketplaceAddress)
     let proshopMarketplaceMarketFee = await proshopMarketplaceContractInstance.methods.getProshopMarketFeePercent().call({from: ethereum.selectedAddress})
-    console.log(proshopMarketplaceMarketFee)
+    //console.log(proshopMarketplaceMarketFee)
     let proshopMarketplaceFeesAddress = await proshopMarketplaceContractInstance.methods.getMarketFeePayableAddress().call({from: ethereum.selectedAddress})
-    console.log(proshopMarketplaceFeesAddress)
+    //console.log(proshopMarketplaceFeesAddress)
     let proshopFeesBuddiesBalance = await buddiesInstance.methods.balanceOf(proshopMarketplaceFeesAddress).call({from: ethereum.selectedAddress})
     let proshopMarketplaceStats = await proshopMarketplaceContractInstance.methods.getMarketplaceStats().call({from: ethereum.selectedAddress})
-    console.log(proshopMarketplaceStats)
+    //console.log(proshopMarketplaceStats)
 
     let pbTeamsContractInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
     let pbTeamsAddress = await pbTeamsContractInstance.methods.getPBTeamsAddress().call({from: ethereum.selectedAddress})
-    console.log(pbTeamsAddress)
+    //console.log(pbTeamsAddress)
     let pbTeamsMintCost = await pbTeamsContractInstance.methods.getTeamMintCost().call({from: ethereum.selectedAddress})
-    console.log(pbTeamsMintCost)
-    let pbTeamsCount = 0 //await pbTeamsContractInstance.methods.getTeamsCount().call({from: ethereum.selectedAddress})
-    console.log(pbTeamsCount)
+    //console.log(pbTeamsMintCost)
+    let pbTeamsCount = 0
+    ////console.log(pbTeamsCount)
 
     let pbPBXPContractInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     let pbPBXPAddress = await pbPBXPContractInstance.methods.getPBXPAddress().call({from: ethereum.selectedAddress})
-    console.log(pbPBXPAddress)
+    //console.log(pbPBXPAddress)
     let pbPBXPUpgradeCost = await pbPBXPContractInstance.methods.getUpgradeCost().call({from: ethereum.selectedAddress})
-    console.log(pbPBXPUpgradeCost)
+    //console.log(pbPBXPUpgradeCost)
 
     let icoContractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
     let icoContractAddress = await icoContractInstance.methods.getBuddiesICOAddress().call({from: ethereum.selectedAddress})
-    console.log(icoContractAddress)
+    //console.log(icoContractAddress)
     let icoBuddiesPerBNB = await icoContractInstance.methods.getBudsPerBNB().call({from: ethereum.selectedAddress})
-    console.log(icoBuddiesPerBNB)
+    //console.log(icoBuddiesPerBNB)
     let icoBudsSold = await icoContractInstance.methods.getBudsSold().call({from: ethereum.selectedAddress})
-    console.log(icoBudsSold)
+    //console.log(icoBudsSold)
     let icoBudsBalance = await icoContractInstance.methods.getBudsBalance().call({from: ethereum.selectedAddress})
-    console.log(icoBudsBalance)
+    //console.log(icoBudsBalance)
     let icoBNBBalance = await icoContractInstance.methods.getBNBBalance().call({from: ethereum.selectedAddress})
-    console.log(icoBNBBalance)
+    //console.log(icoBNBBalance)
 
     let obj = { PvCAddress:PvCAddress, 
                 PvCDifficultyMod: PvCDifficultyMod, 
@@ -303,7 +302,7 @@ async function getPvCadminInfo(){
                 icoBudsBalance: web3.utils.fromWei(icoBudsBalance),
                 icoBNBBalance: web3.utils.fromWei(icoBNBBalance),
                 }
-                console.log(obj)
+                //console.log(obj)
     return obj
 }
 
@@ -311,9 +310,9 @@ async function updateValidator(_w, _l){
     const web3 = await Moralis.enableWeb3()
     let contractInstance = new web3.eth.Contract(VALIDATOR.abi, validatorAddress)
     await contractInstance.methods.updateValidation(_w, _l).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -325,9 +324,9 @@ async function updateVariables(_mintCost1, _mintCost2, _mintCost3, _ageoutSecond
     let m3 = web3.utils.toWei(_mintCost3.toString())
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     await contractInstance.methods.updateVariables(m1, m2, m3,_ageoutSeconds).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -339,9 +338,9 @@ async function updateBuddiesReward(_r0, _r1, _r2){
     let r = [r0, r1, r2]
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     await contractInstance.methods.updateBuddiesReward(r).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)     
+        //console.log(err)     
     })
 }
 
@@ -350,9 +349,9 @@ async function updateTimesOut(_to0, _to1, _to2){
     let tos = [_to0, _to1, _to2]
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     await contractInstance.methods.updateTimesOut(tos).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)     
+        //console.log(err)     
     })
 }
 
@@ -360,9 +359,9 @@ async function updatePBXPReward(_xpr){
     const web3 = await Moralis.enableWeb3()
     let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     await contractInstance.methods.updatePBXPReward(_xpr).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -371,9 +370,9 @@ async function updateTeamMintCost(_value){
     let value = web3.utils.toWei(_value.toString())
     let pbTeamsContractInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
     await pbTeamsContractInstance.methods.updateTeamMintCost(value).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -381,9 +380,9 @@ async function updateBudsPerBNB(_icorate){
     const web3 = await Moralis.enableWeb3()
     let icoContractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
     await icoContractInstance.methods.updateBudsPerBNB(_icorate).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
-        console.log(receipt)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -409,7 +408,7 @@ async function getDraftPrice(){
     window.web3 = await Moralis.enableWeb3()
     const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let getDraft = await playerContract.methods.getMintingCosts().call({from: ethereum.selectedAddress})
-    console.log(getDraft)
+    //console.log(getDraft)
     let draftValue1 = web3.utils.fromWei(getDraft[0])
     let draftValue2 = web3.utils.fromWei(getDraft[1])
     let draftValue3 = web3.utils.fromWei(getDraft[2])
@@ -459,14 +458,14 @@ async function getMarketFeePayableAddress(){
     window.web3 = await Moralis.enableWeb3()
     const marketContract = new web3.eth.Contract(PBPLAYERMARKET.abi, pbMarketplaceAddress)
     let getMarketFeePayableAddress = await marketContract.methods.getMarketFeePayableAddress().call({from: ethereum.selectedAddress})
-    console.log("Result: " + getMarketFeePayableAddress)
+    //console.log("Result: " + getMarketFeePayableAddress)
     return getMarketFeePayableAddress
 }
 
 async function updateFeePayableAddress(newaddress){
     window.web3 = await Moralis.enableWeb3()
     const marketContract = new web3.eth.Contract(PBPLAYERMARKET.abi, pbMarketplaceAddress)
-    console.log("here is the address being sent: " + newaddress)
+    //console.log("here is the address being sent: " + newaddress)
     let updateMarketFeePayableAddress = await marketContract.methods.updateFeePayableAddress(newaddress).send({from: ethereum.selectedAddress, gas: 512000})
 }
 
@@ -564,18 +563,18 @@ async function checkProShopAdmin() {
         let approved = false
         const proshopInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
         await proshopInstance.methods.setApprovalForAll(pbProShopMarketplaceAddress,true).send({from: ethereum.selectedAddress, gas: 72000}).on("receipt", ( () => {
-            console.log("ProShop Approved")
+            //console.log("ProShop Approved")
             approved = true
         }))
         .catch(err =>{
-            console.log(err)
+            //console.log(err)
         })
         if(approved == true){
             let value = _sellPrice + Number(_sellFee)
             let _totalprice =  web3.utils.toWei(value.toString())
             window.web3 = await Moralis.enableWeb3()
-            console.log(_totalprice)
-            console.log(_tokenId)
+            //console.log(_totalprice)
+            //console.log(_tokenId)
             const proshopMarketplaceInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
             await proshopMarketplaceInstance.methods.createProShopMarketItem(_tokenId, _totalprice).send({from: ethereum.selectedAddress, gas: 512000})
             approved = false
@@ -595,22 +594,22 @@ async function checkProShopAdmin() {
         let proShopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
         
         await buddiesInstance.methods.approve(pbProShopMarketplaceAddress, valueWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-            console.log("Buddies Spend by ProShop Marketplace Contract Address Approved")
+            //console.log("Buddies Spend by ProShop Marketplace Contract Address Approved")
             approved = true
         }))
         .catch(err => {
-            console.log("Error trying to make Approval for Buddies Spend by ProShop Marketplace Contract: " + err)
-            console.log(err)
+            //console.log("Error trying to make Approval for Buddies Spend by ProShop Marketplace Contract: " + err)
+            //console.log(err)
         })  
       
         if(approved == true){
             approved = false;
             let transaction = await proShopMarketplaceContractInstance.methods.createProShopMarketplaceSale(_marketListingId).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-                    console.log("Transaction complete: " + receipt)
+                    //console.log("Transaction complete: " + receipt)
                 }))
                 .catch(err => {
-                    console.log("Error trying to buy from the Pro Shop Marketplace: " + err)
-                    console.log(err)
+                    //console.log("Error trying to buy from the Pro Shop Marketplace: " + err)
+                    //console.log(err)
                     })
              return transaction
             }
@@ -621,11 +620,11 @@ async function checkProShopAdmin() {
         const web3 = await Moralis.enableWeb3()
         let proShopMarketplaceContractInstance = new web3.eth.Contract(PBPROSHOPMARKETPLACE.abi, pbProShopMarketplaceAddress)
         await proShopMarketplaceContractInstance.methods.cancelProShopMarketplaceSale(_marketListingId).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-            console.log("Canceling Proshop Marketplace Item Sale complete: " + receipt)
+            //console.log("Canceling Proshop Marketplace Item Sale complete: " + receipt)
         }))
         .catch(err => {
-            console.log("Error trying to Cancel Sale from Pro Shop Marketplace: " + err)
-            console.log(err)
+            //console.log("Error trying to Cancel Sale from Pro Shop Marketplace: " + err)
+            //console.log(err)
             })
      return
     }    
@@ -643,13 +642,13 @@ async function loadPBPlayers(source){
     const query = new Moralis.Query("PBTeams")
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const teams = await query.find()
-    // console.log(teams[0])
-    // console.log(teams[0].attributes.teamDNA)
-    console.log("Loading Players from: " + source)
+    // //console.log(teams[0])
+    // //console.log(teams[0].attributes.teamDNA)
+    //console.log("Loading Players from: " + source)
     window.web3 = await Moralis.enableWeb3()
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let array = await tokenContract.methods.getAllTokensForUser(ethereum.selectedAddress).call({from: ethereum.selectedAddress})
-    // console.log(array)
+    // //console.log(array)
     let nounsArray = NOUNS
     let teamFirstLetter
     if (array.length == 0) {
@@ -668,12 +667,12 @@ async function loadPBPlayers(source){
             
             let dnaInt = teams[0].attributes.teamDNA
             let dna = dnaInt.toString()
-            console.log(dna)
+            //console.log(dna)
             let teamNounNumber = parseInt(dna.slice(5,8))
             let teamName = nounsArray[teamNounNumber].noun
             teamFirstLetter = teamName.slice(0,1) 
-            //console.log (details.teamId) 
-            //console.log (teamName)
+            ////console.log (details.teamId) 
+            ////console.log (teamName)
         }
 
     let isOffence = false
@@ -688,12 +687,12 @@ async function loadPBPlayers(source){
         isGoalie = true
     }
 
-    // console.log(playerId + " " + teams[0].attributes.p1)
-    // console.log(playerId + " " + teams[0].attributes.p2)
-    // console.log(playerId + " " + teams[0].attributes.p3)
-    // console.log(playerId + " " + teams[0].attributes.p4)
-    // console.log(playerId + " " + teams[0].attributes.p5)
-    // console.log(playerId + " " + teams[0].attributes.p6)
+    // //console.log(playerId + " " + teams[0].attributes.p1)
+    // //console.log(playerId + " " + teams[0].attributes.p2)
+    // //console.log(playerId + " " + teams[0].attributes.p3)
+    // //console.log(playerId + " " + teams[0].attributes.p4)
+    // //console.log(playerId + " " + teams[0].attributes.p5)
+    // //console.log(playerId + " " + teams[0].attributes.p6)
     let myLetter = ""
     let playerPOS = 0
     let isOnTeam = false
@@ -701,38 +700,38 @@ async function loadPBPlayers(source){
         playerPOS = 1
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p2){
         playerPOS = 2
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p3){
         playerPOS = 3
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p4){
         playerPOS = 4
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p5){
         playerPOS = 5
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }else if(playerId == teams[0].attributes.p6){
         playerPOS = 6
         isOnTeam = true
         myLetter = teamFirstLetter
-        // console.log("Assigned Player POS: " + playerPOS)
+        // //console.log("Assigned Player POS: " + playerPOS)
     }
 
     let playercountry = await playerCountry(details.dna)
     let playerAge = await getPlayerAge(details.ageoutTimestamp, details.draftTimestamp)
-        // console.log(details)
-        // console.log({
+        // //console.log(details)
+        // //console.log({
         //     id: playerId,
         //     offence: details.offence,
         //     defence: details.defence,
@@ -805,14 +804,14 @@ function playerCountry(_dna){
     }
 
     let threshold = _dna.slice(8,12)
-    //console.log("Country Threshold Player " + id + ": " + threshold)
+    ////console.log("Country Threshold Player " + id + ": " + threshold)
     threshold = threshold - 0
 
     total = 0;
     for (let i = 0; i < countries.length - 1; ++i) {
         total += countries[i][1]
         if (total >= threshold) {
-            //console.log("Selected Country Player " + id + ": " + countries[i][0])
+            ////console.log("Selected Country Player " + id + ": " + countries[i][0])
             return countries[i][0]
             
         }
@@ -836,8 +835,8 @@ async function getSinglePlayerData(playerId){
     window.web3 = await Moralis.enableWeb3()
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let details = await tokenContract.methods.getTokenDetails(playerId).call({from: ethereum.selectedAddress}) 
-    console.log("DETAILS FROM MAIN")
-        console.log(details)
+    //console.log("DETAILS FROM MAIN")
+        //console.log(details)
         return {
           id: playerId,
           offence: details.offence,
@@ -869,25 +868,25 @@ async function getUpgradeCost() {
 
 
 async function increaseStats(tokenId, statType, qty, xp) {
-    console.log("Token Id: " + tokenId + " statType: " +  statType + " qty: " + qty + " xp: " + xp)
+    //console.log("Token Id: " + tokenId + " statType: " +  statType + " qty: " + qty + " xp: " + xp)
     const sender = ethereum.selectedAddress
     
     const tokenContract = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     await tokenContract.methods.increaseStats(tokenId, statType, qty, xp).send({from: sender, gas: 512000}).on("receipt", ( (receipt) => {
-        console.log("Successfully increased Stat")
-        console.log("Gas Used: " + receipt.gasUsed)
-        console.log(receipt)
+        //console.log("Successfully increased Stat")
+        //console.log("Gas Used: " + receipt.gasUsed)
+        //console.log(receipt)
     }))
 }
 
 async function giftPlayer(tokenId, newOwner){
-    console.log(tokenId + " " + newOwner)
+    //console.log(tokenId + " " + newOwner)
     const sender = ethereum.selectedAddress
     window.web3 = await Moralis.enableWeb3()
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     await tokenContract.methods.giftPlayer(tokenId, newOwner).send({from: sender, gas: 512000}).on("receipt", ( (receipt) => {
-        console.log("Gas Used: " + receipt.gasUsed)
-        console.log(receipt)
+        //console.log("Gas Used: " + receipt.gasUsed)
+        //console.log(receipt)
     }))
 }
 
@@ -934,7 +933,7 @@ async function getTimestamp(){
     const web3 = await Moralis.enableWeb3()
     let proShopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     let timeStamp = await proShopContractInstance.methods.getTimestamp().call({from: caller})
-    console.log(timeStamp)
+    //console.log(timeStamp)
 }
 
 async function addStockToProShop(sku, qty) {
@@ -942,9 +941,9 @@ async function addStockToProShop(sku, qty) {
     const web3 = await Moralis.enableWeb3()
     let proShopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     await proShopContractInstance.methods.newProduct(sku, qty).send({from: minter, gas: 512000}).on("receipt", ( (receipt) => {
-                  console.log("Mint New Items Transaction received:")
-                  console.log("Gas Used: " + receipt.gasUsed)
-                  console.log(receipt)
+                  //console.log("Mint New Items Transaction received:")
+                  //console.log("Gas Used: " + receipt.gasUsed)
+                  //console.log(receipt)
                   
               }))
 }
@@ -956,11 +955,11 @@ async function giftItem(tokenId, qty, newOwner){
     let tokenIdArray = [tokenId]
     let qtyArray = [qty]
     await proShopContractInstance.methods.giftItem(tokenIdArray,qtyArray,newOwner).send({from: minter, gas: 512000}).on("receipt", ( (receipt) => {
-        console.log("Gift Items Transaction received:")
-        console.log("Gas Used: " + receipt.gasUsed)
-        console.log(receipt)
+        //console.log("Gift Items Transaction received:")
+        //console.log("Gas Used: " + receipt.gasUsed)
+        //console.log(receipt)
     })).catch(err =>{
-        console.log(err)
+        //console.log(err)
     })
 }
 
@@ -969,16 +968,16 @@ async function burnStock(sku, qty) {
     const web3 = await Moralis.enableWeb3()
     let proShopContractInstance = new web3.eth.Contract(PBPROSHOPFACTORY.abi, pbProShopFactoryAddress)
     await proShopContractInstance.methods.burnItems(sku, qty).send({from: burner, gas: 512000}).on("receipt", ( (receipt) => {
-                  console.log("Burn Items Transaction received:")
-                  console.log("Gas Used: " + receipt.gasUsed)
-                  console.log(receipt)
+                  //console.log("Burn Items Transaction received:")
+                  //console.log("Gas Used: " + receipt.gasUsed)
+                  //console.log(receipt)
               }))
 }
 
 async function purchaseFromStore(value, tokenId, qty) {
-  console.log("The Value sending is " + value)
-  console.log("The tokenId  sending is " + tokenId)
-  console.log("The qty  sending is " + qty)
+  //console.log("The Value sending is " + value)
+  //console.log("The tokenId  sending is " + tokenId)
+  //console.log("The qty  sending is " + qty)
   let approved = false;
   const sender = ethereum.selectedAddress
   const web3 = await Moralis.enableWeb3()
@@ -991,23 +990,23 @@ async function purchaseFromStore(value, tokenId, qty) {
   let proShopHolderContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
   
   await buddiesInstance.methods.approve(pbProShopHolderAddress, valueWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-      console.log("Buddies Spend by ProShop Contract Address Approved")
+      //console.log("Buddies Spend by ProShop Contract Address Approved")
       approved = true
   }))
   .catch(err => {
-      console.log("Error trying to make Approval for Buddies Spend by ProShop Contract: " + err)
-      console.log(err)
+      //console.log("Error trying to make Approval for Buddies Spend by ProShop Contract: " + err)
+      //console.log(err)
   })  
 
   if(approved == true){
       approved = false;
-      console.log("Sending :" + valueWei + " * " + qty + " : " + tokenId)
+      //console.log("Sending :" + valueWei + " * " + qty + " : " + tokenId)
       let transaction = await proShopHolderContractInstance.methods.purchaseFromStore(tokenId, valueWei, qty).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-              console.log("Transaction complete: " + receipt)
+              //console.log("Transaction complete: " + receipt)
           }))
           .catch(err => {
-              console.log("Error trying to buy from the Pro Shop: " + err)
-              console.log(err)
+              //console.log("Error trying to buy from the Pro Shop: " + err)
+              //console.log(err)
               })
        return transaction
       }
@@ -1019,12 +1018,12 @@ async function applyEquipmentToPlayer(selectToken, sku, playerId){
     const sender = ethereum.selectedAddress
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let transaction = await tokenContract.methods.updateEquipment(selectToken, sku, playerId).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-        console.log("Transaction complete: " + receipt)
-        console.log(receipt)
+        //console.log("Transaction complete: " + receipt)
+        //console.log(receipt)
     }))
     .catch(err => {
-        console.log("Error trying to apply equipment to player: " + err)
-        console.log(err)
+        //console.log("Error trying to apply equipment to player: " + err)
+        //console.log(err)
         })
     return transaction
 }
@@ -1037,12 +1036,12 @@ async function removeProShopEquipment(equippedToken, playerId){
     await proshopHolderContract.methods.setApprovalForAll(pbPlayersAddress, true).send({from: sender, gas: 521000})
     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let transaction = await tokenContract.methods.removeEquipment(playerId).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-        console.log("Transaction complete: " + receipt)
-        console.log(receipt)
+        //console.log("Transaction complete: " + receipt)
+        //console.log(receipt)
     }))
     .catch(err => {
-        console.log("Error trying to apply equipment to player: " + err)
-        console.log(err)
+        //console.log("Error trying to apply equipment to player: " + err)
+        //console.log(err)
         })
     return transaction
 }
@@ -1055,9 +1054,9 @@ async function addStockToPBXPShop(sku, qty) {
     const web3 = await Moralis.enableWeb3()
     let PBXPShopContractInstance = new web3.eth.Contract(PBXPSHOPFACTORY.abi, PBXPShopFactoryAddress)
     await PBXPShopContractInstance.methods.newProduct(sku, qty).send({from: minter, gas: 512000}).on("receipt", ( (receipt) => {
-                  console.log("Mint New Items Transaction received:")
-                  console.log("Gas Used: " + receipt.gasUsed)
-                  console.log(receipt)
+                  //console.log("Mint New Items Transaction received:")
+                  //console.log("Gas Used: " + receipt.gasUsed)
+                  //console.log(receipt)
                   
               }))
 }
@@ -1067,15 +1066,15 @@ async function burnPBXPStock(sku, qty) {
     const web3 = await Moralis.enableWeb3()
     let PBXPShopContractInstance = new web3.eth.Contract(PBXPSHOPFACTORY.abi, PBXPShopFactoryAddress)
     await PBXPShopContractInstance.methods.burnItems(sku, qty).send({from: burner, gas: 512000}).on("receipt", ( (receipt) => {
-                  console.log("Burn Items Transaction received:")
-                  console.log("Gas Used: " + receipt.gasUsed)
-                  console.log(receipt)
+                  //console.log("Burn Items Transaction received:")
+                  //console.log("Gas Used: " + receipt.gasUsed)
+                  //console.log(receipt)
               }))
 }
 
 // async function purchaseFromStore(value, sku) {
-//   console.log("The Value sending is " + value)
-//   console.log("The sku  sending is " + sku)
+//   //console.log("The Value sending is " + value)
+//   //console.log("The sku  sending is " + sku)
 //   let approved = false;
 //   const sender = ethereum.selectedAddress
 //   const web3 = await Moralis.enableWeb3()
@@ -1088,22 +1087,22 @@ async function burnPBXPStock(sku, qty) {
 //   let proShopHolderContractInstance = new web3.eth.Contract(PBPROSHOPHOLDER.abi, pbProShopHolderAddress)
   
 //   await buddiesInstance.methods.approve(pbProShopHolderAddress, valueWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-//       console.log("Buddies Spend by ProShop Contract Address Approved")
+//       //console.log("Buddies Spend by ProShop Contract Address Approved")
 //       approved = true
 //   }))
 //   .catch(err => {
-//       console.log("Error trying to make Approval for Buddies Spend by ProShop Contract: " + err)
-//       console.log(err)
+//       //console.log("Error trying to make Approval for Buddies Spend by ProShop Contract: " + err)
+//       //console.log(err)
 //   })  
 
 //   if(approved == true){
 //       approved = false;
 //       let transaction = await proShopHolderContractInstance.methods.buyItems(sku, valueWei).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-//               console.log("Transaction complete: " + receipt)
+//               //console.log("Transaction complete: " + receipt)
 //           }))
 //           .catch(err => {
-//               console.log("Error trying to buy from the Pro Shop: " + err)
-//               console.log(err)
+//               //console.log("Error trying to buy from the Pro Shop: " + err)
+//               //console.log(err)
 //               })
 //        return transaction
 //       }
@@ -1117,12 +1116,12 @@ async function burnPBXPStock(sku, qty) {
 //     await proshopHolderContract.methods.setApprovalForAll(pbPlayersAddress, true).send({from: sender, gas: 521000})
 //     const tokenContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
 //     let transaction = await tokenContract.methods.updateEquipment(selectToken, sku, itemType, playerId).send({from: sender, gas: 521000}).on("receipt", ( (receipt) => {
-//         console.log("Transaction complete: " + receipt)
-//         console.log(receipt)
+//         //console.log("Transaction complete: " + receipt)
+//         //console.log(receipt)
 //     }))
 //     .catch(err => {
-//         console.log("Error trying to apply equipment to player: " + err)
-//         console.log(err)
+//         //console.log("Error trying to apply equipment to player: " + err)
+//         //console.log(err)
 //         })
 //     return transaction
 // }
@@ -1134,13 +1133,13 @@ async function burnPBXPStock(sku, qty) {
 //My Team Functions
 
 async function displayTeam(){
-    console.log("Begin Display Teams - NEED TO SWITCH TO MORALIS")
+    //console.log("Begin Display Teams - NEED TO SWITCH TO MORALIS")
     const query = new Moralis.Query("PBTeams")
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const teams = await query.find()
     if(teams.length >= 1){
-        console.log("Team Found")
-        console.log(teams[0])
+        //console.log("Team Found")
+        //console.log(teams[0])
         let p1ID = teams[0].attributes.p1
         let p2ID = teams[0].attributes.p2
         let p3ID = teams[0].attributes.p3
@@ -1157,15 +1156,15 @@ async function displayTeam(){
         let teamDP = 0
 
         if (p1ID > 0){
-            console.log("looking up POS 1 player: " + p1ID)
+            //console.log("looking up POS 1 player: " + p1ID)
             p1Details = await getSinglePlayerData(p1ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p1ID == 0 || p1ID == ""){
-            console.log("POS 1 Player not found")
+            //console.log("POS 1 Player not found")
             p1Details = {
             id: "",
             offence: 0,
@@ -1187,15 +1186,15 @@ async function displayTeam(){
         }
 
          if (p2ID > 0){
-            console.log("looking up POS 2 player: " + p2ID)
+            //console.log("looking up POS 2 player: " + p2ID)
             p2Details = await getSinglePlayerData(p2ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p2ID == 0 || p2ID == ""){
-            console.log("POS 2 Player not found")
+            //console.log("POS 2 Player not found")
             p2Details = {
             id: "",
             offence: 0,
@@ -1217,15 +1216,15 @@ async function displayTeam(){
         }
         
         if (p3ID > 0){
-            console.log("looking up POS 3 player: " + p3ID)
+            //console.log("looking up POS 3 player: " + p3ID)
             p3Details = await getSinglePlayerData(p3ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p3ID == 0 || p3ID == ""){
-            console.log("POS 3 Player not found")
+            //console.log("POS 3 Player not found")
             p3Details = {
             id: "",
             offence: 0,
@@ -1247,15 +1246,15 @@ async function displayTeam(){
         }
         
         if (p4ID > 0){
-            console.log("looking up POS 4 player: " + p4ID)
+            //console.log("looking up POS 4 player: " + p4ID)
             p4Details = await getSinglePlayerData(p4ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p4ID == 0 || p4ID == ""){
-            console.log("POS 4 Player not found")
+            //console.log("POS 4 Player not found")
             p4Details = {
             id: "",
             offence: 0,
@@ -1277,15 +1276,15 @@ async function displayTeam(){
         }
         
         if (p5ID > 0){
-            console.log("looking up POS 5 player: " + p5ID)
+            //console.log("looking up POS 5 player: " + p5ID)
             p5Details = await getSinglePlayerData(p5ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p5ID == 0 || p5ID == ""){
-            console.log("POS 5 Player not found")
+            //console.log("POS 5 Player not found")
             p5Details = {
             id: "",
             offence: 0,
@@ -1307,15 +1306,15 @@ async function displayTeam(){
         }
         
         if (p6ID > 0){
-            console.log("looking up POS 6 player: " + p6ID)
+            //console.log("looking up POS 6 player: " + p6ID)
             p6Details = await getSinglePlayerData(p6ID).then(res => {
-                console.log(res)
+                //console.log(res)
                 teamOP = teamOP + parseInt(res.offence)
                 teamDP = teamDP + parseInt(res.defence)
                 return res
             })
         }else if(p6ID == 0 || p6ID == ""){
-            console.log("POS 6 Player not found")
+            //console.log("POS 6 Player not found")
             p6Details = {
             id: "",
             offence: 0,
@@ -1337,7 +1336,7 @@ async function displayTeam(){
         }
 
   
-        console.log(teamOP + " " + teamDP)
+        //console.log(teamOP + " " + teamDP)
 
         // const web3 = await Moralis.enableWeb3()
         // let contractInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
@@ -1363,11 +1362,11 @@ async function displayTeam(){
             p6: p6Details,
             
           }
-        console.log(teamObj)
+        //console.log(teamObj)
 
         return teamObj
     }else if(teams.length == 0){
-        console.log("No Team Found")
+        //console.log("No Team Found")
         return false
     }
 }
@@ -1377,10 +1376,10 @@ async function getTeamFromMoralis(){
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const teams = await query.find()
     if(teams.length >= 1){
-        console.log("Team Found")
+        //console.log("Team Found")
         return true
     }else if(teams.length == 0){
-        console.log("No Team Found")
+        //console.log("No Team Found")
         return false
     }
 }
@@ -1393,18 +1392,18 @@ async function mintNewTeamMoralis(value){
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const teams = await query.find()
     if(teams.length >= 1){
-        console.log("Team Found")
+        //console.log("Team Found")
         return
     }
     let playerIds 
     await buySixPackofCards(value).then(res => {
-        console.log(res.events.sixPackPlayer.returnValues)
+        //console.log(res.events.sixPackPlayer.returnValues)
         playerIds = res.events.sixPackPlayer.returnValues
     }).catch(err => {
-        console.log(err)
+        //console.log(err)
         return
     })
-    console.log(playerIds)
+    //console.log(playerIds)
     let dnaLength = 16
     let random_integer = Math.random()*101|0
     let rand = web3.utils.soliditySha3(ethereum.selectedAddress, Date.now(), random_integer) 
@@ -1443,15 +1442,15 @@ async function buySixPackofCards(value){
         approved = true
     }))
     .catch(err => {
-        console.log(err)
+        //console.log(err)
     })
     if(approved == true){
-        console.log("Approved Buddies Spend")
+        //console.log("Approved Buddies Spend")
         approved = false
         let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
         let playerIds = await teamInstance.methods.mintSixPack(costtodraft).send({from: minter, gas: 2100000}).on("receipt", ((receipt) =>{
-            // console.log(receipt)
-            // console.log(receipt.events.sixPackPlayer.returnValues)
+            // //console.log(receipt)
+            // //console.log(receipt.events.sixPackPlayer.returnValues)
             // playerIds = receipt.events.sixPackPlayer.returnValues
             
         }))
@@ -1475,13 +1474,13 @@ async function mintNewTeam(value){
         approved = true
     }))
     .catch(err => {
-        console.log(err)
+        //console.log(err)
     })
     if(approved == true){
         approved = false
         let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
         await teamInstance.methods.mintTeam(costtodraft).send({from: minter, gas: 2100000}).on("receipt", ((receipt) =>{
-            console.log(receipt)
+            //console.log(receipt)
             return receipt
     }))
     }else{
@@ -1495,7 +1494,7 @@ async function mintNewTeam(value){
 //     const web3 = await Moralis.enableWeb3()
 //     let teamInstance = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
 //     await teamInstance.methods.mintTeam().send({from: minter, gas: 2048000}).on("receipt", ((receipt) => {
-//         console.log(receipt)
+//         //console.log(receipt)
 //         return res
 //     }))
 // }
@@ -1514,7 +1513,7 @@ async function getTeamMintCost(){
     window.web3 = await Moralis.enableWeb3()
     const teamContract = new web3.eth.Contract(PBTEAMS.abi, PBTeamsAddress)
     let teamMintCost = await teamContract.methods.getTeamMintCost().call({from: ethereum.selectedAddress})
-    console.log(teamMintCost)
+    //console.log(teamMintCost)
     let mintTeamValue = web3.utils.fromWei(teamMintCost)
     return mintTeamValue
 }
@@ -1525,10 +1524,10 @@ async function assignToPosition(posID, playerId){
     const query = new Moralis.Query(puckBuddiesTeam)
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const results = await query.find();
-    console.log(results[0].id)
+    //console.log(results[0].id)
     
     query.get(results[0].id).then((puckBuddiesTeam) =>{
-        console.log("Team Found")
+        //console.log("Team Found")
         if(posID == 1){
             puckBuddiesTeam.set('p1', playerId)
         }else if(posID == 2){
@@ -1545,15 +1544,15 @@ async function assignToPosition(posID, playerId){
         return puckBuddiesTeam.save()
         
     }).catch( (error) => {
-        console.log(error)
+        //console.log(error)
     })
 
     // const sender = ethereum.selectedAddress
     // const web3 = await Moralis.enableWeb3()
     // const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-    // console.log("Sending this TeamId: " + teamId)
+    // //console.log("Sending this TeamId: " + teamId)
     // let receipt = await playerContract.methods.assignToTeam(teamId, position, playerId, teamDna).send({from: sender, gas: 512000})
-    //     console.log("Here is the receipt: " + receipt)
+    //     //console.log("Here is the receipt: " + receipt)
     //     return (receipt)
 }
 
@@ -1562,8 +1561,8 @@ async function doubleCheckIfPlayer(posID){
     const query = new Moralis.Query(puckBuddiesTeam)
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const results = await query.find();
-    console.log(results[0])
-    console.log(results[0].attributes.p1)
+    //console.log(results[0])
+    //console.log(results[0].attributes.p1)
     
     if(posID == 1){
         if(results[0].attributes.p1 != ""){
@@ -1620,13 +1619,13 @@ async function doubleCheckIfPlayer(posID){
 //     const sender = ethereum.selectedAddress
 //     const web3 = await Moralis.enableWeb3()
 //     const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-//     console.log("Sending this TeamId: " + teamId)
-//     console.log("Sending this PlayerId: " + playerId)
+//     //console.log("Sending this TeamId: " + teamId)
+//     //console.log("Sending this PlayerId: " + playerId)
 //     await playerContract.methods.removeFromTeam(teamId, playerId).send({from: sender, gas: 1512000}).on("receipt", (receipt) => {
-//         console.log("Here is the receipt: " + receipt)
+//         //console.log("Here is the receipt: " + receipt)
 //         return (receipt)
 //     }).catch(err =>{
-//         console.log(err)
+//         //console.log(err)
 //     })
         
 // }
@@ -1637,10 +1636,10 @@ async function removeFromPosition(posID){
     const query = new Moralis.Query(puckBuddiesTeam)
     query.equalTo('ownerAddress', ethereum.selectedAddress)
     const results = await query.find();
-    console.log(results[0].id)
+    //console.log(results[0].id)
     
     query.get(results[0].id).then((puckBuddiesTeam) =>{
-        console.log("Team Found")
+        //console.log("Team Found")
         if(posID == 1){
             puckBuddiesTeam.set('p1', "")
         }else if(posID == 2){
@@ -1657,7 +1656,7 @@ async function removeFromPosition(posID){
         return puckBuddiesTeam.save()
         
     }).catch( (error) => {
-        console.log(error)
+        //console.log(error)
     })
   
 }
@@ -1699,8 +1698,8 @@ let param = {difficulty: _difficulty,
 
         }
 const moralisRes = await Moralis.Cloud.run("playPvCMatchup", param)
-console.log(moralisRes)
-console.log("Final: " + moralisRes.t1Score + " " + moralisRes.t2Score + " Regulation: " + moralisRes.t1RegScore + " " + moralisRes.t2RegScore + " Overtime: " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " Shootout: " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
+//console.log(moralisRes)
+//console.log("Final: " + moralisRes.t1Score + " " + moralisRes.t2Score + " Regulation: " + moralisRes.t1RegScore + " " + moralisRes.t2RegScore + " Overtime: " + moralisRes.t1OTScore + " " + moralisRes.t2OTScore + " Shootout: " + moralisRes.t1SOScore + " " + moralisRes.t2SOScore)
 return {gameObj: moralisRes.gameObj, 
         gameOverTimeObj: moralisRes.gameOverTimeObj, 
         gameShootoutObj: moralisRes.gameShootoutObj, 
@@ -1725,7 +1724,7 @@ function encode(string) {
 
 async function loadPvCmatches(teamId){
     let teamIdFix = encode(teamId) 
-    console.log(teamIdFix)
+    //console.log(teamIdFix)
     const caller = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()
     let pvcMatchupsHelperInstance = new web3.eth.Contract(PBPVCHELPER.abi, PBPvCHelperAddress)
@@ -1733,30 +1732,30 @@ async function loadPvCmatches(teamId){
     let difficultyMod = await pvcMatchhupsInstance.methods.getDifficultyMod().call({from: caller})
 
     let opStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 1).call({from: caller})
-    //console.log(opStat1)
+    ////console.log(opStat1)
     let dpStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 2).call({from: caller})
-    //console.log(dpStat1)
+    ////console.log(dpStat1)
     let opStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 1).call({from: caller})
-    //console.log(opStat2)
+    ////console.log(opStat2)
     let dpStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 2).call({from: caller})
-    //console.log(dpStat2)
+    ////console.log(dpStat2)
     let opStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 1).call({from: caller})
-    //console.log(opStat3)
+    ////console.log(opStat3)
     let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
-    //console.log(dpStat3)
+    ////console.log(dpStat3)
     
     let team1DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(1, 1, teamIdFix).call({from: caller})
-    //console.log(team1DNA)
+    ////console.log(team1DNA)
     let team2DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(2, 2, teamIdFix).call({from: caller})
-    //console.log(team2DNA)
+    ////console.log(team2DNA)
     let team3DNA = await pvcMatchhupsInstance.methods.generateRandomTeamDNA(3, 3, teamIdFix).call({from: caller})
-    //console.log(team3DNA)
+    ////console.log(team3DNA)
 
     let timeouts = await pvcMatchhupsInstance.methods.getTimeOuts(teamIdFix).call({from: caller})
-        console.log(timeouts)
+        //console.log(timeouts)
         
     let matchUpNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamIdFix).call({from: caller})
-        console.log(matchUpNos)
+        //console.log(matchUpNos)
 
     let to1 = timeouts[0]
     let to2 = timeouts[1]
@@ -1810,45 +1809,45 @@ async function loadPvCmatches(teamId){
         'muNo2': muNo2,
         'muNo3': muNo3,
     })
-    //console.log(availablePvCobject)
+    ////console.log(availablePvCobject)
     return availablePvCobject
 }
 
 async function performPvC(token, difficulty, teamId, t1S, t2S){
     let teamIdFix = encode(teamId) 
-    console.log(teamIdFix)
-    console.log({token:token, difficulty:difficulty, teamId:teamIdFix, t1S:t1S, t2S:t2S})
+    //console.log(teamIdFix)
+    //console.log({token:token, difficulty:difficulty, teamId:teamIdFix, t1S:t1S, t2S:t2S})
     const sender = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
-    console.log("Sending PvC Matchup to Blockchain")
+    //console.log("Sending PvC Matchup to Blockchain")
     let matchUpIndex = await pvcMatchhupsInstance.methods.rewardMatchup(token, difficulty, teamIdFix, t1S, t2S).send({from: sender, gas: 102400})
     return(matchUpIndex) 
 }
 
 async function hitTheIcePvC(difficulty, teamIdFix, playerIds){
-    console.log(playerIds)
+    //console.log(playerIds)
     const sender = ethereum.selectedAddress
     const web3 = await Moralis.enableWeb3()  
     let pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
     
     await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamIdFix, playerIds).send({from: sender, gas: 222000}).then(res => {
         // let gameResult = receipt.events.gamePlayed.returnValues.isWinner
-        // console.log(receipt.events.gamePlayed.returnValues)
-        // console.log("Is Winner: " + gameResult)
+        // //console.log(receipt.events.gamePlayed.returnValues)
+        // //console.log("Is Winner: " + gameResult)
         
-        console.log(res)
-        console.log("IsWinner: " + res.events.gamePlayed.returnValues[0])
-        console.log("to1: " + res.events.gamePlayed.returnValues[1])
-        console.log("to2: " + res.events.gamePlayed.returnValues[2])
-        console.log("to3: " + res.events.gamePlayed.returnValues[3])
+        //console.log(res)
+        //console.log("IsWinner: " + res.events.gamePlayed.returnValues[0])
+        //console.log("to1: " + res.events.gamePlayed.returnValues[1])
+        //console.log("to2: " + res.events.gamePlayed.returnValues[2])
+        //console.log("to3: " + res.events.gamePlayed.returnValues[3])
         let resultOb = ({'isWinner': res.events.gamePlayed.returnValues[0], 
                         'to1': res.events.gamePlayed.returnValues[1], 
                         'to2': res.events.gamePlayed.returnValues[2], 
                         'to3': res.events.gamePlayed.returnValues[3]})
         return resultOb        
     }).catch(err => {
-        console.log(err)
+        //console.log(err)
     })  
 }
 
@@ -1860,16 +1859,16 @@ async function hitTheIcePvC(difficulty, teamIdFix, playerIds){
 
 //     await pvcMatchhupsInstance.methods.hitTheIcePvC(difficulty, teamId).send({from: sender, gas: 1512000}).on("receipt", ( (receipt) => {
 //         let gameResult = receipt.events.gamePlayed.returnValues.isWinner
-//         console.log(receipt.events.gamePlayed.returnValues)
-//         console.log("Is Winner: " + gameResult)
+//         //console.log(receipt.events.gamePlayed.returnValues)
+//         //console.log("Is Winner: " + gameResult)
 //         let resultOb = ({'isWinner': receipt.events.gamePlayed.returnValues.isWinner, 
 //                         'to1': receipt.events.gamePlayed.returnValues.to1, 
 //                         'to2': receipt.events.gamePlayed.returnValues.to2, 
 //                         'to3': receipt.events.gamePlayed.returnValues.to3})
-//         console.log(resultOb)
+//         //console.log(resultOb)
 //         return resultOb        
 //     })).catch(err => {
-//         console.log(err)
+//         //console.log(err)
 //     })  
 // }
 
@@ -1881,22 +1880,22 @@ async function createMatchup(teamId, buddiesReward){
     let approved = false;
     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)    
     await buddiesInstance.methods.approve(PBMatchupsAddress, buddiesRewardWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-        console.log("Buddies Spend by Matchups Contract Address Approved")
+        //console.log("Buddies Spend by Matchups Contract Address Approved")
         approved = true
     }))
     .catch(err => {
-        console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
-        console.log(err)
+        //console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
+        //console.log(err)
         approved = false
     })  
     if(approved == true){
         let matchupsContractInstance = new web3.eth.Contract(PBMATCHUPS.abi, PBMatchupsAddress)
         await matchupsContractInstance.methods.createMatchup(teamId, buddiesRewardWei).send({from: sender, gas: 512000}).on("receipt", ((receipt) =>{
-            console.log(receipt)
+            //console.log(receipt)
             approved = false
         }))
         .catch(err => {
-            console.log(err)
+            //console.log(err)
             approved = false
         })
     }
@@ -1909,12 +1908,12 @@ async function getAvailableMatcheups(){
     let matchupsArray = await matchupsContractInstance.methods.getAllTokensForUser(PBMatchupsMarketAddress).call({from: sender})
     if (matchupsArray.length == 0){
         let emptyArray = []
-        console.log("No Matchups Found")
+        //console.log("No Matchups Found")
         return emptyArray
     }else{
         const matchupsData = matchupsArray.map(async (matchupId) => {
             let details = await matchupsContractInstance.methods.getTokenDetails(matchupId).call({from: sender})
-            console.log(details)
+            //console.log(details)
             let buddiesAmountFromWei = web3.utils.fromWei(details.buddiesAmount)
             return {
                 matchupId: details.matchId,
@@ -1938,26 +1937,26 @@ async function getAvailableMatcheups(){
 
 async function hitTheIcePvP(reward, pvpmatchupId, chalTeamId) { 
         let buddiesRewardWei = web3.utils.toWei(reward.toString())
-        console.log(buddiesRewardWei)
+        //console.log(buddiesRewardWei)
         const sender = ethereum.selectedAddress
         let matchupsContractInstance = new web3.eth.Contract(PBMATCHUPS.abi, PBMatchupsAddress)
         let approved = false;
         let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)    
         await buddiesInstance.methods.approve(PBMatchupsAddress, buddiesRewardWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-            console.log("Buddies Spend by Matchups Contract Address Approved")
+            //console.log("Buddies Spend by Matchups Contract Address Approved")
             approved = true
         }))
         .catch(err => {
-            console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
-            console.log(err)
+            //console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
+            //console.log(err)
             approved = false
         })  
         if(approved == true){
         await matchupsContractInstance.methods.PvPHitTheIce(buddiesRewardWei, pvpmatchupId, chalTeamId).send({from: sender, gas: 512000}).on("receipt", ((receipt) =>{
-            console.log(receipt)
+            //console.log(receipt)
         }))
         .catch(err => {
-            console.log(err)
+            //console.log(err)
         })
     }
 }
@@ -1966,12 +1965,12 @@ async function cancelMatchup(matchId){
     const sender = ethereum.selectedAddress
     let matchupsContractInstance = new web3.eth.Contract(PBMATCHUPS.abi, PBMatchupsAddress)
     await matchupsContractInstance.methods.cancelMatchup(matchId).send({from: sender, gas: 72000}).on("receipt", ( () => {
-        console.log("Successfully Cancelled Matchup")
+        //console.log("Successfully Cancelled Matchup")
 
     }))
     .catch(err => {
-        console.log("Error trying to cancel Matchup: " + err)
-        console.log(err)
+        //console.log("Error trying to cancel Matchup: " + err)
+        //console.log(err)
     })  
 }
 
@@ -1988,23 +1987,23 @@ async function cancelMatchup(matchId){
         let feeWei = web3.utils.toWei(_fee.toString())
         let totalPriceWei = sellPriceWei + feeWei
         await buddiesInstance.methods.approve(pbMarketplaceAddress, totalPriceWei).send({from: minter, gas: 72000}).on("receipt", ( () => {
-            console.log("Buddies Spend by Market Contract Address Approved")
+            //console.log("Buddies Spend by Market Contract Address Approved")
             approved = true
         }))
         .catch(err => {
-            console.log("Error trying to make Approval for Buddies Spend by Market Contract: " + err)
-            console.log(err)
+            //console.log("Error trying to make Approval for Buddies Spend by Market Contract: " + err)
+            //console.log(err)
         })
         if(approved == true){
             approved = false
             let transaction = await marketInstance.methods.createMarketSale(pbPlayersAddress,_itemId,sellPriceWei,feeWei).send({from: ethereum.selectedAddress, gas: 2100000}).on("receipt", ( () => {
-                console.log("Purchase from Market Complete")
+                //console.log("Purchase from Market Complete")
                 return transaction
             }))
             .catch(err => {
                 approved = false
-                console.log("Error trying to make Market Purchase: " + err)
-                console.log(err)
+                //console.log("Error trying to make Market Purchase: " + err)
+                //console.log(err)
             })
         }else{
             approved = false
@@ -2022,21 +2021,21 @@ async function cancelMatchup(matchId){
         let feeWei = web3.utils.toWei(fee.toString())
         const playerContract = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
         await playerContract.methods.approve(pbMarketplaceAddress, id).send({from: minter, gas: 72000}).on("receipt", ( () => {
-            console.log("Player Token Transfer to Market Approved")
+            //console.log("Player Token Transfer to Market Approved")
             approved = true
         }))        
         .catch(err => {
-            console.log("Error trying to get Approval for Player Token transfer to Market: " + err)
-            console.log(err)
+            //console.log("Error trying to get Approval for Player Token transfer to Market: " + err)
+            //console.log(err)
         })
         if(approved == true){
         let contractInstance = new web3.eth.Contract(PBPLAYERMARKET.abi, pbMarketplaceAddress)      
         await contractInstance.methods.createMarketItem(pbPlayersAddress, tokenId, sellerpriceWei, feeWei).send({from: minter, gas: 1024000}).on("receipt", ( () => {
-            console.log("Send to Market Complete")
+            //console.log("Send to Market Complete")
         }))
         .catch(err => {
-            console.log("Error sending Player Token to Market: " + err)
-            console.log(err)
+            //console.log("Error sending Player Token to Market: " + err)
+            //console.log(err)
         })
     }
     else{
@@ -2049,8 +2048,8 @@ async function cancelMatchup(matchId){
         const web3 = await Moralis.enableWeb3()
         let contractInstance = new web3.eth.Contract(PBPLAYERMARKET.abi, pbMarketplaceAddress) 
         let marketPlayers = await contractInstance.methods.getMarketItems().call({from: ethereum.selectedAddress})
-        console.log("Market PLayers from Contract")
-        console.log(marketPlayers)
+        //console.log("Market PLayers from Contract")
+        //console.log(marketPlayers)
         return marketPlayers
   }
 
@@ -2058,10 +2057,10 @@ async function cancelMatchup(matchId){
         const web3 = await Moralis.enableWeb3()
         let contractInstance = new web3.eth.Contract(PBPLAYERMARKET.abi, pbMarketplaceAddress)
         await contractInstance.methods.cancelMarketSale(pbPlayersAddress, tokenId).send({from: ethereum.selectedAddress, gas: 2100000}).on("receipt", ( () => {
-            console.log("Cancel Market Sale Complete")
+            //console.log("Cancel Market Sale Complete")
         }))
         .catch((err) => {
-            console.log(err)
+            //console.log(err)
         })
     }
 
@@ -2077,23 +2076,23 @@ async function cancelMatchup(matchId){
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
     await buddiesInstance.methods.approve(pbPlayersAddress, costtodraft).send({from: minter, gas: 72000}).on("receipt", ( () => {
-        console.log("Drafting " + type + " Approval Point")
+        //console.log("Drafting " + type + " Approval Point")
         approved = true
     }))
     .catch(err => {
-        console.log("Error trying to make " + type + " Draft Approval: " + err)
-        console.log(err)
+        //console.log("Error trying to make " + type + " Draft Approval: " + err)
+        //console.log(err)
     })
     if(approved == true){
         approved = false
         let transaction = await contractInstance.methods.mintPlayer(costtodraft,1).send({from: minter, gas: 512000}).on("receipt", ( () => {
-            console.log("Drafting "+ type + " Complete")
+            //console.log("Drafting "+ type + " Complete")
             return transaction
         }))
         .catch(err => {
             approved = false
-            console.log("Error trying to Draft " + type + ": " + err)
-            console.log(err)
+            //console.log("Error trying to Draft " + type + ": " + err)
+            //console.log(err)
         })
     }else{
         approved = false
@@ -2111,23 +2110,23 @@ async function cancelMatchup(matchId){
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
     await buddiesInstance.methods.approve(pbPlayersAddress, costtodraft).send({from: minter, gas: 72000}).on("receipt", ( () => {
-        console.log("Drafting " + type + " Approval Point")
+        //console.log("Drafting " + type + " Approval Point")
         approved = true
     }))
     .catch(err => {
-        console.log("Error trying to make " + type + " Draft Approval: " + err)
-        console.log(err)
+        //console.log("Error trying to make " + type + " Draft Approval: " + err)
+        //console.log(err)
     })
     if(approved == true){
         approved = false
         let transaction = await contractInstance.methods.mintPlayer(costtodraft,2).send({from: minter, gas: 512000}).on("receipt", ( () => {
-            console.log("Drafting "+ type + " Complete")
+            //console.log("Drafting "+ type + " Complete")
             return transaction
         }))
         .catch(err => {
             approved = false
-            console.log("Error trying to Draft " + type + ": " + err)
-            console.log(err)
+            //console.log("Error trying to Draft " + type + ": " + err)
+            //console.log(err)
         })
     }else{
         approved = false
@@ -2146,23 +2145,23 @@ async function cancelMatchup(matchId){
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
     await buddiesInstance.methods.approve(pbPlayersAddress, costtodraft).send({from: minter, gas: 72000}).on("receipt", ( () => {
-        console.log("Drafting " + type + " Approval Point")
+        //console.log("Drafting " + type + " Approval Point")
         approved = true
     }))
     .catch(err => {
-        console.log("Error trying to make " + type + " Draft Approval: " + err)
-        console.log(err)
+        //console.log("Error trying to make " + type + " Draft Approval: " + err)
+        //console.log(err)
     })
     if(approved == true){
         approved = false
         let transaction = await contractInstance.methods.mintPlayer(costtodraft,3).send({from: minter, gas: 512000}).on("receipt", ( () => {
-            console.log("Drafting "+ type + " Complete")
+            //console.log("Drafting "+ type + " Complete")
             return transaction
         }))
         .catch(err => {
             approved = false
-            console.log("Error trying to Draft " + type + ": " + err)
-            console.log(err)
+            //console.log("Error trying to Draft " + type + ": " + err)
+            //console.log(err)
         })
     }else{
         approved = false
@@ -2178,23 +2177,23 @@ async function cancelMatchup(matchId){
 //     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
 //     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
 //     await buddiesInstance.methods.approve(pbPlayersAddress, costtodraft).send({from: minter, gas: 72000}).on("receipt", ( () => {
-//         console.log("Drafting " + type + " Approval Point")
+//         //console.log("Drafting " + type + " Approval Point")
 //         approved = true
 //     }))
 //     .catch(err => {
-//         console.log("Error trying to make " + type + " Draft Approval: " + err)
-//         console.log(err)
+//         //console.log("Error trying to make " + type + " Draft Approval: " + err)
+//         //console.log(err)
 //     })
 //     if(approved == true){
 //         approved = false
 //         let transaction = await contractInstance.methods.mintTeamPlayers(costtodraft).send({from: minter, gas: 512000}).on("receipt", ( () => {
-//             console.log("Drafting "+ type + " Complete")
+//             //console.log("Drafting "+ type + " Complete")
 //             return transaction
 //         }))
 //         .catch(err => {
 //             approved = false
-//             console.log("Error trying to Draft " + type + ": " + err)
-//             console.log(err)
+//             //console.log("Error trying to Draft " + type + ": " + err)
+//             //console.log(err)
 //         })
 //     }else{
 //         approved = false
@@ -2206,13 +2205,13 @@ async function cancelMatchup(matchId){
     const minter = ethereum.selectedAddress
     let contractInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
     await contractInstance.methods.mintSuperstar(opScore, dpScore, dna, playerType).send({from: minter, gas: 512000}).on("receipt", ( () => {
-        console.log("Drafting "+ type + " Complete")
+        //console.log("Drafting "+ type + " Complete")
         return transaction
     }))
     .catch(err => {
         approved = false
-        console.log("Error trying to Draft " + type + ": " + err)
-        console.log(err)
+        //console.log("Error trying to Draft " + type + ": " + err)
+        //console.log(err)
     })
   }
 
@@ -2234,12 +2233,12 @@ async function cancelMatchup(matchId){
     let approved = false;
     let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)    
     await buddiesInstance.methods.approve(address, buddiesWei).send({from: sender, gas: 72000}).on("receipt", ( () => {
-        console.log("Buddies Spend by Matchups Contract Address Approved")
+        //console.log("Buddies Spend by Matchups Contract Address Approved")
         approved = true
     }))
     .catch(err => {
-        console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
-        console.log(err)
+        //console.log("Error trying to make Approval for Buddies Spend by Matchups Contract: " + err)
+        //console.log(err)
     })
     }
     
@@ -2247,7 +2246,7 @@ async function cancelMatchup(matchId){
         const sender = ethereum.selectedAddress
         let buddiesInstance = new web3.eth.Contract(BUDDIES.abi, buddiesaddress)
         let balance = await buddiesInstance.methods.allowance(sender, address).call({from:sender})
-        console.log(balance)
+        //console.log(balance)
         return balance
     }
 
@@ -2264,7 +2263,7 @@ async function checkXPBalanceonTeamContract(){
     let PBXPInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     const caller = ethereum.selectedAddress
     let balanceOfXP = await PBXPInstance.methods.balanceOf(PBTeamsAddress,0).call({from: caller})
-    console.log(balanceOfXP)
+    //console.log(balanceOfXP)
     return balanceOfXP
 }
 
@@ -2273,7 +2272,7 @@ async function updateXPBalance(){
     let PBXPInstance = new web3.eth.Contract(PBXP.abi, PBXPAddress)
     const caller = ethereum.selectedAddress
     let balanceOfXP = await PBXPInstance.methods.balanceOf(caller,0).call({from: caller})
-    console.log(balanceOfXP)
+    //console.log(balanceOfXP)
     return balanceOfXP
   }
 

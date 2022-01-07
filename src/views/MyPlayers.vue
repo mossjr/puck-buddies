@@ -216,7 +216,7 @@ export default {
 
     async testFunction(){
       
-      console.log( this.screenLocked)
+      //console.log( this.screenLocked)
     },
 
     async sendPlayerData() {
@@ -224,8 +224,8 @@ export default {
       this.checkPBPlayerAdmin()
       Promise.all(await main.loadPBPlayers("My Players"))
       .then(res => {
-        console.log("Found " + res.length + " Players")
-        console.log(res)
+        //console.log("Found " + res.length + " Players")
+        //console.log(res)
         let playerArray = []     
         for (let i = 0; i < res.length; i++) {
             let isOff
@@ -267,7 +267,7 @@ export default {
               'playerAge':res[i].playerAge,
               }) 
         }
-        console.log(playerArray)
+        //console.log(playerArray)
         this.loadingPlayers = false
         this.updateBalanceViewer()
         return playerArray
@@ -280,7 +280,7 @@ export default {
         .catch((err) => {
           this.updateBalanceViewer()
           this.totalFoundPlayers = 0
-          console.log("Rendering Players in My Players Error: " + err)
+          //console.log("Rendering Players in My Players Error: " + err)
           this.players = null
         })
     },
@@ -383,7 +383,7 @@ export default {
 
     async getDraftPrice() {
       await main.getDraftPrice().then(res => {
-        console.log(res)
+        //console.log(res)
         this.costToDraft1 = res.dv1
         this.costToDraft2 = res.dv2
         this.costToDraft3 = res.dv3
@@ -438,14 +438,14 @@ export default {
 
     async checkPBPlayerAdmin() {
       await main.checkPBPlayerAdmin().then(res => {
-        console.log("Is PBP Admin: " + res)
+        //console.log("Is PBP Admin: " + res)
         this.isPBPAdmin = res
       })
     },
 
         async checkMarketAdmin() {
       await main.checkMarketAdmin().then(res => {
-        console.log("Is Market Admin: " + res)
+        //console.log("Is Market Admin: " + res)
         this.isMarketAdmin = res
       })
     },

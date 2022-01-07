@@ -47,7 +47,7 @@ export default {
           this.screenLocked = false
           this.closeModal()
         }).catch(err => {
-          console.log(err)
+          //console.log(err)
           this.screenLocked = false
         })
       },

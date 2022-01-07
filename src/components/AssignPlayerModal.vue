@@ -72,7 +72,7 @@ export default {
 
       async doubleCheckIfPlayer(){
         await main.doubleCheckIfPlayer(this.position).then(res => {
-          console.log(res)
+          //console.log(res)
           if(res == true){
             this.screenLocked = false
             this.closeModal()
@@ -84,8 +84,8 @@ export default {
     //   this.checkPBPAdmin()
       Promise.all(await main.loadPBPlayers("Assign Modal"))
       .then(res => {
-        console.log(res)
-        console.log("Found " + res.length + " Players")
+        //console.log(res)
+        //console.log("Found " + res.length + " Players")
         let playerArray = []
         for (let i = 0; i < res.length; i++) {
               
@@ -140,7 +140,7 @@ export default {
         .catch((err) => {
           this.updateBalanceViewer()
           this.totalFoundPlayers = 0
-          console.log("Rendering Players in Player Assign to Team Error: " + err)
+          //console.log("Rendering Players in Player Assign to Team Error: " + err)
           this.players = null
         })
     },
@@ -149,19 +149,19 @@ export default {
         this.splashImage = _splashImage
         this.screenLocked = true
 
-        console.log("Sending Position: " +this.position )
-        console.log("Sending DNA: " +this.teamDna )
-        console.log("Sending Player ID: " +playerId )
+        //console.log("Sending Position: " +this.position )
+        //console.log("Sending DNA: " +this.teamDna )
+        //console.log("Sending Player ID: " +playerId )
         await main.assignToPosition(this.position, playerId).then(res => {
             this.screenLocked = false
-            console.log("Result from assignment to position")
-            console.log(res)
-            console.log("Close Modal")
+            //console.log("Result from assignment to position")
+            //console.log(res)
+            //console.log("Close Modal")
             this.closeModal()
         })
         .catch(err => {
             this.screenLocked = false
-            console.log(err)
+            //console.log(err)
             this.sendPlayerData()
         })
     },   
@@ -179,14 +179,14 @@ export default {
     
     // async checkPBPAdmin() {
     //    await main.checkPBPAdmin().then(res => {
-    //    console.log("Is PBP Admin: " + res)
+    //    //console.log("Is PBP Admin: " + res)
     //    this.isPBPAdmin = res
     //   })
     // },
 
   
         closeModal() {
-            console.log("Closing Modal")
+            //console.log("Closing Modal")
             this.$emit('closeAssignPlayerModal')
         },
 

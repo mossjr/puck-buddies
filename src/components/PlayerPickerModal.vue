@@ -85,7 +85,7 @@ export default {
       this.checkPBPlayerAdmin()
       Promise.all(await main.loadPBPlayers())
       .then(res => {
-        console.log("Found " + res.length + " Players")
+        //console.log("Found " + res.length + " Players")
         let playerArray = []     
         for (let i = 0; i < res.length; i++) {
               let isOff
@@ -131,7 +131,7 @@ export default {
         .catch((err) => {
           this.updateBalanceViewer()
           this.totalFoundPlayers = 0
-          console.log("Rendering Players in My Players Error: " + err)
+          //console.log("Rendering Players in My Players Error: " + err)
           this.players = null
         })
     },
@@ -140,14 +140,14 @@ export default {
             this.splashImage = _splashImage
             this.screenLocked = true
         await main.applyEquipmentToPlayer(selectToken, sku, playerId).then(res => {
-            console.log(res)
+            //console.log(res)
             this.screenLocked = false
             this.closeModal()
             this.sendPlayerData()
         })
         .catch(err => {
             this.screenLocked = false
-            console.log(err)
+            //console.log(err)
         })
     },
 
@@ -164,18 +164,18 @@ export default {
     
     async checkPBPlayerAdmin() {
        await main.checkPBPlayerAdmin().then(res => {
-       console.log("Is PBP Admin: " + res)
+       //console.log("Is PBP Admin: " + res)
        this.isPBPAdmin = res
       })
     },
 
     // async removeProShopEquipment(equippedToken, playerId) {
-    //         console.log(equippedToken," ", playerId)
+    //         //console.log(equippedToken," ", playerId)
     //         await main.removeProShopEquipment(equippedToken, playerId).then(res => {
     //              this.sendPlayerData()
     //         })
     //         .catch(err => {
-    //             console.log("Error removing equipment: " + err)
+    //             //console.log("Error removing equipment: " + err)
     
     //         })
     //     },
