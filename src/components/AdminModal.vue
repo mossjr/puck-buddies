@@ -152,6 +152,30 @@
         </div>
 
         <div class="admin-container">
+            <div class="admin"><h3>Transfer ICO BUDS</h3></div>
+            <div>
+              <label>Address: </label>
+              <input type="text" v-model="BUDSAddress">
+               <br>
+              <label>Amount: </label>
+              <input type="text" v-model="BUDSAmount">
+            </div>
+            <button @click="transferBUDS()">Transfer</button>
+        </div>
+
+        <div class="admin-container">
+            <div class="admin"><h3>Transfer ICO BNB</h3></div>
+            <div>
+              <label>Address: </label>
+              <input type="text" v-model="BNBAddress">
+               <br>
+              <label>Amount: </label>
+              <input type="text" v-model="BNBAmount">
+            </div>
+            <button @click="transferBNB()">Transfer</button>
+        </div>
+
+        <div class="admin-container">
             <div class="admin"><h3>Update Validator</h3></div>
             <div>
               <label>w</label>
@@ -220,6 +244,11 @@ export default {
             icoBudsSold:'',
             icoBudsBalance:'',
             icoBNBBalance:'',
+
+            BUDSAddress:'',
+            BUDSAmount:0,
+            BNBAddress:'',
+            BNBAmount:0,
 
             PvCto0:'',
             PvCto1:'',
@@ -308,6 +337,8 @@ export default {
         this.icoBudsSold = res.icoBudsSold
         this.icoBudsBalance = res.icoBudsBalance
         this.icoBNBBalance = res.icoBNBBalance
+        this.BUDSAmount = res.icoBudsBalance
+        this.BNBAmount = res.icoBNBBalance
 
 
       })
@@ -358,6 +389,22 @@ export default {
         //console.log(res)
       }).catch(err =>{
         //console.log(err)
+      })
+    },
+    
+    async transferBUDS(){
+      await main.transferBUDS(this.BUDSAddress, this.BUDSAmount).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
+      })
+    },
+
+    async transferBNB(){
+      await main.transferBNB(this.BNBAddress, this.BNBAmount).then(res => {
+        console.log(res)
+      }).catch(err =>{
+        console.log(err)
       })
     },
 

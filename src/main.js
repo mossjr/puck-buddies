@@ -306,6 +306,30 @@ async function getPvCadminInfo(){
     return obj
 }
 
+async function transferBUDS(to, amount){
+    const web3 = await Moralis.enableWeb3()
+    let valueWei =  web3.utils.toWei(amount.toString())
+    let contractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    await contractInstance.methods.transferBUDS(to, valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        //console.log(receipt)
+    })).catch(err =>{
+        //console.log(err)
+    })
+}
+
+async function transferBNB(to, amount){
+    const web3 = await Moralis.enableWeb3()
+    let valueWei =  web3.utils.toWei(amount.toString())
+    let contractInstance = new web3.eth.Contract(BUDDIESICO.abi, buddiesICOAddress)
+    await contractInstance.methods.transferBNB(to, valueWei).send({from: ethereum.selectedAddress, gas: 44000}).on("receipt", ( (receipt) => {
+        //console.log(receipt)
+    })).catch(err =>{
+        //console.log(err)
+    })
+}
+
+
+
 async function updateValidator(_w, _l){
     const web3 = await Moralis.enableWeb3()
     let contractInstance = new web3.eth.Contract(VALIDATOR.abi, validatorAddress)
@@ -2357,6 +2381,8 @@ export default {
     mintNewTeamMoralis,
     buySixPackofCards,
     doubleCheckIfPlayer,
+    transferBUDS,
+    transferBNB,
     updateValidator
 }
 
