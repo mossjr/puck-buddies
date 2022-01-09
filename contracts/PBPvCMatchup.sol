@@ -204,9 +204,5 @@ function getPvCMatchupsTimestamp() public view returns (uint) {
         _to.transfer(_amount);
     }
 
-    function transferBUDS(uint _amount) external onlyAdmin {
-        buddies.transfer(msg.sender, _amount);
-    }
-
 }
 

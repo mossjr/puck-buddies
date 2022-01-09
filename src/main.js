@@ -15,7 +15,8 @@ import {pbPlayersAddress,
         marketfeesaddress, 
         PBPvCHelperAddress, 
         buddiesICOAddress,
-        validatorAddress
+        validatorAddress,
+        testNetVersion
         } from '../src/config.js'
 import PBXP from '../public/assets/contracts/PBXP.json'
 import PBPLAYER from '../public/assets/contracts/PBPlayers.json'
@@ -31,7 +32,6 @@ import BUDDIESICO from '../public/assets/contracts/BuddiesICO.json'
 import CITIES from '../public/assets/data/cities.json'
 import NOUNS from '../public/assets/data/nouns.json'
 import VALIDATOR from '../public/assets/contracts/Validator.json'
-
 
 
 Moralis.initialize("1QCUjtu9KZhzIDE4ASFphZNnESsTFPPmyT5bsuxd") // Application id from moralis.io

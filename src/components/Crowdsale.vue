@@ -1,25 +1,35 @@
 <template>
-<div class="login-page" >
-    <div class="center">
-        <img @click="showIcoModal()" class="ico-live-now" src="../assets/img/ico-live-now-sm.png" alt="">  
-    <h2>Welcome to</h2>
-    <h1>Puck Buddies TESTNET!</h1>
+<div class="crowdsale" >
+    <div class="center-crowd-sale">
+        
+    <h2>Welcome to the</h2>
+    <h1>Puck Buddies<br>CROWD SALE!</h1>
     <div>
         <div v-if="myBuds < teamMintCost">
-        <p>In order to play, you will some BUDDIES coins.</p>
-        <p>Click the button above to get started!</p>
+        <p>This is your chance to get in on the ground floor of this exciting new NFT Play-to-Earn game.</p>
+        <p>Reserve your coins here and come back to claim them after the conclusion of the crowd sale:</p>
+        <h2>-- put crowd sale end date here --</h2>
+        <br>
+        <p>Check out our White Paper HERE</p>
+        <h2>Main Crowd Sale Points</h2>       
+        <p>All BNB raised will be used for liquidity pool on Pancakeswap</p>
+        <p>All BUDDIES coins will be available to claim 24hrs after the Crowd Sale has concluded</p>
+        <p>The Puck Buddies Game will be available 24hrs after the Crowd Sale has concluded</p>
+        <p>All Crowd Sale processes are hard-coded into our Crowd Sale Contract and cannot be altered by anyone (including us)</p>
+        <p>See the Crowd Sale contract for yourself HERE</p>
         </div>
-        <div v-if="myBuds >= teamMintCost">
-        <p >In order to play, you will need a team and some players.</p>
-        <p>Click the button below to mint your first team!</p>
-        </div>
-            <div class="coin-container">
+
+        <div class="coin-container">
                 <div class="coinbalancecard">
-                    <div  class="buds-coin"><img @click="addBuddiesToMetaMask()" src="../assets/img/buddies-coin-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="coin-balance"></div>
-                     <p>(click to add BUDS to MetaMask)</p>
+                    <div class="admin"><h3>Pre-purchase BUDDIES Coins</h3></div>
+                    <div>
+                    <input type="text" v-model="xpr">
+                    </div>
+                    <button @click="updatePBXPReward()">Apply</button>
                 </div>
                 
             </div> 
+        
     </div>
   <button v-if="myBuds >= teamMintCost" id="login_button" @click="mintNewTeam('PB-BRB')">Mint Your First Team for <br><b>{{teamMintCost}} BUDS</b></button>
   </div>
@@ -37,8 +47,8 @@
 
 <script>
 import main from '../main.js'
-import icomodal from '../components/ICOModal.vue'
-import LockModal from '../components/LockModal.vue'
+import icomodal from './ICOModal.vue'
+import LockModal from './LockModal.vue'
 
 export default {
     components: { LockModal, icomodal },
@@ -142,14 +152,15 @@ p{
     color:black;
 }
 
-.center{
+.center-crowd-sale{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 90%;
     background: white;
     border-radius: 10px;
+    padding:100px;
 }
 
 .banner{
@@ -171,16 +182,16 @@ p{
    
 }
 
-.center h1 {
+.center-crowd-sale h1 {
    text-align: center;
     padding: 0 10px 0 10px;
 }
-.center h2 {
+.center-crowd-sale h2 {
    text-align: center;
     padding: 0 10px 0 10px;
 }
 
-.center button{
+.center-crowd-sale button{
     width: 80%;
     height: 50px;
     font-family: montserrat;
@@ -194,7 +205,7 @@ p{
 
 }
 
-.center button:hover{
+.center-crowd-sale button:hover{
     color: white;
     background: rgb(12, 185, 128);
 }

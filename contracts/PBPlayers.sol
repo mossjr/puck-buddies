@@ -51,7 +51,7 @@ contract PBPlayers is ERC721 {
 
     mapping (uint => Player ) public _tokenDetails;
 
-    constructor(address _buddiesCoinAddress, uint _mintCost1, uint _mintCost2, uint _mintCost3, uint _ageoutSeconds) ERC721("Pixel Puck Player", "PPP"){
+    constructor(address _buddiesCoinAddress, uint _mintCost1, uint _mintCost2, uint _mintCost3, uint _ageoutSeconds) ERC721("Puck Buddies Player", "PBP"){
         admin = msg.sender;
         buddies = IERC20(_buddiesCoinAddress);
         mintCost1 = _mintCost1;

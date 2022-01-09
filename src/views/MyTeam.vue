@@ -27,7 +27,7 @@
             <div>
               <!-- <img src="../assets/img/prct-matcup.png" alt="Practice Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo1" @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun, 1, team.teamId, matchUpNo1 )" id="team-pvc-button"><p><h1>The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i></h1></p> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</button>
+            <button v-if="timestamp >= activeTo1" @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team1NounNumber].noun, 1, team.teamId, matchUpNo1 )" id="team-pvc-button"><h1>The {{cityNames[matches.team1CityNumber].city}} <i>{{nouns[matches.team1NounNumber].noun}}</i></h1><p> OP: {{matches.opStat1}} DP: {{matches.dpStat1}}</p></button>
             <button v-if="timestamp < activeTo1 && matches.won1" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo1 && !matches.won1" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
           </div>
@@ -38,7 +38,7 @@
             <div>
               <!-- <img src="../assets/img/exhb-matcup.png" alt="Exhibition Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo2"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun, 2, team.teamId, matchUpNo2 )" id="team-pvc-button"><p><h1>The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i></h1></p> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</button>
+            <button v-if="timestamp >= activeTo2"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team2NounNumber].noun, 2, team.teamId, matchUpNo2 )" id="team-pvc-button"><h1>The {{cityNames[matches.team2CityNumber].city}} <i>{{nouns[matches.team2NounNumber].noun}}</i></h1><p> OP: {{matches.opStat2}} DP: {{matches.dpStat2}}</p></button>
             <button v-if="timestamp < activeTo2 && matches.won2" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo2 && !matches.won2" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo2" class="progress-bar-container">
@@ -49,7 +49,7 @@
             <div>
               <!-- <img src="../assets/img/comp-matcup.png" alt="Competative Matchup">     -->
             </div>
-            <button v-if="timestamp >= activeTo3"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun, 3, team.teamId, matchUpNo3 )" id="team-pvc-button"><p><h1>The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i></h1></p> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</button>
+            <button v-if="timestamp >= activeTo3"  @click="moralisRunPvC('PB-BRB', nouns[team.teamNounNumber].noun, nouns[matches.team3NounNumber].noun, 3, team.teamId, matchUpNo3 )" id="team-pvc-button"><h1>The {{cityNames[matches.team3CityNumber].city}} <i>{{nouns[matches.team3NounNumber].noun}}</i></h1><p> OP: {{matches.opStat3}} DP: {{matches.dpStat3}}</p></button>
             <button v-if="timestamp < activeTo3 && matches.won3" id="team-pvc-won"><h2><b>VICTORY!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <button v-if="timestamp < activeTo3 && !matches.won3" id="team-pvc-lost"><h2><b>DEFEAT!</b></h2> <br>Please wait for next Matchup to become availble.</button>
             <div v-if="timestamp < activeTo3" class="progress-bar-container">

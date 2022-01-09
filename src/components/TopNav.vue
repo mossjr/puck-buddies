@@ -330,7 +330,7 @@ export default{
 
     async updateBalanceViewer(){
          await main.updateCoinBalance().then(res => {
-                let resBalance = "My BUDDIES coins: " + res
+                let resBalance = res
                 document.getElementById('coin-balance').innerHTML = resBalance
           this.myFunds = res
         })

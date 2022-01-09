@@ -8,16 +8,16 @@
 
                     <div class="buds-coin"><img @click="addBuddiesToMetaMask()"  src="../assets/img/buddies-coin-icon.png" style="width:50px;height:50px" alt="buddies-coin"></div><div id="coin-balance"></div>
                      <p>(click to add BUDS to MetaMask)</p>
-                     <h3>{{totalBudsSold}} of {{totalBuds}} <b>BUDS</b> sold</h3>
+                     <!-- <h3>{{totalBudsSold}} of {{totalBuds}} <b>BUDS</b> sold</h3> -->
                 </div>
                 
             </div>
-            <div>
+            <!-- <div>
                   <h3>ICO STAGE 1 - {{percentFixed}}% COMPLETE</h3>
-                </div>
-       <div class="ico-progress-bar-container">
+                </div> -->
+       <!-- <div class="ico-progress-bar-container">
               <div class="ico-progress" id="ico-play-animation" :style="{width: progressPercent + '%', 'background-color': '#'+ progressColor}"></div>
-      </div>
+      </div> -->
       
     </div>
 
