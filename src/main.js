@@ -38,7 +38,7 @@ Moralis.initialize("1QCUjtu9KZhzIDE4ASFphZNnESsTFPPmyT5bsuxd") // Application id
 Moralis.serverURL = "https://onhkokfjpssy.moralisweb3.com:2053/server"//Server url from moralis.io
 
 //Account Functions
-Moralis.Web3.onAccountsChanged(function(accounts) {
+Moralis.Web3.onAccountChanged(function(accounts) {
     //console.log(accounts);
     location.reload();
 });

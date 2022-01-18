@@ -5,7 +5,7 @@ import '../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
 contract PBBuddies is ERC20 {
     address public admin;
-   constructor () ERC20('Buddies', 'BUDDIES') {
+   constructor () ERC20('Buddies', 'BUDS') {
        _mint(msg.sender, 21000000 * 10 ** 18);
        admin = msg.sender;
    }

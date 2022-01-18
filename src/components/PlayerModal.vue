@@ -135,14 +135,19 @@ export default {
             this.$emit('closePlayerModal')
         },
 
+        convertRange( value, r1, r2 ) { 
+            return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
+        },
+
         loadPlayer() {
             ////console.log(this.playerData)
             let firstName = ""
+            let nickName = ""
             let lastName = ""
-            let firstNameDna = ("" + Math.floor((this.playerData.dna.slice(0,1)/2)) + this.playerData.dna.slice(1,4))
-            let lastNameDna = ("" + Math.floor((this.playerData.dna.slice(4,5)/2)) + this.playerData.dna.slice(5,8))
-            firstNameDna = firstNameDna - 0
-            lastNameDna = lastNameDna - 0
+            let firstNameDna = Math.floor(this.convertRange(this.playerData.dna.slice(0,4), [0,9999], [1,7982]))
+            let lastNameDna = Math.floor(this.convertRange(this.playerData.dna.slice(4,8), [0,9999], [1,7982]))
+            let nickNameDna = Math.floor(this.convertRange(this.playerData.dna.slice(8,12), [0,9999], [1,7982]))
+            console.log(firstName + " " + nickName + " " + lastName)
             const playerNames = async () => {
                 const response = await fetch('/assets/data/names.json')
                 const json  = await response.json();
@@ -150,8 +155,13 @@ export default {
                 }
             playerNames().then(namedata => {
                 firstName = namedata[firstNameDna].first_name
+                nickName = namedata[nickNameDna].nick_name
                 lastName = namedata[lastNameDna].last_name
-                this.playerName = firstName + " " + lastName
+                if(nickName != ""){
+                    this.playerName = firstName + " '" + nickName + "' " + lastName
+                } else {
+                    this.playerName = firstName + " " + lastName
+                }
             })
             playerCanvasBuild.preloadPlayerInfo(this.selectedId,this.playerData, "modal-no") 
         },

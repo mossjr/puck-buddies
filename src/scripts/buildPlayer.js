@@ -23,7 +23,6 @@ function preloadPlayerInfo(id, data, pos) {
         firstName = namedata[firstNameDna].first_name
         nickName = namedata[nickNameDna].nick_name
         lastName = namedata[lastNameDna].last_name
-        //console.log(firstName + " " + nickName + " " + lastName)
         let pdata = data
         let pid = id
         ////console.log(pdata)
@@ -76,7 +75,7 @@ let skatesDna = data.dna.slice(12, 15)
 let nSkates = 0
 if(skatesDna <= 9){
     nSkates = 0
-} else if(skatesDna <= 391){
+} else if(skatesDna <= 409){
     nSkates = 1
 } else {
     nSkates = 2
@@ -88,14 +87,24 @@ skates.src=skatesImg;
 let laces = new Image()
 let lacesDna = data.dna.slice(15, 18)
 let nLaces = 0
-if(lacesDna <= 1){
-    nLaces = 3
-} else if(lacesDna <= 10){
-    nLaces = 2
-} else if(lacesDna <= 666){
-    nLaces = 1
-} else {
+if(lacesDna == 0){
+    nLaces = 3 //pink
+} else if(lacesDna >= 1 && lacesDna <= 2){
+    nLaces = 4 //green
+} else if(lacesDna >= 3 && lacesDna <= 6){
+    nLaces = 5 //Light Blue
+} else if(lacesDna >= 7 && lacesDna <= 11){
+    nLaces = 6 //Dark Blue
+}  else if(lacesDna >= 12 && lacesDna <= 21){
+    nLaces = 8 //Orange 
+} else if(lacesDna >= 22 && lacesDna <= 41){
+    nLaces = 7 //Red
+} else if(lacesDna >= 42 && lacesDna <= 66){
+    nLaces = 2 //Yellow
+} else if(lacesDna >= 67 && lacesDna <= 201){
     nLaces = 0
+} else if(lacesDna >= 202){
+    nLaces = 1
 }
 let lacesImg = "/assets/player-" + pHelper+ "-img/PPP-laces-" + pHelper+ "-" + nLaces + ".png"
 laces.src=lacesImg;
@@ -465,7 +474,7 @@ flag.onload=function(){
         ctx.drawImage(visor,198+offsetx,36+offsety)
         ctx.drawImage(frame,0,0)
         ctx.drawImage(flag,5,430 )
-        if(data.position != "0"){
+        if(data.position >= 0 ){
             ctx.drawImage(position, 280,235)
         }
         
