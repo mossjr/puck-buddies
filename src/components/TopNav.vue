@@ -7,7 +7,7 @@
     <router-link class="proshop" :to="{ name: 'Pro Shop'}">Pro Shop</router-link>
     <router-link class="marketplace" :to="{ name: 'Player Marketplace'}">Player Marketplace</router-link>
     <router-link class="marketplace" :to="{ name: 'Equipment Marketplace'}">Equipment Marketplace</router-link>    
-    <button id="disconnect-button">Disconnect</button>
+    <!-- <button id="disconnect-button">Disconnect</button> -->
     <div>
 
       

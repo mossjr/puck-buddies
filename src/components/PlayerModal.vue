@@ -122,10 +122,10 @@ export default {
             let a = sellerPrice * (100 + f) / 100
             let b = a - sellerPrice
             let fee = b.toFixed(4)
-           ////console.log(id + " SV: " + sellerPrice + " SF: " + fee)
            await main.sendPlayerToMarket(id, sellerPrice, fee).then(res => {
               this.screenLocked = false
            }).catch(err => {
+               console.log(err)
                this.screenLocked = false
            })
            this.closeModal()
@@ -189,6 +189,8 @@ export default {
             document.getElementById('xp-balance').innerHTML = res
             ////console.log(parseInt(res))
             this.myXp = parseInt(res)
+          }).catch(err => {
+              console.log(err)
           })
       },
 
@@ -196,7 +198,9 @@ export default {
             await main.getUpgradeCost().then(res => {
                 ////console.log(parseInt(res))
                 this.upgradeCost = parseInt(res)
-            })
+            }).catch(err => {
+              console.log(err)
+          })
         },
 
         async increaseStats(_splashImage, tokenId, statType, qty, xp){
@@ -208,7 +212,8 @@ export default {
                 this.loadPlayer()
                 this.closeModal()
             }).catch(err => {
-               this.screenLocked = false
+                console.log(err)
+                this.screenLocked = false
            })
         },
 
@@ -220,7 +225,8 @@ export default {
                 this.loadPlayer()
                 this.closeModal()
              }).catch(err => {
-                this.screenLocked = false
+                 console.log(err)
+                 this.screenLocked = false
             })
         },
 

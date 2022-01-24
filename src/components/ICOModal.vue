@@ -27,7 +27,10 @@
        <div>
          <div class="sm-warn">(Will round to nearest whole BUD)</div>
        </div>
-       <div>
+       <div class="loading-icon-container" v-if="!priceLoaded">
+            <img class="loadingicon" src="../assets/img/loading.gif" alt="loading">
+        </div>
+       <div v-if="priceLoaded">
          <button class="green-button" @click="buyBuddies('PB-BRB',bnbCost)">Buy {{fixedbudsToPurchase}} <b>BUDS</b> for {{bnbCost}} <b>BNB</b></button>
        </div>
         
@@ -54,7 +57,8 @@ export default {
             progressColor:'',
             progressPercent:'',
             splashImage: '',
-            screenLocked: false
+            screenLocked: false,
+            priceLoaded: false,
         }
     },
 
@@ -78,6 +82,7 @@ export default {
         this.totalBuds = Math.floor(res.budsBalance)
         this.totalBudsSold = Math.floor(res.budsSold)
         this.updateProgressBars()
+        this.priceLoaded = true
       }).catch(err => {
         //console.log(err)
         this.updateProgressBars()
@@ -123,7 +128,8 @@ export default {
          this.screenLocked = false
          this.closeModal()
        }).catch(err => {
-         //console.log(err)
+         console.log("Error buying BUDS")
+         console.log(err)
          this.screenLocked = false
        })
         }

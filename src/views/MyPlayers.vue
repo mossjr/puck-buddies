@@ -224,8 +224,8 @@ export default {
       this.checkPBPlayerAdmin()
       Promise.all(await main.loadPBPlayers("My Players"))
       .then(res => {
-        //console.log("Found " + res.length + " Players")
-        //console.log(res)
+        console.log("Found " + res.length + " Players")
+        console.log(res)
         let playerArray = []     
         for (let i = 0; i < res.length; i++) {
             let isOff
@@ -267,7 +267,7 @@ export default {
               'playerAge':res[i].playerAge,
               }) 
         }
-        //console.log(playerArray)
+        console.log(playerArray)
         this.loadingPlayers = false
         this.updateBalanceViewer()
         return playerArray
@@ -280,7 +280,8 @@ export default {
         .catch((err) => {
           this.updateBalanceViewer()
           this.totalFoundPlayers = 0
-          //console.log("Rendering Players in My Players Error: " + err)
+          console.log("Rendering Players in My Players Error: " + err)
+          console.log(err)
           this.players = null
         })
     },
@@ -316,10 +317,13 @@ export default {
     async mintNewOffence(_splashImage){
       this.splashImage = _splashImage
       this.screenLocked = true
-      await main.mintNewOffence()
+      await main.mintNewOffence().catch(err =>{
+        console.log(err)
+      })
       this.sendPlayerData().then(res => {
         this.screenLocked = false
       }).catch(err => {
+        console.log(err)
                this.screenLocked = false
            })
   },
@@ -327,10 +331,13 @@ export default {
     async mintNewDefence(_splashImage){
       this.splashImage = _splashImage
       this.screenLocked = true
-      await main.mintNewDefence()
+      await main.mintNewDefence().catch(err =>{
+        console.log(err)
+      })
       this.sendPlayerData().then(res => {
         this.screenLocked = false
       }).catch(err => {
+        console.log(err)
                this.screenLocked = false
            })
   },
@@ -338,10 +345,13 @@ export default {
     async mintNewGoalie(_splashImage){
       this.splashImage = _splashImage
       this.screenLocked = true
-      await main.mintNewGoalie()
+      await main.mintNewGoalie().catch(err =>{
+        console.log(err)
+      })
       this.sendPlayerData().then(res => {
         this.screenLocked = false
       }).catch(err => {
+        console.log(err)
                this.screenLocked = false
            })
   },

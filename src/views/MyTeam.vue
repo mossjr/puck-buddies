@@ -335,7 +335,7 @@ export default {
           this.screenLockedPlay = true
         }
       }).catch(err =>{
-        ////console.log(err)
+        console.log(err)
         this.screenLocked = false
         this.screenLockedPlay = false
         alert("Error Detected")
@@ -347,8 +347,7 @@ export default {
 },
 
     async getTeamDetails(){
-        await main.displayTeam().then(res => {
-        ////console.log(res) 
+        await main.displayTeam().then(res => { 
         let teamArray = []
         let playerArray = [] 
 
@@ -695,8 +694,8 @@ export default {
         this.updateXpBalanceViewer()
       })
       .catch((err) => {
-        ////console.log("Error rendering Teams: " + err)
-        ////console.log(err)
+        console.log("Error rendering Teams: " + err)
+        console.log(err)
         this.totalTeamsFound = 0
         this.teams = null
         this.playersLoaded = true
@@ -720,8 +719,8 @@ export default {
       })
       .catch(err => {
         this.screenLocked = false
-        ////console.log(err)
-        //this.sendPlayerData()
+        console.log(err)
+        this.sendPlayerData()
         this.updateBalanceViewer()
         this.updateXpBalanceViewer()
       })
@@ -924,40 +923,6 @@ export default {
           this.myXp = res
           })
       },
-
-      // async hitTheIcePvC(difficulty, teamId, playerIdArray){
-        
-      //   this.screenLockedPlay = true
-      //   ////console.log(difficulty)
-      //   ////console.log(teamId)
-      //   let matchObject = await main.hitTheIcePvC(difficulty, teamId, playerIdArray).then(res => {
-      //       this.screenLockedPlay = false
-      //       ////console.log(matchObject)
-      //       this.loadPvCmatches(teamId)
-      //       this.updateBalanceViewer()
-      //       this.updateXpBalanceViewer()
-      //   })
-      //   .catch(err => {
-      //     this.screenLockedPlay = false
-      //     this.loadPvCmatches()
-      //     ////console.log(err)
-      //   })
-      // },
-
-      //  async hitTheIcePvCTester(difficulty, teamId){
-      //   ////console.log(difficulty)
-      //   ////console.log(teamId)
-      //   let matchObject = await main.hitTheIcePvC(difficulty, teamId).then(res => {
-      //       ////console.log(matchObject)
-      //       this.loadPvCmatches(teamId)
-      //       this.updateBalanceViewer()
-      //       this.updateXpBalanceViewer()
-      //   })
-      //   .catch(err => {
-      //     this.loadPvCmatches()
-      //     ////console.log(err)
-      //   })
-      // },
 
       clearIntervals(){
         const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);

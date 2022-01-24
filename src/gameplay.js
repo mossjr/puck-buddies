@@ -8,35 +8,25 @@ import {
 import PBPVCHELPER from '../public/assets/contracts/PBPvCHelper.json'
 import PBPLAYER from '../public/assets/contracts/PBPlayers.json'
 import PBPVCMATCHUPS from '../public/assets/contracts/PBPvCMatchups.json'
+import { ethers } from "ethers"
 
-function encode(string) {
-  var number = "0x";
-  var length = string.length;
-  for (var i = 0; i < length; i++)
-      number += string.charCodeAt(i).toString(16);
-  return number;
-}
+const provider = new ethers.providers.Web3Provider(window.ethereum)
+const signer = provider.getSigner()
 
     async function performPvC(_playerIDs, _teamIDRaw, _difficulty) {
-        const _teamID = encode(_teamIDRaw)
-        const web3 = await Moralis.enableWeb3()
-    
-        const pvcMatchupsHelperInstance = new web3.eth.Contract(PBPVCHELPER.abi, PBPvCHelperAddress);
-        const pvcMatchhupsInstance = new web3.eth.Contract(PBPVCMATCHUPS.abi, PBPvCMatchupsAddress)
-        const pbPlayersInstance = new web3.eth.Contract(PBPLAYER.abi, pbPlayersAddress)
-        
-        const caller = ethereum.selectedAddress
+        const pvcMatchupsHelperInstance = new ethers.Contract(PBPvCHelperAddress, PBPVCHELPER.abi, signer)
+        const pvcMatchhupsInstance = new ethers.Contract(PBPvCMatchupsAddress, PBPVCMATCHUPS.abi, signer)
+        const pbPlayersInstance = new ethers.Contract(pbPlayersAddress, PBPLAYER.abi, signer)
         const difficulty = _difficulty
         
-          let difficultyMod = await pvcMatchhupsInstance.methods.getDifficultyMod().call({from: caller})
-          let opStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 1).call({from: caller})
-          let dpStat1 = await pvcMatchupsHelperInstance.methods.generateRandomStat(difficultyMod, 1, 2).call({from: caller})
-          let opStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 1).call({from: caller})
-          let dpStat2 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 1.5), 2, 2).call({from: caller})
-          let opStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 1).call({from: caller})
-          let dpStat3 = await pvcMatchupsHelperInstance.methods.generateRandomStat((difficultyMod * 2), 3, 2).call({from: caller})
-          let teamID = _teamID
-          //console.log("Team Id: " + teamID)
+          let difficultyMod = await pvcMatchhupsInstance.getDifficultyMod()
+          let opStat1 = await pvcMatchupsHelperInstance.generateRandomStat(difficultyMod, 1, 1)
+          let dpStat1 = await pvcMatchupsHelperInstance.generateRandomStat(difficultyMod, 1, 2)
+          let opStat2 = await pvcMatchupsHelperInstance.generateRandomStat((difficultyMod * 1.5), 2, 1)
+          let dpStat2 = await pvcMatchupsHelperInstance.generateRandomStat((difficultyMod * 1.5), 2, 2)
+          let opStat3 = await pvcMatchupsHelperInstance.generateRandomStat((difficultyMod * 2), 3, 1)
+          let dpStat3 = await pvcMatchupsHelperInstance.generateRandomStat((difficultyMod * 2), 3, 2)
+          let teamID = ethers.utils.solidityKeccak256(["uint"], [ethers.utils.solidityKeccak256(["string"], [_teamIDRaw])])
           let playerIDs = _playerIDs
 
           const query = new Moralis.Query("PBTeams")
@@ -44,19 +34,19 @@ function encode(string) {
           const teams = await query.find()
 
           //let teamDetails = await teamsInstance.methods.getTokenDetails(teamID).call({from: caller})
-          let matchupNos = await pvcMatchhupsInstance.methods.getNoMatchups(teamID).call({from: caller})
+          let matchupNos = await pvcMatchhupsInstance.getNoMatchups(teamID)
           let mu1 = matchupNos[0]
           let mu2 = matchupNos[1]
           let mu3 = matchupNos[2]
           //console.log(matchupNos)
 
           
-          let p1 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[0]).call({from: caller})
-          let p2 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[1]).call({from: caller})
-          let p3 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[2]).call({from: caller})
-          let p4 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[3]).call({from: caller})
-          let p5 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[4]).call({from: caller})
-          let p6 = await pbPlayersInstance.methods.getTokenDetails(_playerIDs[5]).call({from: caller})
+          let p1 = await pbPlayersInstance.getTokenDetails(_playerIDs[0])
+          let p2 = await pbPlayersInstance.getTokenDetails(_playerIDs[1])
+          let p3 = await pbPlayersInstance.getTokenDetails(_playerIDs[2])
+          let p4 = await pbPlayersInstance.getTokenDetails(_playerIDs[3])
+          let p5 = await pbPlayersInstance.getTokenDetails(_playerIDs[4])
+          let p6 = await pbPlayersInstance.getTokenDetails(_playerIDs[5])
 
           //console.log([p1,p2,p3,p4,p5,p6])
 
@@ -435,14 +425,20 @@ function encode(string) {
   }else if(t2Score > t1Score){
     wl = l
   }
-  let teamIDint = parseInt(teamID)
-  //console.log(teamID)
-  let matchValidToken = web3.utils.soliditySha3({t: 'address', v: caller}, {t: 'uint', v: wl}, {t: 'uint', v: thisMatchupNo}, {t: 'uint', v: difficulty}, {t: 'uint', v: teamID}, {t: 'uint', v: t1Score}, {t: 'uint', v: t2Score})
-  const sender = ethereum.selectedAddress
-  ////console.log({matchValidToken:matchValidToken, difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
-  let bcResult = await pvcMatchhupsInstance.methods.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score).send({from: sender, gas:204800})
-  ////console.log(bcResult)
-  ////console.log(bcResult.status) 
+  
+  //console.log(signer)
+  const sender = await signer.getAddress()
+  //console.log(sender)
+//['address', 'uint8 ', 'uint8 ','uint8 ','uint8 ','uint8 ','uint8 '],
+//console.log([sender, wl, parseInt(thisMatchupNo), difficulty, teamID, t1Score, t2Score])
+  //let paylmatchValidTokenoad = ethers.utils.keccak256( [sender, wl, parseInt(thisMatchupNo), difficulty, teamID, t1Score, t2Score]);
+
+  let matchValidToken = ethers.utils.solidityKeccak256(['address', 'uint', 'uint','uint','uint','uint','uint'], [sender, wl, parseInt(thisMatchupNo), difficulty, teamID, t1Score, t2Score])
+  //console.log({sender: sender, matchValidToken:matchValidToken, muchupNo:  parseInt(thisMatchupNo), difficulty:difficulty, teamID:teamID, t1Score:t1Score, t2Score:t2Score})
+  let bcResultTransaction = await pvcMatchhupsInstance.rewardMatchup(matchValidToken, difficulty, teamID, t1Score, t2Score)
+  let bcResult = await bcResultTransaction.wait()
+  //console.log(bcResult)
+  //console.log(bcResult.status) 
   let result
   if(bcResult.status == true){
 

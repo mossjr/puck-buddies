@@ -33,8 +33,8 @@ export default {
   methods: {
 
     async checkTestNet(){
-      console.log(crowdSaleLive)
-      console.log(testNetVersion)
+      // console.log(crowdSaleLive)
+      // console.log(testNetVersion)
       this.crowdSale = crowdSaleLive
       this.testNet = testNetVersion
       if(testNetVersion == true){

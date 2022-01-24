@@ -114,7 +114,8 @@ export default {
                 //console.log(this.items)
             })
             .catch(err => {
-                //console.log(err)
+              console.log("Error getting Stock Data")
+                console.log(err)
                 this.updateBalanceViewer()
             })
             this.loadingItems = false
@@ -132,8 +133,11 @@ export default {
 
         async checkProShopAdmin() {
             await main.checkProShopAdmin().then(res => {
-                //console.log("Is Pro Shop Admin: " + res)
+                console.log("Is Pro Shop Admin: " + res)
                 this.isProShopAdmin = res
+            }).catch(err => {
+              console.log("Error checking Proshop Admin")
+              console.log(err)
             })
         },
 

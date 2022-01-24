@@ -21,7 +21,13 @@
                 
             </div> 
     </div>
-  <button v-if="myBuds >= teamMintCost" id="login_button" @click="mintNewTeam('PB-BRB')">Mint Your First Team for <br><b>{{teamMintCost}} BUDS</b></button>
+    <div class="loading-icon-container" v-if="!priceLoaded">
+            <img class="loadingicon" src="../assets/img/loading.gif" alt="loading">
+        </div>
+    <div v-if="priceLoaded">
+        <button v-if="myBuds >= teamMintCost" id="login_button" @click="mintNewTeam('PB-BRB')">Mint Your First Team for <br><b>{{teamMintCost}} BUDS</b></button>
+    </div>
+  
   </div>
 </div>
 
@@ -50,6 +56,7 @@ export default {
         splashImage:'',
         screenLocked: false,
         icoModalVisible: false,
+        priceLoaded: false,
         }
     },
     
@@ -70,7 +77,7 @@ export default {
                         this.$emit('teamFound')
                     }).catch(err => {
                         this.screenLocked=false
-                        //console.log(err)
+                        console.log(err)
                         this.$emit('teamFound')
                     })
                 }else if(teamFound == true){
@@ -81,8 +88,9 @@ export default {
             async getTeamMintCost(){
                 await main.getTeamMintCost().then(res =>{
                     this.teamMintCost = res
+                    this.priceLoaded = true
                 }).catch(err =>{
-                    //console.log(err)
+                    console.log(err)
                 })
             },
 
