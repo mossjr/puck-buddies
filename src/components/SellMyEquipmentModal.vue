@@ -36,7 +36,6 @@ export default {
 
         async getProshopMarketFeePercent(){
           await main.getProshopMarketFeePercent().then(res =>{
-            //console.log(res)
             this.marketplaceFeePercent = res
           })
         },
@@ -45,11 +44,11 @@ export default {
           this.splashImage = _splashImage
           this.screenLocked = true
           await main.createProShopMarketItem(_tokenId, _sellPrice, _sellFee).then(res =>{
+            console.log(res)
             this.screenLocked = false
-            //console.log("Did this work?")
             this.closeModal()
           }).catch(err => {
-            //console.log(err)
+            console.log(err)
             this.screenLocked = false
           })
         },

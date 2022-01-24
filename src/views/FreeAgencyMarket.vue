@@ -78,6 +78,7 @@
 import main from '../main.js'
 import buildCanvas from '../scripts/buildPlayer.js'
 import LockModal from '../components/LockModal.vue'
+import { ethers } from "ethers"
 
 export default ({
   components: {LockModal},
@@ -129,17 +130,11 @@ export default ({
             
           })
           }
-          //console.log("Found " + playerIdArray.length + " player Ids in the Market")
         }
         
         return playerIdArray
       })
       .then(async res =>  {
-        
-        //console.log("Canvas Array:")
-        //console.log(this.players)
-        //console.log("Found " + res.length + " Players in Market")
-        //console.log(res)
         let playerData
         let playerArray = []
         for (let i = 0; i < res.length; i++) {
@@ -159,12 +154,10 @@ export default ({
                 isDef = false
                 isGoal = true
               }
-            playerData = await main.getSinglePlayerData(res[i].playerId)
-                //console.log("Data for player token " + playerData.ageoutTimestamp)
-                //console.log(playerData.ageoutTimestamp) 
-                  let sellerPriceFromWei = web3.utils.fromWei(res[i].sellerPrice)
-                  let marketFeeFromWei = web3.utils.fromWei(res[i].marketFee)
-                  let totalPriceFromWei = web3.utils.fromWei(res[i].totalPrice)
+            playerData = await main.getSinglePlayerData(res[i].playerId) 
+                  let sellerPriceFromWei = ethers.utils.formatUnits(res[i].sellerPrice, 18)
+                  let marketFeeFromWei =  ethers.utils.formatUnits(res[i].marketFee, 18)
+                  let totalPriceFromWei =  ethers.utils.formatUnits(res[i].totalPrice, 18)
                   playerArray.push({
                     'id': playerData.id,
                     'offence': playerData.offence,  
@@ -179,7 +172,7 @@ export default ({
                     'sellerPrice' : sellerPriceFromWei,
                     'marketFee' : marketFeeFromWei,
                     'totalPrice' : totalPriceFromWei,
-                    'position' : playerData.position,
+                    'position' : 0,
                     'owner' :  res[i].owner,
                     'teamLetter' : "",
                     'equippedJersey' : playerData.equippedJersey,
@@ -189,16 +182,12 @@ export default ({
                     'draftTimestamp': playerData.draftTimestamp,
                     'isMine': res[i].isMine
                   })
-                  //console.log("Sellers Adress is: " + playerArray[i].seller)
               }
               this.totalFoundPlayers = playerArray.length;
               this.players = playerArray
-              //console.log(playerArray)
               return {_playerArray: playerArray, _res: res} 
       })
       .then(res2 => {
-        //console.log("Passing Data")
-        //console.log(res2._playerArray)
          for (let i = 0; i < res2._playerArray.length; i++) {
           buildCanvas.preloadPlayerInfo(res2._playerArray[i].id, res2._playerArray[i], "market-no")
          }
@@ -208,18 +197,15 @@ export default ({
       .then(res3 => {
                  this.loadingPlayers = false
                  this.updateBalanceViewer()
-
-                 //console.log("This is the Players:")
-                 //console.log(this.players)
       })
       .catch((err) => {
-        //console.log("Rendering Players in Market Error: " + err)
-        //console.log(err)
+        console.log("Rendering Players in Market Error: " + err)
+        console.log(err)
         this.players = null
       })
     },
 
-          async updateBalanceViewer(){
+        async updateBalanceViewer(){
           await main.updateCoinBalance().then(res => {
           document.getElementById('coin-balance').innerHTML = res
           this.myFunds = res
@@ -245,28 +231,29 @@ export default ({
           })
           .catch(err => {
             this.screenLocked = false
-            //console.log("error buying MarketPlayer")
-            //console.log(err)
+            console.log("error buying MarketPlayer")
+            console.log(err)
           })
       },
 
       async cancelMarketSale(_splashImage, playerId){
         this.splashImage = _splashImage
         this.screenLocked = true
-        //console.log("Cancelling Market Sale: " + playerId)
         await main.cancelMarketSale(playerId).then(res => {
           this.screenLocked = false
           this.getMarketPlayers()
         }).catch(err => {
-               this.screenLocked = false
-           })
+          console.log(err)
+          this.screenLocked = false
+        })
       },
 
       async getMyAddress(){
-        const web3 = await Moralis.Web3.enable()
-        let myAdd = await web3.eth.getAccounts();
-        this.myAddress = myAdd
-        //console.log("Users Address: " + myAdd)
+        await main.myEthAddress().then(res => {
+          this.myAddress = res
+        }).catch(err =>  {
+          console.log(err)
+        })
       },
       
       async getTimestamp(){

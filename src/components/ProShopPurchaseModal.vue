@@ -45,12 +45,12 @@ export default {
         async purchaseFromStore(_splashImage, value, tokenId, qty) {
             this.splashImage = _splashImage
             this.screenLocked = true
-            await main.purchaseFromStore(value, tokenId, qty).then(res => {
+            await main.purchaseFromStore(value.toString(), tokenId, qty).then(res => {
                 this.screenLocked = false
                 //console.log(res)
                 this.closeModal()
             }).catch(err =>{
-              //console.log(err)
+              console.log(err)
               this.screenLocked = false
             })
         },
