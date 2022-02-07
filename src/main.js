@@ -34,8 +34,8 @@ import NOUNS from '../public/assets/data/nouns.json'
 import VALIDATOR from '../public/assets/contracts/Validator.json'
 import { ethers } from "ethers"
 
-Moralis.initialize("1QCUjtu9KZhzIDE4ASFphZNnESsTFPPmyT5bsuxd") // Application id from moralis.io
-Moralis.serverURL = "https://onhkokfjpssy.moralisweb3.com:2053/server"//Server url from moralis.io
+Moralis.initialize("vp0lJhXvnUqiXj8ND6KUMYtbsiBhJF9TB9lnFEY5") // Application id from moralis.io
+Moralis.serverURL = "https://rrqfr4ovavgo.usemoralis.com:2053/server"//Server url from moralis.io
 const provider = new ethers.providers.Web3Provider(window.ethereum)
 const signer = provider.getSigner()
 
